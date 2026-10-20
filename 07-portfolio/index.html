@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal Portfolio of Ankush - BCA Student & Aspiring Full Stack Developer. Passionate about software development, modern web technologies, and interactive design.">
+    <title>Ankush | Aspiring Full Stack Developer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-glow-container" aria-hidden="true">
+        <div class="blob blob-blue"></div>
+        <div class="blob blob-purple"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Mouse Glow Follower -->
+    <div class="mouse-glow" id="mouseGlow" aria-hidden="true"></div>
+
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#hero" class="logo">
+                <span class="logo-dot"></span>Ankush
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#learning" class="nav-link">Learning</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#vision" class="nav-link">Vision</a>
+                <a href="#contact" class="nav-link nav-cta">Contact</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="section hero-section">
+            <div class="container hero-container">
+                <div class="hero-content scroll-reveal">
+                    <div class="badge">
+                        <span class="badge-dot"></span> Ready to build & learn
+                    </div>
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="gradient-text">Ankush</span>
+                    </h1>
+                    <h2 class="hero-subtitle">BCA Student & Aspiring Full Stack Developer</h2>
+                    <p class="hero-desc">
+                        Passionate about software development, modern web technologies, and creating beautiful, highly polished digital experiences. Building a strong foundation and eager to solve real-world problems.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#education" class="btn btn-primary">
+                            <span>View My Journey</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator" aria-hidden="true">
+                <a href="#about" class="scroll-arrow">
+                    <span class="mouse">
+                        <span class="wheel"></span>
+                    </span>
+                    <span class="arrow-down"></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <span class="section-tag">01. About Me</span>
+                    <h2 class="section-title">Who I Am</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="about-grid">
+                    <div class="about-info scroll-reveal">
+                        <p class="lead-text">
+                            I am a student currently in my 4th Semester pursuing a Bachelor of Computer Applications (BCA) at Mangalore University.
+                        </p>
+                        <p>
+                            My interest in computer science lies in creating software that is both functional and visually stunning. I enjoy building things from scratch and learning the inner workings of modern web technologies. I believe in combining creativity with technology to build clean, interactive, and user-friendly applications.
+                        </p>
+                        <p>
+                            Instead of just learning theory, I prefer strengthening my foundation by building practical projects. I constantly strive to improve my coding skills, learn industry best practices, and work towards my long-term goal of becoming an excellent software developer.
+                        </p>
+                    </div>
+                    <div class="about-visual scroll-reveal">
+                        <div class="code-card">
+                            <div class="code-card-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="card-filename">developer.py</span>
+                            </div>
+                            <div class="code-card-body">
+                                <pre><code><span class="keyword">class</span> <span class="class-name">Developer</span>:
+    <span class="keyword">def</span> <span class="function-name">__init__</span>(<span class="variable">self</span>):
+        <span class="variable">self</span>.name = <span class="string">"Ankush"</span>
+        <span class="variable">self</span>.role = <span class="string">"Student & Builder"</span>
+        <span class="variable">self</span>.origin = <span class="string">"Karnataka, India"</span>
+        
+    <span class="keyword">def</span> <span class="function-name">get_status</span>(<span class="variable">self</span>):
+        <span class="keyword">return</span> {
+            <span class="string">"learning"</span>: <span class="keyword">True</span>,
+            <span class="string">"growth_mindset"</span>: <span class="keyword">True</span>,
+            <span class="string">"love_for_ui_ux"</span>: <span class="keyword">True</span>
+        }
+        
+    <span class="keyword">def</span> <span class="function-name">code_motto</span>(<span class="variable">self</span>):
+        <span class="keyword">return</span> <span class="string">"Learn. Build. Refine. Repeat."</span></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <span class="section-tag">02. Skills</span>
+                    <h2 class="section-title">My Technical Toolbox</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="skills-grid">
+                    <!-- Programming Skills -->
+                    <div class="skills-card scroll-reveal">
+                        <div class="card-glow"></div>
+                        <div class="skills-card-content">
+                            <div class="skills-icon-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="skills-icon"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            </div>
+                            <h3>Programming Languages</h3>
+                            <ul class="skills-list">
+                                <li>
+                                    <span class="skill-name">Python</span>
+                                    <span class="skill-level">Intermediate</span>
+                                </li>
+                                <li>
+                                    <span class="skill-name">C</span>
+                                    <span class="skill-level">Intermediate</span>
+                                </li>
+                                <li>
+                                    <span class="skill-name">Java</span>
+                                    <span class="skill-level">Basic / Fundamental</span>
+                                </li>
+                                <li>
+                                    <span class="skill-name">SQL</span>
+                                    <span class="skill-level">Intermediate</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Web Skills -->
+                    <div class="skills-card scroll-reveal">
+                        <div class="card-glow"></div>
+                        <div class="skills-card-content">
+                            <div class="skills-icon-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="skills-icon"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                            </div>
+                            <h3>Web Tech</h3>
+                            <ul class="skills-list">
+                                <li>
+                                    <span class="skill-name">HTML5</span>
+                                    <span class="skill-level">Advanced Layouts</span>
+                                </li>
+                                <li>
+                                    <span class="skill-name">CSS3</span>
+                                    <span class="skill-level">Flexbox / Grid / Animations</span>
+                                </li>
+                                <li>
+                                    <span class="skill-name">JavaScript</span>
+                                    <span class="skill-level">Learning / Core concepts</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Tools Skills -->
+                    <div class="skills-card scroll-reveal">
+                        <div class="card-glow"></div>
+                        <div class="skills-card-content">
+                            <div class="skills-icon-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="skills-icon"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                            </div>
+                            <h3>Tools & Software</h3>
+                            <ul class="skills-list">
+                                <li>
+                                    <span class="skill-name">VS Code</span>
+                                    <span class="skill-level">Daily Driver</span>
+                                </li>
+                                <li>
+                                    <span class="skill-name">Git & GitHub</span>
+                                    <span class="skill-level">Version Control Basics</span>
+                                </li>
+                                <li>
+                                    <span class="skill-name">Figma</span>
+                                    <span class="skill-level">UI Mockups (Basic)</span>
+                                </li>
+                                <li>
+                                    <span class="skill-name">Blender</span>
+                                    <span class="skill-level">3D Modeling (Basic)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Journey Section -->
+        <section id="learning" class="section learning-section">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <span class="section-tag">03. Growth</span>
+                    <h2 class="section-title">Currently Learning</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="learning-grid">
+                    <div class="learning-item scroll-reveal">
+                        <div class="learning-item-content">
+                            <span class="learning-status active">In Progress</span>
+                            <h3>JavaScript</h3>
+                            <p>Deep diving into interactive scripting, DOM manipulation, asynchronous operations, and modern ES6+ features.</p>
+                        </div>
+                    </div>
+                    <div class="learning-item scroll-reveal">
+                        <div class="learning-item-content">
+                            <span class="learning-status active">In Progress</span>
+                            <h3>Modern Web Development</h3>
+                            <p>Learning state management, component lifecycles, and architecture paradigms for building robust websites.</p>
+                        </div>
+                    </div>
+                    <div class="learning-item scroll-reveal">
+                        <div class="learning-item-content">
+                            <span class="learning-status active">In Progress</span>
+                            <h3>Git & GitHub</h3>
+                            <p>Mastering workflow branching, merging, pull requests, and collaborative repository development.</p>
+                        </div>
+                    </div>
+                    <div class="learning-item scroll-reveal">
+                        <div class="learning-item-content">
+                            <span class="learning-status upcoming">Upcoming</span>
+                            <h3>React</h3>
+                            <p>Preparing to transition to component-driven development, virtual DOM rendering, and single-page architectures.</p>
+                        </div>
+                    </div>
+                    <div class="learning-item scroll-reveal">
+                        <div class="learning-item-content">
+                            <span class="learning-status upcoming">Upcoming</span>
+                            <h3>FastAPI</h3>
+                            <p>Looking forward to exploring high-performance backend API building with Python, Pydantic, and async routes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section education-section">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <span class="section-tag">04. Education</span>
+                    <h2 class="section-title">Academic Path</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-item scroll-reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2024 - 2027 (Expected)</span>
+                            <h3>Bachelor of Computer Applications (BCA)</h3>
+                            <h4 class="timeline-institution">Mangalore University, Karnataka</h4>
+                            <p>Currently in 4th Semester. Studying computational mathematics, computer programming languages, database systems, networking, and software engineering. Building academic projects and forming structural coding knowledge.</p>
+                            <span class="timeline-badge">Current Path</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item scroll-reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Pre-University Education</span>
+                            <h3>Secondary / High School & PUC</h3>
+                            <h4 class="timeline-institution">Karnataka Board</h4>
+                            <p>Developed strong mathematical reasoning, logical analysis skills, and an early curiosity for digital art and computers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Vision Section -->
+        <section id="vision" class="section vision-section">
+            <div class="container">
+                <div class="vision-box scroll-reveal">
+                    <div class="vision-glow"></div>
+                    <span class="section-tag center">05. Ambition</span>
+                    <h2 class="vision-title">My Career Vision</h2>
+                    <p class="vision-text">
+                        "To become a highly skilled software developer capable of building scalable applications, solving real-world problems, continuously learning new technologies, and creating products that make a meaningful impact."
+                    </p>
+                    <div class="vision-footer">
+                        <div class="vision-divider"></div>
+                        <p class="vision-quote-author">Ankush</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <span class="section-tag">06. Contact</span>
+                    <h2 class="section-title">Let's Connect</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info scroll-reveal">
+                        <h3>Get in touch</h3>
+                        <p>I am always open to discussing web development projects, learning resources, and software opportunities. Whether you have a question, want to collaborate, or just say hello, my inbox is open.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                </div>
+                                <div class="contact-detail-text">
+                                    <span>Email Me</span>
+                                    <a href="mailto:ankushsuvarna3@gmail.com" class="contact-link">ankushsuvarna3@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                </div>
+                                <div class="contact-detail-text">
+                                    <span>Location</span>
+                                    <p>Karnataka, India</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card-form scroll-reveal">
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" required placeholder=" ">
+                                <label for="name">Your Name</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required placeholder=" ">
+                                <label for="email">Your Email</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+                                <label for="message">Your Message</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <span>Send Message</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            </button>
+                            <div class="form-feedback" id="formFeedback"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p class="copyright">&copy; 2026 Ankush. All Rights Reserved.</p>
+            <p class="footer-moto">Handcrafted with passion & code.</p>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
