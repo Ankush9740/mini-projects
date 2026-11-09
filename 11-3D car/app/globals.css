@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #060709;
+  --foreground: #e2e5eb;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-bright: rgba(255, 255, 255, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--background);
+  color: var(--foreground);
+  scroll-behavior: smooth;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07080b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232733;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3b4255;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Luxury Swiss Grid Line accents */
+.editorial-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.hairline-b {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.hairline-t {
+  border-top: 1px solid var(--hairline);
+}
+
+.hairline-r {
+  border-right: 1px solid var(--hairline);
+}
+
+.hairline-l {
+  border-left: 1px solid var(--hairline);
+}
+
+.hairline-all {
+  border: 1px solid var(--hairline);
+}
+
+/* Subtle glow effects for headlights and accents */
+.headlight-glow {
+  box-shadow: 0 0 25px 2px rgba(255, 255, 255, 0.15);
+}
+
+/* Hide canvas outline on focus */
+canvas:focus {
+  outline: none;
+}
+
