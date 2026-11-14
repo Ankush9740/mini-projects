@@ -37,7 +37,7 @@ R0 = 0.11                    # shadow radius (frame height = 1)
 TILT = np.radians(17)        # the disk leans down to the right
 INC = 0.12                   # how flat the disk looks from here
 R_IN, R_OUT = 1.55 * R0, 5.4 * R0
-FLASH = 7.8                  # the moment the disk lights up
+FLASH = 8                 # the moment the disk lights up
 
 _grid = {}
 
