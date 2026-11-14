@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About & The Craft — GHIBLI WORLDS</title>
+  <meta name="description" content="An editorial tribute to the hand-drawn philosophy, quiet moments of 'Ma', and ecological wonder of Studio Ghibli.">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/totoro.svg">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Magic Canvas -->
+  <canvas id="magic-canvas"></canvas>
+
+  <!-- =========================================================================
+       NAVIGATION BAR
+       ========================================================================= -->
+  <header class="ghibli-nav" id="main-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo" aria-label="Ghibli Worlds Homepage">
+        <img src="assets/icons/totoro.svg" alt="Totoro Spirit" class="nav-logo-icon">
+        <div>
+          <span class="nav-logo-text">GHIBLI WORLDS</span>
+          <span class="logo-sub">Studio Ghibli Universe</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="movies.html" class="nav-link">Movies</a></li>
+          <li><a href="characters.html" class="nav-link">Characters</a></li>
+          <li><a href="worlds.html" class="nav-link">Magical Worlds</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Spirited Away Flute Audio & Mobile Hamburger) -->
+      <div class="nav-actions">
+        <button class="audio-toggle-btn" aria-label="Toggle Always with Me flute melody" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <span class="audio-label">Always with Me (Flute)</span>
+          <div class="audio-sound-waves" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+
+        <button class="mobile-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer & Overlay -->
+  <div class="mobile-menu-overlay" aria-hidden="true"></div>
+  <aside class="mobile-menu-drawer" aria-label="Mobile Navigation Drawer">
+    <div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
+        <img src="assets/icons/totoro.svg" alt="Totoro" style="width: 34px; height: 34px;">
+        <span style="font-family: var(--font-serif-display); font-weight: 700; color: var(--deep-forest);">GHIBLI WORLDS</span>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="movies.html" class="nav-link">Movies</a></li>
+        <li><a href="characters.html" class="nav-link">Characters</a></li>
+        <li><a href="worlds.html" class="nav-link">Magical Worlds</a></li>
+        <li><a href="about.html" class="nav-link active">About</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       PAGE INTRODUCTION BANNER
+       ========================================================================= -->
+  <main>
+    <section class="about-hero">
+      <div class="container reveal-on-scroll">
+        <span class="section-tag" style="background: rgba(250, 246, 238, 0.2); border-color: rgba(250, 246, 238, 0.4); color: var(--cream);">
+          <img src="assets/icons/leaf.svg" alt="" style="width: 14px; height: 14px;">
+          Editorial & Philosophy
+        </span>
+        <h1 class="font-serif" style="color: #fff; margin-bottom: 18px;">The Poetry of Hand-Drawn Wonder</h1>
+        <p class="banner-subtitle" style="max-width: 760px; margin: 0 auto;">
+          Why the quietest moments in Studio Ghibli cinema remain the most unforgettable memories of our lives.
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         EDITORIAL ESSAY ARTICLE
+         ========================================================================= -->
+    <section class="section-padding" style="padding-top: 0;">
+      <div class="container">
+        <article class="about-article reveal-on-scroll">
+          <p class="about-intro-dropcap" style="font-size: 1.15rem; line-height: 1.8; color: var(--dark-ink);">
+            In an era increasingly dominated by sterile digital efficiency and relentless cinematic spectacle, the films of Studio Ghibli offer an antidote: an invitation to breathe, to look closely at a single drop of dew clinging to a mossy branch, and to remember what it felt like to encounter the world with wide, untamed eyes.
+          </p>
+
+          <div class="editorial-section">
+            <h3 class="font-serif">The Art of “Ma” (間) — The Sacred Pause</h3>
+            <p>
+              When legendary filmmaker Hayao Miyazaki was asked what separates his storytelling from western animation, he spoke of <em>“Ma”</em> (間)—the Japanese philosophical concept of negative space, emptiness, and quietude.
+            </p>
+            <p>
+              In Ghibli films, action always gives way to stillness. Chihiro sits quietly on a watery train carriage watching telegraph poles flick past at twilight; Satsuki and Mei wait in the silent rain as droplets ping against an umbrella; Howl cooks thick slices of bacon over Calcifer while the tea kettle begins to hiss. These moments do not advance the plot; they ground the soul. They remind us that human existence is lived not in grand battles, but in the peaceful intervals between them.
+            </p>
+
+            <div class="editorial-quote">
+              <p class="editorial-quote-text">
+                “If you just have non-stop action with no breathing space, it’s just busyness. But if you take a moment, then the tension growing in the film can build into a wider dimension. What we need is the quiet breeze between breaths.”
+              </p>
+              <span class="editorial-quote-author">— Hayao Miyazaki</span>
+            </div>
+          </div>
+
+          <!-- Thematic Pillars Grid -->
+          <div class="editorial-section">
+            <h3 class="font-serif">Four Pillars of the Ghibli Universe</h3>
+            <p>
+              Behind every painted cell and sweeping Joe Hisaishi orchestral phrase lie four timeless thematic pillars that define this cinematic universe:
+            </p>
+
+            <div class="pillars-grid">
+              <!-- Pillar 1 -->
+              <div class="pillar-box">
+                <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                </svg>
+                <h4 class="pillar-title font-serif">Ecological Reverence</h4>
+                <p class="pillar-desc">Nature is never a passive background. Ancient forests are living deities deserving of humility, reciprocity, and fierce protection.</p>
+              </div>
+
+              <!-- Pillar 2 -->
+              <div class="pillar-box">
+                <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                  <line x1="9" y1="9" x2="9.01" y2="9"/>
+                  <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+                <h4 class="pillar-title font-serif">Childhood Autonomy</h4>
+                <p class="pillar-desc">Children are neither idealized nor condescended to; they are resilient, observant navigators who solve dilemmas through empathy rather than violence.</p>
+              </div>
+
+              <!-- Pillar 3 -->
+              <div class="pillar-box">
+                <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+                </svg>
+                <h4 class="pillar-title font-serif">The Miracle of Flight</h4>
+                <p class="pillar-desc">From Nausicaä’s glider to Kiki’s broom and Pazu’s ornithopters, flight symbolizes the boundless liberation of the human imagination.</p>
+              </div>
+
+              <!-- Pillar 4 -->
+              <div class="pillar-box">
+                <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                  <line x1="6" y1="1" x2="6" y2="4"></line>
+                  <line x1="10" y1="1" x2="10" y2="4"></line>
+                  <line x1="14" y1="1" x2="14" y2="4"></line>
+                </svg>
+                <h4 class="pillar-title font-serif">Sensory Warmth & Food</h4>
+                <p class="pillar-desc">Sharing a steaming bowl of ramen or hand-shaped onigiri is a sacred ritual of healing that restores stamina and dissolves estrangement.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="editorial-section">
+            <h3 class="font-serif">The Tactile Magic of Hand-Drawn Animation</h3>
+            <p>
+              Long after mainstream animation transitioned fully into three-dimensional CGI, Studio Ghibli preserved the ancient art of the hand-drawn cel and watercolor wash. Legendary art directors like Kazuo Oga and Nizo Yamamoto painted backdrops using traditional Japanese Nicker poster paints, layering translucent gouache to capture the dappled luminescence of sunlight filtering through cedar needles.
+            </p>
+            <p>
+              Every frame possesses human imperfection, tactile texture, and an organic soul. You can feel the weight of water pooling in mud, the crispness of mountain breeze in grass, and the warmth of a fire crackling in a hearth.
+            </p>
+          </div>
+        </article>
+
+        <!-- =========================================================================
+             VISUAL TAPESTRY GALLERY
+             ========================================================================= -->
+        <div class="gallery-section">
+          <div class="section-intro reveal-on-scroll">
+            <span class="section-tag">
+              <img src="assets/icons/sparkle.svg" alt="" style="width: 14px; height: 14px;">
+              Artistic Tapestry
+            </span>
+            <h2 class="font-serif">Visions of Hand-Painted Scenery</h2>
+            <p class="section-subtitle">
+              Moments where the background art becomes a character of its own.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <!-- 1. Laputa -->
+            <div class="gallery-item reveal-on-scroll">
+              <img src="assets/images/backgrounds/about-gallery-1.jpg" alt="Castle in the Sky Ruins" class="gallery-image" loading="lazy">
+              <div class="gallery-caption">
+                <div class="gallery-caption-title font-serif">The Slumbering Metropolis</div>
+                <div class="gallery-caption-film">Castle in the Sky (1986)</div>
+              </div>
+            </div>
+
+            <!-- 2. Spirited Away Water Train -->
+            <div class="gallery-item reveal-on-scroll reveal-delay-1">
+              <img src="assets/images/backgrounds/about-gallery-2.jpg" alt="Spirited Away Ocean Railway" class="gallery-image" loading="lazy">
+              <div class="gallery-caption">
+                <div class="gallery-caption-title font-serif">The Train Across the Floodwaters</div>
+                <div class="gallery-caption-film">Spirited Away (2001)</div>
+              </div>
+            </div>
+
+            <!-- 3. Arrietty Microcosm -->
+            <div class="gallery-item reveal-on-scroll reveal-delay-2">
+              <img src="assets/images/backgrounds/about-gallery-3.jpg" alt="The Secret World of Arrietty Garden" class="gallery-image" loading="lazy">
+              <div class="gallery-caption">
+                <div class="gallery-caption-title font-serif">The World Under the Floorboards</div>
+                <div class="gallery-caption-film">The Secret World of Arrietty (2010)</div>
+              </div>
+            </div>
+
+            <!-- 4. Whisper of the Heart Sunset -->
+            <div class="gallery-item reveal-on-scroll reveal-delay-3">
+              <img src="assets/images/backgrounds/about-gallery-4.jpg" alt="Tokyo Hillside Sunset" class="gallery-image" loading="lazy">
+              <div class="gallery-caption">
+                <div class="gallery-caption-title font-serif">Hillside Sunset Over the Suburbs</div>
+                <div class="gallery-caption-film">Whisper of the Heart (1995)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================================
+             FINAL INSPIRATIONAL MESSAGE
+             ========================================================================= -->
+        <div class="reveal-on-scroll" style="text-align: center; max-width: 720px; margin: 40px auto 80px auto; padding: 40px 30px; background: var(--parchment-white); border-radius: var(--radius-lg); border: 1px solid var(--card-border); box-shadow: var(--shadow-subtle);">
+          <img src="assets/icons/kodama.svg" alt="" style="width: 48px; height: 48px; margin-bottom: 16px;">
+          <h3 class="font-serif" style="color: var(--deep-forest); margin-bottom: 14px;">A Message for Every Wanderer</h3>
+          <p style="font-size: 1.05rem; line-height: 1.7; color: var(--soft-ink); margin-bottom: 24px;">
+            The world does not require us to conquer it; it asks only that we notice it. Next time you feel the wind sweep through your hair, listen closely. Somewhere between dreams and reality, a forest spirit is whistling in the trees, waiting for you to look up.
+          </p>
+          <a href="movies.html" class="btn btn-primary">
+            Begin Your Journey Across the Films
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       CINEMATIC MOVIE & CHARACTER DETAIL MODALS
+       ========================================================================= -->
+  <div class="modal-backdrop" id="movie-modal" role="dialog" aria-modal="true" aria-label="Movie Details">
+    <div class="modal-container"></div>
+  </div>
+
+  <div class="modal-backdrop" id="character-modal" role="dialog" aria-modal="true" aria-label="Character Details">
+    <div class="modal-container"></div>
+  </div>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="ghibli-footer">
+    <div class="footer-top-hills"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-brand-logo">
+            <img src="assets/icons/totoro.svg" alt="Totoro Icon" class="footer-brand-logo-icon">
+            <span>GHIBLI WORLDS</span>
+          </a>
+          <p class="footer-brand-desc">
+            A visual and atmospheric tribute dedicated to the hand-drawn mastery, ecological wonder, and heartfelt storytelling of Studio Ghibli.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading font-serif">Explore</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="movies.html" class="footer-link">The Masterpieces</a></li>
+            <li><a href="characters.html" class="footer-link">Beloved Spirits</a></li>
+            <li><a href="worlds.html" class="footer-link">Magical Worlds</a></li>
+            <li><a href="about.html" class="footer-link">Editorial & Craft</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading font-serif">Essence</h4>
+          <ul class="footer-links-list">
+            <li><a href="#ma" class="footer-link">The Concept of “Ma”</a></li>
+            <li><a href="#hand-drawn" class="footer-link">Hand-Painted Art</a></li>
+            <li><a href="#ecology" class="footer-link">Ecological Wonder</a></li>
+            <li><a href="#childhood" class="footer-link">Courage & Innocence</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-spirit-quote">
+            <p class="footer-quote-text">
+              “The wind is rising! We must try to live.”
+            </p>
+            <span class="footer-quote-author">— Jiro Horikoshi</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          <p>© 2026 GHIBLI WORLDS. Created with love, tea, and watercolor dreams.</p>
+          <p class="footer-bottom-notice">
+            Fan tribute project. Studio Ghibli artwork used for educational and non-commercial appreciation.
+          </p>
+        </div>
+        <button class="back-to-top-btn" aria-label="Back to top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 15l-6-6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/characters.js"></script>
+  <script src="js/interactions.js"></script>
+</body>
+</html>
+
