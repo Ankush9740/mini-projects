@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Characters & Spirits — GHIBLI WORLDS</title>
+  <meta name="description" content="Meet the memorable spirits, brave heroines, enigmatic sorcerers, and loyal companions of Studio Ghibli.">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/totoro.svg">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Magic Canvas -->
+  <canvas id="magic-canvas"></canvas>
+
+  <!-- =========================================================================
+       NAVIGATION BAR
+       ========================================================================= -->
+  <header class="ghibli-nav" id="main-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo" aria-label="Ghibli Worlds Homepage">
+        <img src="assets/icons/totoro.svg" alt="Totoro Spirit" class="nav-logo-icon">
+        <div>
+          <span class="nav-logo-text">GHIBLI WORLDS</span>
+          <span class="logo-sub">Studio Ghibli Universe</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="movies.html" class="nav-link">Movies</a></li>
+          <li><a href="characters.html" class="nav-link active">Characters</a></li>
+          <li><a href="worlds.html" class="nav-link">Magical Worlds</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Spirited Away Flute Audio & Mobile Hamburger) -->
+      <div class="nav-actions">
+        <button class="audio-toggle-btn" aria-label="Toggle Always with Me flute melody" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <span class="audio-label">Always with Me (Flute)</span>
+          <div class="audio-sound-waves" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+
+        <button class="mobile-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer & Overlay -->
+  <div class="mobile-menu-overlay" aria-hidden="true"></div>
+  <aside class="mobile-menu-drawer" aria-label="Mobile Navigation Drawer">
+    <div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
+        <img src="assets/icons/totoro.svg" alt="Totoro" style="width: 34px; height: 34px;">
+        <span style="font-family: var(--font-serif-display); font-weight: 700; color: var(--deep-forest);">GHIBLI WORLDS</span>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="movies.html" class="nav-link">Movies</a></li>
+        <li><a href="characters.html" class="nav-link active">Characters</a></li>
+        <li><a href="worlds.html" class="nav-link">Magical Worlds</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       PAGE INTRODUCTION BANNER
+       ========================================================================= -->
+  <main>
+    <section class="page-banner" style="background-image: url('assets/images/backgrounds/hero-bg.jpg');">
+      <div class="banner-overlay"></div>
+      <div class="container banner-content reveal-on-scroll">
+        <span class="section-tag" style="background: rgba(250, 246, 238, 0.2); border-color: rgba(250, 246, 238, 0.4); color: var(--cream);">
+          <img src="assets/icons/kodama.svg" alt="" style="width: 14px; height: 14px;">
+          Beloved Souls & Mystical Beings
+        </span>
+        <h1 class="banner-title font-serif">Spirits, Wanderers & Heroines</h1>
+        <p class="banner-subtitle">
+          From fiery hearth demons to fierce wolf princesses, meet the characters who remind us of courage, kindness, and quiet resilience.
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SEARCH, CATEGORIES & CHARACTERS GRID
+         ========================================================================= -->
+    <section class="section-padding">
+      <div class="container">
+        <!-- Interactive Controls -->
+        <div class="controls-wrapper reveal-on-scroll">
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="character-search" 
+              class="search-input" 
+              placeholder="Search characters by name, movie, archetype, or quote..." 
+              aria-label="Search characters">
+            <button class="clear-search-btn" id="clear-character-search" aria-label="Clear search query">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div class="filters-bar" role="tablist" aria-label="Filter characters by type">
+              <button class="filter-btn character-filter-btn active" data-filter="all" role="tab" aria-selected="true">All Entities</button>
+              <button class="filter-btn character-filter-btn" data-filter="spirits" role="tab" aria-selected="false">Forest Spirits & Deities</button>
+              <button class="filter-btn character-filter-btn" data-filter="humans" role="tab" aria-selected="false">Human Wanderers</button>
+              <button class="filter-btn character-filter-btn" data-filter="magical" role="tab" aria-selected="false">Sorcerers & Mystics</button>
+              <button class="filter-btn character-filter-btn" data-filter="animals" role="tab" aria-selected="false">Familiars & Companions</button>
+            </div>
+            <div class="results-count" id="characters-count">Showing 18 characters</div>
+          </div>
+        </div>
+
+        <!-- Dynamic Characters Grid -->
+        <div class="characters-grid" id="characters-grid">
+          <!-- Injected dynamically by js/characters.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       CINEMATIC MOVIE & CHARACTER DETAIL MODALS
+       ========================================================================= -->
+  <div class="modal-backdrop" id="movie-modal" role="dialog" aria-modal="true" aria-label="Movie Details">
+    <div class="modal-container"></div>
+  </div>
+
+  <div class="modal-backdrop" id="character-modal" role="dialog" aria-modal="true" aria-label="Character Lore">
+    <div class="modal-container"></div>
+  </div>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="ghibli-footer">
+    <div class="footer-top-hills"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-brand-logo">
+            <img src="assets/icons/totoro.svg" alt="Totoro Icon" class="footer-brand-logo-icon">
+            <span>GHIBLI WORLDS</span>
+          </a>
+          <p class="footer-brand-desc">
+            A visual and atmospheric tribute dedicated to the hand-drawn mastery, ecological wonder, and heartfelt storytelling of Studio Ghibli.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading font-serif">Explore</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="movies.html" class="footer-link">The Masterpieces</a></li>
+            <li><a href="characters.html" class="footer-link">Beloved Spirits</a></li>
+            <li><a href="worlds.html" class="footer-link">Magical Worlds</a></li>
+            <li><a href="about.html" class="footer-link">Editorial & Craft</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading font-serif">Spirits</h4>
+          <ul class="footer-links-list">
+            <li><a href="characters.html" class="footer-link">Totoro & Catbus</a></li>
+            <li><a href="characters.html" class="footer-link">Chihiro & Haku</a></li>
+            <li><a href="characters.html" class="footer-link">Howl & Calcifer</a></li>
+            <li><a href="characters.html" class="footer-link">San & Ashitaka</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-spirit-quote">
+            <p class="footer-quote-text">
+              “They say that the best blaze burns brightest when circumstances are at their worst.”
+            </p>
+            <span class="footer-quote-author">— Sophie Hatter</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          <p>© 2026 GHIBLI WORLDS. Created with love, tea, and watercolor dreams.</p>
+          <p class="footer-bottom-notice">
+            Fan tribute project. Studio Ghibli character artwork used for educational and non-commercial celebration.
+          </p>
+        </div>
+        <button class="back-to-top-btn" aria-label="Back to top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 15l-6-6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/characters.js"></script>
+  <script src="js/interactions.js"></script>
+</body>
+</html>
+

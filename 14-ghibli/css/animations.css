@@ -1,0 +1,262 @@
+/* ==========================================================================
+   GHIBLI WORLDS — Atmospheric Animations & Keyframes
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Scroll-Triggered Reveal Animations
+   -------------------------------------------------------------------------- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.in-view {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Fallback: Ensure content is never blocked or hidden */
+.no-js .reveal-on-scroll,
+.content-revealed .reveal-on-scroll {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+.reveal-delay-4 {
+  transition-delay: 0.4s;
+}
+
+/* --------------------------------------------------------------------------
+   Floating Elements (Balloons, Acorns, Spirits)
+   -------------------------------------------------------------------------- */
+@keyframes floatBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: floatBounce 4s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Gentle Firefly Pulsing & Glow
+   -------------------------------------------------------------------------- */
+@keyframes fireflyPulse {
+  0%, 100% {
+    opacity: 0.3;
+    filter: drop-shadow(0 0 4px rgba(234, 248, 195, 0.4));
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 16px rgba(234, 248, 195, 0.9));
+  }
+}
+
+.animate-glow {
+  animation: fireflyPulse 3s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Gentle Kodama Head Tilt Animation
+   -------------------------------------------------------------------------- */
+@keyframes kodamaTilt {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-6deg);
+  }
+  75% {
+    transform: rotate(6deg);
+  }
+}
+
+.spirit-card:hover .spirit-avatar-wrapper {
+  animation: kodamaTilt 1.2s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Calcifer Flickering Hearth
+   -------------------------------------------------------------------------- */
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(1.04, 0.96) translateY(-2px);
+  }
+  60% {
+    transform: scale(0.97, 1.03) translateY(1px);
+  }
+  80% {
+    transform: scale(1.02, 0.98) translateY(-1px);
+  }
+}
+
+.flame-active {
+  animation: flameFlicker 0.6s infinite ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   Audio Sound Wave Equalizer Bars
+   -------------------------------------------------------------------------- */
+@keyframes soundBar {
+  0%, 100% {
+    height: 3px;
+  }
+  50% {
+    height: 14px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Drifting Clouds Background
+   -------------------------------------------------------------------------- */
+@keyframes cloudDrift {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.cloud-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat-x;
+  animation: cloudDrift 90s linear infinite;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+/* --------------------------------------------------------------------------
+   Button Shimmer Effect
+   -------------------------------------------------------------------------- */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: rotate(25deg);
+  transition: none;
+}
+
+.btn:hover::after {
+  left: 120%;
+  transition: all 0.75s ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Sparkle Particle (Created via JS on cursor hover)
+   -------------------------------------------------------------------------- */
+.cursor-sparkle {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, var(--firefly-glow));
+  box-shadow: 0 0 10px var(--firefly-glow);
+  transform: translate(-50%, -50%);
+  animation: sparkleFade 0.7s forwards ease-out;
+  z-index: 99999;
+}
+
+@keyframes sparkleFade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2) translateY(-15px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Modal Fade & Slide Transition
+   -------------------------------------------------------------------------- */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Seamless Page Content Crossfade
+   -------------------------------------------------------------------------- */
+main {
+  transition: opacity 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+main.page-transitioning {
+  opacity: 0.15;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion Accessibility (Mandatory)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  #magic-canvas {
+    display: none !important;
+  }
+
+  .cursor-sparkle {
+    display: none !important;
+  }
+
+  .cloud-layer {
+    animation: none !important;
+  }
+
+  .movie-card:hover,
+  .spirit-card:hover,
+  .portal-card:hover,
+  .character-card:hover {
+    transform: none !important;
+  }
+}
+

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magical Worlds — GHIBLI WORLDS</title>
+  <meta name="description" content="Journey through the iconic realms of Studio Ghibli: The Forest of Totoro, The Spirit World Bathhouse, Howl's Moving Castle, The Valley of the Wind, Koriko, and Ponyo's Ocean.">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/totoro.svg">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Magic Canvas -->
+  <canvas id="magic-canvas"></canvas>
+
+  <!-- =========================================================================
+       NAVIGATION BAR
+       ========================================================================= -->
+  <header class="ghibli-nav" id="main-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo" aria-label="Ghibli Worlds Homepage">
+        <img src="assets/icons/totoro.svg" alt="Totoro Spirit" class="nav-logo-icon">
+        <div>
+          <span class="nav-logo-text">GHIBLI WORLDS</span>
+          <span class="logo-sub">Studio Ghibli Universe</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="movies.html" class="nav-link">Movies</a></li>
+          <li><a href="characters.html" class="nav-link">Characters</a></li>
+          <li><a href="worlds.html" class="nav-link active">Magical Worlds</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Spirited Away Flute Audio & Mobile Hamburger) -->
+      <div class="nav-actions">
+        <button class="audio-toggle-btn" aria-label="Toggle Always with Me flute melody" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <span class="audio-label">Always with Me (Flute)</span>
+          <div class="audio-sound-waves" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+
+        <button class="mobile-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer & Overlay -->
+  <div class="mobile-menu-overlay" aria-hidden="true"></div>
+  <aside class="mobile-menu-drawer" aria-label="Mobile Navigation Drawer">
+    <div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
+        <img src="assets/icons/totoro.svg" alt="Totoro" style="width: 34px; height: 34px;">
+        <span style="font-family: var(--font-serif-display); font-weight: 700; color: var(--deep-forest);">GHIBLI WORLDS</span>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="movies.html" class="nav-link">Movies</a></li>
+        <li><a href="characters.html" class="nav-link">Characters</a></li>
+        <li><a href="worlds.html" class="nav-link active">Magical Worlds</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       PAGE INTRODUCTION BANNER
+       ========================================================================= -->
+  <main>
+    <section class="page-banner" style="background-image: url('assets/images/backgrounds/hero-forest.jpg');">
+      <div class="banner-overlay"></div>
+      <div class="container banner-content reveal-on-scroll">
+        <span class="section-tag" style="background: rgba(250, 246, 238, 0.2); border-color: rgba(250, 246, 238, 0.4); color: var(--cream);">
+          <img src="assets/icons/leaf.svg" alt="" style="width: 14px; height: 14px;">
+          Cartography of the Imagination
+        </span>
+        <h1 class="banner-title font-serif">The Magical Worlds</h1>
+        <p class="banner-subtitle">
+          Six wondrous landscapes where nature pulses with sacred memory, clock towers look upon turquoise seas, and walking fortresses breathe steam across the mountain wastes.
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         WORLD 1: THE FOREST OF TOTORO
+         ========================================================================= -->
+    <section class="world-section" id="totoro-forest" style="background-image: url('assets/images/worlds/totoro-forest.jpg');">
+      <div class="world-overlay"></div>
+      <div class="container world-container">
+        <div class="world-header reveal-on-scroll">
+          <span class="world-film-badge">My Neighbor Totoro (1988)</span>
+          <h2 class="world-title font-serif">The Forest of Totoro</h2>
+          <div class="world-quote">“To live in harmony with the great Camphor Tree, where every rustling acorn hides a slumbering king.”</div>
+          <p class="world-description">
+            Nestled in the idyllic rolling hills of Tokorozawa, this sanctuary of ancient Japan is draped in lush mosses, clear babbling brooks, and towering camphor trees. Here, the boundary between everyday pastoral toil and mystical folklore dissolves into summer showers. At twilight, when the crickets chime, the bus stop shelter becomes a staging ground for supernatural transit.
+          </p>
+          <a href="movies.html" class="btn btn-primary" onclick="window.openMovieModalById('totoro'); return false;">
+            Explore Film Origin
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="world-highlights reveal-on-scroll reveal-delay-1">
+          <h3 class="world-highlights-title font-serif">
+            <img src="assets/icons/sparkle.svg" alt="" style="width: 18px; height: 18px; color: var(--golden-hour);">
+            Sanctuary Highlights
+          </h3>
+          <div class="world-poi-list">
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🌳</div>
+              <div>
+                <div class="world-poi-name">The Thousand-Year Camphor Tree</div>
+                <div class="world-poi-desc">A sacred behemoth bound by Shinto shimenawa rope, housing deep moss-lined hollows where Totoro sleeps.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🌧️</div>
+              <div>
+                <div class="world-poi-name">The Rain-Swept Country Bus Stop</div>
+                <div class="world-poi-desc">Where water drips rhythmically onto broad butterbur leaves while waiting for the spectral yellow glow of Catbus.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🏡</div>
+              <div>
+                <div class="world-poi-name">The Kusakabe Weatherboard House</div>
+                <div class="world-poi-desc">A drafty, sunlit blend of Japanese tatami rooms and Western study annexes filled with whispering Soot Sprites.</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-secondary world-sound-btn">Listen to Atmosphere</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         WORLD 2: THE SPIRIT WORLD BATHHOUSE
+         ========================================================================= -->
+    <section class="world-section" id="spirit-world" style="background-image: url('assets/images/worlds/spirit-world.jpg');">
+      <div class="world-overlay"></div>
+      <div class="container world-container">
+        <div class="world-header reveal-on-scroll">
+          <span class="world-film-badge">Spirited Away (2001)</span>
+          <h2 class="world-title font-serif">The Spirit World & Bathhouse</h2>
+          <div class="world-quote">“When the twilight bells chime and red lanterns flicker alive across the silent water.”</div>
+          <p class="world-description">
+            Hidden behind an overgrown plaster tunnel at the end of a forest road lies the extravagant bathhouse of the sorceress Yubaba. By night, eight million Kami—river gods, radish spirits, mountain deities, and wandering phantoms—cross a vermilion bridge over phantom waters to cleanse their exhaustion with medicinal herbal waters and feasts of celestial delicacies.
+          </p>
+          <a href="movies.html" class="btn btn-primary" onclick="window.openMovieModalById('spirited-away'); return false;">
+            Explore Film Origin
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="world-highlights reveal-on-scroll reveal-delay-1">
+          <h3 class="world-highlights-title font-serif">
+            <img src="assets/icons/sparkle.svg" alt="" style="width: 18px; height: 18px; color: var(--golden-hour);">
+            Mystic Landmarks
+          </h3>
+          <div class="world-poi-list">
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🏮</div>
+              <div>
+                <div class="world-poi-name">Yubaba's Multi-Tiered Bathhouse (Aburaya)</div>
+                <div class="world-poi-desc">An architectural marvel of lacquered wood, herbal boiler rooms stoked by Susuwatari, and luxury soaking tubs.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🚆</div>
+              <div>
+                <div class="world-poi-name">The Sixth Station Ocean Railway</div>
+                <div class="world-poi-desc">A lonely electric train rolling across flooded, glass-calm waters carrying shadowy commuters toward Swamp Bottom.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">⛩️</div>
+              <div>
+                <div class="world-poi-name">The Red Vermilion Bridge</div>
+                <div class="world-poi-desc">The threshold connecting the mortal food alleyways to the palace of spirits, requiring visitors to hold their breath.</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-secondary world-sound-btn">Listen to Atmosphere</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         WORLD 3: HOWL'S MOVING CASTLE & THE WASTES
+         ========================================================================= -->
+    <section class="world-section" id="howls-castle" style="background-image: url('assets/images/worlds/howls-castle.jpg');">
+      <div class="world-overlay"></div>
+      <div class="container world-container">
+        <div class="world-header reveal-on-scroll">
+          <span class="world-film-badge">Howl's Moving Castle (2004)</span>
+          <h2 class="world-title font-serif">The Wastes & Moving Castle</h2>
+          <div class="world-quote">“A clanking mountain fortress wandering upon chicken legs through heather and alpine fog.”</div>
+          <p class="world-description">
+            Across the barren, wind-buffeted crags of the Wastes strolls Howl’s walking castle—a towering collage of steampunk turrets, steaming boilers, cannon ports, and clotheslines held together by the arcane power of Calcifer. Inside, a four-color portal dial twists space, allowing the front door to open simultaneously onto bustling Kingsbury canals, harbor docks, or serene flower meadows beside Mount Polestar.
+          </p>
+          <a href="movies.html" class="btn btn-primary" onclick="window.openMovieModalById('howls-moving-castle'); return false;">
+            Explore Film Origin
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="world-highlights reveal-on-scroll reveal-delay-1">
+          <h3 class="world-highlights-title font-serif">
+            <img src="assets/icons/sparkle.svg" alt="" style="width: 18px; height: 18px; color: var(--golden-hour);">
+            Wonders of the Citadel
+          </h3>
+          <div class="world-poi-list">
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🔥</div>
+              <div>
+                <div class="world-poi-name">Calcifer's Cast-Iron Hearth</div>
+                <div class="world-poi-desc">The beating furnace of the entire locomotive mechanism, fueled by hardwood logs and Sophie’s fried breakfast.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🧭</div>
+              <div>
+                <div class="world-poi-name">The Four-Color Dimensional Portal Dial</div>
+                <div class="world-poi-desc">A knob above the front entrance that shifts the portal across Market Chipping, Porthaven, Kingsbury, and the Wastes.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🌸</div>
+              <div>
+                <div class="world-poi-name">The Secret Alpine Flower Meadow</div>
+                <div class="world-poi-desc">Howl’s childhood retreat tucked beside Star Lake, where wildflowers bloom forever beneath snow-capped peaks.</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-secondary world-sound-btn">Listen to Atmosphere</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         WORLD 4: THE VALLEY OF THE WIND
+         ========================================================================= -->
+    <section class="world-section" id="valley-wind" style="background-image: url('assets/images/worlds/valley-wind.jpg');">
+      <div class="world-overlay"></div>
+      <div class="container world-container">
+        <div class="world-header reveal-on-scroll">
+          <span class="world-film-badge">Nausicaä of the Valley of the Wind (1984)</span>
+          <h2 class="world-title font-serif">The Valley of the Wind & Toxic Jungle</h2>
+          <div class="world-quote">“Where thermal drafts keep the poison spores away, and ancient Ohms guard the breathing earth.”</div>
+          <p class="world-description">
+            Perched between the raging toxic miasmas of the Fukai (Sea of Decay) and the ocean salt winds lies the tranquil farming realm of the Valley of the Wind. Powered by giant stone windmills that pump clean subterranean well water, its villagers revere the air. Beyond the border cliffs stretch fungal forests of glowing spore-caps, fossilized dragon skeletons, and colossal Ohm sentinels whose ruby eyes shift to sapphire when pacified.
+          </p>
+          <a href="movies.html" class="btn btn-primary" onclick="window.openMovieModalById('nausicaa'); return false;">
+            Explore Film Origin
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="world-highlights reveal-on-scroll reveal-delay-1">
+          <h3 class="world-highlights-title font-serif">
+            <img src="assets/icons/sparkle.svg" alt="" style="width: 18px; height: 18px; color: var(--golden-hour);">
+            Ecosystem Curiosities
+          </h3>
+          <div class="world-poi-list">
+            <div class="world-poi-item">
+              <div class="world-poi-icon">💨</div>
+              <div>
+                <div class="world-poi-name">The Great Windmills of the Valley</div>
+                <div class="world-poi-desc">Giant canvas sails harnessing maritime gales to grind grain and draw untainted water from subterranean aquifers.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🍄</div>
+              <div>
+                <div class="world-poi-name">The Sea of Decay (Fukai)</div>
+                <div class="world-poi-desc">A vast forest of bioluminescent fungi and giant insects purifying humankind's ancient industrial toxins into crystal sand.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🪲</div>
+              <div>
+                <div class="world-poi-name">The Ohm Graveyard & Shell Caves</div>
+                <div class="world-poi-desc">Ancient shed carapaces harder than ceramic steel, used to forge farming sickles and glider hull plating.</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-secondary world-sound-btn">Listen to Atmosphere</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         WORLD 5: KIKI'S COASTAL TOWN OF KORIKO
+         ========================================================================= -->
+    <section class="world-section" id="kiki-town" style="background-image: url('assets/images/worlds/kiki-town.jpg');">
+      <div class="world-overlay"></div>
+      <div class="container world-container">
+        <div class="world-header reveal-on-scroll">
+          <span class="world-film-badge">Kiki's Delivery Service (1989)</span>
+          <h2 class="world-title font-serif">The Coastal Town of Koriko</h2>
+          <div class="world-quote">“Cobblestone streets sloping toward the sea, fragrant with sourdough crust and maritime winds.”</div>
+          <p class="world-description">
+            A sunlit amalgam of Stockholm, Visby, and Lisbon, Koriko is a bustling European port city draped over seaside cliffs. Its red terracotta rooftops are crowned by an iconic mechanical clock tower that chimes over seagulls, double-decker trams, and ocean liners. From her attic room above the Gutiokipanja Bakery, young Kiki launches her broomstick over laundry lines to deliver packages across the sun-drenched hills.
+          </p>
+          <a href="movies.html" class="btn btn-primary" onclick="window.openMovieModalById('kikis-delivery-service'); return false;">
+            Explore Film Origin
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="world-highlights reveal-on-scroll reveal-delay-1">
+          <h3 class="world-highlights-title font-serif">
+            <img src="assets/icons/sparkle.svg" alt="" style="width: 18px; height: 18px; color: var(--golden-hour);">
+            Town Landmarks
+          </h3>
+          <div class="world-poi-list">
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🥐</div>
+              <div>
+                <div class="world-poi-name">Gutiokipanja Bakery</div>
+                <div class="world-poi-desc">Run by the kind pregnant baker Osono, where braided brioche and an artistic wreath of a flying witch welcome customers.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🕰️</div>
+              <div>
+                <div class="world-poi-name">The Great Central Clock Tower</div>
+                <div class="world-poi-desc">A gothic copper clock tower presiding over the city harbor, where airships anchor and the city bells ring out.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🌲</div>
+              <div>
+                <div class="world-poi-name">Ursula's Forest Cabin</div>
+                <div class="world-poi-desc">A secluded wooden sanctuary in the deep woods where crows gather and paintings of celestial winged horses are born.</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-secondary world-sound-btn">Listen to Atmosphere</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         WORLD 6: PONYO'S OCEAN & DEVONIAN SEA
+         ========================================================================= -->
+    <section class="world-section" id="ponyo-ocean" style="background-image: url('assets/images/worlds/ponyo-ocean.jpg');">
+      <div class="world-overlay"></div>
+      <div class="container world-container">
+        <div class="world-header reveal-on-scroll">
+          <span class="world-film-badge">Ponyo (2008)</span>
+          <h2 class="world-title font-serif">Ponyo's Ocean & Devonian Sea</h2>
+          <div class="world-quote">“Where ancient tides flood the hills and giant prehistoric Dunkleosteus swim past flooded streetlamps.”</div>
+          <p class="world-description">
+            Inspired by the Japanese port town of Tomonoura, this dramatic cliffside setting is plunged into wonder when Ponyo's joy disrupts the lunar balance. The coastal sea rises, submerging suburban asphalt roads beneath emerald waters so crystal clear that children cruise toy tin steamboats over sunken cars while prehistoric armor-plated fish glide gracefully past utility poles.
+          </p>
+          <a href="movies.html" class="btn btn-primary" onclick="window.openMovieModalById('ponyo'); return false;">
+            Explore Film Origin
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="world-highlights reveal-on-scroll reveal-delay-1">
+          <h3 class="world-highlights-title font-serif">
+            <img src="assets/icons/sparkle.svg" alt="" style="width: 18px; height: 18px; color: var(--golden-hour);">
+            Coastal Wonders
+          </h3>
+          <div class="world-poi-list">
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🏠</div>
+              <div>
+                <div class="world-poi-name">Sosuke's Cliffside Cottage</div>
+                <div class="world-poi-desc">A cozy red-roof home perched high above the inlet where signal lamps flash Morse code to container ships.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">🌊</div>
+              <div>
+                <div class="world-poi-name">The Flooded Devonian Highway</div>
+                <div class="world-poi-desc">A submerged road where ancient armored fish and glowing jellyfish navigate peacefully through telephone wires.</div>
+              </div>
+            </div>
+            <div class="world-poi-item">
+              <div class="world-poi-icon">⛵</div>
+              <div>
+                <div class="world-poi-name">The Candle-Powered Pop-Pop Boat</div>
+                <div class="world-poi-desc">Enlarged by Ponyo's magic into a seaworthy vessel that chugs through prehistoric currents on a single wax flame.</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-secondary world-sound-btn">Listen to Atmosphere</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       CINEMATIC MOVIE & CHARACTER DETAIL MODALS
+       ========================================================================= -->
+  <div class="modal-backdrop" id="movie-modal" role="dialog" aria-modal="true" aria-label="Movie Details">
+    <div class="modal-container"></div>
+  </div>
+
+  <div class="modal-backdrop" id="character-modal" role="dialog" aria-modal="true" aria-label="Character Details">
+    <div class="modal-container"></div>
+  </div>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="ghibli-footer">
+    <div class="footer-top-hills"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-brand-logo">
+            <img src="assets/icons/totoro.svg" alt="Totoro Icon" class="footer-brand-logo-icon">
+            <span>GHIBLI WORLDS</span>
+          </a>
+          <p class="footer-brand-desc">
+            A visual and atmospheric tribute dedicated to the hand-drawn mastery, ecological wonder, and heartfelt storytelling of Studio Ghibli.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading font-serif">Explore</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="movies.html" class="footer-link">The Masterpieces</a></li>
+            <li><a href="characters.html" class="footer-link">Beloved Spirits</a></li>
+            <li><a href="worlds.html" class="footer-link">Magical Worlds</a></li>
+            <li><a href="about.html" class="footer-link">Editorial & Craft</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading font-serif">Realms</h4>
+          <ul class="footer-links-list">
+            <li><a href="#totoro-forest" class="footer-link">Totoro's Forest</a></li>
+            <li><a href="#spirit-world" class="footer-link">The Bathhouse</a></li>
+            <li><a href="#howls-castle" class="footer-link">Howl's Moving Castle</a></li>
+            <li><a href="#kiki-town" class="footer-link">Coastal Town of Koriko</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-spirit-quote">
+            <p class="footer-quote-text">
+              “Take root in the ground, live in harmony with the wind, bear seeds in the winter and rejoice with the birds in spring.”
+            </p>
+            <span class="footer-quote-author">— Sheeta of Laputa</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          <p>© 2026 GHIBLI WORLDS. Created with love, tea, and watercolor dreams.</p>
+          <p class="footer-bottom-notice">
+            Fan tribute project. Studio Ghibli background art used for appreciation under fair educational usage guidelines.
+          </p>
+        </div>
+        <button class="back-to-top-btn" aria-label="Back to top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 15l-6-6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/characters.js"></script>
+  <script src="js/interactions.js"></script>
+</body>
+</html>
+

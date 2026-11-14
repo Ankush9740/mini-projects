@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Fuzzy body -->
+  <path d="M32 10 C34 6 38 7 37 12 C41 9 45 12 43 16 C48 15 50 19 46 23 C51 24 53 28 49 32 C53 35 52 40 47 42 C50 46 47 50 42 50 C43 54 39 57 36 54 C33 58 29 57 28 53 C24 56 20 53 21 49 C16 50 14 45 17 41 C12 40 12 35 15 32 C11 28 13 24 17 23 C14 18 18 15 22 17 C22 12 26 10 29 13 Z" fill="#253D32"/>
+  <!-- Eyes -->
+  <circle cx="26" cy="30" r="7" fill="#FFFFFF"/>
+  <circle cx="28" cy="30" r="3.5" fill="#1A2421"/>
+  <circle cx="29" cy="28.5" r="1.2" fill="#FFFFFF"/>
+  <circle cx="38" cy="30" r="7" fill="#FFFFFF"/>
+  <circle cx="40" cy="30" r="3.5" fill="#1A2421"/>
+  <circle cx="41" cy="28.5" r="1.2" fill="#FFFFFF"/>
+  <!-- Spore dust particles -->
+  <circle cx="12" cy="18" r="1.5" fill="#D99B69" opacity="0.8"/>
+  <circle cx="52" cy="20" r="1.2" fill="#E8F5B8" opacity="0.8"/>
+  <circle cx="48" cy="48" r="1.5" fill="#D99B69" opacity="0.8"/>
+  <circle cx="15" cy="46" r="1.2" fill="#E8F5B8" opacity="0.8"/>
+</svg>

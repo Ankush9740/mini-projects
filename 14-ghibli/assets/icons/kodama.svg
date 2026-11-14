@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Kodama Body -->
+  <path d="M28 36C26 42 25 50 24 58C24 60 27 60 29 58C30 54 31 46 32 44C33 46 34 54 35 58C37 60 40 60 40 58C39 50 38 42 36 36" fill="#F5EEDC" stroke="#A7B99A" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Arms -->
+  <path d="M26 38C22 42 19 46 20 48M38 38C42 42 45 46 44 48" stroke="#A7B99A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Head tilted -->
+  <path d="M32 8C20 8 16 16 18 26C20 34 26 37 34 36C42 35 48 30 46 20C44 11 38 8 32 8Z" fill="#F5EEDC" stroke="#A7B99A" stroke-width="2"/>
+  <!-- Hollow Eyes & Mouth -->
+  <ellipse cx="27" cy="19" rx="3.5" ry="4.5" fill="#253D32"/>
+  <ellipse cx="38" cy="21" rx="3.5" ry="4.5" fill="#253D32"/>
+  <ellipse cx="32" cy="28" rx="2" ry="3" fill="#253D32"/>
+</svg>

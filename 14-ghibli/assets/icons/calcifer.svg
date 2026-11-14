@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Outer flame -->
+  <path d="M32 4C35 12 44 15 42 25C47 22 52 28 50 36C52 42 48 56 34 58C20 60 12 50 12 40C12 30 20 26 22 18C23 23 27 24 28 20C30 14 27 8 32 4Z" fill="#D99B69"/>
+  <!-- Inner flame -->
+  <path d="M32 14C35 20 40 24 38 32C42 31 43 36 41 42C42 47 38 52 30 53C22 54 18 48 18 40C18 34 23 31 24 25C25 29 28 29 29 26C31 21 29 17 32 14Z" fill="#FFE699"/>
+  <!-- Eyes -->
+  <ellipse cx="25" cy="36" rx="4" ry="4.5" fill="#FFFFFF"/>
+  <circle cx="26" cy="36" r="2.2" fill="#253D32"/>
+  <circle cx="27" cy="34.5" r="0.8" fill="#FFFFFF"/>
+  <ellipse cx="37" cy="36" rx="4" ry="4.5" fill="#FFFFFF"/>
+  <circle cx="36" cy="36" r="2.2" fill="#253D32"/>
+  <circle cx="37" cy="34.5" r="0.8" fill="#FFFFFF"/>
+  <!-- Mouth -->
+  <path d="M27 44C29 47 33 47 35 44" stroke="#253D32" stroke-width="2" stroke-linecap="round"/>
+  <!-- Little logs / base -->
+  <path d="M14 56L50 56M18 60L46 60" stroke="#80644D" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

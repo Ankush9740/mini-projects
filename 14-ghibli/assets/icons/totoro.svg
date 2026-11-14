@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <path d="M32 6C27 6 25 10 24 14C23 18 20 23 16 28C12 33 10 40 10 47C10 55 18 60 32 60C46 60 54 55 54 47C54 40 52 33 48 28C44 23 41 18 40 14C39 10 37 6 32 6Z" fill="#426B50"/>
+  <!-- Ears -->
+  <path d="M22 16L18 4C17 1 21 0 23 3L25 14" fill="#426B50"/>
+  <path d="M42 16L46 4C47 1 43 0 41 3L39 14" fill="#426B50"/>
+  <!-- Belly -->
+  <ellipse cx="32" cy="46" rx="16" ry="12" fill="#F5EEDC"/>
+  <!-- Belly markings -->
+  <path d="M28 41L30 38L32 41M34 41L36 38L38 41M25 46L27 43L29 46M31 46L33 43L35 46M37 46L39 43L41 46" stroke="#426B50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Eyes -->
+  <circle cx="24" cy="27" r="4.5" fill="#FFFFFF"/>
+  <circle cx="24" cy="27" r="2" fill="#253D32"/>
+  <circle cx="40" cy="27" r="4.5" fill="#FFFFFF"/>
+  <circle cx="40" cy="27" r="2" fill="#253D32"/>
+  <!-- Nose -->
+  <ellipse cx="32" cy="27.5" rx="2.5" ry="1.5" fill="#253D32"/>
+  <!-- Whiskers -->
+  <path d="M12 28H19M11 31H18M45 28H52M46 31H53" stroke="#253D32" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

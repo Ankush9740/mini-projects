@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GHIBLI WORLDS — A Magical Studio Ghibli Universe</title>
+  <meta name="description" content="Step into a world where forests whisper, spirits wander, and every little moment holds a touch of magic. A tribute to the timeless animated masterworks of Studio Ghibli.">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/totoro.svg">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Interactive Magic Canvas: Fireflies, Falling Leaves & Sparkle Trail -->
+  <canvas id="magic-canvas"></canvas>
+
+  <!-- =========================================================================
+       NAVIGATION BAR
+       ========================================================================= -->
+  <header class="ghibli-nav" id="main-nav">
+    <div class="container nav-container">
+      <!-- Logo with Animated Totoro Icon -->
+      <a href="index.html" class="nav-logo" aria-label="Ghibli Worlds Homepage">
+        <img src="assets/icons/totoro.svg" alt="Totoro Spirit" class="nav-logo-icon">
+        <div>
+          <span class="nav-logo-text">GHIBLI WORLDS</span>
+          <span class="logo-sub">Studio Ghibli Universe</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="movies.html" class="nav-link">Movies</a></li>
+          <li><a href="characters.html" class="nav-link">Characters</a></li>
+          <li><a href="worlds.html" class="nav-link">Magical Worlds</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Spirited Away Flute Audio & Mobile Hamburger) -->
+      <div class="nav-actions">
+        <button class="audio-toggle-btn" aria-label="Toggle Always with Me flute melody" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <span class="audio-label">Always with Me (Flute)</span>
+          <div class="audio-sound-waves" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+
+        <button class="mobile-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer & Overlay -->
+  <div class="mobile-menu-overlay" aria-hidden="true"></div>
+  <aside class="mobile-menu-drawer" aria-label="Mobile Navigation Drawer">
+    <div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
+        <img src="assets/icons/totoro.svg" alt="Totoro" style="width: 34px; height: 34px;">
+        <span style="font-family: var(--font-serif-display); font-weight: 700; color: var(--deep-forest);">GHIBLI WORLDS</span>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="movies.html" class="nav-link">Movies</a></li>
+        <li><a href="characters.html" class="nav-link">Characters</a></li>
+        <li><a href="worlds.html" class="nav-link">Magical Worlds</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </div>
+    <div style="font-size: 0.85rem; color: var(--muted-moss); border-top: 1px solid var(--sage-green); padding-top: 20px;">
+      <p>Hand-drawn imagination & timeless stories.</p>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       HERO SECTION — Somewhere Between Dreams and Reality
+       ========================================================================= -->
+  <main>
+    <section class="hero-section" id="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-clouds"></div>
+
+      <div class="hero-content reveal-on-scroll in-view">
+        <div class="hero-badge animate-glow">
+          <img src="assets/icons/leaf.svg" alt="" style="width: 16px; height: 16px; color: var(--firefly-glow);">
+          <span>Enter the Realm of Gentle Magic</span>
+        </div>
+
+        <h1 class="hero-title">Somewhere Between Dreams and Reality</h1>
+
+        <p class="hero-subtitle">
+          Step into a world where forests whisper, spirits wander, and every little moment holds a touch of magic.
+        </p>
+
+        <div class="hero-actions">
+          <a href="worlds.html" class="btn btn-primary">
+            Explore the Worlds
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="movies.html" class="btn btn-secondary">
+            Discover the Movies
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll Down Indicator -->
+      <a href="#featured-movies" class="hero-scroll-indicator" aria-label="Scroll down to featured movies">
+        <span>Scroll to Wander</span>
+        <div class="scroll-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+    </section>
+
+    <!-- =========================================================================
+         FEATURED MOVIES SECTION
+         ========================================================================= -->
+    <section class="section-padding" id="featured-movies">
+      <div class="container">
+        <div class="section-intro reveal-on-scroll">
+          <span class="section-tag">
+            <img src="assets/icons/sparkle.svg" alt="" style="width: 14px; height: 14px;">
+            Hand-Drawn Legends
+          </span>
+          <h2 class="font-serif">Featured Masterpieces</h2>
+          <p class="section-subtitle">
+            Iconic journeys shaped by boundless curiosity, gentle breezes, and timeless heart.
+          </p>
+        </div>
+
+        <!-- Rendered dynamically from js/movies.js -->
+        <div class="featured-grid" id="featured-movies-grid"></div>
+
+        <div style="text-align: center; margin-top: 50px;" class="reveal-on-scroll">
+          <a href="movies.html" class="btn btn-primary">
+            View All 16 Studio Ghibli Films
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         MAGICAL QUOTE SECTION
+         ========================================================================= -->
+    <section class="quote-section" aria-label="Inspirational Quotes">
+      <div class="container">
+        <div class="quote-box reveal-on-scroll">
+          <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+
+          <blockquote class="quote-text" id="carousel-quote-text">
+            “Always believe in yourself. Do this and no matter where you are, you will have nothing to fear.”
+          </blockquote>
+
+          <div class="quote-author" id="carousel-quote-author">Baron Humbert von Gikkingen</div>
+          <div class="quote-source" id="carousel-quote-source">The Cat Returns (2002)</div>
+
+          <div class="quote-carousel-nav" id="quote-carousel-dots">
+            <!-- Injected by interactions.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         MEET THE SPIRITS SECTION
+         ========================================================================= -->
+    <section class="section-padding" id="spirits">
+      <div class="container">
+        <div class="section-intro reveal-on-scroll">
+          <span class="section-tag">
+            <img src="assets/icons/kodama.svg" alt="" style="width: 16px; height: 16px;">
+            Forest Guardians & Companions
+          </span>
+          <h2 class="font-serif">Meet the Spirits</h2>
+          <p class="section-subtitle">
+            From whispering soot in quiet corners to colossal camphor lords sheltering under the rain.
+          </p>
+        </div>
+
+        <!-- Rendered dynamically from js/characters.js -->
+        <div class="spirits-grid" id="home-spirits-grid"></div>
+
+        <div style="text-align: center; margin-top: 50px;" class="reveal-on-scroll">
+          <a href="characters.html" class="btn btn-secondary">
+            Discover All Characters & Beings
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         EXPLORE THE UNIVERSE PORTALS
+         ========================================================================= -->
+    <section class="section-padding" id="universe" style="background: rgba(167, 185, 154, 0.1);">
+      <div class="container">
+        <div class="section-intro reveal-on-scroll">
+          <span class="section-tag">
+            <img src="assets/icons/leaf.svg" alt="" style="width: 14px; height: 14px;">
+            Atmospheric Horizons
+          </span>
+          <h2 class="font-serif">Explore the Universe</h2>
+          <p class="section-subtitle">
+            Step through the threshold into four distinct landscapes of nostalgia and fantasy.
+          </p>
+        </div>
+
+        <div class="portals-grid">
+          <!-- 1. Enchanted Forests -->
+          <a href="worlds.html#totoro-forest" class="portal-card reveal-on-scroll">
+            <img src="assets/images/worlds/totoro-forest.jpg" alt="Enchanted Forest" class="portal-image" loading="lazy">
+            <div class="portal-overlay"></div>
+            <div class="portal-content">
+              <span class="portal-tag">The Ancient Canopy</span>
+              <h3 class="portal-title font-serif">Enchanted Forests</h3>
+              <p class="portal-desc">Vast camphor groves, moss-covered Shinto shrines, and rain-swept bus stops where ancient spirits slumber.</p>
+              <span class="portal-link-text">
+                Enter Grove 
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- 2. Spirit Worlds -->
+          <a href="worlds.html#spirit-world" class="portal-card reveal-on-scroll reveal-delay-1">
+            <img src="assets/images/worlds/spirit-world.jpg" alt="Spirit World Bathhouse" class="portal-image" loading="lazy">
+            <div class="portal-overlay"></div>
+            <div class="portal-content">
+              <span class="portal-tag">The Twilight Realm</span>
+              <h3 class="portal-title font-serif">Spirit Worlds</h3>
+              <p class="portal-desc">The opulent bathhouse of Yubaba, glowing red bridges, and the serene Sixth Station ocean railway train.</p>
+              <span class="portal-link-text">
+                Cross Bridge 
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- 3. Floating Castles -->
+          <a href="worlds.html#howls-castle" class="portal-card reveal-on-scroll reveal-delay-2">
+            <img src="assets/images/worlds/howls-castle.jpg" alt="Howls Walking Castle" class="portal-image" loading="lazy">
+            <div class="portal-overlay"></div>
+            <div class="portal-content">
+              <span class="portal-tag">Mechanical & Mythic Sky</span>
+              <h3 class="portal-title font-serif">Floating Castles</h3>
+              <p class="portal-desc">Steampunk roaming fortresses walking the Wastes, and ancient Laputa adrift in towering thunderclouds.</p>
+              <span class="portal-link-text">
+                Board Castle 
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- 4. Coastal Towns -->
+          <a href="worlds.html#kiki-town" class="portal-card reveal-on-scroll reveal-delay-3">
+            <img src="assets/images/worlds/kiki-town.jpg" alt="Coastal Town Koriko" class="portal-image" loading="lazy">
+            <div class="portal-overlay"></div>
+            <div class="portal-content">
+              <span class="portal-tag">Seaside Nostalgia</span>
+              <h3 class="portal-title font-serif">Coastal Towns</h3>
+              <p class="portal-desc">The terracotta harbors of Koriko scented with bakery dough, and cliffside cottages overlooking ancient Devonian seas.</p>
+              <span class="portal-link-text">
+                Wander Harbor 
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       CINEMATIC DETAIL MODALS (SHARED FOR MOVIES & CHARACTERS)
+       ========================================================================= -->
+  <div class="modal-backdrop" id="movie-modal" role="dialog" aria-modal="true" aria-label="Movie Details">
+    <div class="modal-container"></div>
+  </div>
+
+  <div class="modal-backdrop" id="character-modal" role="dialog" aria-modal="true" aria-label="Character Details">
+    <div class="modal-container"></div>
+  </div>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="ghibli-footer">
+    <div class="footer-top-hills"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand & Philosophy -->
+        <div>
+          <a href="index.html" class="footer-brand-logo">
+            <img src="assets/icons/totoro.svg" alt="Totoro Icon" class="footer-brand-logo-icon">
+            <span>GHIBLI WORLDS</span>
+          </a>
+          <p class="footer-brand-desc">
+            A visual and atmospheric tribute dedicated to the hand-drawn mastery, ecological wonder, and heartfelt storytelling of Studio Ghibli.
+          </p>
+          <div style="display: flex; gap: 12px; margin-top: 10px;">
+            <span style="font-size: 0.82rem; background: rgba(250, 246, 238, 0.15); padding: 4px 12px; border-radius: 9999px;">Hayao Miyazaki</span>
+            <span style="font-size: 0.82rem; background: rgba(250, 246, 238, 0.15); padding: 4px 12px; border-radius: 9999px;">Isao Takahata</span>
+            <span style="font-size: 0.82rem; background: rgba(250, 246, 238, 0.15); padding: 4px 12px; border-radius: 9999px;">Joe Hisaishi</span>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div>
+          <h4 class="footer-heading font-serif">Wander</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="movies.html" class="footer-link">The Masterpieces</a></li>
+            <li><a href="characters.html" class="footer-link">Beloved Spirits</a></li>
+            <li><a href="worlds.html" class="footer-link">Magical Worlds</a></li>
+            <li><a href="about.html" class="footer-link">Editorial & Craft</a></li>
+          </ul>
+        </div>
+
+        <!-- Masterworks Shortcuts -->
+        <div>
+          <h4 class="footer-heading font-serif">Chronicles</h4>
+          <ul class="footer-links-list">
+            <li><a href="movies.html" class="footer-link">Spirited Away</a></li>
+            <li><a href="movies.html" class="footer-link">My Neighbor Totoro</a></li>
+            <li><a href="movies.html" class="footer-link">Howl's Moving Castle</a></li>
+            <li><a href="movies.html" class="footer-link">Princess Mononoke</a></li>
+            <li><a href="movies.html" class="footer-link">Kiki's Delivery Service</a></li>
+          </ul>
+        </div>
+
+        <!-- Spirit Quote Badge -->
+        <div>
+          <div class="footer-spirit-quote">
+            <p class="footer-quote-text">
+              “Trees and people used to be good friends. May your heart always stay close to the woods.”
+            </p>
+            <span class="footer-quote-author">— The Kusakabe Family</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          <p>© 2026 GHIBLI WORLDS. Created with love, tea, and watercolor dreams.</p>
+          <p class="footer-bottom-notice">
+            Fan tribute project. Studio Ghibli imagery used for appreciation under fair educational usage guidelines. All characters and films belong to Studio Ghibli, Tokuma Shoten, and Nippon Television Network.
+          </p>
+        </div>
+
+        <button class="back-to-top-btn" aria-label="Back to top of page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 15l-6-6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/movies.js"></script>
+  <script src="js/characters.js"></script>
+  <script src="js/interactions.js"></script>
+</body>
+</html>
+
