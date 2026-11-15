@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GBA Games — POKÉPIXEL</title>
+  <meta name="description" content="Discover the five legendary Pokémon Game Boy Advance cartridges: FireRed, LeafGreen, Emerald, Ruby, and Sapphire." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/icons/pokeball.svg" />
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pixel-art.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ========================================================================
+       NAVIGATION BAR
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="PokéPixel Home">
+        <img src="assets/images/icons/pokeball.svg" alt="Poké Ball" class="brand-pokeball" />
+        <img src="assets/sprites/25.png" alt="Pikachu" class="brand-sprite" />
+        <div class="brand-text">
+          <span class="brand-title">POKÉPIXEL</span>
+          <span class="brand-sub">GBA UNIVERSE</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="primaryNav">
+          <li><a href="index.html" class="nav-link">HOME</a></li>
+          <li><a href="games.html" class="nav-link active">GBA GAMES</a></li>
+          <li><a href="pokedex.html" class="nav-link">POKÉDEX</a></li>
+          <li><a href="regions.html" class="nav-link">REGIONS</a></li>
+          <li><a href="starters.html" class="nav-link">STARTERS</a></li>
+          <li><a href="about.html" class="nav-link">ABOUT</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="bgm-toggle-btn paused" id="bgmToggleBtn" aria-label="Toggle Background Music">
+          <span class="bgm-icon">🎵</span> BGM: MUSIC [OFF]
+        </button>
+        <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound Effects">
+          <span class="sound-icon">🔊</span> SFX: ON
+        </button>
+        <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="page-hero-tag">GAME BOY ADVANCE LIBRARY</span>
+      <h1 class="page-hero-title">THE 32-BIT GBA SAGA</h1>
+      <p class="page-hero-desc">
+        Explore detailed cartridge archives, release histories, regional storylines, and compare the defining titles of the golden handheld generation.
+      </p>
+      <div class="retro-breadcrumb">
+        <a href="index.html">HOME</a>
+        <span>▶</span>
+        <span style="color:var(--retro-gold);">GBA GAMES</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="container" style="padding: 3rem 1.5rem 5rem;">
+    
+    <!-- Filter Tabs -->
+    <div style="display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 3.5rem; flex-wrap: wrap;">
+      <button class="btn-pixel btn-pixel-sm game-filter-btn active" data-region="all">ALL GAMES (5)</button>
+      <button class="btn-pixel btn-pixel-sm game-filter-btn" data-region="kanto">KANTO ADVENTURES (2)</button>
+      <button class="btn-pixel btn-pixel-sm game-filter-btn" data-region="hoenn">HOENN ADVENTURES (3)</button>
+    </div>
+
+    <!-- ======================================================================
+         SECTION 1: GAME SPOTLIGHTS
+         ====================================================================== -->
+    <div class="game-cards-container" style="display: flex; flex-direction: column; gap: 3.5rem; margin-bottom: 5rem;">
+      
+      <!-- 1. Pokémon FireRed -->
+      <article class="pixel-panel game-detail-card" id="firered" data-region="kanto" style="border-top: 6px solid var(--firered-accent); padding: 2rem;">
+        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; align-items: flex-start;">
+          <div style="text-align: center;">
+            <div style="max-width: 240px; margin: 0 auto 1.25rem;">
+              <img src="assets/images/games/cartridge-firered.svg" alt="Pokémon FireRed Cartridge" class="pixelated anim-float" style="filter: drop-shadow(4px 6px 0 rgba(0,0,0,0.6));" />
+            </div>
+            <span class="cartridge-year-badge">RELEASED: SEPTEMBER 2004</span>
+            <div style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); margin-top: 6px;">GAME FREAK • NINTENDO</div>
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 0.75rem;">
+              <h2 style="font-family: var(--font-pixel); font-size: 1.4rem; color: var(--firered-accent);">POKÉMON FIRERED VERSION</h2>
+              <span class="type-badge" style="background-color: var(--firered-accent);">REGION: KANTO</span>
+            </div>
+            <p style="font-size: 1rem; color: #D3DFE9; line-height: 1.6; margin-bottom: 1.25rem;">
+              Step back into the shoes of the iconic trainer from Pallet Town. Pokémon FireRed modernized the revolutionary 1996 adventure with 32-bit pixel artwork, wireless connectivity, and an expanded Sevii Islands storyline. Foil Giovanni’s Team Rocket syndicate across mainland Kanto and battle your fierce rival for the championship title.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; background-color: var(--retro-navy-dark); padding: 1.25rem; border: 2px solid var(--pixel-brown-dark); margin-bottom: 1.25rem;">
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 6px;">STARTER POKÉMON</span>
+                <div style="display: flex; gap: 8px;">
+                  <img src="assets/sprites/1.png" alt="Bulbasaur" class="pixelated" style="width: 38px; height: 38px;" title="Bulbasaur" />
+                  <img src="assets/sprites/4.png" alt="Charmander" class="pixelated" style="width: 38px; height: 38px;" title="Charmander" />
+                  <img src="assets/sprites/7.png" alt="Squirtle" class="pixelated" style="width: 38px; height: 38px;" title="Squirtle" />
+                </div>
+              </div>
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 6px;">LEGENDARY MASCOT</span>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/sprites/6.png" alt="Charizard" class="pixelated" style="width: 44px; height: 44px;" />
+                  <span style="font-family: var(--font-pixel); font-size: 0.75rem; color: var(--firered-accent);">Charizard</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <span style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--retro-gold); display: block; margin-bottom: 0.5rem;">KEY INNOVATIONS &amp; FEATURES</span>
+              <ul style="list-style: square; padding-left: 1.25rem; font-size: 0.95rem; color: #D3DFE9; line-height: 1.6;">
+                <li>Bundled with the revolutionary Game Boy Advance Wireless Adapter.</li>
+                <li>The Sevii Islands post-game expansion featuring Johto wild Pokémon.</li>
+                <li>Fame Checker key item for logging lore about Gym Leaders and the Elite Four.</li>
+                <li>Teachy TV visual tutorial system for novice trainers.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Pokémon LeafGreen -->
+      <article class="pixel-panel game-detail-card" id="leafgreen" data-region="kanto" style="border-top: 6px solid var(--leafgreen-accent); padding: 2rem;">
+        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; align-items: flex-start;">
+          <div style="text-align: center;">
+            <div style="max-width: 240px; margin: 0 auto 1.25rem;">
+              <img src="assets/images/games/cartridge-leafgreen.svg" alt="Pokémon LeafGreen Cartridge" class="pixelated anim-float" style="filter: drop-shadow(4px 6px 0 rgba(0,0,0,0.6));" />
+            </div>
+            <span class="cartridge-year-badge">RELEASED: SEPTEMBER 2004</span>
+            <div style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); margin-top: 6px;">GAME FREAK • NINTENDO</div>
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 0.75rem;">
+              <h2 style="font-family: var(--font-pixel); font-size: 1.4rem; color: var(--leafgreen-accent);">POKÉMON LEAFGREEN VERSION</h2>
+              <span class="type-badge" style="background-color: var(--leafgreen-accent);">REGION: KANTO</span>
+            </div>
+            <p style="font-size: 1rem; color: #D3DFE9; line-height: 1.6; margin-bottom: 1.25rem;">
+              Released side-by-side with FireRed, LeafGreen celebrates the timeless heritage of Pokémon Green. Trainers navigate lush trails, battle through the legendary Rock Tunnel and Pokémon Tower, and confront the Elite Four atop Indigo Plateau.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; background-color: var(--retro-navy-dark); padding: 1.25rem; border: 2px solid var(--pixel-brown-dark); margin-bottom: 1.25rem;">
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 6px;">STARTER POKÉMON</span>
+                <div style="display: flex; gap: 8px;">
+                  <img src="assets/sprites/1.png" alt="Bulbasaur" class="pixelated" style="width: 38px; height: 38px;" title="Bulbasaur" />
+                  <img src="assets/sprites/4.png" alt="Charmander" class="pixelated" style="width: 38px; height: 38px;" title="Charmander" />
+                  <img src="assets/sprites/7.png" alt="Squirtle" class="pixelated" style="width: 38px; height: 38px;" title="Squirtle" />
+                </div>
+              </div>
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 6px;">LEGENDARY MASCOT</span>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/sprites/3.png" alt="Venusaur" class="pixelated" style="width: 44px; height: 44px;" />
+                  <span style="font-family: var(--font-pixel); font-size: 0.75rem; color: var(--leafgreen-accent);">Venusaur</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <span style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--retro-gold); display: block; margin-bottom: 0.5rem;">KEY INNOVATIONS &amp; FEATURES</span>
+              <ul style="list-style: square; padding-left: 1.25rem; font-size: 0.95rem; color: #D3DFE9; line-height: 1.6;">
+                <li>Exclusive wild encounters: Sandshrew, Vulpix, Bellsprout, Slowpoke, Staryu, and Magmar.</li>
+                <li>Inter-game trading with Ruby, Sapphire, Emerald, and Colosseum.</li>
+                <li>Enhanced Gen 3 battle system, Abilities, and EV/IV mechanics.</li>
+                <li>Charming Union Room mini-games and wireless chat system.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Pokémon Emerald -->
+      <article class="pixel-panel game-detail-card" id="emerald" data-region="hoenn" style="border-top: 6px solid var(--emerald-accent); padding: 2rem;">
+        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; align-items: flex-start;">
+          <div style="text-align: center;">
+            <div style="max-width: 240px; margin: 0 auto 1.25rem;">
+              <img src="assets/images/games/cartridge-emerald.svg" alt="Pokémon Emerald Cartridge" class="pixelated anim-float" style="filter: drop-shadow(4px 6px 0 rgba(0,0,0,0.6));" />
+            </div>
+            <span class="cartridge-year-badge">RELEASED: MAY 2005</span>
+            <div style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); margin-top: 6px;">GAME FREAK • NINTENDO</div>
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 0.75rem;">
+              <h2 style="font-family: var(--font-pixel); font-size: 1.4rem; color: #7CE2AE;">POKÉMON EMERALD VERSION</h2>
+              <span class="type-badge" style="background-color: var(--emerald-accent);">REGION: HOENN</span>
+            </div>
+            <p style="font-size: 1rem; color: #D3DFE9; line-height: 1.6; margin-bottom: 1.25rem;">
+              Widely heralded as the magnum opus of the GBA era. Emerald merges the dual storylines of Ruby and Sapphire into one grand cataclysm. As the ancient weather leviathans tear apart Sootopolis City, trainers climb the treacherous Sky Pillar to summon Rayquaza and end the storm.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; background-color: var(--retro-navy-dark); padding: 1.25rem; border: 2px solid var(--pixel-brown-dark); margin-bottom: 1.25rem;">
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 6px;">STARTER POKÉMON</span>
+                <div style="display: flex; gap: 8px;">
+                  <img src="assets/sprites/252.png" alt="Treecko" class="pixelated" style="width: 38px; height: 38px;" title="Treecko" />
+                  <img src="assets/sprites/255.png" alt="Torchic" class="pixelated" style="width: 38px; height: 38px;" title="Torchic" />
+                  <img src="assets/sprites/258.png" alt="Mudkip" class="pixelated" style="width: 38px; height: 38px;" title="Mudkip" />
+                </div>
+              </div>
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 6px;">LEGENDARY MASCOT</span>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/sprites/384.png" alt="Rayquaza" class="pixelated" style="width: 44px; height: 44px;" />
+                  <span style="font-family: var(--font-pixel); font-size: 0.75rem; color: #7CE2AE;">Rayquaza</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <span style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--retro-gold); display: block; margin-bottom: 0.5rem;">KEY INNOVATIONS &amp; FEATURES</span>
+              <ul style="list-style: square; padding-left: 1.25rem; font-size: 0.95rem; color: #D3DFE9; line-height: 1.6;">
+                <li>The legendary Battle Frontier: 7 battle facilities overseen by Frontier Brains (Battle Dome, Battle Pike, Battle Pyramid, Battle Factory...).</li>
+                <li>Fully animated front battle sprites for all Pokémon upon entering battle.</li>
+                <li>Concurrent battles with both Team Magma and Team Aqua.</li>
+                <li>Gym Leader rematches via the PokéNav Match Call feature.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Pokémon Ruby -->
+      <article class="pixel-panel game-detail-card" id="ruby" data-region="hoenn" style="border-top: 6px solid var(--ruby-accent); padding: 2rem;">
+        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; align-items: flex-start;">
+          <div style="text-align: center;">
+            <div style="max-width: 240px; margin: 0 auto 1.25rem;">
+              <img src="assets/images/games/cartridge-ruby.svg" alt="Pokémon Ruby Cartridge" class="pixelated anim-float" style="filter: drop-shadow(4px 6px 0 rgba(0,0,0,0.6));" />
+            </div>
+            <span class="cartridge-year-badge">RELEASED: MARCH 2003</span>
+            <div style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); margin-top: 6px;">GAME FREAK • NINTENDO</div>
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 0.75rem;">
+              <h2 style="font-family: var(--font-pixel); font-size: 1.4rem; color: #FFA0A8;">POKÉMON RUBY VERSION</h2>
+              <span class="type-badge" style="background-color: var(--ruby-accent);">REGION: HOENN</span>
+            </div>
+            <p style="font-size: 1rem; color: #D3DFE9; line-height: 1.6; margin-bottom: 1.25rem;">
+              Pokémon Ruby initiated the third generation with unprecedented ambition. Introducing vibrant weather effects, 135 completely new Pokémon, Secret Bases, and Double Battles, it redefined what a handheld RPG could deliver. Confront Maxie and Team Magma as they attempt to expand the earth's continents.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; background-color: var(--retro-navy-dark); padding: 1.25rem; border: 2px solid var(--pixel-brown-dark); margin-bottom: 1.25rem;">
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 6px;">STARTER POKÉMON</span>
+                <div style="display: flex; gap: 8px;">
+                  <img src="assets/sprites/252.png" alt="Treecko" class="pixelated" style="width: 38px; height: 38px;" title="Treecko" />
+                  <img src="assets/sprites/255.png" alt="Torchic" class="pixelated" style="width: 38px; height: 38px;" title="Torchic" />
+                  <img src="assets/sprites/258.png" alt="Mudkip" class="pixelated" style="width: 38px; height: 38px;" title="Mudkip" />
+                </div>
+              </div>
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 6px;">LEGENDARY MASCOT</span>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/sprites/383.png" alt="Groudon" class="pixelated" style="width: 44px; height: 44px;" />
+                  <span style="font-family: var(--font-pixel); font-size: 0.75rem; color: #FFA0A8;">Groudon</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <span style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--retro-gold); display: block; margin-bottom: 0.5rem;">KEY INNOVATIONS &amp; FEATURES</span>
+              <ul style="list-style: square; padding-left: 1.25rem; font-size: 0.95rem; color: #D3DFE9; line-height: 1.6;">
+                <li>Introduction of Pokémon Abilities and Natures.</li>
+                <li>Double Battles: commanding two Pokémon side-by-side simultaneously.</li>
+                <li>Pokémon Contests across Cool, Beauty, Cute, Smart, and Tough categories.</li>
+                <li>Secret Bases customizable with furniture, dolls, and mats via Secret Power.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Pokémon Sapphire -->
+      <article class="pixel-panel game-detail-card" id="sapphire" data-region="hoenn" style="border-top: 6px solid var(--sapphire-accent); padding: 2rem;">
+        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; align-items: flex-start;">
+          <div style="text-align: center;">
+            <div style="max-width: 240px; margin: 0 auto 1.25rem;">
+              <img src="assets/images/games/cartridge-sapphire.svg" alt="Pokémon Sapphire Cartridge" class="pixelated anim-float" style="filter: drop-shadow(4px 6px 0 rgba(0,0,0,0.6));" />
+            </div>
+            <span class="cartridge-year-badge">RELEASED: MARCH 2003</span>
+            <div style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); margin-top: 6px;">GAME FREAK • NINTENDO</div>
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 0.75rem;">
+              <h2 style="font-family: var(--font-pixel); font-size: 1.4rem; color: #7BB5FF;">POKÉMON SAPPHIRE VERSION</h2>
+              <span class="type-badge" style="background-color: var(--sapphire-accent);">REGION: HOENN</span>
+            </div>
+            <p style="font-size: 1rem; color: #D3DFE9; line-height: 1.6; margin-bottom: 1.25rem;">
+              Pokémon Sapphire pairs with Ruby to offer a maritime odyssey. Journey through underwater oceanic trenches with HM Dive, discover submerged ancient shipwrecks, and halt Archie and Team Aqua from drowning Hoenn in a perpetual deluge.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; background-color: var(--retro-navy-dark); padding: 1.25rem; border: 2px solid var(--pixel-brown-dark); margin-bottom: 1.25rem;">
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 6px;">STARTER POKÉMON</span>
+                <div style="display: flex; gap: 8px;">
+                  <img src="assets/sprites/252.png" alt="Treecko" class="pixelated" style="width: 38px; height: 38px;" title="Treecko" />
+                  <img src="assets/sprites/255.png" alt="Torchic" class="pixelated" style="width: 38px; height: 38px;" title="Torchic" />
+                  <img src="assets/sprites/258.png" alt="Mudkip" class="pixelated" style="width: 38px; height: 38px;" title="Mudkip" />
+                </div>
+              </div>
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 6px;">LEGENDARY MASCOT</span>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <img src="assets/sprites/382.png" alt="Kyogre" class="pixelated" style="width: 44px; height: 44px;" />
+                  <span style="font-family: var(--font-pixel); font-size: 0.75rem; color: #7BB5FF;">Kyogre</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <span style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--retro-gold); display: block; margin-bottom: 0.5rem;">KEY INNOVATIONS &amp; FEATURES</span>
+              <ul style="list-style: square; padding-left: 1.25rem; font-size: 0.95rem; color: #D3DFE9; line-height: 1.6;">
+                <li>Underwater diving mechanics with deep sea currents and submerged caverns.</li>
+                <li>Exclusive wild Pokémon: Lotad, Lombre, Ludicolo, Sableye, Seviper, and Lunatone.</li>
+                <li>PokéNav navigator with Hoenn Town Map, Condition viewer, and Trainer's Eyes.</li>
+                <li>Acro Bike and Mach Bike cycling dynamics.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ======================================================================
+         SECTION 2: INTERACTIVE GAME COMPARISON TOOL
+         ====================================================================== -->
+    <section class="game-comparison-section" style="padding-top: 2rem;">
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <span class="page-hero-tag">HEAD-TO-HEAD ARCHIVE</span>
+        <h2 style="font-family: var(--font-pixel); font-size: 1.6rem; color: var(--retro-gold); text-shadow: 3px 3px 0 var(--pixel-brown-dark); margin-bottom: 0.5rem;">
+          INTERACTIVE GBA COMPARISON
+        </h2>
+        <p style="color: #D3DFE9; font-size: 0.95rem; max-width: 600px; margin: 0 auto;">
+          Select any two Game Boy Advance Pokémon titles to compare their regional mechanics, starters, legendary mascots, and innovations side by side.
+        </p>
+      </div>
+
+      <!-- Selectors Controls -->
+      <div class="pixel-panel" style="margin-bottom: 2rem; background-color: var(--retro-navy-dark); padding: 1.25rem;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label for="compareGame1Select" style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--retro-gold);">GAME 1:</label>
+            <select id="compareGame1Select" class="btn-pixel btn-pixel-navy" style="font-size: 0.75rem; padding: 6px 12px;"></select>
+          </div>
+
+          <div style="font-family: var(--font-pixel); font-size: 1.1rem; color: var(--fire-red); padding: 0 0.5rem;">
+            ⚡ VS ⚡
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label for="compareGame2Select" style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--retro-gold);">GAME 2:</label>
+            <select id="compareGame2Select" class="btn-pixel btn-pixel-navy" style="font-size: 0.75rem; padding: 6px 12px;"></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison Split Screen -->
+      <div class="compare-selection-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div class="pixel-panel" id="compareCol1">
+          <!-- Rendered via games.js -->
+        </div>
+        <div class="pixel-panel" id="compareCol2">
+          <!-- Rendered via games.js -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <img src="assets/images/icons/pokeball.svg" alt="Poké Ball" class="brand-pokeball" />
+            <span class="brand-title">POKÉPIXEL</span>
+          </a>
+          <p class="footer-brand-desc">
+            A handcrafted retro tribute honoring Pokémon FireRed, LeafGreen, Emerald, Ruby, and Sapphire.
+          </p>
+          <div class="footer-badge">
+            <span>GAME FREAK GBA ERA • 2002-2006</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">EXPLORE</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="games.html">GBA Games</a></li>
+            <li><a href="pokedex.html">Pokédex</a></li>
+            <li><a href="regions.html">Regions Map</a></li>
+            <li><a href="starters.html">Starters &amp; Team</a></li>
+            <li><a href="about.html">About &amp; Nostalgia</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">GBA CARTRIDGES</h4>
+          <ul class="footer-links">
+            <li><a href="#firered">Pokémon FireRed</a></li>
+            <li><a href="#leafgreen">Pokémon LeafGreen</a></li>
+            <li><a href="#emerald">Pokémon Emerald</a></li>
+            <li><a href="#ruby">Pokémon Ruby</a></li>
+            <li><a href="#sapphire">Pokémon Sapphire</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">TRAINER MEMORY</h4>
+          <div class="footer-quote-box">
+            <p class="footer-quote">
+              "The sky, the sea, the land... everything has its own rhythm."
+            </p>
+            <div class="footer-quote-author">— STEVEN STONE (EMERALD)</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 POKÉPIXEL. All Pokémon assets are trademarks of Nintendo / GAME FREAK.</div>
+        <div><span>32-BIT GBA SAGA</span></div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- Scripts -->
+  <script src="js/pokemon-data.js"></script>
+  <script src="js/regions-data.js"></script>
+  <script src="js/interactions.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/pokedex.js"></script>
+  <script src="js/regions.js"></script>
+  <script src="js/starters.js"></script>
+  <script src="js/about.js"></script>
+</body>
+</html>

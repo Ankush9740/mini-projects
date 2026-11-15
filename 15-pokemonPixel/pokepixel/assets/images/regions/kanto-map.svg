@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="100%" height="100%" shape-rendering="crispEdges">
+  <defs>
+    <pattern id="seaPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#4B88B8"/>
+      <rect x="0" y="0" width="10" height="10" fill="#5294C6"/>
+      <rect x="10" y="10" width="10" height="10" fill="#5294C6"/>
+    </pattern>
+    <pattern id="landPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#8BAC65"/>
+      <rect x="0" y="0" width="10" height="10" fill="#7FA059"/>
+      <rect x="10" y="10" width="10" height="10" fill="#7FA059"/>
+    </pattern>
+  </defs>
+
+  <!-- Ocean Grid -->
+  <rect width="1000" height="680" fill="url(#seaPattern)"/>
+
+  <!-- Kanto Main Landmass -->
+  <!-- Western Plateau & North -->
+  <rect x="60" y="60" width="200" height="520" fill="url(#landPattern)"/>
+  <!-- Central & Eastern Plains -->
+  <rect x="260" y="100" width="620" height="420" fill="url(#landPattern)"/>
+  <!-- Cinnabar Island -->
+  <rect x="140" y="580" width="120" height="70" fill="url(#landPattern)"/>
+
+  <!-- Mountain Ranges (Dark Green / Brown Rock) -->
+  <!-- Mt. Moon -->
+  <rect x="300" y="120" width="160" height="70" fill="#426B42"/>
+  <rect x="340" y="100" width="80" height="40" fill="#315231"/>
+  <!-- Rock Tunnel -->
+  <rect x="740" y="150" width="80" height="120" fill="#426B42"/>
+  <!-- Diglett's Cave area -->
+  <rect x="220" y="320" width="60" height="80" fill="#426B42"/>
+
+  <!-- Water Inlets & Rivers -->
+  <rect x="540" y="380" width="120" height="160" fill="url(#seaPattern)"/> <!-- Vermilion Harbor -->
+  <rect x="580" y="240" width="40" height="140" fill="url(#seaPattern)"/> <!-- River into Bay -->
+
+  <!-- Red Route Lines (Classic GBA Town Map Connecting Lines) -->
+  <!-- Route 1: Pallet to Viridian -->
+  <rect x="195" y="374" width="10" height="129" fill="#D95745"/>
+  <!-- Route 2: Viridian to Pewter -->
+  <rect x="195" y="190" width="10" height="184" fill="#D95745"/>
+  <!-- Route 3 & 4: Pewter to Cerulean past Mt Moon -->
+  <rect x="200" y="170" width="420" height="10" fill="#D95745"/>
+  <!-- Route 24/25: Cerulean to Bill's Cottage -->
+  <rect x="615" y="80" width="10" height="90" fill="#D95745"/>
+  <rect x="620" y="80" width="100" height="10" fill="#D95745"/>
+  <!-- Route 5 & 6: Cerulean through Saffron to Vermilion -->
+  <rect x="615" y="170" width="10" height="265" fill="#D95745"/>
+  <!-- Route 7 & 8: Celadon through Saffron to Lavender -->
+  <rect x="475" y="299" width="345" height="10" fill="#D95745"/>
+  <!-- Route 9 & 10: Cerulean to Rock Tunnel & Lavender -->
+  <rect x="620" y="170" width="200" height="10" fill="#D95745"/>
+  <rect x="815" y="170" width="10" height="130" fill="#D95745"/>
+  <!-- Route 11, 12, 13, 14, 15: East Coast Silence Bridge to Fuchsia -->
+  <rect x="620" y="430" width="205" height="10" fill="#D95745"/>
+  <rect x="815" y="300" width="10" height="258" fill="#D95745"/>
+  <rect x="540" y="552" width="285" height="10" fill="#D95745"/>
+  <!-- Route 16, 17, 18: Cycling Road down to Fuchsia -->
+  <rect x="260" y="299" width="215" height="10" fill="#D95745"/>
+  <rect x="260" y="300" width="10" height="258" fill="#D95745"/>
+  <rect x="260" y="552" width="280" height="10" fill="#D95745"/>
+  <!-- Route 19, 20: Fuchsia to Seafoam & Cinnabar Island -->
+  <rect x="535" y="560" width="10" height="80" fill="#D95745"/>
+  <rect x="200" y="630" width="345" height="10" fill="#D95745"/>
+  <!-- Route 21: Cinnabar north to Pallet -->
+  <rect x="195" y="503" width="10" height="130" fill="#D95745"/>
+  <!-- Route 22 & 23: Viridian to Victory Road & Indigo Plateau -->
+  <rect x="95" y="374" width="105" height="10" fill="#D95745"/>
+  <rect x="95" y="95" width="10" height="289" fill="#D95745"/>
+
+  <!-- Border & GBA Town Map Frame Details -->
+  <rect x="0" y="0" width="1000" height="680" fill="none" stroke="#17283C" stroke-width="12"/>
+  <rect x="12" y="12" width="976" height="656" fill="none" stroke="#E9B94E" stroke-width="4"/>
+
+  <!-- Title Badge in Top Right -->
+  <rect x="680" y="24" width="290" height="56" rx="4" fill="#17283C" stroke="#E9B94E" stroke-width="3"/>
+  <text x="825" y="48" font-family="'Press Start 2P', monospace" font-size="14" fill="#E9B94E" text-anchor="middle">KANTO REGION</text>
+  <text x="825" y="68" font-family="'VT323', monospace" font-size="16" fill="#F4E8C8" text-anchor="middle">FIRE RED &amp; LEAF GREEN OVERWORLD</text>
+</svg>

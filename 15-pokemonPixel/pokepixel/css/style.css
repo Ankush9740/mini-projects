@@ -1,0 +1,523 @@
+/* ==========================================================================
+   POKÉPIXEL - Base & Common Styles
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap');
+
+:root {
+  /* Official Retro Palette */
+  --retro-navy: #17283C;
+  --retro-navy-dark: #0E1A29;
+  --retro-navy-light: #223B57;
+  --gb-green: #8BAC65;
+  --forest-green: #426B42;
+  --pixel-grass: #A5C96B;
+  --retro-cream: #F4E8C8;
+  --retro-cream-light: #FAF4E5;
+  --retro-gold: #E9B94E;
+  --retro-gold-dark: #B8860B;
+  --ocean-blue: #5B9BC6;
+  --ocean-blue-dark: #2F6D97;
+  --fire-red: #D95745;
+  --fire-red-dark: #A33525;
+  --pixel-brown: #49372B;
+  --pixel-brown-dark: #2C1E14;
+  --pixel-white: #FFFFFF;
+  --pixel-gray: #8F9CA8;
+  --pixel-black: #080D14;
+
+  /* Game Accents */
+  --firered-accent: #D95745;
+  --leafgreen-accent: #426B42;
+  --emerald-accent: #1E7D58;
+  --ruby-accent: #C83246;
+  --sapphire-accent: #2858A6;
+
+  /* Typography */
+  --font-pixel: 'Press Start 2P', 'Courier New', monospace;
+  --font-mono: 'VT323', 'Courier New', monospace;
+  --font-retro: 'Silkscreen', cursive, monospace;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Layout */
+  --container-max: 1320px;
+  --nav-height: 74px;
+}
+
+/* Custom Pixel Cursor */
+html, body {
+  cursor: url('../assets/images/icons/cursor-pokeball.svg') 12 12, auto;
+}
+
+a, button, input, select, .interactive, [role="button"] {
+  cursor: url('../assets/images/icons/cursor-pokeball.svg') 12 12, pointer !important;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--retro-navy-dark);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--retro-cream);
+  background-color: var(--retro-navy-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Background Retro Pixel Grid Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    linear-gradient(rgba(23, 40, 60, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 40, 60, 0.4) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Containers */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--retro-navy);
+  border-bottom: 4px solid var(--pixel-brown-dark);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.15);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+}
+
+/* Brand Logo */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--retro-gold);
+  font-family: var(--font-pixel);
+  font-size: 1.1rem;
+  letter-spacing: -0.5px;
+  text-shadow: 2px 2px 0 var(--pixel-brown-dark);
+  transition: transform 0.15s ease;
+}
+
+.brand-logo:hover {
+  transform: translateY(-2px);
+}
+
+.brand-pokeball {
+  width: 32px;
+  height: 32px;
+  animation: pokeballSpin 6s infinite linear;
+}
+
+.brand-sprite {
+  width: 34px;
+  height: 34px;
+  image-rendering: pixelated;
+  animation: spriteHop 2s infinite ease-in-out;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 1rem;
+  color: var(--retro-gold);
+}
+
+.brand-sub {
+  font-family: var(--font-retro);
+  font-size: 0.6rem;
+  color: var(--retro-cream);
+  letter-spacing: 2px;
+}
+
+/* Nav Menu Items */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--retro-cream);
+  text-decoration: none;
+  padding: 8px 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: transparent;
+  border: 2px solid transparent;
+  transition: all 0.15s steps(2);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: var(--retro-navy-dark);
+  color: var(--retro-gold);
+  border-color: var(--retro-gold);
+  box-shadow: 2px 2px 0 var(--pixel-black);
+}
+
+.nav-link.active::before {
+  content: "▶";
+  font-size: 0.65rem;
+  color: var(--fire-red);
+}
+
+/* Nav Sound & Actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sound-toggle-btn {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  background-color: var(--forest-green);
+  color: var(--retro-cream);
+  border: 2px solid var(--pixel-brown-dark);
+  padding: 6px 10px;
+  box-shadow: 2px 2px 0 var(--pixel-black), inset 1px 1px 0 rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.1s steps(2);
+}
+
+.sound-toggle-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0;
+}
+
+.sound-toggle-btn.muted {
+  background-color: var(--pixel-brown);
+  color: var(--pixel-gray);
+}
+
+.sound-icon {
+  font-size: 0.9rem;
+}
+
+/* Background Music Toggle (Littleroot Town) */
+.bgm-toggle-btn {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  background-color: var(--forest-green);
+  color: var(--retro-cream);
+  border: 2px solid var(--pixel-brown-dark);
+  padding: 6px 12px;
+  box-shadow: 2px 2px 0 var(--pixel-black), inset 1px 1px 0 rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.bgm-toggle-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0;
+}
+
+.bgm-toggle-btn.playing {
+  background-color: #2F6D97;
+  color: #FFE88C;
+  border-color: var(--retro-gold);
+  box-shadow: 0 0 10px rgba(91, 155, 198, 0.7), 2px 2px 0 var(--pixel-black);
+}
+
+.bgm-toggle-btn.paused {
+  background-color: var(--pixel-brown);
+  color: var(--pixel-gray);
+}
+
+.bgm-icon {
+  font-size: 0.9rem;
+}
+
+/* Mobile Hamburger */
+.mobile-toggle-btn {
+  display: none;
+  background-color: var(--retro-navy-dark);
+  border: 2px solid var(--retro-gold);
+  padding: 8px;
+  color: var(--retro-gold);
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  box-shadow: 2px 2px 0 var(--pixel-black);
+}
+
+/* ==========================================================================
+   PAGE HEADERS (For Subpages)
+   ========================================================================== */
+.page-hero {
+  padding: 3rem 0 2rem;
+  background-color: var(--retro-navy);
+  border-bottom: 4px solid var(--pixel-brown-dark);
+  position: relative;
+  text-align: center;
+}
+
+.page-hero-tag {
+  display: inline-block;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--retro-gold);
+  background-color: var(--retro-navy-dark);
+  border: 2px solid var(--retro-gold);
+  padding: 6px 14px;
+  margin-bottom: 1rem;
+  box-shadow: 3px 3px 0 var(--pixel-black);
+}
+
+.page-hero-title {
+  font-family: var(--font-pixel);
+  font-size: 1.8rem;
+  color: var(--retro-cream);
+  text-shadow: 3px 3px 0 var(--pixel-brown-dark);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.page-hero-desc {
+  font-size: 1.05rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #D3DFE9;
+}
+
+/* Breadcrumb HUD */
+.retro-breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1.25rem;
+  font-family: var(--font-retro);
+  font-size: 0.75rem;
+}
+
+.retro-breadcrumb a {
+  color: var(--retro-gold);
+  text-decoration: none;
+}
+
+.retro-breadcrumb span {
+  color: var(--pixel-gray);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  margin-top: auto;
+  background-color: var(--retro-navy);
+  border-top: 4px solid var(--pixel-brown-dark);
+  padding: 3.5rem 0 2rem;
+  position: relative;
+  z-index: 10;
+  box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.1);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand-desc {
+  font-size: 0.95rem;
+  color: #D3DFE9;
+  margin: 1rem 0;
+  max-width: 340px;
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--retro-navy-dark);
+  border: 2px solid var(--forest-green);
+  padding: 6px 10px;
+  font-family: var(--font-retro);
+  font-size: 0.7rem;
+  color: var(--pixel-grass);
+}
+
+.footer-title {
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+  color: var(--retro-gold);
+  margin-bottom: 1.25rem;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-title::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--retro-gold);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: var(--retro-cream);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-links a:hover {
+  color: var(--retro-gold);
+  transform: translateX(4px);
+}
+
+.footer-links a::before {
+  content: "•";
+  color: var(--fire-red);
+}
+
+.footer-quote-box {
+  background-color: var(--retro-navy-dark);
+  border: 2px solid var(--retro-gold);
+  padding: 1rem;
+  box-shadow: 4px 4px 0 var(--pixel-black);
+}
+
+.footer-quote {
+  font-family: var(--font-retro);
+  font-size: 0.85rem;
+  color: var(--retro-cream);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.footer-quote-author {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: var(--retro-gold);
+  text-align: right;
+}
+
+.footer-bottom {
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--pixel-gray);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-bottom a {
+  color: var(--retro-gold);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   MODAL OVERLAY & GLOBAL UTILITY CLASSES
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(14, 26, 41, 0.88);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(4px);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.modal-overlay.hidden,
+.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.modal-dialog {
+  max-height: 92vh;
+  overflow-y: auto;
+}

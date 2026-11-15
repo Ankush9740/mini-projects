@@ -1,0 +1,277 @@
+/* ==========================================================================
+   POKÉPIXEL - Global Pixel-Art Animations
+   ========================================================================== */
+
+/* 1. Bouncing Poké Ball */
+@keyframes pokeballBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1, 1);
+  }
+  30% {
+    transform: translateY(-16px) scale(0.95, 1.05);
+  }
+  50% {
+    transform: translateY(0) scale(1.08, 0.92);
+  }
+  70% {
+    transform: translateY(-6px) scale(0.98, 1.02);
+  }
+}
+
+.anim-bounce {
+  animation: pokeballBounce 1.8s infinite ease-in-out;
+}
+
+/* 2. Gentle Idle Float */
+@keyframes idleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.anim-float {
+  animation: idleFloat 3s infinite ease-in-out;
+}
+
+/* 3. Pixel Clouds Drift Across Sky */
+@keyframes cloudDriftSlow {
+  0% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(110vw);
+  }
+}
+
+@keyframes cloudDriftFast {
+  0% {
+    transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(120vw);
+  }
+}
+
+.cloud-slow {
+  animation: cloudDriftSlow 75s linear infinite;
+}
+
+.cloud-fast {
+  animation: cloudDriftFast 45s linear infinite;
+}
+
+/* 4. Walking Trainer Animation (Stepped Bob) */
+@keyframes trainerWalkCycle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-4px) rotate(-2deg);
+  }
+}
+
+.anim-trainer-walk {
+  animation: trainerWalkCycle 0.65s infinite steps(4);
+}
+
+/* 5. Sprite Hop on Hover / Selection */
+@keyframes spriteHop {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.anim-sprite-hop {
+  animation: spriteHop 1.2s infinite ease-in-out;
+}
+
+/* 6. Pokeball Spin */
+@keyframes pokeballSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 7. Dialogue Box Blinking Arrow */
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* 8. Pixel Grass Sway */
+@keyframes grassSway {
+  0%, 100% {
+    transform: skewX(0deg);
+  }
+  50% {
+    transform: skewX(4deg);
+  }
+}
+
+.anim-grass-sway {
+  transform-origin: bottom center;
+  animation: grassSway 2.5s infinite ease-in-out;
+}
+
+/* 9. Glowing Legendary Aura */
+@keyframes legendaryAura {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(233, 185, 78, 0.4), inset 0 0 10px rgba(233, 185, 78, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(233, 185, 78, 0.8), inset 0 0 18px rgba(233, 185, 78, 0.4);
+  }
+}
+
+.aura-legendary {
+  animation: legendaryAura 3s infinite ease-in-out;
+}
+
+/* 10. Startup Game Boy Boot Sequence Overlay */
+.startup-boot-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #0E1A29;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.startup-boot-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.boot-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.boot-logo-brand {
+  font-family: var(--font-pixel);
+  font-size: 2.2rem;
+  color: var(--retro-gold);
+  text-shadow: 4px 4px 0 var(--pixel-brown-dark);
+  letter-spacing: 2px;
+  animation: bootDrop 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.boot-logo-sub {
+  font-family: var(--font-retro);
+  font-size: 1.1rem;
+  color: var(--pixel-grass);
+  margin-top: 0.5rem;
+  letter-spacing: 4px;
+}
+
+.boot-progress-bar {
+  width: 260px;
+  height: 12px;
+  background-color: var(--retro-navy);
+  border: 2px solid var(--pixel-brown-dark);
+  box-shadow: 2px 2px 0 var(--pixel-black);
+  padding: 1px;
+}
+
+.boot-progress-fill {
+  height: 100%;
+  background-color: var(--fire-red);
+  width: 0%;
+  transition: width 1.2s ease;
+}
+
+.boot-skip-btn {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: var(--retro-cream);
+  background-color: transparent;
+  border: 1px dashed var(--retro-gold);
+  padding: 6px 14px;
+  margin-top: 1rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.boot-skip-btn:hover {
+  opacity: 1;
+  background-color: var(--retro-navy);
+}
+
+@keyframes bootDrop {
+  0% {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 11. Modal Zoom Pop In */
+@keyframes modalPopIn {
+  0% {
+    transform: scale(0.9) translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.anim-modal-in {
+  animation: modalPopIn 0.2s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+/* 12. Scroll Reveal Animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

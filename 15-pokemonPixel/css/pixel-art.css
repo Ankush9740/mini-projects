@@ -1,0 +1,513 @@
+/* ==========================================================================
+   POKÉPIXEL - Pixel-Art & Retro GBA Components
+   ========================================================================== */
+
+/* 1. RETRO PIXEL BUTTONS */
+.btn-pixel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding: 12px 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 3px solid var(--pixel-brown-dark);
+  position: relative;
+  user-select: none;
+  transition: transform 0.08s steps(2);
+  outline: none;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.btn-pixel:active {
+  transform: translate(3px, 3px);
+  box-shadow: none !important;
+}
+
+/* Primary Button (Fire Red / Retro Gold) */
+.btn-pixel-primary {
+  background-color: var(--fire-red);
+  color: var(--retro-cream);
+  box-shadow: 4px 4px 0 var(--pixel-black), inset 2px 2px 0 #FF8A7A;
+}
+
+.btn-pixel-primary:hover {
+  background-color: #E26352;
+  box-shadow: 5px 5px 0 var(--pixel-black), inset 2px 2px 0 #FF9E8F;
+}
+
+/* Secondary Button (Forest Green / GB Green) */
+.btn-pixel-secondary {
+  background-color: var(--forest-green);
+  color: var(--retro-cream);
+  box-shadow: 4px 4px 0 var(--pixel-black), inset 2px 2px 0 #69974E;
+}
+
+.btn-pixel-secondary:hover {
+  background-color: #4D7D4D;
+  box-shadow: 5px 5px 0 var(--pixel-black), inset 2px 2px 0 #7BA660;
+}
+
+/* Gold Accent Button */
+.btn-pixel-gold {
+  background-color: var(--retro-gold);
+  color: var(--retro-navy-dark);
+  text-shadow: none;
+  box-shadow: 4px 4px 0 var(--pixel-black), inset 2px 2px 0 #FFE88C;
+}
+
+.btn-pixel-gold:hover {
+  background-color: #F7C85C;
+}
+
+/* Dark Navy Button */
+.btn-pixel-navy {
+  background-color: var(--retro-navy);
+  color: var(--retro-gold);
+  box-shadow: 4px 4px 0 var(--pixel-black), inset 2px 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-pixel-navy:hover {
+  background-color: var(--retro-navy-light);
+}
+
+/* Small Variant */
+.btn-pixel-sm {
+  font-size: 0.65rem;
+  padding: 8px 12px;
+  border-width: 2px;
+  box-shadow: 3px 3px 0 var(--pixel-black);
+}
+
+/* 2. CLASSIC GBA RETRO PANELS & BOXES */
+.pixel-panel {
+  background-color: var(--retro-navy);
+  border: 4px solid var(--pixel-brown-dark);
+  box-shadow: 
+    4px 4px 0 var(--pixel-black),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.pixel-panel-light {
+  background-color: var(--retro-cream);
+  color: var(--pixel-brown-dark);
+  border: 4px solid var(--pixel-brown);
+  box-shadow: 
+    4px 4px 0 var(--pixel-black),
+    inset 2px 2px 0 #FFFFFF,
+    inset -2px -2px 0 #D8C9A3;
+}
+
+.pixel-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--pixel-brown-dark);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pixel-panel-title {
+  font-family: var(--font-pixel);
+  font-size: 0.95rem;
+  color: var(--retro-gold);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 3. GBA RETRO DIALOGUE BOX */
+.retro-dialogue-box {
+  background-color: var(--retro-cream);
+  color: var(--pixel-brown-dark);
+  border: 4px solid var(--pixel-brown-dark);
+  box-shadow: 
+    5px 5px 0 var(--pixel-black),
+    inset 3px 3px 0 #FFFFFF,
+    inset -3px -3px 0 #D8C9A3;
+  padding: 1.25rem 1.75rem;
+  position: relative;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.retro-dialogue-box::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  width: 16px;
+  height: 8px;
+  background-color: var(--retro-gold);
+  border: 2px solid var(--pixel-brown-dark);
+  border-bottom: none;
+}
+
+.dialogue-text {
+  font-family: var(--font-retro);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--pixel-brown-dark);
+  margin: 0;
+  flex: 1;
+}
+
+.dialogue-arrow {
+  color: var(--fire-red);
+  font-size: 1rem;
+  animation: bounceDown 0.8s infinite ease-in-out;
+  user-select: none;
+}
+
+/* 4. TYPE BADGES */
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 8px;
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4), inset 1px 1px 0 rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.5px;
+}
+
+/* Specific Element Type Badges */
+.type-fire     { background-color: #D95745; }
+.type-water    { background-color: #5B9BC6; }
+.type-grass    { background-color: #69974E; }
+.type-electric { background-color: #E5B338; color: #17283C; }
+.type-psychic  { background-color: #D84F77; }
+.type-ice      { background-color: #62B8D2; }
+.type-dragon   { background-color: #5E4DC2; }
+.type-dark     { background-color: #4C4039; }
+.type-fighting { background-color: #9E3E34; }
+.type-flying   { background-color: #7D8FE0; }
+.type-poison   { background-color: #873E84; }
+.type-ground   { background-color: #BA9954; }
+.type-rock     { background-color: #A48F3D; }
+.type-bug      { background-color: #879730; }
+.type-ghost    { background-color: #594D88; }
+.type-steel    { background-color: #8E96AC; }
+.type-normal   { background-color: #8C8E7B; }
+
+/* 5. GBA GAME CARTRIDGE CARDS */
+.cartridge-card {
+  background-color: var(--retro-navy);
+  border: 4px solid var(--pixel-brown-dark);
+  box-shadow: 6px 6px 0 var(--pixel-black), inset 2px 2px 0 rgba(255, 255, 255, 0.15);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+  position: relative;
+}
+
+.cartridge-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 10px 14px 0 var(--pixel-black), inset 2px 2px 0 rgba(255, 255, 255, 0.25);
+}
+
+.cartridge-img-wrap {
+  width: 100%;
+  max-width: 220px;
+  margin-bottom: 1.25rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.cartridge-img-wrap img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.5));
+}
+
+.cartridge-info {
+  width: 100%;
+  text-align: center;
+}
+
+.cartridge-year-badge {
+  display: inline-block;
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: var(--retro-gold);
+  background-color: var(--retro-navy-dark);
+  border: 2px solid var(--retro-gold);
+  padding: 3px 8px;
+  margin-bottom: 0.5rem;
+  box-shadow: 2px 2px 0 var(--pixel-black);
+}
+
+.cartridge-title {
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  color: var(--retro-cream);
+  margin-bottom: 0.5rem;
+}
+
+.cartridge-meta {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--pixel-grass);
+  margin-bottom: 0.75rem;
+}
+
+.cartridge-desc {
+  font-size: 0.88rem;
+  color: #D3DFE9;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+/* 6. POKÉDEX CARDS */
+.pokemon-card {
+  background-color: var(--retro-navy);
+  border: 3px solid var(--pixel-brown-dark);
+  box-shadow: 4px 4px 0 var(--pixel-black), inset 1px 1px 0 rgba(255, 255, 255, 0.15);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: all 0.15s steps(2);
+  user-select: none;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--retro-gold);
+  box-shadow: 6px 8px 0 var(--pixel-black), inset 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.pokemon-card-id {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: var(--retro-gold);
+  background-color: var(--retro-navy-dark);
+  padding: 2px 6px;
+  border: 1px solid var(--pixel-brown);
+}
+
+.pokemon-card-sprite-wrap {
+  width: 100px;
+  height: 100px;
+  background-color: var(--retro-navy-dark);
+  border: 2px solid var(--pixel-brown-dark);
+  margin: 1.5rem 0 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.pokemon-card-sprite-wrap::after {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  bottom: 10px;
+  z-index: 1;
+}
+
+.pokemon-card-sprite {
+  width: 76px;
+  height: 76px;
+  image-rendering: pixelated;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.pokemon-card:hover .pokemon-card-sprite {
+  transform: scale(1.15) translateY(-3px);
+}
+
+.pokemon-card-name {
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  color: var(--retro-cream);
+  margin-bottom: 0.5rem;
+}
+
+.pokemon-card-types {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* 7. STATS BARS (GBA HP / Stat gauge) */
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.6rem;
+}
+
+.stat-label {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: var(--retro-gold);
+  width: 70px;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.stat-val {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  color: var(--retro-cream);
+  width: 38px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.stat-bar-outer {
+  flex: 1;
+  height: 14px;
+  background-color: var(--retro-navy-dark);
+  border: 2px solid var(--pixel-brown-dark);
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.6);
+  padding: 1px;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background-color: var(--pixel-grass);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4);
+  transition: width 0.6s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.stat-bar-fill.high { background-color: #68C349; }
+.stat-bar-fill.mid  { background-color: #E5B338; }
+.stat-bar-fill.low  { background-color: #D95745; }
+
+/* 8. MINI GBA FRAME WIDGET */
+.gba-mini-device {
+  background: linear-gradient(135deg, #4A247A 0%, #2A114B 100%);
+  border: 4px solid var(--pixel-brown-dark);
+  border-radius: 20px 20px 30px 30px;
+  padding: 1.25rem;
+  box-shadow: 6px 8px 0 var(--pixel-black);
+  max-width: 360px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.gba-mini-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.gba-mini-power-led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #22C55E;
+  box-shadow: 0 0 8px #22C55E;
+}
+
+.gba-mini-brand {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: #C5A6ED;
+  letter-spacing: 1px;
+}
+
+.gba-mini-screen {
+  background-color: #8BAC65;
+  border: 4px solid #1E0C36;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #1A3618;
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+.gba-mini-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0 0.5rem;
+}
+
+.gba-mini-dpad {
+  width: 44px;
+  height: 44px;
+  position: relative;
+}
+
+.gba-mini-dpad-bar {
+  background-color: #17283C;
+  position: absolute;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+}
+
+.gba-mini-dpad-h {
+  width: 44px;
+  height: 14px;
+  top: 15px;
+  left: 0;
+}
+
+.gba-mini-dpad-v {
+  width: 14px;
+  height: 44px;
+  top: 0;
+  left: 15px;
+}
+
+.gba-mini-buttons {
+  display: flex;
+  gap: 8px;
+  transform: rotate(-15deg);
+}
+
+.gba-mini-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #8B1E3F;
+  border: 2px solid #17283C;
+  color: #FFFFFF;
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

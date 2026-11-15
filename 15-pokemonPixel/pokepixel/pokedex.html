@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokédex — POKÉPIXEL</title>
+  <meta name="description" content="Explore the comprehensive Generation III Pokédex featuring iconic Pokémon from Kanto, Johto, and Hoenn with authentic GBA sprites and stats." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/icons/pokeball.svg" />
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pixel-art.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ========================================================================
+       NAVIGATION BAR
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="PokéPixel Home">
+        <img src="assets/images/icons/pokeball.svg" alt="Poké Ball" class="brand-pokeball" />
+        <img src="assets/sprites/25.png" alt="Pikachu" class="brand-sprite" />
+        <div class="brand-text">
+          <span class="brand-title">POKÉPIXEL</span>
+          <span class="brand-sub">GBA UNIVERSE</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="primaryNav">
+          <li><a href="index.html" class="nav-link">HOME</a></li>
+          <li><a href="games.html" class="nav-link">GBA GAMES</a></li>
+          <li><a href="pokedex.html" class="nav-link active">POKÉDEX</a></li>
+          <li><a href="regions.html" class="nav-link">REGIONS</a></li>
+          <li><a href="starters.html" class="nav-link">STARTERS</a></li>
+          <li><a href="about.html" class="nav-link">ABOUT</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="bgm-toggle-btn paused" id="bgmToggleBtn" aria-label="Toggle Background Music">
+          <span class="bgm-icon">🎵</span> BGM: MUSIC [OFF]
+        </button>
+        <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound Effects">
+          <span class="sound-icon">🔊</span> SFX: ON
+        </button>
+        <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="page-hero-tag">ELECTRONIC ENCYCLOPEDIA</span>
+      <h1 class="page-hero-title">REGIONAL POKÉDEX</h1>
+      <p class="page-hero-desc">
+        Access comprehensive biological records, base stats, elemental affinities, and evolution lines for the definitive roster of Kanto and Hoenn.
+      </p>
+      <div class="retro-breadcrumb">
+        <a href="index.html">HOME</a>
+        <span>▶</span>
+        <span style="color:var(--retro-gold);">POKÉDEX</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MAIN POKÉDEX SECTION
+       ======================================================================== -->
+  <main class="container" style="padding: 2.5rem 1.5rem 5rem;">
+    
+    <!-- POKÉDEX TOOLBAR / SEARCH & FILTERS -->
+    <div class="pixel-panel pokedex-toolbar" style="margin-bottom: 2.5rem; background-color: var(--retro-navy); padding: 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <img src="assets/images/icons/pokeball.svg" alt="" style="width: 24px; height: 24px;" class="anim-bounce" />
+          <h2 style="font-family: var(--font-pixel); font-size: 1rem; color: var(--retro-gold); margin: 0;">POKÉMON DATABASE</h2>
+        </div>
+        <div id="pokedexCountBadge" style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--pixel-grass); background-color: var(--retro-navy-dark); padding: 6px 12px; border: 2px solid var(--forest-green);">
+          80 / 80 POKÉMON
+        </div>
+      </div>
+
+      <!-- Controls Row -->
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 1rem; align-items: center;" class="pokedex-controls-grid">
+        
+        <!-- Search Input -->
+        <div style="position: relative;">
+          <input 
+            type="text" 
+            id="pokedexSearchInput" 
+            placeholder="Search by Pokémon name or # (e.g. 25 or Pikachu)..." 
+            style="width: 100%; background-color: var(--retro-navy-dark); color: var(--retro-cream); border: 2px solid var(--pixel-brown); padding: 10px 14px; font-family: var(--font-mono); font-size: 1.15rem; outline: none; box-shadow: inset 2px 2px 0 rgba(0,0,0,0.5);" 
+          />
+        </div>
+
+        <!-- Type Filter -->
+        <div>
+          <select id="pokedexTypeFilter" class="btn-pixel btn-pixel-navy" style="width: 100%; font-size: 0.7rem; padding: 10px 8px;">
+            <option value="all">ALL TYPES</option>
+            <option value="grass">GRASS</option>
+            <option value="fire">FIRE</option>
+            <option value="water">WATER</option>
+            <option value="electric">ELECTRIC</option>
+            <option value="psychic">PSYCHIC</option>
+            <option value="dragon">DRAGON</option>
+            <option value="ice">ICE</option>
+            <option value="fighting">FIGHTING</option>
+            <option value="poison">POISON</option>
+            <option value="ground">GROUND</option>
+            <option value="flying">FLYING</option>
+            <option value="bug">BUG</option>
+            <option value="rock">ROCK</option>
+            <option value="ghost">GHOST</option>
+            <option value="steel">STEEL</option>
+            <option value="dark">DARK</option>
+            <option value="normal">NORMAL</option>
+          </select>
+        </div>
+
+        <!-- Gen / Region Filter -->
+        <div>
+          <select id="pokedexGenFilter" class="btn-pixel btn-pixel-navy" style="width: 100%; font-size: 0.7rem; padding: 10px 8px;">
+            <option value="all">ALL REGIONS</option>
+            <option value="1">KANTO (GEN 1)</option>
+            <option value="2">JOHTO (GEN 2)</option>
+            <option value="3">HOENN (GEN 3)</option>
+          </select>
+        </div>
+
+        <!-- Sort Select -->
+        <div>
+          <select id="pokedexSortSelect" class="btn-pixel btn-pixel-navy" style="width: 100%; font-size: 0.7rem; padding: 10px 8px;">
+            <option value="id_asc">NUMBER # (LOW-HIGH)</option>
+            <option value="id_desc">NUMBER # (HIGH-LOW)</option>
+            <option value="name_asc">NAME (A - Z)</option>
+            <option value="total_desc">BASE STAT TOTAL</option>
+          </select>
+        </div>
+
+        <!-- Clear Button -->
+        <div>
+          <button id="clearFiltersBtn" class="btn-pixel btn-pixel-secondary btn-pixel-sm" title="Reset Filters" style="white-space: nowrap;">
+            RESET
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- POKÉMON GRID -->
+    <div id="pokedexGrid" class="pokedex-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem;">
+      <!-- Dynamically Rendered by pokedex.js -->
+    </div>
+
+  </main>
+
+  <!-- ========================================================================
+       POKÉDEX RETRO DETAIL MODAL (AUTHENTIC GBA DEVICE HUD)
+       ======================================================================== -->
+  <div id="pokedexModalOverlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    
+    <div class="modal-dialog pokedex-device-frame anim-modal-in" style="background: linear-gradient(145deg, #B83828 0%, #8C1C12 100%); border: 5px solid #2C0C08; border-radius: 12px; max-width: 760px; width: 100%; box-shadow: 10px 14px 0 var(--pixel-black); padding: 1.75rem; position: relative; color: var(--retro-cream);">
+      
+      <!-- Top Device Header Lights -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; border-bottom: 3px solid #5A1009; padding-bottom: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <!-- Big Blue Sensor Lens -->
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #7BB5FF 0%, #1A4E8C 70%); border: 3px solid #FFFFFF; box-shadow: 0 0 8px #7BB5FF;"></div>
+          <!-- Indicator Lights (Red, Yellow, Green) -->
+          <div style="display: flex; gap: 6px;">
+            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #EF4444; border: 1px solid #7F1D1D;"></div>
+            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #F59E0B; border: 1px solid #78350F;"></div>
+            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: #10B981; border: 1px solid #064E3B;"></div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: #FFE88C;">GBA MODEL AGB-DEX</span>
+          <button id="modalCloseBtn" class="btn-pixel btn-pixel-sm" style="background-color: #17283C; color: #FFFFFF; padding: 4px 10px;" aria-label="Close Pokédex">✕</button>
+        </div>
+      </div>
+
+      <!-- Main Pokédex LCD Screen Screen Grid -->
+      <div style="background-color: var(--retro-navy-dark); border: 4px solid #3F0E09; padding: 1.25rem; box-shadow: inset 3px 3px 6px rgba(0,0,0,0.8);">
+        <div class="modal-content-grid" style="display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem; align-items: flex-start;">
+          
+          <!-- Left: Big Sprite Box & Basic Stats -->
+          <div>
+            <div style="background-color: var(--retro-navy); border: 3px solid var(--pixel-brown-dark); width: 100%; height: 210px; display: flex; align-items: center; justify-content: center; position: relative; margin-bottom: 1rem; box-shadow: inset 2px 2px 0 rgba(0,0,0,0.6);">
+              <img id="modalSprite" src="assets/sprites/25.png" alt="Pokemon Sprite" class="pixelated anim-float" style="width: 130px; height: 130px;" />
+              <span id="modalNumber" style="position: absolute; top: 8px; left: 8px; font-family: var(--font-pixel); font-size: 0.75rem; color: var(--retro-gold); background-color: var(--retro-navy-dark); padding: 3px 8px; border: 1px solid var(--pixel-brown);">
+                #025
+              </span>
+            </div>
+
+            <!-- Dimensions HUD -->
+            <div style="background-color: var(--retro-navy); border: 2px solid var(--pixel-brown-dark); padding: 8px 10px; font-family: var(--font-mono); font-size: 1.1rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                <span style="color: var(--retro-gold);">HEIGHT:</span>
+                <span id="modalHeight">0.4 m</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                <span style="color: var(--retro-gold);">WEIGHT:</span>
+                <span id="modalWeight">6.0 kg</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--retro-gold);">ORIGIN:</span>
+                <span id="modalRegion">Kanto</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Details, Stats, and Evolution -->
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 8px;">
+              <h2 id="modalName" style="font-family: var(--font-pixel); font-size: 1.3rem; color: var(--retro-cream); margin: 0;">Pikachu</h2>
+              <div id="modalTypes" style="display: flex; gap: 4px;"></div>
+            </div>
+
+            <div id="modalCategory" style="font-family: var(--font-retro); font-size: 0.85rem; color: var(--pixel-grass); margin-bottom: 0.75rem;">
+              Mouse Pokémon
+            </div>
+
+            <!-- Description Box -->
+            <div class="pixel-panel-light" style="padding: 0.75rem 1rem; margin-bottom: 1rem; border-width: 2px;">
+              <p id="modalDesc" style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--pixel-brown-dark); margin: 0;">
+                Whenever Pikachu comes across something new, it blasts it with a jolt of electricity.
+              </p>
+            </div>
+
+            <!-- Base Stats -->
+            <div style="margin-bottom: 1rem;">
+              <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 0.5rem;">
+                BASE COMBAT STATS
+              </span>
+              <div id="modalStatsContainer">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Evolution Line Track -->
+            <div>
+              <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--retro-gold); display: block; margin-bottom: 0.5rem;">
+                EVOLUTION INFORMATION
+              </span>
+              <div id="modalEvolutionWrap">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom Navigation Buttons (Prev / Next & Close) -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; flex-wrap: wrap; gap: 8px;">
+        <button id="modalPrevBtn" class="btn-pixel btn-pixel-navy btn-pixel-sm">
+          ◀ PREV POKÉMON
+        </button>
+        <button id="modalBottomCloseBtn" class="btn-pixel btn-pixel-primary btn-pixel-sm">
+          ✕ CLOSE POKÉDEX (ESC)
+        </button>
+        <button id="modalNextBtn" class="btn-pixel btn-pixel-navy btn-pixel-sm">
+          NEXT POKÉMON ▶
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <img src="assets/images/icons/pokeball.svg" alt="Poké Ball" class="brand-pokeball" />
+            <span class="brand-title">POKÉPIXEL</span>
+          </a>
+          <p class="footer-brand-desc">
+            Complete Generation III Pokédex index with offline statistics, authentic GBA sprites, and type relations.
+          </p>
+          <div class="footer-badge">
+            <span>OFFICIAL GBA ENCYCLOPEDIA</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">EXPLORE</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="games.html">GBA Games</a></li>
+            <li><a href="pokedex.html">Pokédex</a></li>
+            <li><a href="regions.html">Regions Map</a></li>
+            <li><a href="starters.html">Starters &amp; Team</a></li>
+            <li><a href="about.html">About &amp; Nostalgia</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">QUICK SEARCH</h4>
+          <ul class="footer-links">
+            <li><a href="pokedex.html?id=1">Bulbasaur (#001)</a></li>
+            <li><a href="pokedex.html?id=4">Charmander (#004)</a></li>
+            <li><a href="pokedex.html?id=25">Pikachu (#025)</a></li>
+            <li><a href="pokedex.html?id=252">Treecko (#252)</a></li>
+            <li><a href="pokedex.html?id=384">Rayquaza (#384)</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">POKÉDEX GUIDE</h4>
+          <div class="footer-quote-box">
+            <p class="footer-quote">
+              "To make a complete guide on all Pokémon in the world... that was my dream!"
+            </p>
+            <div class="footer-quote-author">— PROFESSOR OAK</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 POKÉPIXEL. All Pokémon data and artwork are properties of Nintendo / GAME FREAK.</div>
+        <div><span>GBA ENCYCLOPEDIA</span></div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- Scripts -->
+  <script src="js/pokemon-data.js"></script>
+  <script src="js/regions-data.js"></script>
+  <script src="js/interactions.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/pokedex.js"></script>
+  <script src="js/regions.js"></script>
+  <script src="js/starters.js"></script>
+  <script src="js/about.js"></script>
+</body>
+</html>

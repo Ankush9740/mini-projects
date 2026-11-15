@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 340" width="280" height="340" shape-rendering="crispEdges">
+  <defs>
+    <linearGradient id="labelGrad_384" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E7D58"/>
+      <stop offset="100%" stop-color="#0B3826"/>
+    </linearGradient>
+    <filter id="cartShadow_384">
+      <feDropShadow dx="4" dy="6" stdDeviation="0" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Cartridge Plastic Body -->
+  <g filter="url(#cartShadow_384)">
+    <!-- Main Outer Body -->
+    <rect x="20" y="24" width="240" height="290" rx="8" fill="#165942"/>
+    
+    <!-- Top Grip Notch Details -->
+    <rect x="36" y="16" width="208" height="12" rx="4" fill="#165942"/>
+    <rect x="44" y="20" width="192" height="4" fill="#000000" opacity="0.2"/>
+    <rect x="60" y="28" width="160" height="6" fill="#FFFFFF" opacity="0.15"/>
+
+    <!-- Left & Right Grip Ridges -->
+    <rect x="22" y="60" width="4" height="180" fill="#FFFFFF" opacity="0.12"/>
+    <rect x="254" y="60" width="4" height="180" fill="#000000" opacity="0.3"/>
+
+    <!-- Nintendo GAME BOY ADVANCE Header Area -->
+    <rect x="40" y="42" width="200" height="32" rx="4" fill="#000000" opacity="0.25"/>
+    <text x="140" y="62" font-family="'Press Start 2P', monospace" font-size="9" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">GAME BOY ADVANCE</text>
+    <text x="140" y="71" font-family="'VT323', monospace" font-size="11" fill="#7CE2AE" text-anchor="middle" letter-spacing="2">N I N T E N D O</text>
+
+    <!-- Sticker Label Recess -->
+    <rect x="38" y="86" width="204" height="204" rx="4" fill="#17283C"/>
+    <rect x="40" y="88" width="200" height="200" rx="3" fill="url(#labelGrad_384)"/>
+
+    <!-- Metallic foil sheen line on label -->
+    <polygon points="40,88 90,88 40,138" fill="#FFFFFF" opacity="0.25"/>
+    <polygon points="240,238 240,288 190,288" fill="#000000" opacity="0.2"/>
+
+    <!-- Pokémon Logo & Title on Sticker -->
+    <rect x="46" y="96" width="188" height="48" fill="#0E1A29" opacity="0.85" rx="3"/>
+    <text x="140" y="112" font-family="'Press Start 2P', monospace" font-size="12" font-weight="bold" fill="#FFCC00" text-anchor="middle" stroke="#003399" stroke-width="0.8">POKÉMON</text>
+    <text x="140" y="128" font-family="'Press Start 2P', monospace" font-size="8.5" fill="#7CE2AE" text-anchor="middle">EMERALD</text>
+    <text x="140" y="139" font-family="'VT323', monospace" font-size="12" fill="#F4E8C8" text-anchor="middle" letter-spacing="1">VERSION</text>
+
+    <!-- Center Mascot Sprite -->
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABABAMAAABYR2ztAAAAMFBMVEWcnP85UjlBg0FKg3NavYuU3rQAAAAxUqxKnL32YmLFlGLe1e7////ezQD/7gAYGBi04iL0AAAAAXRSTlMAQObYZgAAA59JREFUSIl9lDGL41YQxyXcpLMmT4Zob0GwbJ99jFwkcBHvNCo2EBudpTb7GVLtR8h1wWRTOF1wFTchbHmBIyTdLqTwtnfNXVpjIy0hSy4v8yTLlu4UPzCW/X76/+fNmxnLqhZah1cvO9v/kJ2As39OncPAkA4Ddqo6LSb146BLgIHkoIBl10BvQN0AJbVBpwMDdFYZdAsYoHxxEOH6ECBT7EqjAQAcYxBh2A1A9mcCNhv8jwNmX65WL81+t0AvMytJsVugh0RmnwWkhg5gmNKTkxMiQlmMqIMYZk9PySxVEN1tCbsVwGkEIIgi9npDFeE5TQF6CUaDD4Gju4poAIOnp0/+/dBYoFmf3Zmk2le7K7GzKgD6/ArlllBNoJ8qOFosFj/OrhBBMPGYTTz+wNZF/7O2fK31bI4oS+KOhokCbzatAKdvjC4vvbkISNnCSMiJN6N2Zfx1+TfKIReebSQgU/Q+IB2RcfUDO92XQKv4GAgtOzbtIfhGUnLfAT766nu+6cIUt60HFy4DUdQA7GfffLvhMxuJQZZNClIYBI3y++CZN1/bwBKOdZ9xQlyFGI0bDl8/hLZL4McJ+HwOITnxwb687B9gvoEbknSfqDGanLuiVX9HC03HN8e/uWPXjXIDFHkL6OtB9kjfXvPxXQXifQA4RxeP/IJA0vHvCgUVqglI3AwTeH4dROiqX25LYNwAZJyFrjf9AzHHwH8OxIcwQN0DPa76JAe38HWI8laDKyW5Y9S1QBBnKW2qmsvlzc/HvzKgyLcaAhRtypIEX7+A22sEGtO6JcDuHJTGT521/4ITedIGWF1w3+X4E9+YtdYY0MfS2TukxJ1jtnX1p9BIyldNQNlT0Lp+R2AejMO6XgJiByXwE9gPWxFiHgbb3y7FpgnYdlp3tpCgWUTVAO/HMfDXeRU4FzYt8S1uPbitFaXpBNwaEBi8Wkqx3HrYAUEQx1kmwSsB1hrR69B+vPWwUWUKhmZKSVjzQGSvNyO+KLHchp3L2XepFOUguwATEq2WoZmdWEXdR27ULCpFoJwEo6W5aY7VrSQ23NVGxI25H+iLFe+HZTZqwHS0ETmnpDBT6jWGJlpbolR1RZrRMJsKBka0qvZL4LySOFJmbjA2eftqtUJd50vUwMNcQjnBMu4qvas0Lt1t8vsP82o8xUpvrN3y/N0AMEQ5n1qz3HOKaHfBeoG48LXVAs7cxhTy80V7mw9n9Ztjyn533yxt/QfXyF+D7aYvhAAAAABJRU5ErkJggg==" x="76" y="146" width="128" height="128" preserveAspectRatio="xMidYMid meet" style="image-rendering: pixelated;"/>
+
+    <!-- Seal of Quality & ESRB -->
+    <circle cx="62" cy="268" r="12" fill="#E9B94E" stroke="#B8860B" stroke-width="1.5"/>
+    <text x="62" y="271" font-family="'VT323', monospace" font-size="8" fill="#17283C" font-weight="bold" text-anchor="middle">OFFICIAL</text>
+    
+    <rect x="210" y="254" width="22" height="26" fill="#FFFFFF" rx="2"/>
+    <rect x="212" y="256" width="18" height="22" fill="#17283C"/>
+    <text x="221" y="272" font-family="'Press Start 2P', monospace" font-size="12" fill="#FFFFFF" font-weight="bold" text-anchor="middle">E</text>
+
+    <!-- Bottom Arrow Notch -->
+    <polygon points="140,314 130,302 150,302" fill="#000000" opacity="0.3"/>
+  </g>
+</svg>

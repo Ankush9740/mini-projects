@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — POKÉPIXEL</title>
+  <meta name="description" content="A nostalgic retrospective and tribute to the golden era of Pokémon Game Boy Advance adventures." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/icons/pokeball.svg" />
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pixel-art.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ========================================================================
+       NAVIGATION BAR
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo" aria-label="PokéPixel Home">
+        <img src="assets/images/icons/pokeball.svg" alt="Poké Ball" class="brand-pokeball" />
+        <img src="assets/sprites/25.png" alt="Pikachu" class="brand-sprite" />
+        <div class="brand-text">
+          <span class="brand-title">POKÉPIXEL</span>
+          <span class="brand-sub">GBA UNIVERSE</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="primaryNav">
+          <li><a href="index.html" class="nav-link">HOME</a></li>
+          <li><a href="games.html" class="nav-link">GBA GAMES</a></li>
+          <li><a href="pokedex.html" class="nav-link">POKÉDEX</a></li>
+          <li><a href="regions.html" class="nav-link">REGIONS</a></li>
+          <li><a href="starters.html" class="nav-link">STARTERS</a></li>
+          <li><a href="about.html" class="nav-link active">ABOUT</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="bgm-toggle-btn paused" id="bgmToggleBtn" aria-label="Toggle Background Music">
+          <span class="bgm-icon">🎵</span> BGM: MUSIC [OFF]
+        </button>
+        <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound Effects">
+          <span class="sound-icon">🔊</span> SFX: ON
+        </button>
+        <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="page-hero-tag">RETROSPECTIVE &amp; TRIBUTE</span>
+      <h1 class="page-hero-title">MORE THAN A GAME. A CHILDHOOD ADVENTURE.</h1>
+      <p class="page-hero-desc">
+        A heartfelt love letter to the 32-bit pixel era, link cables on school buses, front-lit SP screens, and the unforgettable worlds of Kanto and Hoenn.
+      </p>
+      <div class="retro-breadcrumb">
+        <a href="index.html">HOME</a>
+        <span>▶</span>
+        <span style="color:var(--retro-gold);">ABOUT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MAIN EDITORIAL RETROSPECTIVE
+       ======================================================================== -->
+  <main class="container" style="padding: 3rem 1.5rem 5rem; max-width: 980px;">
+    
+    <!-- Hero Article Card -->
+    <article class="pixel-panel" style="padding: 2.5rem; margin-bottom: 3rem; background-color: var(--retro-navy); border-color: var(--retro-gold);">
+      
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;">
+        <img src="assets/images/icons/pokeball.svg" alt="" style="width: 28px; height: 28px;" class="anim-bounce" />
+        <span style="font-family: var(--font-pixel); font-size: 0.75rem; color: var(--retro-gold);">THE 32-BIT REVOLUTION (2002 - 2006)</span>
+      </div>
+
+      <div style="font-size: 1.05rem; line-height: 1.8; color: #E2ECF5; display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <p>
+          Between 2002 and 2006, the Game Boy Advance served as the sacred portal to another existence. Long before smartphones, always-on internet connections, and cloud saves, Pokémon was something you carried in your jacket pocket—tangible, vibrant, and alive with 32,768 possible colors.
+        </p>
+
+        <!-- The Magic of Kanto -->
+        <div class="pixel-panel-light" style="padding: 1.5rem; border-width: 3px;">
+          <h2 style="font-family: var(--font-pixel); font-size: 1.05rem; color: var(--fire-red); margin-bottom: 0.75rem;">
+            THE MAGIC OF KANTO (FIRERED &amp; LEAFGREEN)
+          </h2>
+          <p style="color: var(--pixel-brown-dark); font-size: 0.98rem; line-height: 1.6; margin: 0;">
+            When <em>Pokémon FireRed</em> and <em>LeafGreen</em> dropped in 2004, they weren’t merely remakes. They were the fulfillment of what our imaginations saw in the original green-tinted Game Boy games. Pallet Town bloomed in crisp pastoral greens, the S.S. Anne whistled in deep chiptune bass, and the Sevii Islands extended the frontier beyond anything Red or Blue could have dreamed. It proved that great design never ages—it only gains deeper resonance.
+          </p>
+        </div>
+
+        <!-- The Beauty of Hoenn -->
+        <div class="pixel-panel-light" style="padding: 1.5rem; border-width: 3px;">
+          <h2 style="font-family: var(--font-pixel); font-size: 1.05rem; color: #1E7D58; margin-bottom: 0.75rem;">
+            THE UNTAMED BEAUTY OF HOENN (RUBY, SAPPHIRE &amp; EMERALD)
+          </h2>
+          <p style="color: var(--pixel-brown-dark); font-size: 0.98rem; line-height: 1.6; margin: 0;">
+            Hoenn expanded our sense of scale. From the tranquil rain showers of Route 119 to the suspended wooden treehouses of Fortree City, Hoenn felt untamed. You didn't just walk across roads; you scaled smoking volcanic craters via cable car, bunny-hopped over mountain ledges on an Acro Bike, dove thousands of leagues beneath the sea with HM Dive, and carved private Secret Bases into ancient tree trunks. And hovering above it all was Rayquaza—a silent dragon god circling the stratosphere.
+          </p>
+        </div>
+
+        <!-- The Nostalgia of Sound & Pixels -->
+        <div>
+          <h2 style="font-family: var(--font-pixel); font-size: 1.1rem; color: var(--retro-gold); margin-bottom: 0.75rem;">
+            TRUMPETS, CHIPTUNES, AND PIXEL ARCHITECTURE
+          </h2>
+          <p>
+            The acoustic identity of Generation III is unforgettable. The booming brass fanfare as you stepped onto Route 104, the urgent alarm sirens in the underwater submarine cavern, and the ethereal chimes echoing through Mt. Pyre. Every track pushed the GBA's sound chip to its absolute limits, creating emotional memories that still raise goosebumps decades later.
+          </p>
+        </div>
+
+        <!-- The Joy of Playground Trades -->
+        <div>
+          <h2 style="font-family: var(--font-pixel); font-size: 1.1rem; color: var(--retro-gold); margin-bottom: 0.75rem;">
+            LINK CABLES AND PLAYGROUND TRADES
+          </h2>
+          <p>
+            To complete the Pokédex in 2004 required physical courage and camaraderie. You sat side-by-side on concrete curbs with purple link cables tangled between Game Boys. You traded a Kadabra or Haunter to watch it evolve right in front of you. Later, the translucent wireless adapter brought us together in the virtual Union Room, where dozens of trainers could trade, chat, and battle without a single wire.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Concluding Retro Manifesto -->
+      <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 3px solid var(--pixel-brown-dark); text-align: center;">
+        <p style="font-family: var(--font-pixel); font-size: 1.1rem; color: var(--retro-gold); line-height: 1.6; margin-bottom: 1rem; text-shadow: 2px 2px 0 var(--pixel-black);">
+          "Some adventures never end. They simply live on in pixels."
+        </p>
+        <span style="font-family: var(--font-retro); font-size: 0.85rem; color: var(--pixel-grass); letter-spacing: 2px;">
+          POKÉPIXEL CREATIVE RETROSPECTIVE
+        </span>
+      </div>
+
+    </article>
+
+    <!-- ======================================================================
+         SECTION 2: RETRO GBA TRIVIA MINIGAME
+         ====================================================================== -->
+    <section class="pixel-panel" style="background-color: var(--retro-navy-dark); border-color: var(--forest-green); padding: 2rem; margin-bottom: 3.5rem;">
+      
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; border-bottom: 2px solid var(--pixel-brown-dark); padding-bottom: 0.75rem; flex-wrap: wrap; gap: 10px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; color: var(--retro-gold); margin: 0;">
+          POKÉPIXEL TRAINER TRIVIA CHALLENGE
+        </h3>
+        <span id="triviaScoreBadge" style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--pixel-grass); background-color: var(--retro-navy); padding: 4px 10px; border: 1px solid var(--forest-green);">
+          SCORE: 0 / 4
+        </span>
+      </div>
+
+      <p style="font-size: 0.95rem; color: #D3DFE9; margin-bottom: 1.5rem;">
+        Test your knowledge of Pokémon FireRed, LeafGreen, Emerald, Ruby, and Sapphire!
+      </p>
+
+      <div id="triviaContainer">
+        <!-- Rendered by inline trivia script -->
+      </div>
+    </section>
+
+    <!-- Quick Navigation Call to Action -->
+    <div style="text-align: center;">
+      <a href="pokedex.html" class="btn-pixel btn-pixel-primary" style="margin-right: 1rem; margin-bottom: 1rem;">
+        BROWSE THE POKÉDEX (80 MONS) ▶
+      </a>
+      <a href="starters.html" class="btn-pixel btn-pixel-gold" style="margin-bottom: 1rem;">
+        BUILD YOUR DREAM TEAM ▶
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <img src="assets/images/icons/pokeball.svg" alt="Poké Ball" class="brand-pokeball" />
+            <span class="brand-title">POKÉPIXEL</span>
+          </a>
+          <p class="footer-brand-desc">
+            A handcrafted retro tribute honoring the golden era of Pokémon Game Boy Advance adventures.
+          </p>
+          <div class="footer-badge">
+            <span>PURE RETRO CRAFTSMANSHIP</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">EXPLORE</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="games.html">GBA Games</a></li>
+            <li><a href="pokedex.html">Pokédex</a></li>
+            <li><a href="regions.html">Regions Map</a></li>
+            <li><a href="starters.html">Starters &amp; Team</a></li>
+            <li><a href="about.html">About &amp; Nostalgia</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">MEMORIES</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">The Magic of Kanto</a></li>
+            <li><a href="about.html">The Beauty of Hoenn</a></li>
+            <li><a href="about.html">Link Cable Days</a></li>
+            <li><a href="about.html">Battle Frontier Trials</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">FINAL WORDS</h4>
+          <div class="footer-quote-box">
+            <p class="footer-quote">
+              "Some adventures never end. They simply live on in pixels."
+            </p>
+            <div class="footer-quote-author">— POKÉPIXEL TRIBUTE</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 POKÉPIXEL. Handcrafted with HTML5, CSS3, and Vanilla JavaScript.</div>
+        <div><span>RETRO GAMING ARCHIVE</span></div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- Scripts -->
+  <script src="js/pokemon-data.js"></script>
+  <script src="js/regions-data.js"></script>
+  <script src="js/interactions.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/pokedex.js"></script>
+  <script src="js/regions.js"></script>
+  <script src="js/starters.js"></script>
+  <script src="js/about.js"></script>
+</body>
+</html>

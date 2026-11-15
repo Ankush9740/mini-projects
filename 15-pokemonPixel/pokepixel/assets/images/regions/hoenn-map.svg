@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="100%" height="100%" shape-rendering="crispEdges">
+  <defs>
+    <pattern id="hoennSea" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#447FA8"/>
+      <rect x="0" y="0" width="10" height="10" fill="#4E8CBA"/>
+      <rect x="10" y="10" width="10" height="10" fill="#4E8CBA"/>
+    </pattern>
+    <pattern id="hoennLand" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#75A658"/>
+      <rect x="0" y="0" width="10" height="10" fill="#69974E"/>
+      <rect x="10" y="10" width="10" height="10" fill="#69974E"/>
+    </pattern>
+    <pattern id="hoennSand" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#D2B57B"/>
+      <rect x="0" y="0" width="10" height="10" fill="#C5A66B"/>
+      <rect x="10" y="10" width="10" height="10" fill="#C5A66B"/>
+    </pattern>
+  </defs>
+
+  <!-- Ocean Base -->
+  <rect width="1000" height="680" fill="url(#hoennSea)"/>
+
+  <!-- Western Hoenn Landmass -->
+  <rect x="60" y="160" width="460" height="420" fill="url(#hoennLand)"/>
+  <!-- Northern Highlands -->
+  <rect x="220" y="80" width="480" height="180" fill="url(#hoennLand)"/>
+  <!-- Route 111 Desert -->
+  <rect x="360" y="170" width="110" height="140" fill="url(#hoennSand)"/>
+  
+  <!-- Mt. Chimney Volcano -->
+  <polygon points="310,210 270,140 350,140" fill="#8B3A2B"/>
+  <rect x="290" y="130" width="40" height="20" fill="#D95745"/>
+
+  <!-- Eastern Islands & Sea Routes -->
+  <!-- Mt. Pyre Island -->
+  <rect x="660" y="320" width="80" height="80" fill="#426B42"/>
+  <!-- Dewford Island -->
+  <rect x="100" y="580" width="90" height="60" fill="url(#hoennLand)"/>
+  <!-- Lilycove Peninsula -->
+  <rect x="760" y="240" width="120" height="130" fill="url(#hoennLand)"/>
+  <!-- Mossdeep Island -->
+  <rect x="850" y="220" width="100" height="90" fill="url(#hoennLand)"/>
+  <!-- Sootopolis Crater Atoll -->
+  <ellipse cx="790" cy="450" rx="60" ry="45" fill="#FFFFFF" stroke="#447FA8" stroke-width="12"/>
+  <ellipse cx="790" cy="450" rx="40" ry="28" fill="url(#hoennSea)"/>
+  <!-- Ever Grande Waterfall Island -->
+  <rect x="910" y="420" width="70" height="120" fill="url(#hoennLand)"/>
+
+  <!-- Red Route Highways -->
+  <!-- Littleroot to Oldale -->
+  <rect x="235" y="422" width="10" height="108" fill="#D95745"/>
+  <!-- Oldale west to Petalburg -->
+  <rect x="135" y="422" width="110" height="10" fill="#D95745"/>
+  <!-- Petalburg through Woods north to Rustboro -->
+  <rect x="95" y="258" width="10" height="168" fill="#D95745"/>
+  <rect x="95" y="422" width="50" height="10" fill="#D95745"/>
+  <!-- Rustboro east through Rusturf Tunnel to Verdanturf & Mauville -->
+  <rect x="95" y="258" width="330" height="10" fill="#D95745"/>
+  <rect x="415" y="258" width="10" height="82" fill="#D95745"/>
+  <!-- Slateport north Cycling Road to Mauville -->
+  <rect x="415" y="340" width="10" height="190" fill="#D95745"/>
+  <!-- Mauville north through Desert to Fallarbor & Lavaridge -->
+  <rect x="415" y="190" width="10" height="150" fill="#D95745"/>
+  <rect x="220" y="190" width="205" height="10" fill="#D95745"/>
+  <!-- Mauville east to Route 118, Fortree & Lilycove -->
+  <rect x="420" y="340" width="200" height="10" fill="#D95745"/>
+  <rect x="615" y="190" width="10" height="160" fill="#D95745"/>
+  <rect x="620" y="190" width="200" height="10" fill="#D95745"/>
+  <rect x="815" y="190" width="10" height="95" fill="#D95745"/>
+  <!-- Sea Routes from Lilycove to Mossdeep, Sootopolis & Ever Grande -->
+  <rect x="820" y="285" width="80" height="10" fill="#D95745"/>
+  <rect x="895" y="285" width="10" height="165" fill="#D95745"/>
+  <rect x="790" y="450" width="115" height="10" fill="#D95745"/>
+  <rect x="895" y="450" width="50" height="10" fill="#D95745"/>
+
+  <!-- Border & GBA Town Map Frame Details -->
+  <rect x="0" y="0" width="1000" height="680" fill="none" stroke="#17283C" stroke-width="12"/>
+  <rect x="12" y="12" width="976" height="656" fill="none" stroke="#8BAC65" stroke-width="4"/>
+
+  <!-- Title Badge in Top Right -->
+  <rect x="680" y="24" width="290" height="56" rx="4" fill="#17283C" stroke="#8BAC65" stroke-width="3"/>
+  <text x="825" y="48" font-family="'Press Start 2P', monospace" font-size="14" fill="#8BAC65" text-anchor="middle">HOENN REGION</text>
+  <text x="825" y="68" font-family="'VT323', monospace" font-size="16" fill="#F4E8C8" text-anchor="middle">RUBY, SAPPHIRE &amp; EMERALD</text>
+</svg>

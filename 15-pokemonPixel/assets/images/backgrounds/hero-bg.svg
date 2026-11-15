@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" shape-rendering="crispEdges">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4B88C4"/>
+      <stop offset="60%" stop-color="#72B5E8"/>
+      <stop offset="100%" stop-color="#AEE1FA"/>
+    </linearGradient>
+    <pattern id="pixelGrassPattern" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#8BAC65"/>
+      <rect x="0" y="0" width="8" height="8" fill="#759850"/>
+      <rect x="4" y="2" width="4" height="4" fill="#9BC374"/>
+      <rect x="8" y="8" width="8" height="8" fill="#759850"/>
+      <rect x="12" y="10" width="4" height="4" fill="#9BC374"/>
+      <rect x="2" y="12" width="2" height="2" fill="#5E7C3E"/>
+    </pattern>
+    <pattern id="darkGrassPattern" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#426B42"/>
+      <rect x="0" y="0" width="8" height="8" fill="#325232"/>
+      <rect x="8" y="8" width="8" height="8" fill="#325232"/>
+      <rect x="4" y="4" width="4" height="4" fill="#588558"/>
+    </pattern>
+  </defs>
+
+  <!-- Sky -->
+  <rect x="0" y="0" width="1440" height="480" fill="url(#skyGrad)"/>
+
+  <!-- Pixel Clouds -->
+  <!-- Cloud 1 -->
+  <g fill="#FFFFFF" opacity="0.9">
+    <rect x="120" y="70" width="140" height="30"/>
+    <rect x="150" y="50" width="80" height="20"/>
+    <rect x="170" y="40" width="40" height="10"/>
+    <rect x="100" y="80" width="180" height="20"/>
+    <rect x="130" y="95" width="150" height="10" fill="#D2E8F8"/>
+  </g>
+  <!-- Cloud 2 -->
+  <g fill="#FFFFFF" opacity="0.85">
+    <rect x="740" y="110" width="180" height="35"/>
+    <rect x="780" y="85" width="100" height="25"/>
+    <rect x="800" y="70" width="60" height="15"/>
+    <rect x="720" y="125" width="220" height="25"/>
+    <rect x="760" y="145" width="180" height="10" fill="#D2E8F8"/>
+  </g>
+  <!-- Distant Cloud 3 -->
+  <g fill="#FFFFFF" opacity="0.6">
+    <rect x="1100" y="160" width="110" height="20"/>
+    <rect x="1120" y="150" width="70" height="10"/>
+  </g>
+
+  <!-- Distant Pixel Mountain Range -->
+  <polygon points="0,420 180,260 380,420" fill="#5D8AA8"/>
+  <polygon points="120,420 320,220 540,420" fill="#4A7596"/>
+  <polygon points="290,250 320,220 350,250" fill="#FFFFFF" opacity="0.8"/>
+  <polygon points="460,420 680,240 900,420" fill="#547E9E"/>
+  <polygon points="650,265 680,240 710,265" fill="#FFFFFF" opacity="0.8"/>
+  <polygon points="840,420 1060,280 1280,420" fill="#436B8C"/>
+  <polygon points="1180,420 1340,310 1440,420" fill="#50789A"/>
+
+  <!-- Midground Pine Trees Ridge -->
+  <rect x="0" y="380" width="1440" height="70" fill="#2E523A"/>
+  <!-- Stepped tree tops -->
+  <g fill="#3B684A">
+    <polygon points="40,380 60,340 80,380"/>
+    <polygon points="90,380 115,330 140,380"/>
+    <polygon points="150,380 170,345 190,380"/>
+    <polygon points="220,380 250,325 280,380"/>
+    <polygon points="320,380 340,340 360,380"/>
+    <polygon points="410,380 440,320 470,380"/>
+    <polygon points="520,380 545,335 570,380"/>
+    <polygon points="630,380 660,325 690,380"/>
+    <polygon points="750,380 775,340 800,380"/>
+    <polygon points="850,380 880,320 910,380"/>
+    <polygon points="970,380 995,335 1020,380"/>
+    <polygon points="1080,380 1110,325 1140,380"/>
+    <polygon points="1200,380 1225,340 1250,380"/>
+    <polygon points="1310,380 1340,320 1370,380"/>
+  </g>
+
+  <!-- Rolling Overworld Hills -->
+  <path d="M 0,440 Q 360,400 720,440 T 1440,430 L 1440,800 L 0,800 Z" fill="url(#darkGrassPattern)"/>
+  
+  <!-- Foreground Main Grass Field -->
+  <path d="M 0,490 Q 400,460 880,500 T 1440,480 L 1440,800 L 0,800 Z" fill="url(#pixelGrassPattern)"/>
+
+  <!-- Classic Dirt Route Path winding through grass -->
+  <path d="M 180,800 C 220,720 280,680 380,640 C 480,600 520,560 580,520 L 640,520 C 580,570 540,620 440,660 C 340,700 290,740 260,800 Z" fill="#D6B88A"/>
+  <!-- Path border shadows -->
+  <path d="M 180,800 C 220,720 280,680 380,640 C 480,600 520,560 580,520" stroke="#B89762" stroke-width="6" fill="none"/>
+
+  <!-- Pixel Flowers & Tall Grass Clumps -->
+  <!-- Red Flowers -->
+  <g fill="#D95745">
+    <rect x="220" y="580" width="8" height="8"/>
+    <rect x="240" y="610" width="8" height="8"/>
+    <rect x="720" y="540" width="8" height="8"/>
+    <rect x="860" y="630" width="8" height="8"/>
+    <rect x="1100" y="590" width="8" height="8"/>
+    <rect x="1240" y="680" width="8" height="8"/>
+  </g>
+  <!-- Yellow Centers -->
+  <g fill="#E9B94E">
+    <rect x="222" y="582" width="4" height="4"/>
+    <rect x="242" y="612" width="4" height="4"/>
+    <rect x="722" y="542" width="4" height="4"/>
+    <rect x="862" y="632" width="4" height="4"/>
+    <rect x="1102" y="592" width="4" height="4"/>
+    <rect x="1242" y="682" width="4" height="4"/>
+  </g>
+
+  <!-- Tall Grass Patches (Wild Encounters!) -->
+  <g fill="#4E8240">
+    <!-- Patch 1 -->
+    <rect x="80" y="530" width="80" height="40" rx="4"/>
+    <rect x="75" y="525" width="20" height="15"/>
+    <rect x="105" y="520" width="20" height="20"/>
+    <rect x="135" y="526" width="20" height="14"/>
+    <!-- Patch 2 -->
+    <rect x="960" y="520" width="120" height="50" rx="4"/>
+    <rect x="970" y="512" width="24" height="18"/>
+    <rect x="1010" y="508" width="26" height="22"/>
+    <rect x="1050" y="514" width="22" height="16"/>
+  </g>
+
+  <!-- Distant Pallet / Littleroot Roofs -->
+  <!-- House 1 -->
+  <rect x="680" y="470" width="64" height="40" fill="#EAD9BA" stroke="#49372B" stroke-width="2"/>
+  <polygon points="670,470 712,438 754,470" fill="#D95745" stroke="#49372B" stroke-width="2"/>
+  <rect x="704" y="488" width="16" height="22" fill="#5B9BC6" stroke="#49372B" stroke-width="2"/>
+  <rect x="686" y="478" width="12" height="12" fill="#FFFFFF" stroke="#49372B" stroke-width="2"/>
+
+  <!-- Pokémon Lab Roof (Blue) -->
+  <rect x="770" y="460" width="90" height="50" fill="#F4E8C8" stroke="#49372B" stroke-width="2"/>
+  <polygon points="760,460 815,424 870,460" fill="#5B9BC6" stroke="#49372B" stroke-width="2"/>
+  <rect x="805" y="482" width="20" height="28" fill="#49372B"/>
+  <circle cx="835" cy="445" r="7" fill="#E9B94E" stroke="#49372B" stroke-width="1.5"/>
+</svg>
