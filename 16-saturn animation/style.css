@@ -1,0 +1,279 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #050711;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.space {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 45%,
+        #171b35 0%,
+        #090d20 45%,
+        #03050d 100%);
+}
+
+/* Stars */
+
+.stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1px 1px at 10% 20%, white 99%, transparent),
+        radial-gradient(2px 2px at 80% 30%, white 99%, transparent),
+        radial-gradient(1px 1px at 40% 70%, white 99%, transparent),
+        radial-gradient(2px 2px at 65% 85%, white 99%, transparent),
+        radial-gradient(1px 1px at 25% 90%, white 99%, transparent),
+        radial-gradient(1px 1px at 90% 65%, white 99%, transparent),
+        radial-gradient(2px 2px at 55% 15%, white 99%, transparent);
+    background-size: 250px 250px;
+    animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+/* Nebula */
+
+.nebula {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(
+        ellipse,
+        rgba(105, 80, 160, 0.12),
+        transparent 70%
+    );
+    filter: blur(50px);
+}
+
+/* Saturn */
+
+.scene {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 6s ease-in-out infinite;
+}
+
+.planet {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    transform: rotate(-20deg);
+    transform-style: preserve-3d;
+}
+
+/* Planet surface */
+
+.saturn {
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    top: 35px;
+    left: 35px;
+    border-radius: 50%;
+    z-index: 2;
+
+    background:
+        repeating-linear-gradient(
+            180deg,
+            transparent 0px,
+            rgba(255,255,255,0.13) 8px,
+            transparent 17px,
+            rgba(100,50,20,0.15) 25px
+        ),
+        radial-gradient(
+            circle at 30% 25%,
+            #f9dfaa,
+            #d5a56c 35%,
+            #a96d3c 70%,
+            #55351f 100%
+        );
+
+    box-shadow:
+        inset -25px -10px 35px #281b19,
+        inset 10px 5px 25px rgba(255,255,255,0.35),
+        0 0 45px rgba(225,165,100,0.15);
+
+    animation: planetGlow 5s ease-in-out infinite alternate;
+}
+
+/* Back of rings */
+
+.ring-back {
+    position: absolute;
+    width: 340px;
+    height: 115px;
+    top: 72px;
+    left: -40px;
+    border-radius: 50%;
+
+    border: 25px solid transparent;
+    border-top-color: #c49a65;
+    border-left-color: #92704d;
+
+    transform: rotate(-20deg);
+    z-index: 1;
+}
+
+/* Front of rings */
+
+.ring-front {
+    position: absolute;
+    width: 340px;
+    height: 115px;
+    top: 72px;
+    left: -40px;
+    border-radius: 50%;
+
+    border: 25px solid transparent;
+    border-bottom-color: #e5c18d;
+    border-right-color: #a77c50;
+
+    transform: rotate(-20deg);
+    z-index: 3;
+
+    filter: drop-shadow(0 0 8px rgba(220,170,100,0.3));
+}
+
+/* Orbiting moon */
+
+.moon {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    background: radial-gradient(circle at 30% 30%, #fff, #9297a8 65%, #45485c);
+    border-radius: 50%;
+    z-index: 4;
+    top: -35px;
+    left: 120px;
+
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+
+    animation: orbitMoon 9s linear infinite;
+}
+
+@keyframes orbitMoon {
+    0% { transform: rotate(0deg) translateX(190px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(190px) rotate(-360deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+}
+
+@keyframes planetGlow {
+    from { filter: brightness(0.95); }
+    to { filter: brightness(1.12); }
+}
+
+/* Comet */
+
+.comet {
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    top: 20%;
+    left: -120px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.8),
+        white
+    );
+
+    transform: rotate(-25deg);
+    filter: drop-shadow(0 0 5px white);
+
+    animation: cometMove 8s linear infinite;
+}
+
+@keyframes cometMove {
+    0% { left: -120px; top: 20%; opacity: 0; }
+    10% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { left: 110%; top: 65%; opacity: 0; }
+}
+
+/* Typography */
+
+.label {
+    position: absolute;
+    bottom: 12%;
+    text-align: center;
+    color: white;
+}
+
+.label span {
+    color: #bca27e;
+    font-size: 10px;
+    letter-spacing: 5px;
+}
+
+.label h1 {
+    font-size: clamp(38px, 7vw, 65px);
+    font-weight: 300;
+    letter-spacing: 14px;
+    margin: 12px 0;
+}
+
+.label p {
+    color: #9295a9;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.coordinates {
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    justify-content: space-between;
+    color: #737a94;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+@media (max-width: 600px) {
+    .scene {
+        transform: scale(0.75);
+    }
+
+    .label {
+        bottom: 12%;
+    }
+
+    .coordinates {
+        left: 20px;
+        right: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
