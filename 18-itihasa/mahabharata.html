@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mahabharata — The Great Epic of Dharma | ITIHASA</title>
+  <meta name="description" content="Explore the Mahabharata — the grand epic of duty, destiny, the 18-day Kurukshetra war, and the celestial wisdom of the Bhagavad Gita.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mahabharata.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="mahabharata-page">
+
+  <!-- Floating Particles Canvas -->
+  <canvas id="canvas-particles"></canvas>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo" aria-label="ITIHASA Home">
+        <img src="assets/icons/om.svg" alt="ITIHASA Sacred Emblem" class="brand-icon">
+        <div class="brand-text">
+          <span class="brand-title">ITIHASA</span>
+          <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="ramayana.html" class="nav-link">Ramayana</a></li>
+          <li><a href="mahabharata.html" class="nav-link active">Mahabharata</a></li>
+          <li><a href="characters.html" class="nav-link">Characters</a></li>
+          <li><a href="places.html" class="nav-link">Sacred Places</a></li>
+          <li><a href="wisdom.html" class="nav-link">Wisdom</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="header-music-btn" class="btn-music-toggle" aria-label="Toggle Ambient Epic Music">
+          <div class="music-waves">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="music-text">Ambient Music</span>
+        </button>
+
+        <button class="mobile-toggle" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-text">
+        <span class="brand-title" style="font-size: 1.4rem;">ITIHASA</span>
+        <span class="brand-tagline">इतिहास • भारत</span>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="ramayana.html" class="mobile-nav-link">Ramayana</a></li>
+      <li><a href="mahabharata.html" class="mobile-nav-link active">Mahabharata</a></li>
+      <li><a href="characters.html" class="mobile-nav-link">Divine Characters</a></li>
+      <li><a href="places.html" class="mobile-nav-link">Sacred Places</a></li>
+      <li><a href="wisdom.html" class="mobile-nav-link">Teachings & Wisdom</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About & Heritage</a></li>
+    </ul>
+  </div>
+  <div class="mobile-overlay"></div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- HERO SECTION: KRISHNA & ARJUNA ON THE BATTLEFIELD -->
+    <section class="mahabharata-hero">
+      <div class="mahabharata-hero-bg">
+        <img src="assets/images/hero/krishna-arjuna-hero.jpg" alt="Lord Krishna as charioteer and Arjuna with Gandiva on the battlefield of Kurukshetra">
+      </div>
+      <div class="mahabharata-hero-overlay"></div>
+
+      <div class="container mahabharata-hero-content">
+        <div class="hero-sanskrit-tag reveal" style="color: var(--color-celestial-blue);">यतो धर्मस्ततो जयः</div>
+        <h1 class="hero-title reveal delay-100">MAHABHARATA — THE GREAT EPIC OF DHARMA</h1>
+        <p class="hero-desc reveal delay-200">
+          Where destiny unfolds, choices shape history, and wisdom emerges from the greatest conflict. Composed by Maharishi Krishna Dvaipayana Vyasa, the Mahabharata is the longest epic in world literature — an uncompromising inquiry into duty, ethics, human ambition, and cosmic purpose.
+        </p>
+        <div class="reveal delay-300" style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
+          <a href="#chapters" class="btn-primary btn-blue">
+            Explore the Epic Timeline ↓
+          </a>
+          <a href="#gita" class="btn-secondary">
+            The Bhagavad Gita
+          </a>
+          <a href="#war" class="btn-secondary">
+            Kurukshetra War
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION B: STORY TIMELINE (11 CHAPTERS) -->
+    <section class="section-padding" id="chapters" style="padding: 7rem 0 5rem 0;">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">महाभारतस्य एकादश पर्वाणि</div>
+          <h2 class="section-title">THE EPIC STORYLINE IN ELEVEN CHAPTERS</h2>
+          <p class="section-subtitle">
+            From the sacred vow of Devavrata to the cosmic aftermath upon the field of Kurukshetra, experience the full arc of the Bharata dynasty.
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/chariot.svg" alt="Chariot" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <!-- Chapters Nav Buttons -->
+        <div class="mb-chapters-nav reveal">
+          <button class="chapter-nav-btn active" data-chapter="0">1. Kuru Dynasty</button>
+          <button class="chapter-nav-btn" data-chapter="1">2. Birth of Princes</button>
+          <button class="chapter-nav-btn" data-chapter="2">3. Drona's Training</button>
+          <button class="chapter-nav-btn" data-chapter="3">4. Swayamvara</button>
+          <button class="chapter-nav-btn" data-chapter="4">5. Indraprastha</button>
+          <button class="chapter-nav-btn" data-chapter="5">6. Dice Match</button>
+          <button class="chapter-nav-btn" data-chapter="6">7. Forest Exile</button>
+          <button class="chapter-nav-btn" data-chapter="7">8. Peace Mission</button>
+          <button class="chapter-nav-btn" data-chapter="8">9. Bhagavad Gita</button>
+          <button class="chapter-nav-btn" data-chapter="9">10. 18-Day War</button>
+          <button class="chapter-nav-btn" data-chapter="10">11. Aftermath</button>
+        </div>
+
+        <!-- Chapter Showcase Container -->
+        <div id="mb-chapters-container" class="reveal delay-100">
+          <!-- Dynamically populated by js/mahabharata.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION E: THE BHAGAVAD GITA — THE DIVINE WISDOM (SPECIAL DISTINGUISHED SECTION) -->
+    <section class="gita-section" id="gita">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">श्रीमद्भगवद्गीता • उपनिषदामपि सारम्</div>
+          <h2 class="section-title">THE BHAGAVAD GITA — THE SONG CELESTIAL</h2>
+          <p class="section-subtitle">
+            The philosophical jewel of the Mahabharata. Between two motionless armies on the battlefield of Kurukshetra, Lord Krishna expounds the science of the soul and the supreme art of living.
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/flute.svg" alt="Flute" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <div class="gita-intro-grid">
+          <div class="gita-hero-art reveal">
+            <img src="assets/images/mahabharata/bhagavad-gita.jpg" alt="Krishna teaching Arjuna upon the golden chariot">
+          </div>
+          <div class="reveal delay-100">
+            <h3 style="font-size: 2rem; color: var(--color-bright-gold); margin-bottom: 1rem;">
+              The Conversation that Awakened Humanity
+            </h3>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: #D2C4AE; margin-bottom: 1.25rem;">
+              When Arjuna, the premier warrior of his age, laid down his bow Gandiva in acute moral anguish, questioning the righteousness of slaying his revered elders and kin, Lord Krishna did not dismiss his sorrow. Instead, he led Arjuna through eighteen profound chapters of self-realization.
+            </p>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: #D2C4AE; margin-bottom: 1.5rem;">
+              The Gita reveals that life itself is a Kurukshetra — an inner battlefield where each soul must choose between attachment and duty, ego and surrender, illusion and eternal truth.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <span class="card-badge" style="background: rgba(23, 43, 67, 0.8);">700 Verses</span>
+              <span class="card-badge" style="background: rgba(87, 31, 39, 0.8);">18 Chapters</span>
+              <span class="card-badge" style="background: rgba(52, 78, 61, 0.8);">Bhishma Parva</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Paths of Gita -->
+        <div class="gita-paths-grid">
+          <div class="gita-path-card reveal delay-100">
+            <div class="gita-path-sanskrit">कर्मयोगः</div>
+            <h4 class="gita-path-title">Karma Yoga</h4>
+            <p class="gita-path-desc">The path of selfless action. Fulfill your sacred responsibilities with excellence without attachment to fruits or rewards.</p>
+          </div>
+
+          <div class="gita-path-card reveal delay-200">
+            <div class="gita-path-sanskrit">भक्तियोगः</div>
+            <h4 class="gita-path-title">Bhakti Yoga</h4>
+            <p class="gita-path-desc">The path of loving devotion. Center the mind and heart entirely upon the Divine with pure unconditional surrender.</p>
+          </div>
+
+          <div class="gita-path-card reveal delay-300">
+            <div class="gita-path-sanskrit">ज्ञानयोगः</div>
+            <h4 class="gita-path-title">Jnana Yoga</h4>
+            <p class="gita-path-desc">The path of transcendental knowledge. Discriminate between the impermanent body and the immortal, eternal Atman (soul).</p>
+          </div>
+
+          <div class="gita-path-card reveal delay-400">
+            <div class="gita-path-sanskrit">ध्यानयोगः</div>
+            <h4 class="gita-path-title">Dhyana Yoga</h4>
+            <p class="gita-path-desc">The path of meditation. Master the restless senses and quiet the turbulent mind to rest in unbroken inner silence.</p>
+          </div>
+        </div>
+
+        <!-- Interactive Shloka Explorer -->
+        <div class="gita-shloka-explorer reveal">
+          <h4 style="text-align: center; font-size: 1.25rem; color: var(--color-temple-gold); margin-bottom: 1.5rem; letter-spacing: 0.1em; text-transform: uppercase;">
+            ✦ Interactive Shloka Explorer — Select a Verse ✦
+          </h4>
+          <div class="shloka-selector-tabs" id="gita-shloka-tabs">
+            <!-- Dynamically populated by js/mahabharata.js -->
+          </div>
+          <div id="gita-shloka-display">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION D: KURUKSHETRA WAR — THE 18-DAY EPIC CLASH -->
+    <section class="kurukshetra-section" id="war">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">कुरुक्षेत्रसङ्ग्रामः • अष्टादश दिनानि</div>
+          <h2 class="section-title">THE EIGHTEEN-DAY KURUKSHETRA WAR</h2>
+          <p class="section-subtitle">
+            An interactive chronicle of the epic battle where ancient titans clashed, rules of chivalry were tested, and the ultimate triumph of Dharma was forged in sorrow and sacrifice.
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/chakra.svg" alt="Chakra" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <div class="war-phases-container reveal">
+          <!-- Days selector column -->
+          <div>
+            <h5 style="font-family: var(--font-heading); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-temple-gold); margin-bottom: 1rem;">
+              The 4 War Commands
+            </h5>
+            <div class="war-days-list" id="war-days-list">
+              <!-- Populated by js/mahabharata.js -->
+            </div>
+          </div>
+
+          <!-- Detail display column -->
+          <div id="war-detail-display">
+            <!-- Populated by js/mahabharata.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION C: IMPORTANT MAHABHARATA CHARACTERS -->
+    <section class="section-padding" style="padding: 7rem 0;">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">महाभारतस्य पात्राणि</div>
+          <h2 class="section-title">LEGENDARY FIGURES OF MAHABHARATA</h2>
+          <p class="section-subtitle">
+            Discover the complex, brilliant, and tragic figures whose choices set the world ablaze.
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/feather.svg" alt="Feather" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <div class="epic-grid">
+          <!-- Lord Krishna -->
+          <div class="card-ancient reveal shimmer-hover" style="border: 2px solid var(--color-bright-gold); box-shadow: 0 0 25px rgba(104, 139, 167, 0.4);">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/krishna.jpg" alt="Lord Krishna">
+              <span class="card-badge badge-divine">Yogeshwara</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title" style="color: var(--color-bright-gold);">Lord Krishna</h3>
+              <p class="card-role">Supreme Statesman, Philosopher & Charioteer of Arjuna</p>
+              <p class="card-desc">Holding the reins of the chariot without lifting weapons, Krishna guided the forces of Dharma to victory, bestowing the eternal song of the Bhagavad Gita upon humanity.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Mahabharata', name:'Lord Krishna', role:'Yogeshwara — Purna Avatara & Charioteer of Arjuna', image:'assets/images/characters/krishna.jpg', desc:'The divine statesman, supreme philosopher, and central figure of the Mahabharata. On the battlefield of Kurukshetra, he imparted the immortal wisdom of the Bhagavad Gita to the despondent Arjuna, steering the war toward the establishment of Dharma without ever taking up arms himself.', qualities:['Supreme Wisdom (Prajna)', 'Transcendental Detachment', 'Divine Statesmanship', 'Universal Compassion', 'Yogic Mastery'], associated:'Draupadi’s Vastrahara Protection, Shanti Duta Peace Mission, Song Celestial (Bhagavad Gita), Vishwaroopa Darshana.'})">
+                  Explore Divine Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arjuna -->
+          <div class="card-ancient reveal shimmer-hover" style="border: 2px solid var(--color-bright-gold); box-shadow: 0 0 25px rgba(201, 154, 69, 0.35);">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/arjuna.jpg" alt="Arjuna">
+              <span class="card-badge badge-mahabharata">Partha</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title" style="color: var(--color-bright-gold);">Arjuna</h3>
+              <p class="card-role">Third Pandava • Peerless Wielder of the Celestial Gandiva</p>
+              <p class="card-desc">The peerless archer of ancient Bharat whose unwavering concentration and friendship with Krishna made him the chosen recipient of the Bhagavad Gita.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Mahabharata', name:'Arjuna', role:'Partha — Peerless Archer and Devoted Friend of Krishna', image:'assets/images/characters/arjuna.jpg', desc:'The third Pandava and spiritual counterpart (Nara) to Krishna (Narayana). His single-minded focus made him the supreme archer of his age. He secured celestial astras from Shiva, won Draupadi at the Swayamvara, and received the Bhagavad Gita upon Kurukshetra.', qualities:['Singleminded Focus', 'Mastery of Gandiva Bow', 'Spiritual Humility', 'Devotion to Krishna'], associated:'Piercing the Fish Eye (Matsya Yantra), Penance to Lord Shiva (Pashupatastra), Recipient of Bhagavad Gita.'})">
+                  Explore Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Yudhishthira -->
+          <div class="card-ancient reveal shimmer-hover">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/yudhishthira.jpg" alt="Yudhishthira">
+              <span class="card-badge badge-mahabharata">Dharmaraja</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">Yudhishthira</h3>
+              <p class="card-role">Eldest Pandava • Sovereign of Unshakable Truth</p>
+              <p class="card-desc">Born of Yama, Yudhishthira exemplified steadfast rectitude through twelve years of forest adversity, ascending to heaven accompanied by a loyal dog.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Mahabharata', name:'Yudhishthira', role:'Dharmaraja — Sovereign of Truth & Rectitude', image:'assets/images/characters/yudhishthira.jpg', desc:'Born to Kunti by the grace of Yama (Dharma), Yudhishthira was renowned for absolute commitment to truth and righteousness. Despite the tragedy of the dice game, he endured thirteen years of forest life with stoic dignity and finally ascended to Svarga accompanied by a loyal dog.', qualities:['Commitment to Truth (Satya)', 'Compassion for all Beings', 'Moral Patience', 'Equanimity'], associated:'Yaksha Prashna in the Forest, Rajasuya Yajna, Dice Game, Final Ascent of Mahaprasthana.'})">
+                  Explore Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Draupadi -->
+          <div class="card-ancient reveal shimmer-hover" style="border: 2px solid var(--color-bright-gold); box-shadow: 0 0 25px rgba(142, 48, 55, 0.4);">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/draupadi.jpg" alt="Draupadi">
+              <span class="card-badge badge-mahabharata">Yagnaseni</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title" style="color: var(--color-bright-gold);">Draupadi</h3>
+              <p class="card-role">Fire-Born Empress of Indraprastha • Symbol of Dignity</p>
+              <p class="card-desc">Born from the sacred fire altar, Draupadi refused to bow to humiliation in the Kuru court, kindling the moral fire of retribution that cleansed Bharatavarsha.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Mahabharata', name:'Draupadi', role:'Yagnaseni — Empress of Indraprastha, Born of Sacred Fire', image:'assets/images/characters/draupadi.jpg', desc:'Born fully grown from the sacrificial altar of King Drupada, Draupadi was an empress of extraordinary intellect, fiery dignity, and unbending courage. Humiliated in the royal assembly of Hastinapura, she refused to tie her hair until anointed with the blood of Dushasana, igniting the moral fire of Kurukshetra.', qualities:['Unbending Dignity', 'Fierce Moral Conviction', 'Intellectual Brilliance', 'Devotion to Krishna'], associated:'Birth from Fire Altar, Swayamvara in Panchala, Humiliation in Dyuta Sabha, Slaying of Keechaka.'})">
+                  Explore Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Karna -->
+          <div class="card-ancient reveal shimmer-hover">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/karna.jpg" alt="Karna">
+              <span class="card-badge badge-mahabharata">Radheya</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">Karna</h3>
+              <p class="card-role">Son of Surya • The Supreme Giver and Tragic Titan</p>
+              <p class="card-desc">Born with golden armor, Karna’s boundless generosity and loyalty to Duryodhana stood in tragic tension with his noble soul throughout the epic.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Mahabharata', name:'Karna', role:'Radheya / Vaikartana — The Peerless Archer and Supreme Giver', image:'assets/images/characters/karna.jpg', desc:'The firstborn son of Kunti and the Sun God Surya, Karna was abandoned at birth and raised by a charioteer. Despite lifelong humiliation regarding his birth, his matchless archery rivaled Arjuna, his loyalty to Duryodhana was unbreakable, and his charity was so boundless that he cut away his divine armor for Indra.', qualities:['Boundless Generosity (Danaveera)', 'Supreme Archery', 'Unshakable Loyalty to Friend', 'Tragic Nobility'], associated:'Challenging Arjuna at the Tournament, Donating Kavacha & Kundala, Duel on Day 17 of Kurukshetra.'})">
+                  Explore Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bhishma -->
+          <div class="card-ancient reveal shimmer-hover">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/bhishma.jpg" alt="Bhishma Pitamaha">
+              <span class="card-badge badge-mahabharata">Pitamaha</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">Bhishma Pitamaha</h3>
+              <p class="card-role">The Grand Patriarch Bound by the Unbreakable Vow</p>
+              <p class="card-desc">Son of Ganga and Shantanu, Bhishma renounced marriage and throne for his father, remaining an invincible warrior who fell on a bed of arrows.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Mahabharata', name:'Bhishma Pitamaha', role:'The Grand Patriarch of the Bharatas & Devavrata', image:'assets/images/characters/bhishma.jpg', desc:'Son of King Shantanu and River Goddess Ganga, Devavrata took the terrible vow of lifelong celibacy and renunciation of the throne (earning the name Bhishma). Blessed with death at will (Iccha-Mrityu), he led the Kaurava army for ten days before lying on the bed of arrows to deliver the Vishnu Sahasranama.', qualities:['Unbreakable Vow (Bhishma Pratigna)', 'Invincible Martial Might', 'Philosophical Mastery', 'Selfless Sacrifice'], associated:'The Terrible Vow, Defeating Parashurama, General of 10 Days, Vishnu Sahasranama on Shara-Shayya.'})">
+                  Explore Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3.5rem;" class="reveal">
+          <a href="characters.html?filter=mahabharata" class="btn-secondary">
+            View All 19 Mahabharata Characters in Encyclopedia →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Modal Dialog -->
+  <div id="global-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-img-col">
+        <img src="" alt="Modal Detail Artwork">
+      </div>
+      <div class="modal-info-col">
+        <span class="modal-epic-tag">Mahabharata</span>
+        <h2 class="modal-title">Title</h2>
+        <p class="modal-subtitle">Role / Subtitle</p>
+        <p class="modal-desc">Detailed Description</p>
+
+        <h4 class="modal-section-title">Core Qualities & Virtues</h4>
+        <div class="modal-traits-list"></div>
+
+        <h4 class="modal-section-title">Associated Legends & Events</h4>
+        <p class="modal-associated-events" style="font-size: 0.95rem; color: #D9C49D; line-height: 1.6;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING GLOBAL AMBIENT MUSIC PLAYER -->
+  <aside class="global-audio-player" aria-label="Ambient Music Player">
+    <div class="player-info">
+      <span class="player-theme-title" id="player-theme-title">Mahabharata Ambience</span>
+      <span class="player-track-name" id="player-track-name">Raag Darbari • Veena & Mridangam</span>
+    </div>
+
+    <div class="player-controls">
+      <button id="player-play-btn" class="btn-player-action" aria-label="Play/Pause Audio">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+
+      <button id="player-mute-btn" class="btn-player-action" aria-label="Mute/Unmute Audio">
+        <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+
+      <div class="player-volume-wrap">
+        <input type="range" id="player-volume" class="player-volume-slider" min="0" max="1" step="0.05" value="0.65" aria-label="Volume Slider">
+      </div>
+
+      <div class="player-theme-switch">
+        <button id="pill-theme-ramayana" class="btn-theme-pill">Ramayana</button>
+        <button id="pill-theme-mahabharata" class="btn-theme-pill theme-mahabharata active">Mahabharata</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-top-border"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-text">
+            <span class="brand-title">ITIHASA</span>
+            <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+          </div>
+          <p>
+            An interactive digital sanctuary dedicated to celebrating and preserving the timeless cultural, philosophical, and artistic heritage of Ramayana and Mahabharata.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">The Epics</h4>
+          <ul class="footer-links">
+            <li><a href="ramayana.html" class="footer-link">Ramayana — Path of Dharma</a></li>
+            <li><a href="mahabharata.html" class="footer-link">Mahabharata — Great War</a></li>
+            <li><a href="mahabharata.html#gita" class="footer-link">The Bhagavad Gita</a></li>
+            <li><a href="ramayana.html#kandas" class="footer-link">The Seven Kandas</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Exploration</h4>
+          <ul class="footer-links">
+            <li><a href="characters.html" class="footer-link">Divine Characters</a></li>
+            <li><a href="places.html" class="footer-link">Sacred Places</a></li>
+            <li><a href="wisdom.html" class="footer-link">Teachings & Wisdom</a></li>
+            <li><a href="about.html" class="footer-link">About the Museum</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Tradition</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#art" class="footer-link">Artistic Inspiration</a></li>
+            <li><a href="about.html#music" class="footer-link">Music Design</a></li>
+            <li><a href="wisdom.html" class="footer-link">Sanskrit Verses</a></li>
+            <li><a href="about.html#sources" class="footer-link">Literary Lineage</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-quote">
+        यदा यदा हि धर्मस्य ग्लानिर्भवति भारत। अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥
+        <small>"Whenever righteousness declines and unrighteousness ascends, at that time I manifest Myself for the protection of Dharma."</small>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ITIHASA — The Eternal Stories of Bharat. Dedicated to the eternal heritage of Indian civilization.</p>
+        <p>Built with HTML5, CSS3 &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/mahabharata.js"></script>
+</body>
+</html>

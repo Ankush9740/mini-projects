@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About ITIHASA — Vision, Tradition & Heritage | ITIHASA</title>
+  <meta name="description" content="Learn about the vision of ITIHASA — a cinematic digital museum bringing the timeless epics of Ramayana and Mahabharata to the world.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="about-page">
+
+  <!-- Floating Particles Canvas -->
+  <canvas id="canvas-particles"></canvas>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo" aria-label="ITIHASA Home">
+        <img src="assets/icons/om.svg" alt="ITIHASA Sacred Emblem" class="brand-icon">
+        <div class="brand-text">
+          <span class="brand-title">ITIHASA</span>
+          <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="ramayana.html" class="nav-link">Ramayana</a></li>
+          <li><a href="mahabharata.html" class="nav-link">Mahabharata</a></li>
+          <li><a href="characters.html" class="nav-link">Characters</a></li>
+          <li><a href="places.html" class="nav-link">Sacred Places</a></li>
+          <li><a href="wisdom.html" class="nav-link">Wisdom</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="header-music-btn" class="btn-music-toggle" aria-label="Toggle Ambient Epic Music">
+          <div class="music-waves">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="music-text">Ambient Music</span>
+        </button>
+
+        <button class="mobile-toggle" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-text">
+        <span class="brand-title" style="font-size: 1.4rem;">ITIHASA</span>
+        <span class="brand-tagline">इतिहास • भारत</span>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="ramayana.html" class="mobile-nav-link">Ramayana</a></li>
+      <li><a href="mahabharata.html" class="mobile-nav-link">Mahabharata</a></li>
+      <li><a href="characters.html" class="mobile-nav-link">Divine Characters</a></li>
+      <li><a href="places.html" class="mobile-nav-link">Sacred Places</a></li>
+      <li><a href="wisdom.html" class="mobile-nav-link">Teachings & Wisdom</a></li>
+      <li><a href="about.html" class="mobile-nav-link active">About & Heritage</a></li>
+    </ul>
+  </div>
+  <div class="mobile-overlay"></div>
+
+  <!-- Main Content -->
+  <main style="padding-top: 8rem; min-height: 80vh;">
+    <div class="container container-narrow">
+      <div class="section-header reveal">
+        <div class="section-sanskrit">सत्यम् शिवम् सुन्दरम्</div>
+        <h1 class="section-title">THE VISION OF ITIHASA</h1>
+        <p class="section-subtitle">
+          "Where Dharma Lives Beyond Time." A cinematic, digital universe consecrated to the eternal stories of ancient Bharat.
+        </p>
+        <div class="section-ornament">
+          <img src="assets/icons/om.svg" alt="Om" class="section-ornament-icon">
+        </div>
+      </div>
+
+      <!-- Vision Narrative -->
+      <article class="reveal" style="background: rgba(26, 17, 14, 0.85); border: 1px solid var(--color-divine-gold); border-radius: 12px; padding: 3rem 2.5rem; margin-bottom: 3.5rem; box-shadow: var(--shadow-epic);">
+        <h2 style="font-size: 1.8rem; color: var(--color-bright-gold); margin-bottom: 1.25rem;">
+          What is Itihasa?
+        </h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: #E2D3BA;">
+          In the Sanskrit tradition, the word <strong>Itihāsa</strong> (इति-ह-आस) translates literally to: <em>"Verily, thus it happened."</em> It denotes not merely dry historical chronology or mythological fable, but a living sacred record of moral truth, human striving, and cosmic purpose.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: #E2D3BA;">
+          The two greatest epics of Indian civilization — the <strong>Ramayana</strong> of Maharishi Valmiki and the <strong>Mahabharata</strong> of Maharishi Veda Vyasa — have shaped the philosophical contours, ethical compass, artistic traditions, and spiritual consciousness of South Asia and the global diaspora for millennia.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: #E2D3BA; margin-bottom: 0;">
+          <strong>ITIHASA</strong> was conceived to transcend the generic templates of contemporary religious websites and modern flat dashboard aesthetics. It is designed to feel like entering an ancient Indian epic universe — an interactive digital museum where temple stone carvings, classical miniature paintings, Sanskrit shlokas, and atmospheric acoustic ragas converge.
+        </p>
+      </article>
+
+      <!-- Artistic Pillars Grid -->
+      <div class="section-header reveal" id="art" style="margin-bottom: 2.5rem;">
+        <div class="section-sanskrit">भारतीयकला परम्परा</div>
+        <h2 class="section-title" style="font-size: 2.2rem;">ARTISTIC &amp; VISUAL IDENTITY</h2>
+      </div>
+
+      <div class="values-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 4rem;">
+        <div class="value-card reveal delay-100" style="text-align: left;">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div class="value-icon-wrap" style="margin: 0;">
+              <img src="assets/icons/temple.svg" alt="Architecture">
+            </div>
+            <h4 class="value-title" style="margin: 0;">Temple Architecture</h4>
+          </div>
+          <p class="value-desc">
+            Visual motifs inspired by the soaring Shikharas, intricate Torana archways, and sandstone relief carvings of Khajuraho, Hampi, Tanjore, and Ellora.
+          </p>
+        </div>
+
+        <div class="value-card reveal delay-200" style="text-align: left;">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div class="value-icon-wrap" style="margin: 0;">
+              <img src="assets/icons/lotus.svg" alt="Miniature Painting">
+            </div>
+            <h4 class="value-title" style="margin: 0;">Miniature &amp; Pattachitra Art</h4>
+          </div>
+          <p class="value-desc">
+            Rich, hand-drawn traditional aesthetics drawing from Rajput miniature paintings, Odisha Pattachitra scrolls, Tanjore gold foil relief, and Raja Ravi Varma oil canvases.
+          </p>
+        </div>
+
+        <div class="value-card reveal delay-300" style="text-align: left;">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div class="value-icon-wrap" style="margin: 0;">
+              <img src="assets/icons/feather.svg" alt="Manuscripts">
+            </div>
+            <h4 class="value-title" style="margin: 0;">Ancient Manuscripts</h4>
+          </div>
+          <p class="value-desc">
+            Parchment, copper-plate, and palm-leaf manuscript textures styled with traditional Sanskrit calligraphy, ornamental cartouches, and gold leaf margins.
+          </p>
+        </div>
+
+        <div class="value-card reveal delay-400" style="text-align: left;">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div class="value-icon-wrap" style="margin: 0;">
+              <img src="assets/icons/diya.svg" alt="Divine Lighting">
+            </div>
+            <h4 class="value-title" style="margin: 0;">Celestial Golden Atmosphere</h4>
+          </div>
+          <p class="value-desc">
+            Warm dawn sunlight, divine auras (Prabhavali), floating lotus petals, and glowing diya lamps creating a sacred, reverent, and awe-inspiring atmosphere.
+          </p>
+        </div>
+      </div>
+
+      <!-- Music Experience Section -->
+      <article class="reveal" id="music" style="background: rgba(22, 34, 26, 0.85); border: 1px solid var(--color-temple-gold); border-radius: 12px; padding: 3rem 2.5rem; margin-bottom: 3.5rem; box-shadow: var(--shadow-card);">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+          <img src="assets/icons/flute.svg" alt="Music" style="width: 36px; height: 36px;">
+          <h2 style="font-size: 1.8rem; color: var(--color-bright-gold); margin: 0;">
+            The Music &amp; Acoustic Atmosphere
+          </h2>
+        </div>
+        <p style="font-size: 1.05rem; line-height: 1.8; color: #E2D3BA;">
+          Music is an integral heartbeat of this digital museum. Rather than using copyrighted film soundtracks or generic synthesizers, ITIHASA features original instrumental Indian acoustic compositions designed with specific ragas and moods:
+        </p>
+        <ul style="list-style: none; margin: 1.5rem 0; padding-left: 0;">
+          <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--color-temple-gold);">✦</span>
+            <strong style="color: var(--color-bright-gold);">Ramayana Theme:</strong> 
+            A serene, devotional, and uplifting atmosphere crafted in <em>Raag Bhoopali</em> featuring gentle bamboo bansuri flute melodies, a four-stringed tanpura drone in D, subtle temple bell chimes, and soft forest whispers.
+          </li>
+          <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--color-celestial-blue);">✦</span>
+            <strong style="color: var(--color-bright-gold);">Mahabharata Theme:</strong> 
+            A majestic, solemn, and philosophical atmosphere in <em>Raag Darbari Kanada</em> featuring resonant veena plucks, deep low-frequency tanpura drone in C, traditional pakhawaj/mridangam drum cadences, and bronze temple gongs.
+          </li>
+          <li style="padding-left: 1.5rem; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--color-divine-gold);">✦</span>
+            <strong style="color: var(--color-bright-gold);">Dual-Engine Architecture:</strong> 
+            Operates with high-definition audio tracks and includes an automated procedural Web Audio API harmonic oscillator fallback for guaranteed zero-failure playback across all platforms.
+          </li>
+        </ul>
+      </article>
+
+      <!-- Technical Architecture & Sourcing -->
+      <article class="reveal" id="sources" style="background: rgba(26, 17, 14, 0.85); border: 1px solid rgba(230, 199, 122, 0.3); border-radius: 12px; padding: 2.5rem; margin-bottom: 4rem;">
+        <h3 style="font-size: 1.5rem; color: var(--color-bright-gold); margin-bottom: 1rem;">
+          Literary Sourcing &amp; Ethical Reverence
+        </h3>
+        <p style="font-size: 1rem; line-height: 1.75; color: #D2C4AE;">
+          All narrative summaries and philosophical verses are drawn from the critical editions and respected classical translations of:
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+          <div style="background: rgba(18, 12, 10, 0.7); padding: 1rem; border-left: 2px solid var(--color-royal-crimson);">
+            <strong style="color: var(--color-temple-gold); display: block;">Valmiki Ramayana</strong>
+            <span style="font-size: 0.9rem; color: #BFAEA0;">Gita Press Gorakhpur &amp; Baroda Critical Edition</span>
+          </div>
+          <div style="background: rgba(18, 12, 10, 0.7); padding: 1rem; border-left: 2px solid var(--color-midnight-blue);">
+            <strong style="color: var(--color-celestial-blue); display: block;">Vyasa Mahabharata</strong>
+            <span style="font-size: 0.9rem; color: #BFAEA0;">Bhandarkar Oriental Research Institute (BORI)</span>
+          </div>
+          <div style="background: rgba(18, 12, 10, 0.7); padding: 1rem; border-left: 2px solid var(--color-forest-green);">
+            <strong style="color: var(--color-temple-gold); display: block;">Shrimad Bhagavad Gita</strong>
+            <span style="font-size: 0.9rem; color: #BFAEA0;">Traditional Shankara, Ramanuja &amp; Gita Press commentaries</span>
+          </div>
+          <div style="background: rgba(18, 12, 10, 0.7); padding: 1rem; border-left: 2px solid var(--color-divine-gold);">
+            <strong style="color: var(--color-bright-gold); display: block;">Technical Foundation</strong>
+            <span style="font-size: 0.9rem; color: #BFAEA0;">Semantic HTML5, CSS3 Custom Properties &amp; Vanilla JS</span>
+          </div>
+        </div>
+      </article>
+
+      <div style="text-align: center;" class="reveal">
+        <a href="index.html" class="btn-primary">
+          ← Return to the World of Itihasa
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Modal Dialog -->
+  <div id="global-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-img-col">
+        <img src="" alt="Modal Detail Artwork">
+      </div>
+      <div class="modal-info-col">
+        <span class="modal-epic-tag">About</span>
+        <h2 class="modal-title">Title</h2>
+        <p class="modal-subtitle">Role / Subtitle</p>
+        <p class="modal-desc">Detailed Description</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING GLOBAL AMBIENT MUSIC PLAYER -->
+  <aside class="global-audio-player" aria-label="Ambient Music Player">
+    <div class="player-info">
+      <span class="player-theme-title" id="player-theme-title">Ramayana Ambience</span>
+      <span class="player-track-name" id="player-track-name">Raag Bhoopali • Flute & Tanpura</span>
+    </div>
+
+    <div class="player-controls">
+      <button id="player-play-btn" class="btn-player-action" aria-label="Play/Pause Audio">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+
+      <button id="player-mute-btn" class="btn-player-action" aria-label="Mute/Unmute Audio">
+        <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+
+      <div class="player-volume-wrap">
+        <input type="range" id="player-volume" class="player-volume-slider" min="0" max="1" step="0.05" value="0.65" aria-label="Volume Slider">
+      </div>
+
+      <div class="player-theme-switch">
+        <button id="pill-theme-ramayana" class="btn-theme-pill active">Ramayana</button>
+        <button id="pill-theme-mahabharata" class="btn-theme-pill theme-mahabharata">Mahabharata</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-top-border"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-text">
+            <span class="brand-title">ITIHASA</span>
+            <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+          </div>
+          <p>
+            An interactive digital sanctuary dedicated to celebrating and preserving the timeless cultural, philosophical, and artistic heritage of Ramayana and Mahabharata.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">The Epics</h4>
+          <ul class="footer-links">
+            <li><a href="ramayana.html" class="footer-link">Ramayana — Path of Dharma</a></li>
+            <li><a href="mahabharata.html" class="footer-link">Mahabharata — Great War</a></li>
+            <li><a href="mahabharata.html#gita" class="footer-link">The Bhagavad Gita</a></li>
+            <li><a href="ramayana.html#kandas" class="footer-link">The Seven Kandas</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Exploration</h4>
+          <ul class="footer-links">
+            <li><a href="characters.html" class="footer-link">Divine Characters</a></li>
+            <li><a href="places.html" class="footer-link">Sacred Places</a></li>
+            <li><a href="wisdom.html" class="footer-link">Teachings & Wisdom</a></li>
+            <li><a href="about.html" class="footer-link">About the Museum</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Tradition</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#art" class="footer-link">Artistic Inspiration</a></li>
+            <li><a href="about.html#music" class="footer-link">Music Design</a></li>
+            <li><a href="wisdom.html" class="footer-link">Sanskrit Verses</a></li>
+            <li><a href="about.html#sources" class="footer-link">Literary Lineage</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-quote">
+        ॐ द्यौः शान्तिरन्तरिक्षं शान्तिः पृथिवी शान्तिरापः शान्तिरोषधयः शान्तिः। वनस्पतयः शान्तिर्विश्वेदेवाः शान्तिर्ब्रह्म शान्तिः सर्वं शान्तिः शान्तिरेव शान्तिः सा मा शान्तिरेधि॥ ॐ शान्तिः शान्तिः शान्तिः॥
+        <small>"Om, may peace radiate in the celestial spheres and skies, peace on earth, peace in waters and medicinal herbs, peace in the trees, peace in the cosmos, peace in the Absolute, peace everywhere. Om Peace, Peace, Peace."</small>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ITIHASA — The Eternal Stories of Bharat. Dedicated to the eternal heritage of Indian civilization.</p>
+        <p>Built with HTML5, CSS3 &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/music.js"></script>
+</body>
+</html>

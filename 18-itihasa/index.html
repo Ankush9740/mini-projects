@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITIHASA — The Eternal Stories of Bharat | Ramayana & Mahabharata</title>
+  <meta name="description" content="A cinematic, immersive digital universe of Ramayana and Mahabharata. Explore the eternal epics of Bharat through authentic art, sacred music, and timeless wisdom.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Floating Particles & Lotus Petal Canvas -->
+  <canvas id="canvas-particles"></canvas>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo" aria-label="ITIHASA Home">
+        <img src="assets/icons/om.svg" alt="ITIHASA Sacred Emblem" class="brand-icon">
+        <div class="brand-text">
+          <span class="brand-title">ITIHASA</span>
+          <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="ramayana.html" class="nav-link">Ramayana</a></li>
+          <li><a href="mahabharata.html" class="nav-link">Mahabharata</a></li>
+          <li><a href="characters.html" class="nav-link">Characters</a></li>
+          <li><a href="places.html" class="nav-link">Sacred Places</a></li>
+          <li><a href="wisdom.html" class="nav-link">Wisdom</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Ambient Music Toggle Button in Header -->
+        <button id="header-music-btn" class="btn-music-toggle" aria-label="Toggle Ambient Epic Music">
+          <div class="music-waves">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="music-text">Ambient Music</span>
+        </button>
+
+        <!-- Mobile Drawer Hamburger -->
+        <button class="mobile-toggle" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-text">
+        <span class="brand-title" style="font-size: 1.4rem;">ITIHASA</span>
+        <span class="brand-tagline">इतिहास • भारत</span>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link active">Home</a></li>
+      <li><a href="ramayana.html" class="mobile-nav-link">Ramayana</a></li>
+      <li><a href="mahabharata.html" class="mobile-nav-link">Mahabharata</a></li>
+      <li><a href="characters.html" class="mobile-nav-link">Divine Characters</a></li>
+      <li><a href="places.html" class="mobile-nav-link">Sacred Places</a></li>
+      <li><a href="wisdom.html" class="mobile-nav-link">Teachings & Wisdom</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About & Heritage</a></li>
+    </ul>
+  </div>
+  <div class="mobile-overlay"></div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- HERO SECTION: LORD RAMA & GODDESS SITA (PROMINENT HIGHEST PRIORITY) -->
+    <section class="hero-section" id="hero">
+      <div class="hero-bg-layer">
+        <img src="assets/images/hero/rama-sita-hero.jpg" alt="Lord Rama holding divine Kodanda bow with Goddess Sita in Dandakaranya forest" class="hero-bg-img">
+        <div class="hero-overlay-gradient"></div>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-sanskrit-tag reveal">रामायण • महाभारत</div>
+        <h1 class="hero-title reveal delay-100">THE ETERNAL LIGHT OF DHARMA</h1>
+        <p class="hero-desc reveal delay-200">
+          Journey through the timeless epics of Bharat — where devotion becomes strength, righteousness guides destiny, and every story carries a lesson beyond time.
+        </p>
+
+        <div class="hero-actions reveal delay-300">
+          <a href="ramayana.html" class="btn-primary">
+            <svg width="20" height="20" viewBox="0 0 100 100" fill="none"><path d="M20 15 C55 25 65 50 65 50 C65 50 55 75 20 85" stroke="#120C0A" stroke-width="8"/><line x1="10" y1="50" x2="85" y2="50" stroke="#120C0A" stroke-width="8"/></svg>
+            Explore Ramayana
+          </a>
+          <a href="mahabharata.html" class="btn-secondary btn-blue">
+            <svg width="20" height="20" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="40" stroke="#E6C77A" stroke-width="6"/><circle cx="50" cy="50" r="10" fill="#E6C77A"/></svg>
+            Enter Mahabharata
+          </a>
+        </div>
+
+        <a href="#intro" class="hero-scroll-indicator reveal delay-400" aria-label="Scroll to introduction">
+          <span>Descend into the Epics</span>
+          <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION C: TWO GREAT EPICS CINEMATIC PANELS -->
+    <section class="section-padding" id="intro" style="padding: 7rem 0 5rem 0;">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">द्वे महाकाव्ये • एकम् शाश्वतं ज्ञानम्</div>
+          <h2 class="section-title">TWO EPICS. ONE ETERNAL WISDOM.</h2>
+          <p class="section-subtitle">
+            Two monumental tapestries of Indian civilization exploring the eternal struggle between Dharma (righteous order) and Adharma (chaos).
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/swastika.svg" alt="Sacred Motif" class="section-ornament-icon" style="display:none;">
+            <img src="assets/icons/lotus.svg" alt="Lotus" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <div class="epics-duo-grid">
+          <!-- Ramayana Panel -->
+          <div class="epic-panel ramayana-theme reveal delay-100">
+            <div class="epic-panel-bg">
+              <img src="assets/images/ramayana/aranya-kanda.jpg" alt="Lord Rama, Goddess Sita, and Lakshmana in the Dandakaranya forest">
+            </div>
+            <div class="epic-panel-overlay"></div>
+            <div class="epic-panel-content">
+              <span class="epic-panel-tag">The First Epic • आदिकाव्यम्</span>
+              <h3 class="epic-panel-title">RAMAYANA</h3>
+              <p class="epic-panel-desc">
+                The journey of Lord Rama — a timeless tale of righteousness, devotion, sacrifice, courage, and the triumph of Dharma.
+              </p>
+              <a href="ramayana.html" class="btn-primary" style="align-self: flex-start;">
+                Explore Ramayana →
+              </a>
+            </div>
+          </div>
+
+          <!-- Mahabharata Panel -->
+          <div class="epic-panel mahabharata-theme reveal delay-200">
+            <div class="epic-panel-bg">
+              <img src="assets/images/hero/krishna-arjuna-hero.jpg" alt="Lord Krishna and Arjuna on the chariot at Kurukshetra">
+            </div>
+            <div class="epic-panel-overlay"></div>
+            <div class="epic-panel-content">
+              <span class="epic-panel-tag" style="color: var(--color-celestial-blue);">The Great War of Dharma • जयः</span>
+              <h3 class="epic-panel-title">MAHABHARATA</h3>
+              <p class="epic-panel-desc">
+                An extraordinary epic of duty, destiny, family, war, wisdom, and the eternal conflict between Dharma and Adharma.
+              </p>
+              <a href="mahabharata.html" class="btn-primary btn-blue" style="align-self: flex-start; background: linear-gradient(135deg, #688BA7 0%, #172B43 100%); color: #FFF; border-color: var(--color-temple-gold);">
+                Enter Mahabharata →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION D: THE SPIRIT OF THE EPICS -->
+    <section class="section-padding" style="padding: 6rem 0; background: rgba(18, 12, 10, 0.6);">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">सदाचारः • शाश्वतमूल्यानि</div>
+          <h2 class="section-title">THE SPIRIT OF THE EPICS</h2>
+          <p class="section-subtitle">
+            Eight foundational pillars of Indian consciousness that guide human destiny through the trials of time.
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/chakra.svg" alt="Chakra" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card reveal delay-100">
+            <div class="value-icon-wrap">
+              <img src="assets/icons/bow.svg" alt="Dharma Bow">
+            </div>
+            <div class="value-sanskrit">धर्मः</div>
+            <h4 class="value-title">Dharma</h4>
+            <p class="value-desc">Righteousness, cosmic order, and sacred duty that sustains society and human conscience.</p>
+          </div>
+
+          <div class="value-card reveal delay-200">
+            <div class="value-icon-wrap">
+              <img src="assets/icons/lotus.svg" alt="Devotion Lotus">
+            </div>
+            <div class="value-sanskrit">भक्तिः</div>
+            <h4 class="value-title">Devotion</h4>
+            <p class="value-desc">Unconditional love, surrender, and pure reverence exemplified by Sita, Hanuman, and Vidura.</p>
+          </div>
+
+          <div class="value-card reveal delay-300">
+            <div class="value-icon-wrap">
+              <img src="assets/icons/chariot.svg" alt="Courage Chariot">
+            </div>
+            <div class="value-sanskrit">शौर्यम्</div>
+            <h4 class="value-title">Courage</h4>
+            <p class="value-desc">Fearless fortitude to stand for justice against insurmountable odds, as seen in Arjuna and Abhimanyu.</p>
+          </div>
+
+          <div class="value-card reveal delay-400">
+            <div class="value-icon-wrap">
+              <img src="assets/icons/diya.svg" alt="Sacrifice Diya">
+            </div>
+            <div class="value-sanskrit">त्यागः</div>
+            <h4 class="value-title">Sacrifice</h4>
+            <p class="value-desc">Renunciation of self-interest for the greater welfare, embodied in Rama’s exile and Bhishma’s vow.</p>
+          </div>
+
+          <div class="value-card reveal delay-100">
+            <div class="value-icon-wrap">
+              <img src="assets/icons/temple.svg" alt="Loyalty Temple">
+            </div>
+            <div class="value-sanskrit">निष्ठा</div>
+            <h4 class="value-title">Loyalty</h4>
+            <p class="value-desc">Unshakable fidelity to truth and kinship, shown in Lakshmana’s vigil and Karna’s friendship.</p>
+          </div>
+
+          <div class="value-card reveal delay-200">
+            <div class="value-icon-wrap">
+              <img src="assets/icons/feather.svg" alt="Wisdom Feather">
+            </div>
+            <div class="value-sanskrit">ज्ञानम्</div>
+            <h4 class="value-title">Wisdom</h4>
+            <p class="value-desc">Transcendental insight into the nature of the self, revealed in the Bhagavad Gita and Valmiki’s verses.</p>
+          </div>
+
+          <div class="value-card reveal delay-300">
+            <div class="value-icon-wrap">
+              <img src="assets/icons/chakra.svg" alt="Justice Chakra">
+            </div>
+            <div class="value-sanskrit">न्यायः</div>
+            <h4 class="value-title">Justice</h4>
+            <p class="value-desc">The inexorable karmic balance where Adharma falls and righteous order is restored to the earth.</p>
+          </div>
+
+          <div class="value-card reveal delay-400">
+            <div class="value-icon-wrap">
+              <img src="assets/icons/conch.svg" alt="Compassion Conch">
+            </div>
+            <div class="value-sanskrit">करुणा</div>
+            <h4 class="value-title">Compassion</h4>
+            <p class="value-desc">Universal mercy toward all living beings, granting shelter even to repentant foes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION E: ICONIC MOMENTS INTERACTIVE GALLERY -->
+    <section class="section-padding" style="padding: 7rem 0;">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">ऐतिहासिकाः क्षणाः</div>
+          <h2 class="section-title">ICONIC MOMENTS OF THE EPICS</h2>
+          <p class="section-subtitle">
+            Witness the pivotal turning points where destinies were shaped and immortal lessons etched into human memory.
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/bow.svg" alt="Bow" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <div class="moments-tabs reveal">
+          <button class="btn-moment-tab active" data-moment="all">All Turning Points</button>
+          <button class="btn-moment-tab" data-moment="ramayana">Ramayana Moments</button>
+          <button class="btn-moment-tab" data-moment="mahabharata">Mahabharata Moments</button>
+        </div>
+
+        <div class="epic-grid" id="homepage-moments-grid">
+          <!-- Dynamically populated / fallback static cards -->
+          <div class="card-ancient reveal shimmer-hover" data-epic="ramayana">
+            <div class="card-ancient-img-wrap landscape">
+              <img src="assets/images/ramayana/rama-exile.jpg" alt="Rama's Exile">
+              <span class="card-badge">Ramayana</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">Rama's Exile to the Forest</h3>
+              <p class="card-desc">Upholding his father’s sacred promise, Lord Rama renounces the imperial throne of Ayodhya to live in the Dandakaranya forest for fourteen years.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Rama\'s Exile', role:'Sacrifice for Truth (Satya)', image:'assets/images/ramayana/rama-exile.jpg', desc:'To safeguard his father King Dasharatha\'s sacred word and uphold Dharma, Lord Rama peacefully renounced the throne of Ayodhya without a shred of resentment. Joined by Goddess Sita and Lakshmana, he set the highest standard of filial reverence and detachment.', qualities:['Satya (Truth)','Uncompromising Duty','Renunciation of Power'], associated:'Ayodhya Kanda, Crossing the Ganga with Guha, Chitrakoot Hermitage'})">
+                  View Moment Details →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-ancient reveal shimmer-hover" data-epic="ramayana">
+            <div class="card-ancient-img-wrap landscape">
+              <img src="assets/images/ramayana/rama-setu.jpg" alt="Construction of Rama Setu">
+              <span class="card-badge">Ramayana</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">The Building of Rama Setu</h3>
+              <p class="card-desc">Millions of Vanaras write the sacred name of 'RAMA' on stones, constructing a miraculous floating bridge across the roaring ocean to Lanka.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Construction of Rama Setu', role:'The Triumph of Devotion over the Boundless Sea', image:'assets/images/ramayana/rama-setu.jpg', desc:'When the ocean king yielded to Rama\'s righteousness, architects Nala and Nila supervised the building of the causeway. Every creature, from colossal Vanaras to a humble little squirrel, offered their devoted service, proving that love unites all in Dharma.', qualities:['Faith and Action','Unity in Purpose','Divine Grace'], associated:'Yuddha Kanda, Rameswaram, Samudra Deva Blessings'})">
+                  View Moment Details →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-ancient reveal shimmer-hover" data-epic="mahabharata">
+            <div class="card-ancient-img-wrap landscape">
+              <img src="assets/images/mahabharata/draupadi-swayamvara.jpg" alt="Draupadi's Swayamvara">
+              <span class="card-badge badge-mahabharata">Mahabharata</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">Draupadi's Swayamvara</h3>
+              <p class="card-desc">Disguised as a young Brahmana, Arjuna pierces the eye of the revolving fish target through its reflection in water, winning Princess Draupadi.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Mahabharata', name:'Draupadi\'s Swayamvara', role:'The Archery Feat of Matsya Yantra', image:'assets/images/mahabharata/draupadi-swayamvara.jpg', desc:'In the court of King Drupada of Panchala, while legendary kings and princes failed to even bend the colossal bow, Arjuna stepped forward with calm yogic concentration, pierced the target looking only at the water reflection, and united Panchala with the Pandavas.', qualities:['Supreme Concentration','Martial Mastery','Destined Union'], associated:'Adi Parva, Panchala Kingdom, Alliance with Drupada'})">
+                  View Moment Details →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-ancient reveal shimmer-hover" data-epic="mahabharata">
+            <div class="card-ancient-img-wrap landscape">
+              <img src="assets/images/mahabharata/bhagavad-gita.jpg" alt="The Bhagavad Gita">
+              <span class="card-badge badge-mahabharata">Mahabharata</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">The Bhagavad Gita on Kurukshetra</h3>
+              <p class="card-desc">Between the two poised armies, Lord Krishna imparts the 700 verses of transcendental wisdom to dispirit Arjuna, illuminating the paths of Yoga.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Mahabharata', name:'The Bhagavad Gita', role:'The Song Celestial & Universal Guide', image:'assets/images/mahabharata/bhagavad-gita.jpg', desc:'When Arjuna collapsed in profound moral grief on Kurukshetra, Krishna revealed that duty performed without selfish attachment (Nishkama Karma) and devotion to the Supreme transcends all worldly sorrow. The Bhagavad Gita remains the quintessential philosophical guide of humanity.', qualities:['Transcendental Wisdom','Nishkama Karma Yoga','Cosmic Revelation'], associated:'Bhishma Parva, Kurukshetra Battlefield, Vishwaroopa Darshana'})">
+                  View Moment Details →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-ancient reveal shimmer-hover" data-epic="ramayana">
+            <div class="card-ancient-img-wrap landscape">
+              <img src="assets/images/ramayana/return-ayodhya.jpg" alt="Return to Ayodhya">
+              <span class="card-badge">Ramayana</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">The Coronation & Deepotsava</h3>
+              <p class="card-desc">Returning victorious after fourteen years, Lord Rama and Sita are crowned in Ayodhya, inaugurating the golden age of Ramrajya amidst millions of lamps.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Return to Ayodhya', role:'The Dawn of Ramrajya & Celebration of Diwali', image:'assets/images/ramayana/return-ayodhya.jpg', desc:'Ayodhya erupted in ecstatic joy as the citizens illuminated every house, street, and rooftop with earthen oil lamps to welcome Rama, Sita, and Lakshmana. The coronation marked the beginning of Ramrajya, where justice, virtue, and peace reigned across nature.', qualities:['Celebration of Righteousness','The First Deepavali','Just Governance'], associated:'Yuddha Kanda & Uttara Kanda, Pushpaka Vimana, Rajyabhisheka'})">
+                  View Moment Details →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-ancient reveal shimmer-hover" data-epic="mahabharata">
+            <div class="card-ancient-img-wrap landscape">
+              <img src="assets/images/mahabharata/karna-arjuna-duel.jpg" alt="Karna Arjuna Duel">
+              <span class="card-badge badge-mahabharata">Mahabharata</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">The Duel of Karna and Arjuna</h3>
+              <p class="card-desc">On Day 17 of Kurukshetra, the long-destined confrontation between the two peerless archers of ancient Bharat reaches its fateful, tragic climax.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Mahabharata', name:'Karna and Arjuna\'s Duel', role:'The Clashing of Titans on Day 17', image:'assets/images/mahabharata/karna-arjuna-duel.jpg', desc:'As Karna\'s chariot wheel sank into the earth and ancient curses took effect, the duel between Kunti\'s two sons ended with the release of the Anjalika astra. The scene is one of the most poignant moments in world literature, illustrating how alignment with Adharma destroys even the greatest virtue.', qualities:['Tragic Nobility','Karmic Destiny','Upholding the Cosmic Balance'], associated:'Karna Parva, Day 17 of Kurukshetra War, The Fall of Radheya'})">
+                  View Moment Details →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION F: FINAL HOMEPAGE CLOSING SECTION -->
+    <section class="closing-section">
+      <img src="assets/images/decorative/mandala-gold.svg" alt="Gold Mandala" class="closing-bg-mandala">
+      <div class="container" style="position: relative; z-index: 5;">
+        <div class="hero-sanskrit-tag reveal">कथाः समाप्यन्ते • ज्ञानं तिष्ठति</div>
+        <h2 class="closing-title reveal delay-100">THE STORIES END. THE WISDOM REMAINS.</h2>
+        <p class="closing-desc reveal delay-200">
+          Across millennia, these epics continue to remind humanity that the greatest victories are not won upon battlefields of stone and iron, but within the human soul.
+        </p>
+        <div class="reveal delay-300" style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+          <a href="ramayana.html" class="btn-primary">
+            Begin with Ramayana
+          </a>
+          <a href="characters.html" class="btn-secondary">
+            Discover Divine Characters
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Modal Dialog (Shared across all pages) -->
+  <div id="global-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-img-col">
+        <img src="" alt="Modal Detail Artwork">
+      </div>
+      <div class="modal-info-col">
+        <span class="modal-epic-tag">Epic</span>
+        <h2 class="modal-title">Title</h2>
+        <p class="modal-subtitle">Role / Subtitle</p>
+        <p class="modal-desc">Detailed Description</p>
+
+        <h4 class="modal-section-title">Core Qualities & Virtues</h4>
+        <div class="modal-traits-list"></div>
+
+        <h4 class="modal-section-title">Associated Legends & Events</h4>
+        <p class="modal-associated-events" style="font-size: 0.95rem; color: #D9C49D; line-height: 1.6;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING GLOBAL AMBIENT MUSIC PLAYER -->
+  <aside class="global-audio-player" aria-label="Ambient Music Player">
+    <div class="player-info">
+      <span class="player-theme-title" id="player-theme-title">Ramayana Ambience</span>
+      <span class="player-track-name" id="player-track-name">Raag Bhoopali • Flute & Tanpura</span>
+    </div>
+
+    <div class="player-controls">
+      <button id="player-play-btn" class="btn-player-action" aria-label="Play/Pause Audio">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+
+      <button id="player-mute-btn" class="btn-player-action" aria-label="Mute/Unmute Audio">
+        <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+
+      <div class="player-volume-wrap">
+        <input type="range" id="player-volume" class="player-volume-slider" min="0" max="1" step="0.05" value="0.65" aria-label="Volume Slider">
+      </div>
+
+      <div class="player-theme-switch">
+        <button id="pill-theme-ramayana" class="btn-theme-pill active">Ramayana</button>
+        <button id="pill-theme-mahabharata" class="btn-theme-pill theme-mahabharata">Mahabharata</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-top-border"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-text">
+            <span class="brand-title">ITIHASA</span>
+            <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+          </div>
+          <p>
+            An interactive digital sanctuary dedicated to celebrating and preserving the timeless cultural, philosophical, and artistic heritage of Ramayana and Mahabharata.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">The Epics</h4>
+          <ul class="footer-links">
+            <li><a href="ramayana.html" class="footer-link">Ramayana — Path of Dharma</a></li>
+            <li><a href="mahabharata.html" class="footer-link">Mahabharata — Great War</a></li>
+            <li><a href="mahabharata.html#gita" class="footer-link">The Bhagavad Gita</a></li>
+            <li><a href="ramayana.html#kandas" class="footer-link">The Seven Kandas</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Exploration</h4>
+          <ul class="footer-links">
+            <li><a href="characters.html" class="footer-link">Divine Characters</a></li>
+            <li><a href="places.html" class="footer-link">Sacred Places</a></li>
+            <li><a href="wisdom.html" class="footer-link">Teachings & Wisdom</a></li>
+            <li><a href="about.html" class="footer-link">About the Museum</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Tradition</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#art" class="footer-link">Artistic Inspiration</a></li>
+            <li><a href="about.html#music" class="footer-link">Music Design</a></li>
+            <li><a href="wisdom.html" class="footer-link">Sanskrit Verses</a></li>
+            <li><a href="about.html#sources" class="footer-link">Literary Lineage</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-quote">
+        सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः। सर्वे भद्राणि पश्यन्तु मा कश्चिद्दुःखभाग्भवेत्॥
+        <small>"May all sentient beings be happy, may all be free from illness. May all see what is auspicious, may no one suffer."</small>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ITIHASA — The Eternal Stories of Bharat. Dedicated to the eternal heritage of Indian civilization.</p>
+        <p>Built with HTML5, CSS3 &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/music.js"></script>
+  <script>
+    // Homepage moments filtering
+    document.addEventListener('DOMContentLoaded', () => {
+      const momentTabs = document.querySelectorAll('.btn-moment-tab');
+      const momentCards = document.querySelectorAll('#homepage-moments-grid .card-ancient');
+
+      momentTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          momentTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const filter = tab.dataset.moment;
+
+          momentCards.forEach(card => {
+            if (filter === 'all' || card.dataset.epic === filter) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          if (window.ItihasaMusic && window.ItihasaMusic.playTempleBell) {
+            window.ItihasaMusic.playTempleBell();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

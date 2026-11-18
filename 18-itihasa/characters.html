@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divine Characters — The Legends of Bharat | ITIHASA</title>
+  <meta name="description" content="Explore an illustrated digital encyclopedia of 35+ legendary figures of Ramayana and Mahabharata. Discover their lineage, virtues, battles, and eternal significance.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .character-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-bottom: 2.5rem;
+    }
+    .character-filter-btn {
+      background: rgba(26, 17, 14, 0.75);
+      border: 1px solid rgba(230, 199, 122, 0.35);
+      color: var(--color-sandalwood-cream);
+      padding: 0.55rem 1.4rem;
+      border-radius: 25px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      letter-spacing: 0.05em;
+    }
+    .character-filter-btn:hover, .character-filter-btn.active {
+      background: var(--color-royal-crimson);
+      border-color: var(--color-bright-gold);
+      color: var(--color-bright-gold);
+      box-shadow: 0 0 15px rgba(201, 154, 69, 0.4);
+      transform: translateY(-2px);
+    }
+    .search-input-wrap {
+      max-width: 550px;
+      margin: 0 auto 3rem auto;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      background: rgba(18, 12, 10, 0.85);
+      border: 1px solid var(--color-temple-gold);
+      border-radius: 30px;
+      padding: 0.85rem 1.5rem 0.85rem 3rem;
+      color: var(--color-sandalwood-cream);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition-fast);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    .search-input:focus {
+      border-color: var(--color-bright-gold);
+      box-shadow: 0 0 20px rgba(201, 154, 69, 0.4);
+    }
+    .search-icon {
+      position: absolute;
+      left: 1.15rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--color-temple-gold);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="characters-page">
+
+  <!-- Floating Particles Canvas -->
+  <canvas id="canvas-particles"></canvas>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo" aria-label="ITIHASA Home">
+        <img src="assets/icons/om.svg" alt="ITIHASA Sacred Emblem" class="brand-icon">
+        <div class="brand-text">
+          <span class="brand-title">ITIHASA</span>
+          <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="ramayana.html" class="nav-link">Ramayana</a></li>
+          <li><a href="mahabharata.html" class="nav-link">Mahabharata</a></li>
+          <li><a href="characters.html" class="nav-link active">Characters</a></li>
+          <li><a href="places.html" class="nav-link">Sacred Places</a></li>
+          <li><a href="wisdom.html" class="nav-link">Wisdom</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="header-music-btn" class="btn-music-toggle" aria-label="Toggle Ambient Epic Music">
+          <div class="music-waves">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="music-text">Ambient Music</span>
+        </button>
+
+        <button class="mobile-toggle" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-text">
+        <span class="brand-title" style="font-size: 1.4rem;">ITIHASA</span>
+        <span class="brand-tagline">इतिहास • भारत</span>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="ramayana.html" class="mobile-nav-link">Ramayana</a></li>
+      <li><a href="mahabharata.html" class="mobile-nav-link">Mahabharata</a></li>
+      <li><a href="characters.html" class="mobile-nav-link active">Divine Characters</a></li>
+      <li><a href="places.html" class="mobile-nav-link">Sacred Places</a></li>
+      <li><a href="wisdom.html" class="mobile-nav-link">Teachings & Wisdom</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About & Heritage</a></li>
+    </ul>
+  </div>
+  <div class="mobile-overlay"></div>
+
+  <!-- Main Content -->
+  <main style="padding-top: 8rem; min-height: 80vh;">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-sanskrit">महापुरुषाः • वीराः • ॠषयश्च</div>
+        <h1 class="section-title">DIVINE CHARACTERS OF BHARAT</h1>
+        <p class="section-subtitle">
+          An interactive illustrated encyclopedia of thirty-five legendary figures across Ramayana and Mahabharata. Discover their divine roles, virtues, weapons, and eternal deeds.
+        </p>
+        <div class="section-ornament">
+          <img src="assets/icons/lotus.svg" alt="Lotus" class="section-ornament-icon">
+        </div>
+      </div>
+
+      <!-- Live Search Bar -->
+      <div class="search-input-wrap reveal">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="character-search" class="search-input" placeholder="Search by name, virtue, role, or weapon (e.g. Rama, Krishna, Bow, Sage)..." aria-label="Search Characters">
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="character-filter-bar reveal">
+        <button class="character-filter-btn active" data-filter="all">All Characters</button>
+        <button class="character-filter-btn" data-filter="ramayana">Ramayana</button>
+        <button class="character-filter-btn" data-filter="mahabharata">Mahabharata</button>
+        <button class="character-filter-btn" data-filter="divine">Divine Figures</button>
+        <button class="character-filter-btn" data-filter="warrior">Warriors</button>
+        <button class="character-filter-btn" data-filter="sages">Sages & Gurus</button>
+        <button class="character-filter-btn" data-filter="kings">Kings & Queens</button>
+      </div>
+
+      <!-- Count Status Indicator -->
+      <div id="character-count" style="text-align: center; color: var(--color-temple-gold); font-family: var(--font-heading); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 2.5rem; text-transform: uppercase;">
+        Loading Legends...
+      </div>
+
+      <!-- Characters Dynamic Grid -->
+      <div class="epic-grid" id="characters-grid">
+        <!-- Dynamically rendered by js/characters.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Modal Dialog -->
+  <div id="global-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-img-col">
+        <img src="" alt="Modal Detail Artwork">
+      </div>
+      <div class="modal-info-col">
+        <span class="modal-epic-tag">Epic</span>
+        <h2 class="modal-title">Title</h2>
+        <p class="modal-subtitle">Role / Subtitle</p>
+        <p class="modal-desc">Detailed Description</p>
+
+        <h4 class="modal-section-title">Core Qualities & Virtues</h4>
+        <div class="modal-traits-list"></div>
+
+        <h4 class="modal-section-title">Associated Legends & Events</h4>
+        <p class="modal-associated-events" style="font-size: 0.95rem; color: #D9C49D; line-height: 1.6;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING GLOBAL AMBIENT MUSIC PLAYER -->
+  <aside class="global-audio-player" aria-label="Ambient Music Player">
+    <div class="player-info">
+      <span class="player-theme-title" id="player-theme-title">Ramayana Ambience</span>
+      <span class="player-track-name" id="player-track-name">Raag Bhoopali • Flute & Tanpura</span>
+    </div>
+
+    <div class="player-controls">
+      <button id="player-play-btn" class="btn-player-action" aria-label="Play/Pause Audio">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+
+      <button id="player-mute-btn" class="btn-player-action" aria-label="Mute/Unmute Audio">
+        <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+
+      <div class="player-volume-wrap">
+        <input type="range" id="player-volume" class="player-volume-slider" min="0" max="1" step="0.05" value="0.65" aria-label="Volume Slider">
+      </div>
+
+      <div class="player-theme-switch">
+        <button id="pill-theme-ramayana" class="btn-theme-pill active">Ramayana</button>
+        <button id="pill-theme-mahabharata" class="btn-theme-pill theme-mahabharata">Mahabharata</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-top-border"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-text">
+            <span class="brand-title">ITIHASA</span>
+            <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+          </div>
+          <p>
+            An interactive digital sanctuary dedicated to celebrating and preserving the timeless cultural, philosophical, and artistic heritage of Ramayana and Mahabharata.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">The Epics</h4>
+          <ul class="footer-links">
+            <li><a href="ramayana.html" class="footer-link">Ramayana — Path of Dharma</a></li>
+            <li><a href="mahabharata.html" class="footer-link">Mahabharata — Great War</a></li>
+            <li><a href="mahabharata.html#gita" class="footer-link">The Bhagavad Gita</a></li>
+            <li><a href="ramayana.html#kandas" class="footer-link">The Seven Kandas</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Exploration</h4>
+          <ul class="footer-links">
+            <li><a href="characters.html" class="footer-link">Divine Characters</a></li>
+            <li><a href="places.html" class="footer-link">Sacred Places</a></li>
+            <li><a href="wisdom.html" class="footer-link">Teachings & Wisdom</a></li>
+            <li><a href="about.html" class="footer-link">About the Museum</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Tradition</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#art" class="footer-link">Artistic Inspiration</a></li>
+            <li><a href="about.html#music" class="footer-link">Music Design</a></li>
+            <li><a href="wisdom.html" class="footer-link">Sanskrit Verses</a></li>
+            <li><a href="about.html#sources" class="footer-link">Literary Lineage</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-quote">
+        सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः। सर्वे भद्राणि पश्यन्तु मा कश्चिद्दुःखभाग्भवेत्॥
+        <small>"May all sentient beings be happy, may all be free from illness. May all see what is auspicious, may no one suffer."</small>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ITIHASA — The Eternal Stories of Bharat. Dedicated to the eternal heritage of Indian civilization.</p>
+        <p>Built with HTML5, CSS3 &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/characters.js"></script>
+  <script>
+    // URL Param Filter Handler (e.g. ?filter=ramayana)
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialFilter = urlParams.get('filter');
+      if (initialFilter) {
+        const targetBtn = document.querySelector(`.character-filter-btn[data-filter="${initialFilter}"]`);
+        if (targetBtn) {
+          targetBtn.click();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

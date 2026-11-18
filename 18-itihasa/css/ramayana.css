@@ -1,0 +1,331 @@
+/* ==========================================================================
+   ITIHASA — RAMAYANA EXPERIENCE STYLES
+   css/ramayana.css
+   ========================================================================== */
+
+:root {
+  --ramayana-theme-green: #344E3D;
+  --ramayana-theme-gold: #E6C77A;
+  --ramayana-theme-sandstone: #D9C49D;
+  --ramayana-theme-crimson: #8E3037;
+  --ramayana-theme-dark: #16241B;
+}
+
+/* Page Hero Banner for Ramayana */
+.ramayana-hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 5rem 2rem;
+  overflow: hidden;
+  background-color: var(--ramayana-theme-dark);
+}
+
+.ramayana-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.ramayana-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.68) saturate(1.1);
+}
+
+.ramayana-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(22, 36, 27, 0.7) 0%, rgba(22, 36, 27, 0.3) 40%, rgba(18, 12, 10, 0.9) 85%, #120C0A 100%),
+    radial-gradient(circle at 50% 40%, rgba(201, 154, 69, 0.15) 0%, transparent 60%);
+  z-index: 2;
+}
+
+.ramayana-hero-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 900px;
+}
+
+.ramayana-kanda-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 3rem 0;
+}
+
+.kanda-nav-btn {
+  background: rgba(36, 59, 44, 0.6);
+  border: 1px solid rgba(230, 199, 122, 0.4);
+  color: var(--color-sandalwood-cream);
+  padding: 0.6rem 1.4rem;
+  border-radius: 25px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  backdrop-filter: blur(4px);
+}
+
+.kanda-nav-btn:hover, .kanda-nav-btn.active {
+  background: var(--color-royal-crimson);
+  border-color: var(--color-bright-gold);
+  color: var(--color-bright-gold);
+  box-shadow: 0 0 15px rgba(201, 154, 69, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 7 Kandas Interactive Showcase */
+.kanda-showcase-card {
+  display: none;
+  background: rgba(22, 32, 25, 0.85);
+  border: 1px solid var(--color-temple-gold);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  grid-template-columns: 1.1fr 1fr;
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.kanda-showcase-card.active {
+  display: grid;
+}
+
+.kanda-visual-col {
+  position: relative;
+  min-height: 480px;
+  overflow: hidden;
+  background-color: #0d1610;
+}
+
+.kanda-visual-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.kanda-showcase-card:hover .kanda-visual-col img {
+  transform: scale(1.05);
+}
+
+.kanda-number-badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: rgba(87, 31, 39, 0.9);
+  color: var(--color-bright-gold);
+  border: 1px solid var(--color-temple-gold);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.kanda-text-col {
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.kanda-sanskrit {
+  font-family: var(--font-sanskrit);
+  font-size: 1.3rem;
+  color: var(--color-temple-gold);
+  margin-bottom: 0.3rem;
+}
+
+.kanda-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--color-bright-gold);
+  margin-bottom: 0.5rem;
+}
+
+.kanda-subtitle {
+  font-family: var(--font-subheading);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-antique-beige);
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(230, 199, 122, 0.2);
+  padding-bottom: 0.8rem;
+}
+
+.kanda-desc {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #D8CEBD;
+  margin-bottom: 1.75rem;
+}
+
+.kanda-highlights {
+  background: rgba(14, 22, 17, 0.6);
+  border-left: 3px solid var(--color-temple-gold);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  border-radius: 0 6px 6px 0;
+}
+
+.kanda-highlights h5 {
+  font-size: 0.88rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: var(--color-temple-gold);
+}
+
+.kanda-highlights ul {
+  list-style: none;
+}
+
+.kanda-highlights li {
+  font-size: 0.95rem;
+  color: #C7BBA8;
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.kanda-highlights li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--color-divine-gold);
+  font-size: 0.8rem;
+}
+
+.kanda-pagination-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(230, 199, 122, 0.2);
+}
+
+.btn-kanda-prev, .btn-kanda-next {
+  background: none;
+  border: 1px solid rgba(230, 199, 122, 0.4);
+  color: var(--color-temple-gold);
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-kanda-prev:hover, .btn-kanda-next:hover {
+  background: var(--color-deep-maroon);
+  color: var(--color-bright-gold);
+  border-color: var(--color-bright-gold);
+}
+
+/* Map Journey (Locations Journey) */
+.ramayana-map-journey {
+  position: relative;
+  padding: 3rem 0;
+}
+
+.journey-path-timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 3rem;
+}
+
+.journey-path-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-temple-gold) 0%, var(--color-royal-crimson) 50%, var(--color-divine-gold) 100%);
+  transform: translateX(-50%);
+  opacity: 0.4;
+}
+
+.journey-node {
+  display: grid;
+  grid-template-columns: 1fr 100px 1fr;
+  align-items: center;
+  position: relative;
+}
+
+.journey-node:nth-child(even) .journey-card-content {
+  grid-column: 3;
+}
+
+.journey-node:nth-child(even) .journey-card-img {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.journey-node:nth-child(odd) .journey-card-content {
+  grid-column: 1;
+  text-align: right;
+}
+
+.journey-node:nth-child(odd) .journey-card-img {
+  grid-column: 3;
+}
+
+.journey-marker {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.marker-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-deep-maroon);
+  border: 2px solid var(--color-temple-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-bright-gold);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(201, 154, 69, 0.5);
+}
+
+.journey-card-content {
+  background: rgba(22, 34, 26, 0.85);
+  border: 1px solid rgba(230, 199, 122, 0.3);
+  border-radius: 8px;
+  padding: 1.8rem;
+  box-shadow: var(--shadow-card);
+}
+
+.journey-card-img {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(230, 199, 122, 0.3);
+  box-shadow: var(--shadow-card);
+  max-height: 240px;
+}
+
+.journey-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

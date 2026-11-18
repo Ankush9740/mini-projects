@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramayana — The Path of Dharma | ITIHASA</title>
+  <meta name="description" content="Immerse yourself in the journey of Lord Rama, the seven Kandas, divine characters, sacred locations, and the eternal victory of Dharma over Adharma.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ramayana.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="ramayana-page">
+
+  <!-- Floating Particles Canvas -->
+  <canvas id="canvas-particles"></canvas>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo" aria-label="ITIHASA Home">
+        <img src="assets/icons/om.svg" alt="ITIHASA Sacred Emblem" class="brand-icon">
+        <div class="brand-text">
+          <span class="brand-title">ITIHASA</span>
+          <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="ramayana.html" class="nav-link active">Ramayana</a></li>
+          <li><a href="mahabharata.html" class="nav-link">Mahabharata</a></li>
+          <li><a href="characters.html" class="nav-link">Characters</a></li>
+          <li><a href="places.html" class="nav-link">Sacred Places</a></li>
+          <li><a href="wisdom.html" class="nav-link">Wisdom</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="header-music-btn" class="btn-music-toggle" aria-label="Toggle Ambient Epic Music">
+          <div class="music-waves">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="music-text">Ambient Music</span>
+        </button>
+
+        <button class="mobile-toggle" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-text">
+        <span class="brand-title" style="font-size: 1.4rem;">ITIHASA</span>
+        <span class="brand-tagline">इतिहास • भारत</span>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="ramayana.html" class="mobile-nav-link active">Ramayana</a></li>
+      <li><a href="mahabharata.html" class="mobile-nav-link">Mahabharata</a></li>
+      <li><a href="characters.html" class="mobile-nav-link">Divine Characters</a></li>
+      <li><a href="places.html" class="mobile-nav-link">Sacred Places</a></li>
+      <li><a href="wisdom.html" class="mobile-nav-link">Teachings & Wisdom</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About & Heritage</a></li>
+    </ul>
+  </div>
+  <div class="mobile-overlay"></div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- RAMAYANA INTRODUCTION HERO BANNER -->
+    <section class="ramayana-hero">
+      <div class="ramayana-hero-bg">
+        <img src="assets/images/hero/rama-sita-hero.jpg" alt="Lord Rama, Goddess Sita, and Lakshmana in the Dandakaranya forest">
+      </div>
+      <div class="ramayana-hero-overlay"></div>
+
+      <div class="container ramayana-hero-content">
+        <div class="hero-sanskrit-tag reveal">रामो विग्रहवान् धर्मः</div>
+        <h1 class="hero-title reveal delay-100">RAMAYANA — THE PATH OF DHARMA</h1>
+        <p class="hero-desc reveal delay-200">
+          Traditionally attributed to Maharishi Valmiki, the Adi Kavi (First Poet), the Ramayana is the foundational epic of Bharat. It follows the life of Lord Rama — an embodiment of truth, moral excellence, and selfless duty — illuminating humanity's journey toward cosmic righteousness.
+        </p>
+        <div class="reveal delay-300" style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
+          <a href="#kandas" class="btn-primary">
+            Explore the Seven Kandas ↓
+          </a>
+          <a href="#characters" class="btn-secondary">
+            Meet the Characters
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRADITION & RETELLINGS NOTICE -->
+    <section style="background: rgba(22, 34, 26, 0.7); border-bottom: 1px solid rgba(230, 199, 122, 0.2); padding: 2rem 0;">
+      <div class="container" style="text-align: center; max-width: 900px;">
+        <p style="font-size: 0.95rem; color: #D2C4AE; margin-bottom: 0; line-height: 1.7;">
+          <strong style="color: var(--color-temple-gold);">The Living Tradition:</strong> 
+          While rooted in the Sanskrit original of Maharishi Valmiki, the Ramayana lives across India through beloved regional literary retellings including Goswami Tulsidas’s <em>Ramcharitmanas</em> in Awadhi, Kamban’s <em>Kamba Ramayanam</em> in Tamil, Krittibas Ojha’s Bengali retelling, Ezhuthachan’s Malayalam <em>Adhyathma Ramayanam</em>, and Ranganatha’s Telugu epic.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION B: THE COMPLETE STORY JOURNEY — THE SEVEN KANDAS -->
+    <section class="section-padding" id="kandas" style="padding: 7rem 0 5rem 0;">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">सप्तकाण्डानि • एकम् जीवनम्</div>
+          <h2 class="section-title">THE SEVEN KANDAS OF RAMAYANA</h2>
+          <p class="section-subtitle">
+            Travel step-by-step through the seven monumental books of the epic, from the divine childhood in Ayodhya to the eternal dawn of Ramrajya.
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/bow.svg" alt="Bow" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <!-- Interactive Kanda Nav Tabs -->
+        <div class="ramayana-kanda-nav reveal">
+          <button class="kanda-nav-btn active" data-kanda="0">1. Bala Kanda</button>
+          <button class="kanda-nav-btn" data-kanda="1">2. Ayodhya Kanda</button>
+          <button class="kanda-nav-btn" data-kanda="2">3. Aranya Kanda</button>
+          <button class="kanda-nav-btn" data-kanda="3">4. Kishkindha Kanda</button>
+          <button class="kanda-nav-btn" data-kanda="4">5. Sundara Kanda</button>
+          <button class="kanda-nav-btn" data-kanda="5">6. Yuddha Kanda</button>
+          <button class="kanda-nav-btn" data-kanda="6">7. Uttara Kanda</button>
+        </div>
+
+        <!-- Kanda Dynamic Showcase Container -->
+        <div id="kandas-showcase-container" class="reveal delay-100">
+          <!-- Populated by js/ramayana.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION C: IMPORTANT RAMAYANA CHARACTERS -->
+    <section class="section-padding" id="characters" style="padding: 6rem 0; background: rgba(18, 12, 10, 0.65);">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">रामायणस्य महानायकाः</div>
+          <h2 class="section-title">IMPORTANT CHARACTERS OF RAMAYANA</h2>
+          <p class="section-subtitle">
+            Meet the divine, heroic, and tragic figures whose choices illuminate the infinite shades of duty, devotion, and destiny.
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/lotus.svg" alt="Lotus" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <div class="epic-grid">
+          <!-- Lord Rama Special Highlight Card -->
+          <div class="card-ancient reveal shimmer-hover" style="border: 2px solid var(--color-bright-gold); box-shadow: 0 0 25px rgba(201, 154, 69, 0.35);">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/rama.jpg" alt="Lord Rama">
+              <span class="card-badge badge-divine">Maryada Purushottama</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title" style="color: var(--color-bright-gold);">Lord Rama</h3>
+              <p class="card-role">Seventh Avatara of Lord Vishnu • Supreme Ideal of Dharma</p>
+              <p class="card-desc">The eldest son of King Dasharatha and Queen Kaushalya, Rama represents the peak of human virtue, absolute adherence to truth, and selfless service to all beings.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Lord Rama', role:'Maryada Purushottama — The Ideal of Dharma', image:'assets/images/characters/rama.jpg', desc:'The supreme embodiment of Dharma, Lord Rama lived a life of unwavering truth, selfless duty, and supreme righteousness. Born as the eldest prince of Kosala, he willingly accepted fourteen years of forest exile to honor his father\'s word, liberated the world from the tyranny of Ravana, and established the golden realm of Ramrajya.', qualities:['Unwavering Dharma', 'Truthfulness (Satya)', 'Compassion (Karuna)', 'Master of Kodanda Bow', 'Magnanimity'], associated:'Breaking Shiva’s Pinaka Bow, Forest Exile, Construction of Rama Setu, Slaying of Ravana, Coronation in Ayodhya.'})">
+                  Explore Divine Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Goddess Sita Special Highlight Card -->
+          <div class="card-ancient reveal shimmer-hover" style="border: 2px solid var(--color-bright-gold); box-shadow: 0 0 25px rgba(201, 154, 69, 0.35);">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/sita.jpg" alt="Goddess Sita">
+              <span class="card-badge badge-divine">Janaki</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title" style="color: var(--color-bright-gold);">Goddess Sita</h3>
+              <p class="card-role">Incarnation of Goddess Lakshmi • Paragon of Fortitude</p>
+              <p class="card-desc">Daughter of the earth found by King Janaka, Sita personifies divine purity, fearless loyalty, and moral sovereignty amidst the deepest trials of exile and captivity.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Goddess Sita', role:'Janaki — Divine Incarnation of Grace & Virtue', image:'assets/images/characters/sita.jpg', desc:'Found in the sacred furrow of the earth by King Janaka of Mithila, Goddess Sita exemplifies divine fortitude, selfless love, unwavering fidelity, and moral grandeur. She chose forest hardship over royal luxury, retained pure devotion in Ravana\'s Ashoka Vatika, and remains the eternal beacon of grace and feminine spiritual sovereignty.', qualities:['Divine Grace', 'Immovable Fortitude', 'Spiritual Purity', 'Devotion to Dharma', 'Sacrifice'], associated:'Swayamvara in Mithila, Voluntary Exile to Dandakaranya, Captivity in Ashoka Vatika, Agni Pariksha, Valmiki Ashrama.'})">
+                  Explore Divine Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hanuman Special Highlight Card -->
+          <div class="card-ancient reveal shimmer-hover" style="border: 2px solid var(--color-bright-gold); box-shadow: 0 0 25px rgba(201, 154, 69, 0.35);">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/hanuman.jpg" alt="Hanuman">
+              <span class="card-badge badge-divine">Mahavira</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title" style="color: var(--color-bright-gold);">Hanuman</h3>
+              <p class="card-role">Rudra Avatara • Purest Devotion & Boundless Strength</p>
+              <p class="card-desc">The son of Vayu and Anjana, Hanuman leaped across the southern ocean, burnt golden Lanka, carried Mount Dronagiri, and remains the eternal protector of all who chant Rama's name.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Hanuman', role:'Mahavira — Rudra Avatara, Quintessence of Bhakti & Shakti', image:'assets/images/characters/hanuman.jpg', desc:'The son of Vayu and Anjana, Hanuman is the immortal paragon of devotion, immense courage, and selfless service. Blessed with the eight celestial Siddhis, he leapt across the ocean to find Sita, set Lanka ablaze, brought the Sanjeevani mountain to save Lakshmana, and lives eternally where the sacred name of Rama is chanted.', qualities:['Supreme Bhakti', 'Infinite Strength (Bala)', 'Profound Wisdom (Jnana)', 'Humility', 'Chiranjeevi (Immortal)'], associated:'Leap across the Southern Sea, Finding Sita in Ashoka Vatika, Burning of Golden Lanka, Carrying Mount Dronagiri.'})">
+                  Explore Divine Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lakshmana -->
+          <div class="card-ancient reveal shimmer-hover">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/lakshmana.jpg" alt="Lakshmana">
+              <span class="card-badge">Saumitri</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">Lakshmana</h3>
+              <p class="card-role">Incarnation of Sheshanaga • The Vigilant Brother</p>
+              <p class="card-desc">Renouncing sleep and comfort for fourteen years to stand guard in the wilderness, Lakshmana felled Indrajit through his unbroken celibacy and righteous vows.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Lakshmana', role:'Saumitri — Incarnation of Sheshanaga & Loyal Brother', image:'assets/images/characters/lakshmana.jpg', desc:'The inseparable brother of Rama, Lakshmana renounced sleep and all comforts for fourteen years to stand guard over Rama and Sita in the forest. A fierce warrior of unmatched devotion, he defeated the invincible Meghanada (Indrajit) in Lanka through the power of his supreme celibacy and righteous vows.', qualities:['Boundless Loyalty', 'Martial Mastery', 'Unflinching Vigilance', 'Brotherly Devotion', 'Selfless Service'], associated:'Carving Hermitage in Panchavati, Defending Sita, Slaying of Indrajit, Revival with Sanjeevani Herb.'})">
+                  Explore Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bharata -->
+          <div class="card-ancient reveal shimmer-hover">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/bharata.jpg" alt="Bharata">
+              <span class="card-badge">Ayodhya</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">Bharata</h3>
+              <p class="card-role">Righteous Sovereign of Rama's Padukas</p>
+              <p class="card-desc">Refusing the crown granted to him by Kaikeyi's boons, Bharata governed Ayodhya as an ascetic regent with Rama's sacred wooden sandals upon the royal throne.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Bharata', role:'Righteous Prince and Exemplar of Selflessness', image:'assets/images/characters/bharata.jpg', desc:'Though offered the kingdom of Kosala through his mother Kaikeyi\'s boons, Bharata refused the crown in anguish. He pursued Rama to Chitrakoot, placed Rama\'s sacred wooden sandals (Padukas) on the royal throne of Ayodhya, and governed the empire as an ascetic regent living on the outskirts in Nandigrama.', qualities:['Supreme Selflessness', 'Fraternal Love', 'Disdain for Unjust Power', 'Ascetic Discipline'], associated:'Chitrakoot Meeting, Ruling Ayodhya with Rama’s Padukas, Vow of Self-Immolation if Rama delayed.'})">
+                  Explore Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ravana -->
+          <div class="card-ancient reveal shimmer-hover">
+            <div class="card-ancient-img-wrap">
+              <img src="assets/images/characters/ravana.jpg" alt="Ravana">
+              <span class="card-badge" style="background: rgba(142, 48, 55, 0.9);">Lankeshwara</span>
+            </div>
+            <div class="card-ancient-body">
+              <h3 class="card-title">King Ravana</h3>
+              <p class="card-role">Ten-Headed Lord of Lanka • Scholar & Devotee of Shiva</p>
+              <p class="card-desc">A master of the four Vedas and composer of the Shiva Tandava Stotram whose unbridled ego and lust caused the complete ruin of his golden civilization.</p>
+              <div class="card-footer">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'King Ravana', role:'Ten-Headed Sovereign of Lanka & Master of Vedas', image:'assets/images/characters/ravana.jpg', desc:'A brilliant scholar, devout devotee of Shiva, and conqueror of the three worlds who composed the Shiva Tandava Stotram. Despite immense learning and ascetic penance, his uncontrolled ego, lust, and hubris led to the downfall of his entire golden empire.', qualities:['Vedic Erudition', 'Unrivaled Penance', 'Architectural Mastery', 'Fatal Hubris'], associated:'Shiva Tandava Stotram, Ten Celestial Crowns, Abduction of Sita, Final Battle with Rama.'})">
+                  Explore Profile →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3.5rem;" class="reveal">
+          <a href="characters.html?filter=ramayana" class="btn-secondary">
+            View All 16 Ramayana Characters in Encyclopedia →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION D: THE LEGENDARY EVENTS -->
+    <section class="section-padding" style="padding: 7rem 0;">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">पुण्यानि चरितानि</div>
+          <h2 class="section-title">THE LEGENDARY EVENTS</h2>
+          <p class="section-subtitle">
+            Iconic milestones of the Ramayana captured in vivid storytelling and traditional visual art.
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/temple.svg" alt="Temple" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <div class="epic-grid" id="ramayana-events-grid">
+          <!-- Dynamically generated by js/ramayana.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION E: RAMAYANA LOCATIONS & MAP JOURNEY -->
+    <section class="section-padding" style="padding: 7rem 0; background: rgba(18, 12, 10, 0.7);">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-sanskrit">तीर्थानि • पवित्राणि स्थानानि</div>
+          <h2 class="section-title">THE SACRED REALMS OF RAMAYANA</h2>
+          <p class="section-subtitle">
+            Follow the traditional geographic journey from the banks of the Sarayu to the southern shore of Lanka.
+          </p>
+          <div class="section-ornament">
+            <img src="assets/icons/chakra.svg" alt="Chakra" class="section-ornament-icon">
+          </div>
+        </div>
+
+        <div class="ramayana-map-journey">
+          <div class="journey-path-timeline">
+            <!-- Node 1: Ayodhya -->
+            <div class="journey-node reveal">
+              <div class="journey-card-content">
+                <span class="card-badge">The Origin</span>
+                <h3 style="font-size: 1.5rem; color: var(--color-bright-gold); margin: 0.5rem 0;">Ayodhya (Kosala)</h3>
+                <p style="font-size: 0.95rem; color: #D2C4AE; line-height: 1.6;">
+                  The glorious capital on the sacred Sarayu River where Lord Rama took birth, lived his youthful years, and returned for his immortal coronation.
+                </p>
+              </div>
+              <div class="journey-marker">
+                <div class="marker-circle">1</div>
+              </div>
+              <div class="journey-card-img">
+                <img src="assets/images/locations/ayodhya.jpg" alt="Ayodhya">
+              </div>
+            </div>
+
+            <!-- Node 2: Mithila -->
+            <div class="journey-node reveal">
+              <div class="journey-card-content">
+                <span class="card-badge">The Wedding</span>
+                <h3 style="font-size: 1.5rem; color: var(--color-bright-gold); margin: 0.5rem 0;">Mithila (Videha)</h3>
+                <p style="font-size: 0.95rem; color: #D2C4AE; line-height: 1.6;">
+                  The realm of King Janaka where Rama lifted Lord Shiva’s Pinaka bow, uniting Ayodhya and Videha in eternal spiritual matrimony.
+                </p>
+              </div>
+              <div class="journey-marker">
+                <div class="marker-circle">2</div>
+              </div>
+              <div class="journey-card-img">
+                <img src="assets/images/locations/mithila.jpg" alt="Mithila">
+              </div>
+            </div>
+
+            <!-- Node 3: Chitrakoot -->
+            <div class="journey-node reveal">
+              <div class="journey-card-content">
+                <span class="card-badge">The Hermitage</span>
+                <h3 style="font-size: 1.5rem; color: var(--color-bright-gold); margin: 0.5rem 0;">Chitrakoot</h3>
+                <p style="font-size: 0.95rem; color: #D2C4AE; line-height: 1.6;">
+                  The serene forested hills along the Mandakini River where Rama, Sita, and Lakshmana lived in simple hermitage, and where Bharata received Rama's Padukas.
+                </p>
+              </div>
+              <div class="journey-marker">
+                <div class="marker-circle">3</div>
+              </div>
+              <div class="journey-card-img">
+                <img src="assets/images/locations/chitrakoot.jpg" alt="Chitrakoot">
+              </div>
+            </div>
+
+            <!-- Node 4: Dandakaranya -->
+            <div class="journey-node reveal">
+              <div class="journey-card-content">
+                <span class="card-badge">The Deep Forest</span>
+                <h3 style="font-size: 1.5rem; color: var(--color-bright-gold); margin: 0.5rem 0;">Dandakaranya & Panchavati</h3>
+                <p style="font-size: 0.95rem; color: #D2C4AE; line-height: 1.6;">
+                  The vast forest along the Godavari River where the divine trio spent a decade protecting sages, and where the golden deer Maricha lured Rama away.
+                </p>
+              </div>
+              <div class="journey-marker">
+                <div class="marker-circle">4</div>
+              </div>
+              <div class="journey-card-img">
+                <img src="assets/images/locations/dandakaranya.jpg" alt="Dandakaranya">
+              </div>
+            </div>
+
+            <!-- Node 5: Kishkindha -->
+            <div class="journey-node reveal">
+              <div class="journey-card-content">
+                <span class="card-badge">The Vanara Realm</span>
+                <h3 style="font-size: 1.5rem; color: var(--color-bright-gold); margin: 0.5rem 0;">Kishkindha</h3>
+                <p style="font-size: 0.95rem; color: #D2C4AE; line-height: 1.6;">
+                  The rugged rocky kingdom along the Tungabhadra River where Rama formed an unbreakable pact of friendship with Sugriva and Hanuman.
+                </p>
+              </div>
+              <div class="journey-marker">
+                <div class="marker-circle">5</div>
+              </div>
+              <div class="journey-card-img">
+                <img src="assets/images/locations/kishkindha.jpg" alt="Kishkindha">
+              </div>
+            </div>
+
+            <!-- Node 6: Rameswaram -->
+            <div class="journey-node reveal">
+              <div class="journey-card-content">
+                <span class="card-badge">The Ocean Causeway</span>
+                <h3 style="font-size: 1.5rem; color: var(--color-bright-gold); margin: 0.5rem 0;">Rameswaram & Rama Setu</h3>
+                <p style="font-size: 0.95rem; color: #D2C4AE; line-height: 1.6;">
+                  The southern shore where Rama consecrated the Shiva Linga and the Vanaras constructed the floating stone causeway across the ocean.
+                </p>
+              </div>
+              <div class="journey-marker">
+                <div class="marker-circle">6</div>
+              </div>
+              <div class="journey-card-img">
+                <img src="assets/images/locations/rameswaram.jpg" alt="Rameswaram">
+              </div>
+            </div>
+
+            <!-- Node 7: Lanka -->
+            <div class="journey-node reveal">
+              <div class="journey-card-content">
+                <span class="card-badge">The Citadel</span>
+                <h3 style="font-size: 1.5rem; color: var(--color-bright-gold); margin: 0.5rem 0;">Lanka (Trikuta Mountain)</h3>
+                <p style="font-size: 0.95rem; color: #D2C4AE; line-height: 1.6;">
+                  The golden island fortress of Ravana, site of the great war, and the liberation of Goddess Sita under the banner of Dharma.
+                </p>
+              </div>
+              <div class="journey-marker">
+                <div class="marker-circle">7</div>
+              </div>
+              <div class="journey-card-img">
+                <img src="assets/images/locations/lanka.jpg" alt="Lanka">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem;" class="reveal">
+          <a href="places.html" class="btn-primary">
+            Explore All Sacred Places of Both Epics →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Modal Dialog -->
+  <div id="global-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-img-col">
+        <img src="" alt="Modal Detail Artwork">
+      </div>
+      <div class="modal-info-col">
+        <span class="modal-epic-tag">Ramayana</span>
+        <h2 class="modal-title">Title</h2>
+        <p class="modal-subtitle">Role / Subtitle</p>
+        <p class="modal-desc">Detailed Description</p>
+
+        <h4 class="modal-section-title">Core Qualities & Virtues</h4>
+        <div class="modal-traits-list"></div>
+
+        <h4 class="modal-section-title">Associated Legends & Events</h4>
+        <p class="modal-associated-events" style="font-size: 0.95rem; color: #D9C49D; line-height: 1.6;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING GLOBAL AMBIENT MUSIC PLAYER -->
+  <aside class="global-audio-player" aria-label="Ambient Music Player">
+    <div class="player-info">
+      <span class="player-theme-title" id="player-theme-title">Ramayana Ambience</span>
+      <span class="player-track-name" id="player-track-name">Raag Bhoopali • Flute & Tanpura</span>
+    </div>
+
+    <div class="player-controls">
+      <button id="player-play-btn" class="btn-player-action" aria-label="Play/Pause Audio">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+
+      <button id="player-mute-btn" class="btn-player-action" aria-label="Mute/Unmute Audio">
+        <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+
+      <div class="player-volume-wrap">
+        <input type="range" id="player-volume" class="player-volume-slider" min="0" max="1" step="0.05" value="0.65" aria-label="Volume Slider">
+      </div>
+
+      <div class="player-theme-switch">
+        <button id="pill-theme-ramayana" class="btn-theme-pill active">Ramayana</button>
+        <button id="pill-theme-mahabharata" class="btn-theme-pill theme-mahabharata">Mahabharata</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-top-border"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-text">
+            <span class="brand-title">ITIHASA</span>
+            <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+          </div>
+          <p>
+            An interactive digital sanctuary dedicated to celebrating and preserving the timeless cultural, philosophical, and artistic heritage of Ramayana and Mahabharata.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">The Epics</h4>
+          <ul class="footer-links">
+            <li><a href="ramayana.html" class="footer-link">Ramayana — Path of Dharma</a></li>
+            <li><a href="mahabharata.html" class="footer-link">Mahabharata — Great War</a></li>
+            <li><a href="mahabharata.html#gita" class="footer-link">The Bhagavad Gita</a></li>
+            <li><a href="ramayana.html#kandas" class="footer-link">The Seven Kandas</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Exploration</h4>
+          <ul class="footer-links">
+            <li><a href="characters.html" class="footer-link">Divine Characters</a></li>
+            <li><a href="places.html" class="footer-link">Sacred Places</a></li>
+            <li><a href="wisdom.html" class="footer-link">Teachings & Wisdom</a></li>
+            <li><a href="about.html" class="footer-link">About the Museum</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Tradition</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#art" class="footer-link">Artistic Inspiration</a></li>
+            <li><a href="about.html#music" class="footer-link">Music Design</a></li>
+            <li><a href="wisdom.html" class="footer-link">Sanskrit Verses</a></li>
+            <li><a href="about.html#sources" class="footer-link">Literary Lineage</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-quote">
+        मङ्गलं कोसलालेन्द्राय महनीयगुणाब्धये। चक्रवर्तितनूजाय सार्वभौमाय मङ्गलम्॥
+        <small>"Auspiciousness to the Lord of Kosala, ocean of illustrious virtues, son of the Emperor, Sovereign of all — auspiciousness forever."</small>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ITIHASA — The Eternal Stories of Bharat. Dedicated to the eternal heritage of Indian civilization.</p>
+        <p>Built with HTML5, CSS3 &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/ramayana.js"></script>
+</body>
+</html>

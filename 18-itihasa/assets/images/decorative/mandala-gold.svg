@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E6C77A" stop-opacity="0.3"/>
+      <stop offset="60%" stop-color="#C99A45" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#C99A45" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="300" cy="300" r="280" fill="url(#goldGlow)"/>
+  <circle cx="300" cy="300" r="260" stroke="#E6C77A" stroke-width="2" stroke-dasharray="8 6"/>
+  <circle cx="300" cy="300" r="240" stroke="#C99A45" stroke-width="3"/>
+  <circle cx="300" cy="300" r="180" stroke="#E6C77A" stroke-width="2"/>
+  <circle cx="300" cy="300" r="120" stroke="#C99A45" stroke-width="2.5" stroke-dasharray="4 4"/>
+  <circle cx="300" cy="300" r="60" stroke="#E6C77A" stroke-width="3" fill="#571F27" fill-opacity="0.4"/>
+  <!-- 16 Petals -->
+  <g transform="rotate(0.0 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(22.5 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(45.0 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(67.5 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(90.0 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(112.5 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(135.0 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(157.5 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(180.0 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(202.5 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(225.0 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(247.5 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(270.0 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(292.5 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(315.0 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(337.5 300 300)"><path d="M300 120 C280 180 290 230 300 240 C310 230 320 180 300 120 Z" fill="#C99A45" fill-opacity="0.25" stroke="#E6C77A" stroke-width="1.5"/></g>
+  <g transform="rotate(0 300 300)"><path d="M300 50 C270 120 285 180 300 180 C315 180 330 120 300 50 Z" fill="#8E3037" fill-opacity="0.2" stroke="#E6C77A" stroke-width="2"/></g>
+  <g transform="rotate(45 300 300)"><path d="M300 50 C270 120 285 180 300 180 C315 180 330 120 300 50 Z" fill="#8E3037" fill-opacity="0.2" stroke="#E6C77A" stroke-width="2"/></g>
+  <g transform="rotate(90 300 300)"><path d="M300 50 C270 120 285 180 300 180 C315 180 330 120 300 50 Z" fill="#8E3037" fill-opacity="0.2" stroke="#E6C77A" stroke-width="2"/></g>
+  <g transform="rotate(135 300 300)"><path d="M300 50 C270 120 285 180 300 180 C315 180 330 120 300 50 Z" fill="#8E3037" fill-opacity="0.2" stroke="#E6C77A" stroke-width="2"/></g>
+  <g transform="rotate(180 300 300)"><path d="M300 50 C270 120 285 180 300 180 C315 180 330 120 300 50 Z" fill="#8E3037" fill-opacity="0.2" stroke="#E6C77A" stroke-width="2"/></g>
+  <g transform="rotate(225 300 300)"><path d="M300 50 C270 120 285 180 300 180 C315 180 330 120 300 50 Z" fill="#8E3037" fill-opacity="0.2" stroke="#E6C77A" stroke-width="2"/></g>
+  <g transform="rotate(270 300 300)"><path d="M300 50 C270 120 285 180 300 180 C315 180 330 120 300 50 Z" fill="#8E3037" fill-opacity="0.2" stroke="#E6C77A" stroke-width="2"/></g>
+  <g transform="rotate(315 300 300)"><path d="M300 50 C270 120 285 180 300 180 C315 180 330 120 300 50 Z" fill="#8E3037" fill-opacity="0.2" stroke="#E6C77A" stroke-width="2"/></g>
+</svg>

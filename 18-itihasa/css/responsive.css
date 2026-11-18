@@ -1,0 +1,204 @@
+/* ==========================================================================
+   ITIHASA — RESPONSIVE DESIGN & MEDIA QUERIES
+   css/responsive.css
+   ========================================================================== */
+
+/* Large Laptop / Desktop (<= 1400px) */
+@media (max-width: 1400px) {
+  .hero-title {
+    font-size: 3.2rem;
+  }
+  .section-title {
+    font-size: 2.4rem;
+  }
+}
+
+/* Laptop (<= 1200px) */
+@media (max-width: 1200px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gita-paths-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .war-phases-container {
+    grid-template-columns: 240px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Tablet (<= 992px) */
+@media (max-width: 992px) {
+  .main-nav .nav-links {
+    display: none;
+  }
+  .mobile-toggle {
+    display: block;
+  }
+  .hero-title {
+    font-size: 2.6rem;
+  }
+  .hero-desc {
+    font-size: 1.2rem;
+  }
+  .epics-duo-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .epic-panel {
+    min-height: 440px;
+    padding: 2.5rem 1.8rem;
+  }
+  .kanda-showcase-card, .mb-chapter-card {
+    grid-template-columns: 1fr;
+  }
+  .kanda-visual-col {
+    min-height: 320px;
+  }
+  .gita-intro-grid {
+    grid-template-columns: 1fr;
+  }
+  .journey-node {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .journey-path-timeline::before {
+    left: 20px;
+  }
+  .journey-node:nth-child(even) .journey-card-content,
+  .journey-node:nth-child(odd) .journey-card-content {
+    grid-column: 1;
+    text-align: left;
+    margin-left: 50px;
+  }
+  .journey-node:nth-child(even) .journey-card-img,
+  .journey-node:nth-child(odd) .journey-card-img {
+    grid-column: 1;
+    margin-left: 50px;
+  }
+  .journey-marker {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .war-phases-container {
+    grid-template-columns: 1fr;
+  }
+  .war-days-list {
+    max-height: 220px;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .btn-war-day {
+    min-width: 150px;
+  }
+  .modal-content {
+    grid-template-columns: 1fr;
+  }
+  .modal-img-col {
+    max-height: 280px;
+  }
+}
+
+/* Mobile Devices (<= 768px) */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  .hero-section {
+    padding: 7rem 0 4rem 0;
+  }
+  .hero-title {
+    font-size: 2.1rem;
+    letter-spacing: 0.05em;
+  }
+  .hero-sanskrit-tag {
+    font-size: 1.4rem;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+  .btn-primary, .btn-secondary {
+    width: 100%;
+  }
+  .section-title {
+    font-size: 1.95rem;
+  }
+  .section-subtitle {
+    font-size: 1.1rem;
+  }
+  .epic-grid {
+    grid-template-columns: 1fr;
+  }
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+  .gita-paths-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  .global-audio-player {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    padding: 0.65rem 0.9rem;
+    justify-content: space-between;
+  }
+  .player-track-name {
+    display: none;
+  }
+  .player-volume-wrap {
+    display: none;
+  }
+  .shloka-sanskrit {
+    font-size: 1.5rem;
+  }
+  .shloka-transliteration {
+    font-size: 1.1rem;
+  }
+}
+
+/* Compact Mobile (<= 480px / 390px) */
+@media (max-width: 480px) {
+  .brand-title {
+    font-size: 1.4rem;
+  }
+  .brand-icon {
+    width: 34px;
+    height: 34px;
+  }
+  .hero-title {
+    font-size: 1.85rem;
+  }
+  .btn-music-toggle span.music-text {
+    display: none;
+  }
+  .btn-music-toggle {
+    padding: 0.4rem 0.6rem;
+  }
+  .kanda-text-col, .war-display-body {
+    padding: 1.75rem 1.25rem;
+  }
+  .gita-shloka-explorer {
+    padding: 1.75rem 1.25rem;
+  }
+}

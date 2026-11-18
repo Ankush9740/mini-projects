@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teachings & Wisdom of the Epics | ITIHASA</title>
+  <meta name="description" content="Discover timeless philosophical teachings, sacred Sanskrit shlokas, and universal ethics from Ramayana, Mahabharata, and the Bhagavad Gita.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .wisdom-tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-bottom: 3.5rem;
+    }
+    .wisdom-tab-btn {
+      background: rgba(26, 17, 14, 0.75);
+      border: 1px solid rgba(230, 199, 122, 0.35);
+      color: var(--color-sandalwood-cream);
+      padding: 0.6rem 1.4rem;
+      border-radius: 25px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      letter-spacing: 0.05em;
+    }
+    .wisdom-tab-btn:hover, .wisdom-tab-btn.active {
+      background: var(--color-royal-crimson);
+      border-color: var(--color-bright-gold);
+      color: var(--color-bright-gold);
+      box-shadow: 0 0 15px rgba(201, 154, 69, 0.4);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="wisdom-page">
+
+  <!-- Floating Particles Canvas -->
+  <canvas id="canvas-particles"></canvas>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo" aria-label="ITIHASA Home">
+        <img src="assets/icons/om.svg" alt="ITIHASA Sacred Emblem" class="brand-icon">
+        <div class="brand-text">
+          <span class="brand-title">ITIHASA</span>
+          <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="ramayana.html" class="nav-link">Ramayana</a></li>
+          <li><a href="mahabharata.html" class="nav-link">Mahabharata</a></li>
+          <li><a href="characters.html" class="nav-link">Characters</a></li>
+          <li><a href="places.html" class="nav-link">Sacred Places</a></li>
+          <li><a href="wisdom.html" class="nav-link active">Wisdom</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="header-music-btn" class="btn-music-toggle" aria-label="Toggle Ambient Epic Music">
+          <div class="music-waves">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="music-text">Ambient Music</span>
+        </button>
+
+        <button class="mobile-toggle" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-text">
+        <span class="brand-title" style="font-size: 1.4rem;">ITIHASA</span>
+        <span class="brand-tagline">इतिहास • भारत</span>
+      </div>
+      <button class="mobile-close-btn" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="ramayana.html" class="mobile-nav-link">Ramayana</a></li>
+      <li><a href="mahabharata.html" class="mobile-nav-link">Mahabharata</a></li>
+      <li><a href="characters.html" class="mobile-nav-link">Divine Characters</a></li>
+      <li><a href="places.html" class="mobile-nav-link">Sacred Places</a></li>
+      <li><a href="wisdom.html" class="mobile-nav-link active">Teachings & Wisdom</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About & Heritage</a></li>
+    </ul>
+  </div>
+  <div class="mobile-overlay"></div>
+
+  <!-- Main Content -->
+  <main style="padding-top: 8rem; min-height: 80vh;">
+    <div class="container container-narrow">
+      <div class="section-header reveal">
+        <div class="section-sanskrit">अमृतवाणी • शाश्वतं सुभाषितम्</div>
+        <h1 class="section-title">TEACHINGS &amp; WISDOM OF THE EPICS</h1>
+        <p class="section-subtitle">
+          An ancient manuscript-inspired reading sanctum. Contemplate the immortal shlokas, ethical inquiries, and spiritual guidance that have guided civilization across millennia.
+        </p>
+        <div class="section-ornament">
+          <img src="assets/icons/feather.svg" alt="Feather" class="section-ornament-icon">
+        </div>
+      </div>
+
+      <!-- Categories Filter Tabs -->
+      <div class="wisdom-tabs-bar reveal">
+        <button class="wisdom-tab-btn active" data-category="all">All Teachings</button>
+        <button class="wisdom-tab-btn" data-category="dharma">Dharma &amp; Duty</button>
+        <button class="wisdom-tab-btn" data-category="courage">Courage &amp; Sacrifice</button>
+        <button class="wisdom-tab-btn" data-category="devotion">Devotion &amp; Loyalty</button>
+        <button class="wisdom-tab-btn" data-category="wisdom">Wisdom &amp; Knowledge</button>
+        <button class="wisdom-tab-btn" data-category="friendship">Friendship &amp; Bonds</button>
+        <button class="wisdom-tab-btn" data-category="leadership">Leadership &amp; Statecraft</button>
+        <button class="wisdom-tab-btn" data-category="karma">Consequences of Action (Karma)</button>
+      </div>
+
+      <!-- Dynamic Manuscript Cards Container -->
+      <div id="wisdom-cards-container">
+        <!-- Dynamically rendered by js/wisdom.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Modal Dialog -->
+  <div id="global-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-img-col">
+        <img src="" alt="Modal Detail Artwork">
+      </div>
+      <div class="modal-info-col">
+        <span class="modal-epic-tag">Wisdom</span>
+        <h2 class="modal-title">Title</h2>
+        <p class="modal-subtitle">Role / Subtitle</p>
+        <p class="modal-desc">Detailed Description</p>
+
+        <h4 class="modal-section-title">Core Qualities & Virtues</h4>
+        <div class="modal-traits-list"></div>
+
+        <h4 class="modal-section-title">Associated Legends & Events</h4>
+        <p class="modal-associated-events" style="font-size: 0.95rem; color: #D9C49D; line-height: 1.6;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING GLOBAL AMBIENT MUSIC PLAYER -->
+  <aside class="global-audio-player" aria-label="Ambient Music Player">
+    <div class="player-info">
+      <span class="player-theme-title" id="player-theme-title">Ramayana Ambience</span>
+      <span class="player-track-name" id="player-track-name">Raag Bhoopali • Flute & Tanpura</span>
+    </div>
+
+    <div class="player-controls">
+      <button id="player-play-btn" class="btn-player-action" aria-label="Play/Pause Audio">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+
+      <button id="player-mute-btn" class="btn-player-action" aria-label="Mute/Unmute Audio">
+        <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+
+      <div class="player-volume-wrap">
+        <input type="range" id="player-volume" class="player-volume-slider" min="0" max="1" step="0.05" value="0.65" aria-label="Volume Slider">
+      </div>
+
+      <div class="player-theme-switch">
+        <button id="pill-theme-ramayana" class="btn-theme-pill active">Ramayana</button>
+        <button id="pill-theme-mahabharata" class="btn-theme-pill theme-mahabharata">Mahabharata</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-top-border"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-text">
+            <span class="brand-title">ITIHASA</span>
+            <span class="brand-tagline">Where Dharma Lives Beyond Time</span>
+          </div>
+          <p>
+            An interactive digital sanctuary dedicated to celebrating and preserving the timeless cultural, philosophical, and artistic heritage of Ramayana and Mahabharata.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">The Epics</h4>
+          <ul class="footer-links">
+            <li><a href="ramayana.html" class="footer-link">Ramayana — Path of Dharma</a></li>
+            <li><a href="mahabharata.html" class="footer-link">Mahabharata — Great War</a></li>
+            <li><a href="mahabharata.html#gita" class="footer-link">The Bhagavad Gita</a></li>
+            <li><a href="ramayana.html#kandas" class="footer-link">The Seven Kandas</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Exploration</h4>
+          <ul class="footer-links">
+            <li><a href="characters.html" class="footer-link">Divine Characters</a></li>
+            <li><a href="places.html" class="footer-link">Sacred Places</a></li>
+            <li><a href="wisdom.html" class="footer-link">Teachings & Wisdom</a></li>
+            <li><a href="about.html" class="footer-link">About the Museum</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Tradition</h4>
+          <ul class="footer-links">
+            <li><a href="about.html#art" class="footer-link">Artistic Inspiration</a></li>
+            <li><a href="about.html#music" class="footer-link">Music Design</a></li>
+            <li><a href="wisdom.html" class="footer-link">Sanskrit Verses</a></li>
+            <li><a href="about.html#sources" class="footer-link">Literary Lineage</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-quote">
+        असतो मा सद्गमय। तमसो मा ज्योतिर्गमय। मृत्योर्मा अमृतं गमय॥
+        <small>"Lead us from the unreal to the real, from darkness to light, from death to immortality."</small>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ITIHASA — The Eternal Stories of Bharat. Dedicated to the eternal heritage of Indian civilization.</p>
+        <p>Built with HTML5, CSS3 &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/wisdom.js"></script>
+</body>
+</html>
