@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/assets.js"></script>
 </head>
 <body>
 
@@ -86,15 +87,15 @@
     <!-- HERO SECTION: LORD RAMA & GODDESS SITA (PROMINENT HIGHEST PRIORITY) -->
     <section class="hero-section" id="hero">
       <div class="hero-bg-layer">
-        <img src="assets/images/hero/rama-sita-hero.jpg" alt="Lord Rama holding divine Kodanda bow with Goddess Sita in Dandakaranya forest" class="hero-bg-img">
+        <img src="assets/images/hero/rama-sita-hero.webp" alt="Lord Rama holding divine Kodanda bow with Goddess Sita in Dandakaranya forest" class="hero-bg-img" onerror="if(window.ITIHASA_ASSETS) ITIHASA_ASSETS.handleImageError(this, 'Lord Rama & Goddess Sita', 'श्री सीताराम');">
         <div class="hero-overlay-gradient"></div>
       </div>
 
       <div class="container hero-content">
-        <div class="hero-sanskrit-tag reveal">रामायण • महाभारत</div>
-        <h1 class="hero-title reveal delay-100">THE ETERNAL LIGHT OF DHARMA</h1>
+        <div class="hero-sanskrit-tag reveal">रामो विग्रहवान् धर्मः साधुः सत्यपराक्रमः</div>
+        <h1 class="hero-title reveal delay-100">ITIHASA — THE ETERNAL STORIES OF BHARAT</h1>
         <p class="hero-desc reveal delay-200">
-          Journey through the timeless epics of Bharat — where devotion becomes strength, righteousness guides destiny, and every story carries a lesson beyond time.
+          Where Dharma lives beyond time. Enter the timeless universe of Ramayana and Mahabharata — brought to life through authentic classical art, sacred Sanskrit verses, and the foundational wisdom of Indian civilization.
         </p>
 
         <div class="hero-actions reveal delay-300">
@@ -127,7 +128,6 @@
             Two monumental tapestries of Indian civilization exploring the eternal struggle between Dharma (righteous order) and Adharma (chaos).
           </p>
           <div class="section-ornament">
-            <img src="assets/icons/swastika.svg" alt="Sacred Motif" class="section-ornament-icon" style="display:none;">
             <img src="assets/icons/lotus.svg" alt="Lotus" class="section-ornament-icon">
           </div>
         </div>
@@ -136,7 +136,7 @@
           <!-- Ramayana Panel -->
           <div class="epic-panel ramayana-theme reveal delay-100">
             <div class="epic-panel-bg">
-              <img src="assets/images/ramayana/aranya-kanda.jpg" alt="Lord Rama, Goddess Sita, and Lakshmana in the Dandakaranya forest">
+              <img src="assets/images/kandas/aranya-kanda.webp" alt="Lord Rama, Goddess Sita, and Lakshmana in the Dandakaranya forest" onerror="if(window.ITIHASA_ASSETS) ITIHASA_ASSETS.handleImageError(this, 'Ramayana', 'रामायणम्');">
             </div>
             <div class="epic-panel-overlay"></div>
             <div class="epic-panel-content">
@@ -286,14 +286,14 @@
           <!-- Dynamically populated / fallback static cards -->
           <div class="card-ancient reveal shimmer-hover" data-epic="ramayana">
             <div class="card-ancient-img-wrap landscape">
-              <img src="assets/images/ramayana/rama-exile.jpg" alt="Rama's Exile">
+              <img src="assets/images/events/forest-exile.webp" alt="Rama's Exile" onerror="if(window.ITIHASA_ASSETS) ITIHASA_ASSETS.handleImageError(this, 'Rama Exile');">
               <span class="card-badge">Ramayana</span>
             </div>
             <div class="card-ancient-body">
               <h3 class="card-title">Rama's Exile to the Forest</h3>
               <p class="card-desc">Upholding his father’s sacred promise, Lord Rama renounces the imperial throne of Ayodhya to live in the Dandakaranya forest for fourteen years.</p>
               <div class="card-footer">
-                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Rama\'s Exile', role:'Sacrifice for Truth (Satya)', image:'assets/images/ramayana/rama-exile.jpg', desc:'To safeguard his father King Dasharatha\'s sacred word and uphold Dharma, Lord Rama peacefully renounced the throne of Ayodhya without a shred of resentment. Joined by Goddess Sita and Lakshmana, he set the highest standard of filial reverence and detachment.', qualities:['Satya (Truth)','Uncompromising Duty','Renunciation of Power'], associated:'Ayodhya Kanda, Crossing the Ganga with Guha, Chitrakoot Hermitage'})">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Rama\'s Exile', role:'Sacrifice for Truth (Satya)', image:'assets/images/events/forest-exile.webp', desc:'To safeguard his father King Dasharatha\'s sacred word and uphold Dharma, Lord Rama peacefully renounced the throne of Ayodhya without a shred of resentment. Joined by Goddess Sita and Lakshmana, he set the highest standard of filial reverence and detachment.', qualities:['Satya (Truth)','Uncompromising Duty','Renunciation of Power'], associated:'Ayodhya Kanda, Crossing the Ganga with Guha, Chitrakoot Hermitage'})">
                   View Moment Details →
                 </button>
               </div>
@@ -302,14 +302,14 @@
 
           <div class="card-ancient reveal shimmer-hover" data-epic="ramayana">
             <div class="card-ancient-img-wrap landscape">
-              <img src="assets/images/ramayana/rama-setu.jpg" alt="Construction of Rama Setu">
+              <img src="assets/images/events/rama-setu.webp" alt="Construction of Rama Setu" onerror="if(window.ITIHASA_ASSETS) ITIHASA_ASSETS.handleImageError(this, 'Rama Setu');">
               <span class="card-badge">Ramayana</span>
             </div>
             <div class="card-ancient-body">
               <h3 class="card-title">The Building of Rama Setu</h3>
               <p class="card-desc">Millions of Vanaras write the sacred name of 'RAMA' on stones, constructing a miraculous floating bridge across the roaring ocean to Lanka.</p>
               <div class="card-footer">
-                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Construction of Rama Setu', role:'The Triumph of Devotion over the Boundless Sea', image:'assets/images/ramayana/rama-setu.jpg', desc:'When the ocean king yielded to Rama\'s righteousness, architects Nala and Nila supervised the building of the causeway. Every creature, from colossal Vanaras to a humble little squirrel, offered their devoted service, proving that love unites all in Dharma.', qualities:['Faith and Action','Unity in Purpose','Divine Grace'], associated:'Yuddha Kanda, Rameswaram, Samudra Deva Blessings'})">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Construction of Rama Setu', role:'The Triumph of Devotion over the Boundless Sea', image:'assets/images/events/rama-setu.webp', desc:'When the ocean king yielded to Rama\'s righteousness, architects Nala and Nila supervised the building of the causeway. Every creature, from colossal Vanaras to a humble little squirrel, offered their devoted service, proving that love unites all in Dharma.', qualities:['Faith and Action','Unity in Purpose','Divine Grace'], associated:'Yuddha Kanda, Rameswaram, Samudra Deva Blessings'})">
                   View Moment Details →
                 </button>
               </div>
@@ -350,14 +350,14 @@
 
           <div class="card-ancient reveal shimmer-hover" data-epic="ramayana">
             <div class="card-ancient-img-wrap landscape">
-              <img src="assets/images/ramayana/return-ayodhya.jpg" alt="Return to Ayodhya">
+              <img src="assets/images/events/ayodhya-return.webp" alt="Return to Ayodhya" onerror="if(window.ITIHASA_ASSETS) ITIHASA_ASSETS.handleImageError(this, 'Return to Ayodhya');">
               <span class="card-badge">Ramayana</span>
             </div>
             <div class="card-ancient-body">
               <h3 class="card-title">The Coronation & Deepotsava</h3>
               <p class="card-desc">Returning victorious after fourteen years, Lord Rama and Sita are crowned in Ayodhya, inaugurating the golden age of Ramrajya amidst millions of lamps.</p>
               <div class="card-footer">
-                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Return to Ayodhya', role:'The Dawn of Ramrajya & Celebration of Diwali', image:'assets/images/ramayana/return-ayodhya.jpg', desc:'Ayodhya erupted in ecstatic joy as the citizens illuminated every house, street, and rooftop with earthen oil lamps to welcome Rama, Sita, and Lakshmana. The coronation marked the beginning of Ramrajya, where justice, virtue, and peace reigned across nature.', qualities:['Celebration of Righteousness','The First Deepavali','Just Governance'], associated:'Yuddha Kanda & Uttara Kanda, Pushpaka Vimana, Rajyabhisheka'})">
+                <button class="card-link-btn" onclick="ItihasaModal.open({epic:'Ramayana', name:'Return to Ayodhya', role:'The Dawn of Ramrajya & Celebration of Diwali', image:'assets/images/events/ayodhya-return.webp', desc:'Ayodhya erupted in ecstatic joy as the citizens illuminated every house, street, and rooftop with earthen oil lamps to welcome Rama, Sita, and Lakshmana. The coronation marked the beginning of Ramrajya, where justice, virtue, and peace reigned across nature.', qualities:['Celebration of Righteousness','The First Deepavali','Just Governance'], associated:'Yuddha Kanda & Uttara Kanda, Pushpaka Vimana, Rajyabhisheka'})">
                   View Moment Details →
                 </button>
               </div>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Sacred Surya / Solar Dynasty Emblem -->
+  <circle cx="50" cy="50" r="18" fill="none" stroke="#E6C77A" stroke-width="4"/>
+  <circle cx="50" cy="50" r="10" fill="#C99A45"/>
+  <!-- Cardinal Rays -->
+  <line x1="50" y1="12" x2="50" y2="24" stroke="#E6C77A" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="76" x2="50" y2="88" stroke="#E6C77A" stroke-width="4" stroke-linecap="round"/>
+  <line x1="12" y1="50" x2="24" y2="50" stroke="#E6C77A" stroke-width="4" stroke-linecap="round"/>
+  <line x1="76" y1="50" x2="88" y2="50" stroke="#E6C77A" stroke-width="4" stroke-linecap="round"/>
+  <!-- Diagonal Rays -->
+  <line x1="23" y1="23" x2="32" y2="32" stroke="#C99A45" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="77" y1="77" x2="68" y2="68" stroke="#C99A45" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="23" y1="77" x2="32" y2="68" stroke="#C99A45" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="77" y1="23" x2="68" y2="32" stroke="#C99A45" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

@@ -1,48 +1,30 @@
 /* ==========================================================================
-   ITIHASA — RAMAYANA EXPERIENCE STYLES
+   ITIHASA — REFINED RAMAYANA EXPERIENCE STYLES
    css/ramayana.css
+   
+   Aged Parchment, Sacred Forest Green, Sandalwood, Antique Gold & Saffron
    ========================================================================== */
 
 :root {
-  --ramayana-theme-green: #344E3D;
-  --ramayana-theme-gold: #E6C77A;
-  --ramayana-theme-sandstone: #D9C49D;
-  --ramayana-theme-crimson: #8E3037;
-  --ramayana-theme-dark: #16241B;
+  --ramayana-forest: #223829;
+  --ramayana-forest-soft: #385942;
+  --ramayana-saffron: #B8531D;
+  --ramayana-gold: #9F762B;
+  --ramayana-parchment: #FAF6EE;
+  --ramayana-panel: #F4EFEB;
 }
 
-/* Page Hero Banner for Ramayana */
+/* Page Hero for Ramayana */
 .ramayana-hero {
   position: relative;
-  min-height: 80vh;
+  min-height: 82vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8rem 2rem 5rem 2rem;
+  padding: 8.5rem 2rem 5rem 2rem;
+  background-color: var(--ramayana-panel);
+  border-bottom: 1px solid var(--accent-gold-hairline);
   overflow: hidden;
-  background-color: var(--ramayana-theme-dark);
-}
-
-.ramayana-hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.ramayana-hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.68) saturate(1.1);
-}
-
-.ramayana-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(180deg, rgba(22, 36, 27, 0.7) 0%, rgba(22, 36, 27, 0.3) 40%, rgba(18, 12, 10, 0.9) 85%, #120C0A 100%),
-    radial-gradient(circle at 50% 40%, rgba(201, 154, 69, 0.15) 0%, transparent 60%);
-  z-index: 2;
 }
 
 .ramayana-hero-content {
@@ -52,45 +34,64 @@
   max-width: 900px;
 }
 
+.ramayana-hero-art {
+  max-width: 860px;
+  margin: 0 auto 2.5rem auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--accent-gold-hairline);
+  background: #FFFFFF;
+}
+
+.ramayana-hero-art img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+/* Kanda Nav Buttons */
 .ramayana-kanda-nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 3rem 0;
+  gap: 0.65rem;
+  margin: 2.5rem 0 3.5rem 0;
 }
 
 .kanda-nav-btn {
-  background: rgba(36, 59, 44, 0.6);
-  border: 1px solid rgba(230, 199, 122, 0.4);
-  color: var(--color-sandalwood-cream);
-  padding: 0.6rem 1.4rem;
-  border-radius: 25px;
+  background: var(--bg-parchment-card);
+  border: 1px solid var(--accent-gold-hairline);
+  color: var(--text-ink-secondary);
+  padding: 0.55rem 1.3rem;
+  border-radius: 20px;
   font-family: var(--font-heading);
   font-size: 0.85rem;
   cursor: pointer;
   transition: var(--transition-fast);
-  backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-subtle);
 }
 
 .kanda-nav-btn:hover, .kanda-nav-btn.active {
-  background: var(--color-royal-crimson);
-  border-color: var(--color-bright-gold);
-  color: var(--color-bright-gold);
-  box-shadow: 0 0 15px rgba(201, 154, 69, 0.4);
+  background: var(--accent-saffron);
+  border-color: var(--accent-saffron);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-card);
   transform: translateY(-2px);
 }
 
 /* 7 Kandas Interactive Showcase */
 .kanda-showcase-card {
   display: none;
-  background: rgba(22, 32, 25, 0.85);
-  border: 1px solid var(--color-temple-gold);
-  border-radius: 12px;
+  background: var(--bg-parchment-card);
+  border: 1px solid var(--accent-gold-hairline);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-  grid-template-columns: 1.1fr 1fr;
-  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: var(--shadow-card);
+  grid-template-columns: 1.15fr 1fr;
+  animation: fadeInSubtle 0.4s ease forwards;
 }
 
 .kanda-showcase-card.active {
@@ -101,33 +102,34 @@
   position: relative;
   min-height: 480px;
   overflow: hidden;
-  background-color: #0d1610;
+  background-color: var(--bg-parchment-dark);
 }
 
 .kanda-visual-col img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s ease;
+  transition: transform 0.5s ease;
 }
 
 .kanda-showcase-card:hover .kanda-visual-col img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .kanda-number-badge {
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  background: rgba(87, 31, 39, 0.9);
-  color: var(--color-bright-gold);
-  border: 1px solid var(--color-temple-gold);
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
+  top: 1.25rem;
+  left: 1.25rem;
+  background: rgba(250, 246, 238, 0.94);
+  color: var(--accent-vermilion);
+  border: 1px solid var(--accent-gold-hairline);
+  padding: 0.35rem 0.85rem;
+  border-radius: 14px;
   font-family: var(--font-heading);
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  backdrop-filter: blur(4px);
 }
 
 .kanda-text-col {
@@ -138,49 +140,49 @@
 
 .kanda-sanskrit {
   font-family: var(--font-sanskrit);
-  font-size: 1.3rem;
-  color: var(--color-temple-gold);
-  margin-bottom: 0.3rem;
+  font-size: 1.35rem;
+  color: var(--accent-vermilion);
+  margin-bottom: 0.25rem;
 }
 
 .kanda-title {
   font-family: var(--font-display);
-  font-size: 2.2rem;
-  color: var(--color-bright-gold);
-  margin-bottom: 0.5rem;
+  font-size: 2.1rem;
+  color: var(--text-ink-primary);
+  margin-bottom: 0.4rem;
 }
 
 .kanda-subtitle {
   font-family: var(--font-subheading);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-style: italic;
-  color: var(--color-antique-beige);
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(230, 199, 122, 0.2);
-  padding-bottom: 0.8rem;
+  color: var(--text-ink-muted);
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--accent-gold-hairline);
+  padding-bottom: 0.75rem;
 }
 
 .kanda-desc {
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   line-height: 1.8;
-  color: #D8CEBD;
-  margin-bottom: 1.75rem;
+  color: var(--text-ink-secondary);
+  margin-bottom: 1.5rem;
 }
 
 .kanda-highlights {
-  background: rgba(14, 22, 17, 0.6);
-  border-left: 3px solid var(--color-temple-gold);
-  padding: 1rem 1.25rem;
-  margin-bottom: 2rem;
-  border-radius: 0 6px 6px 0;
+  background: var(--bg-manuscript-panel);
+  border-left: 3px solid var(--accent-saffron);
+  padding: 1.15rem 1.35rem;
+  margin-bottom: 1.75rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
 .kanda-highlights h5 {
-  font-size: 0.88rem;
-  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
-  color: var(--color-temple-gold);
+  color: var(--accent-saffron);
 }
 
 .kanda-highlights ul {
@@ -189,9 +191,9 @@
 
 .kanda-highlights li {
   font-size: 0.95rem;
-  color: #C7BBA8;
+  color: var(--text-ink-secondary);
   position: relative;
-  padding-left: 1.25rem;
+  padding-left: 1.2rem;
   margin-bottom: 0.35rem;
 }
 
@@ -199,8 +201,8 @@
   content: '✦';
   position: absolute;
   left: 0;
-  color: var(--color-divine-gold);
-  font-size: 0.8rem;
+  color: var(--accent-gold);
+  font-size: 0.75rem;
 }
 
 .kanda-pagination-nav {
@@ -208,35 +210,32 @@
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(230, 199, 122, 0.2);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--accent-gold-hairline);
 }
 
 .btn-kanda-prev, .btn-kanda-next {
-  background: none;
-  border: 1px solid rgba(230, 199, 122, 0.4);
-  color: var(--color-temple-gold);
-  padding: 0.5rem 1.2rem;
-  border-radius: 4px;
+  background: var(--bg-parchment-soft);
+  border: 1px solid var(--accent-gold-hairline);
+  color: var(--text-ink-secondary);
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--radius-sm);
   font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   cursor: pointer;
   transition: var(--transition-fast);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .btn-kanda-prev:hover, .btn-kanda-next:hover {
-  background: var(--color-deep-maroon);
-  color: var(--color-bright-gold);
-  border-color: var(--color-bright-gold);
+  background: var(--accent-saffron);
+  border-color: var(--accent-saffron);
+  color: #FFFFFF;
 }
 
 /* Map Journey (Locations Journey) */
 .ramayana-map-journey {
   position: relative;
-  padding: 3rem 0;
+  padding: 2.5rem 0;
 }
 
 .journey-path-timeline {
@@ -253,14 +252,13 @@
   bottom: 0;
   left: 50%;
   width: 2px;
-  background: linear-gradient(180deg, var(--color-temple-gold) 0%, var(--color-royal-crimson) 50%, var(--color-divine-gold) 100%);
+  background: var(--accent-gold-hairline);
   transform: translateX(-50%);
-  opacity: 0.4;
 }
 
 .journey-node {
   display: grid;
-  grid-template-columns: 1fr 100px 1fr;
+  grid-template-columns: 1fr 80px 1fr;
   align-items: center;
   position: relative;
 }
@@ -268,7 +266,6 @@
 .journey-node:nth-child(even) .journey-card-content {
   grid-column: 3;
 }
-
 .journey-node:nth-child(even) .journey-card-img {
   grid-column: 1;
   grid-row: 1;
@@ -278,7 +275,6 @@
   grid-column: 1;
   text-align: right;
 }
-
 .journey-node:nth-child(odd) .journey-card-img {
   grid-column: 3;
 }
@@ -286,40 +282,39 @@
 .journey-marker {
   grid-column: 2;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 5;
 }
 
 .marker-circle {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: var(--color-deep-maroon);
-  border: 2px solid var(--color-temple-gold);
+  background: var(--bg-parchment-card);
+  border: 2px solid var(--accent-saffron);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-bright-gold);
+  color: var(--accent-vermilion);
   font-family: var(--font-heading);
   font-size: 0.85rem;
   font-weight: 700;
-  box-shadow: 0 0 15px rgba(201, 154, 69, 0.5);
+  box-shadow: var(--shadow-subtle);
 }
 
 .journey-card-content {
-  background: rgba(22, 34, 26, 0.85);
-  border: 1px solid rgba(230, 199, 122, 0.3);
-  border-radius: 8px;
-  padding: 1.8rem;
+  background: var(--bg-parchment-card);
+  border: 1px solid var(--accent-gold-hairline);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
   box-shadow: var(--shadow-card);
 }
 
 .journey-card-img {
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   overflow: hidden;
-  border: 1px solid rgba(230, 199, 122, 0.3);
+  border: 1px solid var(--accent-gold-hairline);
   box-shadow: var(--shadow-card);
   max-height: 240px;
 }
@@ -328,4 +323,126 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Tradition Showcase Panels */
+.tradition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.tradition-card {
+  background: var(--bg-parchment-card);
+  border: 1px solid var(--accent-gold-hairline);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+}
+
+.tradition-card:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+}
+
+.tradition-lang {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-saffron);
+  margin-bottom: 0.25rem;
+}
+
+.tradition-title {
+  font-size: 1.2rem;
+  color: var(--text-ink-primary);
+  margin-bottom: 0.25rem;
+}
+
+.tradition-author {
+  font-family: var(--font-subheading);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-ink-muted);
+  margin-bottom: 0.75rem;
+}
+
+.tradition-desc {
+  font-size: 0.92rem;
+  color: var(--text-ink-secondary);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Hanuman Dedicated Section */
+.hanuman-section {
+  background: var(--bg-manuscript-panel);
+  border-top: 1px solid var(--accent-gold-hairline);
+  border-bottom: 1px solid var(--accent-gold-hairline);
+  padding: 6rem 0;
+}
+
+.hanuman-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hanuman-art-frame {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--accent-gold-hairline);
+  background: #FFFFFF;
+}
+
+.hanuman-art-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Glossary Grid */
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.glossary-card {
+  background: var(--bg-parchment-card);
+  border: 1px solid var(--accent-gold-hairline);
+  border-left: 3px solid var(--accent-saffron);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.glossary-term {
+  font-family: var(--font-sanskrit);
+  font-size: 1.15rem;
+  color: var(--accent-vermilion);
+  margin-bottom: 0.15rem;
+}
+
+.glossary-iast {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--text-ink-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.glossary-def {
+  font-size: 0.92rem;
+  color: var(--text-ink-secondary);
+  line-height: 1.6;
+  margin-bottom: 0;
 }

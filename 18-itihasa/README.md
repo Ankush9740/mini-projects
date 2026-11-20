@@ -67,16 +67,25 @@ The website includes a floating, dockable ambient music controller on every page
 
 ---
 
-## ✦ Visual & Graphic Assets
+## ✦ Authentic Visual Direction & Image Organization
 
-All images and icons are organized cleanly in `assets/`:
-- `assets/images/hero/`: Ultra-high-definition Raja Ravi Varma-inspired epic oil paintings of Rama & Sita and Krishna & Arjuna.
-- `assets/images/characters/`: 35 traditional miniature-style character portraits with ornate torana frames, golden prabhavali auras, and Sanskrit cartouches.
-- `assets/images/ramayana/`: 15 illustrated banners for the 7 Kandas and iconic events.
-- `assets/images/mahabharata/`: 15 illustrated banners for the 11 chapters, turning points, and battlefields.
-- `assets/images/locations/`: 13 architectural and landscape paintings for sacred cities and forests.
-- `assets/images/decorative/`: Golden mandalas, Indian corner motifs, and top border ribbons.
-- `assets/icons/`: 11 handcrafted SVG sacred symbols (Om, Lotus, Bow, Chakra, Chariot, Conch, Flute, Feather, Temple, Diya, Swastika).
+The website features an authentic Indian art aesthetic grounded in classical masterpieces (Raja Ravi Varma lithographs, 17th-century Mewar Ramayana manuscripts, and verified heritage photography).
+
+### Centralized Image Registry (`js/assets.js`)
+All asset paths are managed centrally in `js/assets.js` with sensible, clean filenames:
+- **Hero Artwork**: `assets/images/hero/rama-sita-hero.webp`
+- **Character Cards**: `assets/images/characters/ram.webp`, `sita.webp`, `lakshman.webp`, `hanuman.webp`, `bharat.webp`, `dasharatha.webp`, `kaushalya.webp`, `kaikeyi.webp`, `valmiki.webp`, `jatayu.webp`, `sugriva.webp`, `vibhishana.webp`, `ravana.webp`, etc.
+- **Seven Kandas**: `assets/images/kandas/bala-kanda.webp`, `ayodhya-kanda.webp`, `aranya-kanda.webp`, `kishkindha-kanda.webp`, `sundara-kanda.webp`, `yuddha-kanda.webp`, `uttara-kanda.webp`.
+- **Milestone Events**: `assets/images/events/forest-exile.webp`, `golden-deer.webp`, `sita-abduction.webp`, `ashoka-vatika.webp`, `sanjeevani.webp`, `rama-setu.webp`, `ravana-vadha.webp`, `ayodhya-return.webp`.
+- **Sacred Places**: `assets/images/places/ayodhya.webp`, `mithila.webp`, `chitrakoot.webp`, `panchavati.webp`, `kishkindha.webp`, `rameshwaram.webp`, `lanka.webp`.
+
+### How to Add Your Own Images
+When you wish to replace any image with your personal collection:
+1. Place your `.webp` or `.jpg` file in the corresponding folder under `assets/images/`.
+2. Keep the sensible filename (e.g., `ram.webp`, `sita.webp`, `hanuman.webp`) or update the mapping in `js/assets.js`.
+3. If an image file is ever missing or fails to load, `ITIHASA_ASSETS.handleImageError()` automatically falls back first to a `.jpg` sibling and then to an elegant inline parchment SVG cartouche with Devanagari lettering, preventing broken image placeholders.
+
+---
 
 ---
 

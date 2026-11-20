@@ -49,79 +49,13 @@
     navLinks.forEach(link => link.addEventListener('click', closeMenu));
   }
 
-  // 3. Floating Lotus Petals & Celestial Particles Canvas
+  // 3. Ambient Canvas (Deactivated particles for refined, minimal, timeless aesthetic)
   function initParticleCanvas() {
     const canvas = document.getElementById('canvas-particles');
     if (!canvas) return;
-
+    // Canvas kept cleanly transparent; no distracting particle loops
     const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }, { passive: true });
-
-    const particles = [];
-    const maxParticles = window.innerWidth < 768 ? 20 : 45;
-
-    for (let i = 0; i < maxParticles; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: Math.random() * 4 + 1.5,
-        speedY: Math.random() * 0.4 + 0.2,
-        speedX: (Math.random() - 0.5) * 0.35,
-        opacity: Math.random() * 0.5 + 0.2,
-        isPetal: Math.random() > 0.65,
-        rotation: Math.random() * Math.PI * 2,
-        rotSpeed: (Math.random() - 0.5) * 0.015
-      });
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.y += p.speedY;
-        p.x += p.speedX;
-        p.rotation += p.rotSpeed;
-
-        if (p.y > height + 20) {
-          p.y = -20;
-          p.x = Math.random() * width;
-        }
-        if (p.x < -20) p.x = width + 20;
-        if (p.x > width + 20) p.x = -20;
-
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rotation);
-
-        if (p.isPetal) {
-          // Draw subtle golden/pink lotus petal
-          ctx.beginPath();
-          ctx.fillStyle = `rgba(230, 199, 122, ${p.opacity * 0.6})`;
-          ctx.ellipse(0, 0, p.size * 2, p.size * 1.2, 0, 0, Math.PI * 2);
-          ctx.fill();
-        } else {
-          // Celestial gold dust particle
-          ctx.beginPath();
-          ctx.arc(0, 0, p.size * 0.7, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(243, 231, 208, ${p.opacity * 0.75})`;
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = '#E6C77A';
-          ctx.fill();
-        }
-        ctx.restore();
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
+    if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
   // 4. Guaranteed Scroll Reveal with IntersectionObserver & FailSafe
@@ -194,6 +128,11 @@
       if (imgEl && data.image) {
         imgEl.src = data.image;
         imgEl.alt = data.name || data.title;
+        imgEl.onerror = function() {
+          if (window.ITIHASA_ASSETS) {
+            window.ITIHASA_ASSETS.handleImageError(this, data.name || data.title);
+          }
+        };
       }
       if (descEl) descEl.textContent = data.desc || data.description || '';
 
