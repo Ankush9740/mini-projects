@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>DRAGON BALL: SAIYAN LEGACY</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="game-shell">
+      <!-- Main 16-bit Pixel-Art Canvas (480x270 native) -->
+      <canvas id="game-canvas" width="480" height="270"></canvas>
+
+      <!-- In-Game Retro Arcade HUD -->
+      <div id="hud" class="hidden" aria-live="polite">
+        <div class="hud-top">
+          <!-- Left: Goku Status -->
+          <div class="hud-player">
+            <div class="portrait-box" id="hud-portrait">
+              <canvas id="portrait-canvas" width="32" height="32"></canvas>
+            </div>
+            <div class="bars-col">
+              <div class="player-name-row">
+                <span class="fighter-name">GOKU</span>
+                <span class="form-badge" id="hud-form">BASE</span>
+              </div>
+              <div class="bar-wrap hp-wrap" title="Health">
+                <div class="bar-label">HP</div>
+                <div class="bar-track">
+                  <div class="bar-fill hp-fill" id="hud-hp-fill"></div>
+                </div>
+                <div class="bar-val" id="hud-hp-val">100/100</div>
+              </div>
+              <div class="bar-wrap ki-wrap" title="Ki Energy">
+                <div class="bar-label">KI</div>
+                <div class="bar-track">
+                  <div class="bar-fill ki-fill" id="hud-ki-fill"></div>
+                </div>
+                <div class="bar-val" id="hud-ki-val">40%</div>
+              </div>
+              <div class="ssj-prompt hidden" id="hud-ssj-prompt">MAX KI! PRESS [T] FOR SUPER SAIYAN!</div>
+            </div>
+          </div>
+
+          <!-- Center: Stage & Wave Info -->
+          <div class="hud-center">
+            <div class="stage-tag" id="hud-stage">STAGE 1</div>
+            <div class="stage-name" id="hud-stage-name">ROCKY WASTELAND</div>
+            <div class="enemy-count" id="hud-enemies">FOES: 0</div>
+          </div>
+
+          <!-- Right: Score, Combo & Quick Controls -->
+          <div class="hud-right">
+            <div class="score-box">
+              <div class="score-row">SCORE <span id="hud-score">000000</span></div>
+              <div class="hi-row">BEST <span id="hud-best">000000</span></div>
+            </div>
+            <div class="hud-actions">
+              <button class="icon-btn" id="hud-sound-btn" type="button" title="Toggle Sound">SFX</button>
+              <button class="icon-btn" id="hud-pause-btn" type="button" title="Pause (Esc)">||</button>
+            </div>
+            <div class="combo-box hidden" id="hud-combo">
+              <span id="hud-combo-num">2</span>x COMBO!
+            </div>
+          </div>
+        </div>
+
+        <!-- GO! Advance Arrow Indicator -->
+        <div class="go-arrow hidden" id="hud-go-arrow">GO &rarr;</div>
+
+        <!-- Boss Health Bar -->
+        <div class="boss-hud hidden" id="hud-boss">
+          <div class="boss-header">
+            <span class="boss-tag">BOSS</span>
+            <span class="boss-name" id="hud-boss-name">SAIYAN VANGUARD</span>
+          </div>
+          <div class="boss-bar-track">
+            <div class="boss-bar-fill" id="hud-boss-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Menu Overlay -->
+      <div id="menu-screen" class="overlay-screen">
+        <div class="menu-card">
+          <div class="title-banner">
+            <div class="title-sub">16-BIT ARCADE BEAT 'EM UP</div>
+            <h1 class="game-title">DRAGON BALL:<br /><span>SAIYAN LEGACY</span></h1>
+          </div>
+
+          <div class="menu-body">
+            <div class="menu-preview">
+              <canvas id="menu-goku-canvas" width="96" height="96"></canvas>
+              <div class="preview-caption">SON GOKU</div>
+            </div>
+
+            <div class="menu-buttons">
+              <button class="arcade-btn primary" id="btn-start" type="button">START GAME</button>
+              <button class="arcade-btn" id="btn-howto" type="button">HOW TO PLAY</button>
+              <button class="arcade-btn" id="btn-settings" type="button">SETTINGS</button>
+              <button class="arcade-btn" id="btn-menu-sound" type="button">SOUND: ON</button>
+            </div>
+          </div>
+
+          <div class="menu-footer">
+            <span>HIGH SCORE: <strong id="menu-highscore">000000</strong></span>
+            <span>4 STAGES &bull; SUPER SAIYAN &bull; KAMEHAMEHA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- How To Play Modal -->
+      <div id="howto-screen" class="overlay-screen hidden">
+        <div class="modal-card">
+          <h2>HOW TO PLAY</h2>
+          <div class="howto-grid">
+            <div class="controls-section">
+              <h3>DESKTOP CONTROLS</h3>
+              <table class="controls-table">
+                <tbody>
+                  <tr><td><kbd>A</kbd> / <kbd>&larr;</kbd></td><td>Move Left</td></tr>
+                  <tr><td><kbd>D</kbd> / <kbd>&rarr;</kbd></td><td>Move Right</td></tr>
+                  <tr><td><kbd>W</kbd> / <kbd>&uarr;</kbd></td><td>Jump / Double Jump</td></tr>
+                  <tr><td><kbd>J</kbd></td><td>Punch (3-Hit Combo)</td></tr>
+                  <tr><td><kbd>K</kbd></td><td>Kick (Heavy Knockback)</td></tr>
+                  <tr><td><kbd>L</kbd></td><td>Ki Blast (12 Ki)</td></tr>
+                  <tr><td><kbd>Space</kbd></td><td>Kamehameha Beam (45 Ki)</td></tr>
+                  <tr><td><kbd>Shift</kbd></td><td>Charge Ki (Hold)</td></tr>
+                  <tr><td><kbd>T</kbd></td><td>Super Saiyan (at 100% Ki)</td></tr>
+                  <tr><td><kbd>Esc</kbd></td><td>Pause / Resume</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tips-section">
+              <h3>COMBAT TIPS</h3>
+              <ul>
+                <li>Chain <strong>Punch &rarr; Punch &rarr; Kick</strong> to build huge combos and launch foes.</li>
+                <li>Collect blue <strong>Ki Orbs</strong> and green <strong>Senzu Orbs</strong> dropped by defeated enemies.</li>
+                <li>Fill Ki to <strong>100%</strong> and press <kbd>T</kbd> (or hold <kbd>Shift</kbd>) to unleash <strong>Super Saiyan</strong>: +45% power, faster movement, and Golden Kamehameha!</li>
+                <li>Defeat each stage's Boss to advance through all 4 battlefields.</li>
+              </ul>
+            </div>
+          </div>
+          <button class="arcade-btn primary" id="btn-howto-back" type="button">BACK TO MENU</button>
+        </div>
+      </div>
+
+      <!-- Settings Modal -->
+      <div id="settings-screen" class="overlay-screen hidden">
+        <div class="modal-card small-modal">
+          <h2>SETTINGS</h2>
+          <div class="settings-list">
+            <label class="setting-row">
+              <span>Sound Effects</span>
+              <button class="toggle-btn" id="set-sfx" type="button">ON</button>
+            </label>
+            <label class="setting-row">
+              <span>Arcade Music</span>
+              <button class="toggle-btn" id="set-bgm" type="button">ON</button>
+            </label>
+            <label class="setting-row">
+              <span>Master Volume</span>
+              <input type="range" id="set-vol" min="0" max="100" value="75" />
+            </label>
+            <label class="setting-row">
+              <span>Difficulty</span>
+              <button class="toggle-btn" id="set-diff" type="button">NORMAL</button>
+            </label>
+            <label class="setting-row">
+              <span>Screen Shake</span>
+              <button class="toggle-btn" id="set-shake" type="button">ON</button>
+            </label>
+            <label class="setting-row">
+              <span>Touch Controls</span>
+              <button class="toggle-btn" id="set-touch" type="button">AUTO</button>
+            </label>
+          </div>
+          <button class="arcade-btn primary" id="btn-settings-back" type="button">SAVE &amp; BACK</button>
+        </div>
+      </div>
+
+      <!-- Pause Overlay -->
+      <div id="pause-screen" class="overlay-screen hidden">
+        <div class="modal-card small-modal">
+          <h2>PAUSED</h2>
+          <div class="stack-buttons">
+            <button class="arcade-btn primary" id="btn-resume" type="button">RESUME</button>
+            <button class="arcade-btn" id="btn-pause-settings" type="button">SETTINGS</button>
+            <button class="arcade-btn" id="btn-restart" type="button">RESTART STAGE</button>
+            <button class="arcade-btn danger" id="btn-quit" type="button">MAIN MENU</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage Banner (Intro / Clear) -->
+      <div id="stage-banner" class="stage-banner hidden">
+        <div class="banner-kicker" id="banner-kicker">STAGE 1</div>
+        <div class="banner-title" id="banner-title">ROCKY WASTELAND</div>
+        <div class="banner-sub" id="banner-sub">READY... FIGHT!</div>
+      </div>
+
+      <!-- Game Over Overlay -->
+      <div id="gameover-screen" class="overlay-screen hidden">
+        <div class="modal-card small-modal">
+          <h2 class="danger-title">GAME OVER</h2>
+          <p class="result-sub" id="gameover-sub">Goku fell in battle...</p>
+          <div class="summary-stats" id="gameover-stats"></div>
+          <div class="stack-buttons">
+            <button class="arcade-btn primary" id="btn-retry" type="button">RETRY GAME</button>
+            <button class="arcade-btn" id="btn-go-menu" type="button">MAIN MENU</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Victory Overlay -->
+      <div id="victory-screen" class="overlay-screen hidden">
+        <div class="modal-card small-modal">
+          <h2 class="victory-title">VICTORY!</h2>
+          <p class="result-sub">You defeated Emperor Frost and saved the galaxy!</p>
+          <div class="summary-stats" id="victory-stats"></div>
+          <div class="stack-buttons">
+            <button class="arcade-btn primary" id="btn-play-again" type="button">PLAY AGAIN</button>
+            <button class="arcade-btn" id="btn-vic-menu" type="button">MAIN MENU</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Touch Controls -->
+      <div id="touch-controls" class="hidden" aria-label="Touch Controls">
+        <div class="touch-left">
+          <button class="touch-btn dir-btn" data-action="left" type="button">&larr;</button>
+          <button class="touch-btn dir-btn jump-btn" data-action="jump" type="button">&uarr;</button>
+          <button class="touch-btn dir-btn" data-action="right" type="button">&rarr;</button>
+        </div>
+        <div class="touch-right">
+          <div class="touch-row">
+            <button class="touch-btn atk-btn ki-btn" data-action="ki" type="button">KI</button>
+            <button class="touch-btn atk-btn kame-btn" data-action="kame" type="button">KAME</button>
+            <button class="touch-btn atk-btn ssj-btn" data-action="transform" type="button">SSJ</button>
+          </div>
+          <div class="touch-row">
+            <button class="touch-btn atk-btn charge-btn" data-action="charge" type="button">CHG</button>
+            <button class="touch-btn atk-btn punch-btn" data-action="punch" type="button">PUNCH</button>
+            <button class="touch-btn atk-btn kick-btn" data-action="kick" type="button">KICK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts loaded sequentially for full file:// & http:// compatibility -->
+  <script src="js/audio.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/combat.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/enemy.js"></script>
+  <script src="js/levels.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

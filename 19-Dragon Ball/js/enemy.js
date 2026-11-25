@@ -1,0 +1,491 @@
+(function (DB) {
+  "use strict";
+
+  const ENEMY_CONFIGS = {
+    scout: {
+      name: "Frieza Scout",
+      spriteKey: "enemyScout",
+      cellSize: 48,
+      maxHp: 45,
+      speed: 78,
+      damage: 9,
+      range: 34,
+      score: 100,
+      kbResist: 1.0,
+      isRanged: false,
+      isBoss: false,
+      windup: 0.28,
+      cooldown: 1.05,
+    },
+    gremlin: {
+      name: "Bio-Fighter",
+      spriteKey: "enemyGremlin",
+      cellSize: 48,
+      maxHp: 34,
+      speed: 112,
+      damage: 8,
+      range: 52,
+      score: 120,
+      kbResist: 1.15,
+      isRanged: false,
+      isBoss: false,
+      windup: 0.22,
+      cooldown: 0.9,
+      lunges: true,
+    },
+    blaster: {
+      name: "Ki Trooper",
+      spriteKey: "enemyBlaster",
+      cellSize: 48,
+      maxHp: 42,
+      speed: 68,
+      damage: 11,
+      range: 185,
+      score: 150,
+      kbResist: 1.0,
+      isRanged: true,
+      isBoss: false,
+      windup: 0.36,
+      cooldown: 1.65,
+    },
+    brute: {
+      name: "Armored Brute",
+      spriteKey: "enemyBrute",
+      cellSize: 64,
+      maxHp: 110,
+      speed: 52,
+      damage: 16,
+      range: 44,
+      score: 260,
+      kbResist: 0.4,
+      isRanged: false,
+      isBoss: false,
+      windup: 0.45,
+      cooldown: 1.45,
+    },
+    boss1: {
+      name: "SAIYAN VANGUARD",
+      spriteKey: "boss1",
+      cellSize: 64,
+      maxHp: 240,
+      speed: 88,
+      damage: 14,
+      range: 48,
+      score: 800,
+      kbResist: 0.35,
+      isRanged: false,
+      isBoss: true,
+      windup: 0.35,
+      cooldown: 1.1,
+    },
+    boss2: {
+      name: "BERSERKER TITAN",
+      spriteKey: "boss2",
+      cellSize: 64,
+      maxHp: 330,
+      speed: 78,
+      damage: 18,
+      range: 50,
+      score: 1100,
+      kbResist: 0.25,
+      isRanged: false,
+      isBoss: true,
+      windup: 0.38,
+      cooldown: 1.15,
+    },
+    boss3: {
+      name: "CRIMSON COMMANDER",
+      spriteKey: "boss3",
+      cellSize: 64,
+      maxHp: 420,
+      speed: 98,
+      damage: 18,
+      range: 52,
+      score: 1400,
+      kbResist: 0.3,
+      isRanged: false,
+      isBoss: true,
+      windup: 0.32,
+      cooldown: 1.0,
+    },
+    boss4: {
+      name: "EMPEROR FROST",
+      spriteKey: "boss4",
+      cellSize: 64,
+      maxHp: 560,
+      speed: 105,
+      damage: 20,
+      range: 54,
+      score: 2500,
+      kbResist: 0.25,
+      isRanged: false,
+      isBoss: true,
+      windup: 0.3,
+      cooldown: 0.92,
+    },
+  };
+
+  class Enemy {
+    constructor(type, x, groundY, diffScale = 1.0, flankOffset = 0) {
+      const cfg = ENEMY_CONFIGS[type] || ENEMY_CONFIGS.scout;
+      this.type = type;
+      this.cfg = cfg;
+      this.name = cfg.name;
+      this.isBoss = cfg.isBoss;
+
+      this.x = x;
+      this.y = groundY;
+      this.groundY = groundY;
+      this.vx = 0;
+      this.vy = 0;
+      this.facing = -1;
+
+      this.maxHp = Math.round(cfg.maxHp * diffScale);
+      this.hp = this.maxHp;
+      this.damage = Math.round(cfg.damage * (diffScale > 1 ? 1.2 : 1));
+      this.flankOffset = flankOffset;
+
+      this.alive = true;
+      this.removed = false;
+      this.grounded = true;
+
+      this.state = "idle"; // idle, move, windup, attack, special, hit, ko
+      this.stateTimer = 0;
+      this.attackCooldown = 0.6 + Math.random() * 0.5;
+      this.animTimer = Math.random() * 2;
+      this.hitFlash = 0;
+      this.hasDealtHit = false;
+      this.bossPattern = 0;
+      this.koTimer = 0.75;
+    }
+
+    getHurtbox() {
+      const w = this.cfg.cellSize === 64 ? 30 : 22;
+      const h = this.cfg.cellSize === 64 ? 48 : 36;
+      return { x: this.x - w / 2, y: this.y - h, w, h };
+    }
+
+    takeDamage(amount, kbVx, kbVy, player) {
+      if (!this.alive) return;
+      this.hp = Math.max(0, this.hp - Math.round(amount));
+      this.hitFlash = 0.14;
+      const resist = this.cfg.kbResist;
+      this.vx = kbVx * resist;
+      if (kbVy < 0 && resist > 0.35) {
+        this.vy = kbVy * resist;
+        this.grounded = false;
+      }
+
+      DB.Effects.spawnPopup(this.x, this.y - (this.cfg.cellSize === 64 ? 54 : 42), `${Math.round(amount)}`, "#fff480");
+
+      if (this.hp <= 0) {
+        this.alive = false;
+        this.state = "ko";
+        this.vx = (kbVx >= 0 ? 1 : -1) * 95;
+        this.vy = -130;
+        this.grounded = false;
+        DB.Effects.spawnBurst(this.x, this.y - 22, this.isBoss ? "#ffd440" : "#ff9c50", this.isBoss ? 22 : 10, 120);
+        if (this.isBoss) {
+          DB.Effects.addShake(7, 0.45);
+          DB.Effects.addFlash("#ffffff", 0.55);
+        }
+        // Drop Energy or Health orb
+        const dropRoll = Math.random();
+        if (dropRoll < 0.25) {
+          DB.Effects.spawnPickup(this.x, this.y - 8, "hp");
+        } else if (dropRoll < 0.72) {
+          DB.Effects.spawnPickup(this.x, this.y - 8, "ki");
+        }
+        if (player && player._onKillEnemy) {
+          player._onKillEnemy(this);
+        }
+      } else if (!this.isBoss || resist > 0.3 || this.state === "idle" || this.state === "move") {
+        // Bosses aren't stun-locked mid-special unless light interrupt
+        if (this.state !== "special") {
+          this.state = "hit";
+          this.stateTimer = this.isBoss ? 0.14 : 0.24;
+        }
+      }
+    }
+
+    update(dt, player, bounds) {
+      this.animTimer += dt;
+      if (this.hitFlash > 0) this.hitFlash = Math.max(0, this.hitFlash - dt);
+      if (this.attackCooldown > 0) this.attackCooldown = Math.max(0, this.attackCooldown - dt);
+
+      if (!this.alive) {
+        this.koTimer -= dt;
+        this._applyPhysics(dt, bounds);
+        if (this.koTimer <= 0) this.removed = true;
+        return;
+      }
+
+      const dx = player.x - this.x;
+      const dist = Math.abs(dx);
+      const dirToPlayer = dx >= 0 ? 1 : -1;
+
+      if (this.state === "hit") {
+        this.stateTimer -= dt;
+        this.vx *= Math.pow(0.01, dt);
+        if (this.stateTimer <= 0) {
+          this.state = "idle";
+        }
+        this._applyPhysics(dt, bounds);
+        return;
+      }
+
+      if (this.state === "windup") {
+        this.stateTimer -= dt;
+        this.vx *= 0.82;
+        if (this.stateTimer <= 0) {
+          this._executeAttack(player, dirToPlayer);
+        }
+        this._applyPhysics(dt, bounds);
+        return;
+      }
+
+      if (this.state === "attack" || this.state === "special") {
+        this.stateTimer -= dt;
+        if (!this.hasDealtHit && this.state === "attack" && this.stateTimer < 0.18) {
+          const reach = this.cfg.range + 14;
+          const atkBox = {
+            x: this.facing > 0 ? this.x : this.x - reach,
+            y: this.y - 44,
+            w: reach,
+            h: 42,
+          };
+          if (player.alive && DB.Combat.aabb(atkBox, player.getHurtbox())) {
+            player.takeDamage(this.damage, this.facing * (this.isBoss ? 150 : 105));
+            this.hasDealtHit = true;
+          }
+        }
+        this.vx *= Math.pow(0.03, dt);
+        if (this.stateTimer <= 0) {
+          this.state = "idle";
+        }
+        this._applyPhysics(dt, bounds);
+        return;
+      }
+
+      // AI Movement & Target Selection
+      this.facing = dirToPlayer;
+      const rageMult = this.isBoss && this.hp < this.maxHp * 0.5 ? 1.28 : 1.0;
+
+      if (this.cfg.isRanged) {
+        const idealDist = 165 + this.flankOffset;
+        if (dist < 85) {
+          // Back away from Goku
+          this.vx = -dirToPlayer * this.cfg.speed;
+          this.state = "move";
+        } else if (dist > idealDist + 25) {
+          this.vx = dirToPlayer * this.cfg.speed;
+          this.state = "move";
+        } else {
+          this.vx *= 0.7;
+          this.state = "idle";
+          if (this.attackCooldown <= 0 && player.alive) {
+            this.state = "windup";
+            this.stateTimer = this.cfg.windup;
+            this.hasDealtHit = false;
+          }
+        }
+      } else {
+        // Melee or Boss AI
+        const stopDist = this.cfg.range - 6 + Math.abs(this.flankOffset) * 0.25;
+        if (this.isBoss && dist > 110 && dist < 260 && this.attackCooldown <= 0 && player.alive) {
+          // Boss ranged / dash special trigger!
+          this.bossPattern = (this.bossPattern + 1) % 3;
+          this.state = "windup";
+          this.stateTimer = this.cfg.windup / rageMult;
+          this.hasDealtHit = false;
+        } else if (dist > stopDist) {
+          this.vx = dirToPlayer * this.cfg.speed * rageMult;
+          this.state = "move";
+        } else {
+          this.vx *= 0.7;
+          this.state = "idle";
+          if (this.attackCooldown <= 0 && player.alive) {
+            this.state = "windup";
+            this.stateTimer = this.cfg.windup / rageMult;
+            this.hasDealtHit = false;
+            if (this.isBoss) this.bossPattern = (this.bossPattern + 1) % 3;
+          }
+        }
+      }
+
+      this._applyPhysics(dt, bounds);
+    }
+
+    _executeAttack(player, dir) {
+      const rage = this.isBoss && this.hp < this.maxHp * 0.5;
+      const cdMult = rage ? 0.75 : 1.0;
+      this.facing = dir;
+      this.attackCooldown = this.cfg.cooldown * cdMult;
+
+      if (this.cfg.isRanged) {
+        this.state = "special";
+        this.stateTimer = 0.25;
+        DB.Audio.play("ki");
+        DB.Combat.spawnProjectile({
+          owner: "enemy",
+          x: this.x + dir * 18,
+          y: this.y - 24,
+          vx: dir * 210,
+          damage: this.damage,
+          knockback: 90,
+          cell: 2,
+          radius: 7,
+        });
+        return;
+      }
+
+      if (this.isBoss && this.bossPattern === 1) {
+        // Boss Energy Volley / Supernova
+        this.state = "special";
+        this.stateTimer = 0.34;
+        DB.Audio.play("ki");
+        const isFinal = this.type === "boss4";
+        DB.Combat.spawnProjectile({
+          owner: "enemy",
+          x: this.x + dir * 24,
+          y: this.y - 28,
+          vx: dir * (isFinal ? 245 : 210),
+          damage: this.damage + 4,
+          knockback: 140,
+          cell: 2,
+          radius: isFinal ? 13 : 9,
+          isSuper: isFinal,
+        });
+        if (rage || this.type === "boss3") {
+          DB.Combat.spawnProjectile({
+            owner: "enemy",
+            x: this.x + dir * 24,
+            y: this.y - 36,
+            vx: dir * 195,
+            vy: -35,
+            damage: this.damage,
+            knockback: 100,
+            cell: 2,
+            radius: 7,
+          });
+        }
+        return;
+      }
+
+      if (this.isBoss && this.bossPattern === 2) {
+        // Boss Dash Lunge Strike
+        this.state = "attack";
+        this.stateTimer = 0.32;
+        this.vx = dir * 240;
+        DB.Audio.play("kick");
+        return;
+      }
+
+      // Standard Melee Strike (or Gremlin lunge)
+      this.state = "attack";
+      this.stateTimer = 0.26;
+      if (this.cfg.lunges) {
+        this.vx = dir * 185;
+        this.vy = -90;
+        this.grounded = false;
+      } else {
+        this.vx = dir * 70;
+      }
+      DB.Audio.play("punch");
+    }
+
+    _applyPhysics(dt, bounds) {
+      if (!this.grounded) {
+        this.vy += 760 * dt;
+      }
+      this.x += this.vx * dt;
+      this.y += this.vy * dt;
+
+      if (this.y >= this.groundY) {
+        this.y = this.groundY;
+        this.vy = 0;
+        this.grounded = true;
+      }
+
+      if (bounds) {
+        this.x = Math.max(bounds.minX, Math.min(bounds.maxX, this.x));
+      }
+    }
+
+    _getFrameIndex() {
+      const hasSpecial = this.cfg.cellSize === 64;
+      switch (this.state) {
+        case "idle":
+          return Math.floor(this.animTimer * 4) % 2;
+        case "move":
+          return 2 + (Math.floor(this.animTimer * 8) % 2);
+        case "windup":
+          return 4;
+        case "attack":
+          return 5;
+        case "special":
+          return hasSpecial ? 6 : 5;
+        case "hit":
+          return hasSpecial ? 7 : 6;
+        case "ko":
+          return hasSpecial ? 8 : 7;
+        default:
+          return 0;
+      }
+    }
+
+    render(ctx, camX, assets) {
+      const sheet = assets[this.cfg.spriteKey];
+      if (!sheet) return;
+
+      const sz = this.cfg.cellSize;
+      const sx = Math.round(this.x - camX);
+      const sy = Math.round(this.y);
+
+      ctx.save();
+      // Shadow
+      ctx.fillStyle = "rgba(0,0,0,0.35)";
+      const sw = sz === 64 ? 30 : 20;
+      ctx.fillRect(sx - sw / 2, this.groundY - 2, sw, 4);
+
+      // Boss Rage aura at <50% HP
+      if (this.isBoss && this.alive && this.hp < this.maxHp * 0.5) {
+        DB.Effects.drawAura(ctx, sx, sy, true, this.animTimer);
+      }
+
+      // KO blink fade
+      if (!this.alive && Math.floor(this.koTimer * 18) % 2 === 0) {
+        ctx.globalAlpha = 0.4;
+      }
+
+      const frame = this._getFrameIndex();
+      ctx.translate(sx, sy);
+      ctx.scale(this.facing, 1);
+
+      const drawOffsetY = sz === 64 ? -58 : -44;
+      ctx.drawImage(sheet, frame * sz, 0, sz, sz, -sz / 2, drawOffsetY, sz, sz);
+
+      // Crisp white hit-flash indicator
+      if (this.hitFlash > 0) {
+        ctx.globalCompositeOperation = "source-atop";
+        ctx.fillStyle = "rgba(255,255,255,0.65)";
+        ctx.fillRect(-sz / 2, drawOffsetY, sz, sz);
+      }
+
+      ctx.restore();
+
+      // Small overhead HP bar for damaged non-boss enemies
+      if (this.alive && !this.isBoss && this.hp < this.maxHp) {
+        const bw = 24;
+        const bx = sx - bw / 2;
+        const by = sy - (sz === 64 ? 54 : 42);
+        ctx.fillStyle = "#181020";
+        ctx.fillRect(bx - 1, by - 1, bw + 2, 4);
+        ctx.fillStyle = "#e83848";
+        ctx.fillRect(bx, by, Math.round((this.hp / this.maxHp) * bw), 2);
+      }
+    }
+  }
+
+  DB.Enemy = Enemy;
+})(window.DB = window.DB || {});
