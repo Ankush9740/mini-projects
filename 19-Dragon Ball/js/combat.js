@@ -109,11 +109,44 @@
               break;
             }
           }
+          if (!hit && DB.Environment) {
+            const dir = p.vx >= 0 ? 1 : -1;
+            if (DB.Environment.hitObstaclesInBox(pBox, p.damage, dir)) {
+              DB.Effects.spawnSpark(p.x, p.y, 4, 1.0);
+              hit = true;
+            } else {
+              for (const o of DB.Environment.obstacles) {
+                if (o.broken) continue;
+                const oBox = { x: o.x, y: o.y - o.h, w: o.w, h: o.h };
+                if (this.aabb(pBox, oBox)) {
+                  DB.Effects.spawnSpark(p.x, p.y, 3, 0.9);
+                  hit = true;
+                  break;
+                }
+              }
+            }
+          }
           if (hit) {
             this.projectiles.splice(i, 1);
           }
         } else {
-          // Enemy projectile vs Goku
+          // Enemy projectile vs Goku or solid obstacle
+          let blocked = false;
+          if (DB.Environment) {
+            for (const o of DB.Environment.obstacles) {
+              if (o.broken) continue;
+              const oBox = { x: o.x, y: o.y - o.h, w: o.w, h: o.h };
+              if (this.aabb(pBox, oBox)) {
+                DB.Effects.spawnSpark(p.x, p.y, 3, 0.9);
+                blocked = true;
+                break;
+              }
+            }
+          }
+          if (blocked) {
+            this.projectiles.splice(i, 1);
+            continue;
+          }
           if (player.alive && player.invulnTimer <= 0 && this.aabb(pBox, player.getHurtbox())) {
             const dir = p.vx >= 0 ? 1 : -1;
             player.takeDamage(p.damage, dir * p.knockback);
@@ -153,6 +186,9 @@
               DB.Effects.addShake(4.5, 0.12);
               DB.Audio.play("hit");
             }
+          }
+          if (DB.Environment) {
+            DB.Environment.hitObstaclesInBox(beamBox, b.damage * 2, b.dir);
           }
         }
 

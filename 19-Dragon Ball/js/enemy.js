@@ -309,6 +309,17 @@
         } else if (dist > stopDist) {
           this.vx = dirToPlayer * this.cfg.speed * rageMult;
           this.state = "move";
+          // Terrain awareness: jump over gaps, obstacles, or up onto Goku's elevated ledge
+          if (this.grounded && DB.Environment) {
+            const needJump =
+              DB.Environment.isGapAhead(this.x, dirToPlayer, 22) ||
+              DB.Environment.hasObstacleAhead(this.x, this.y, dirToPlayer, 24) ||
+              (player.y < this.y - 26 && dist < 110 && Math.random() < 0.08);
+            if (needJump) {
+              this.vy = -270;
+              this.grounded = false;
+            }
+          }
         } else {
           this.vx *= 0.7;
           this.state = "idle";
@@ -403,13 +414,18 @@
     }
 
     _applyPhysics(dt, bounds) {
+      const prevX = this.x;
+      const prevY = this.y;
       if (!this.grounded) {
         this.vy += 760 * dt;
       }
       this.x += this.vx * dt;
       this.y += this.vy * dt;
 
-      if (this.y >= this.groundY) {
+      if (DB.Environment) {
+        DB.Environment.resolveHorizontal(this, prevX, this.cfg.bodySize === 64 ? 13 : 9);
+        DB.Environment.resolveVertical(this, prevY, this.cfg.bodySize === 64 ? 13 : 9, false);
+      } else if (this.y >= this.groundY) {
         this.y = this.groundY;
         this.vy = 0;
         this.grounded = true;

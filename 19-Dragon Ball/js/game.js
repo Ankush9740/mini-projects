@@ -17,6 +17,7 @@
     boss3: "assets/sprites/boss_3.png",
     boss4: "assets/sprites/boss_4.png",
     effects: "assets/effects/effects.png",
+    worldProps: "assets/effects/world_props.png",
     stage1Sky: "assets/backgrounds/stage1_sky.png",
     stage1Far: "assets/backgrounds/stage1_far.png",
     stage1Mid: "assets/backgrounds/stage1_mid.png",
@@ -85,6 +86,7 @@
 
       this._loadSave();
       this._applySettings();
+      DB.Environment.loadLevel(DB.Levels[0]);
     }
 
     init(uiRefs) {
@@ -212,6 +214,21 @@
       DB.Combat.projectiles.length = 0;
       DB.Combat.beams.length = 0;
       DB.Effects.reset();
+      DB.Environment.loadLevel(lvl);
+      if (lvl.collectibles) {
+        for (const c of lvl.collectibles) {
+          DB.Effects.pickups.push({
+            x: c.x,
+            y: c.y,
+            vx: 0,
+            vy: 0,
+            kind: c.kind,
+            life: 999,
+            bob: Math.random() * Math.PI * 2,
+            anchored: true,
+          });
+        }
+      }
       this.player.resetForStage(90, lvl.groundY);
 
       this.state = "stage_intro";
@@ -237,6 +254,7 @@
       DB.Combat.reset();
       DB.Effects.reset();
       this.enemies.length = 0;
+      DB.Environment.loadLevel(DB.Levels[0]);
       this.syncUI();
     }
 
@@ -249,7 +267,8 @@
       }
 
       if (this.state === "menu") {
-        this.menuScroll += 28 * dt;
+        this.menuScroll += 24 * dt;
+        DB.Environment.update(dt);
         return;
       }
 
@@ -258,6 +277,7 @@
       }
 
       const lvl = DB.Levels[this.stageIndex];
+      DB.Environment.update(dt);
 
       if (this.state === "stage_intro") {
         this.stateTimer -= dt;
@@ -389,7 +409,9 @@
       wave.spawns.forEach((sp, i) => {
         const spawnX = Math.min(wave.lockRight - 28, Math.max(this.camX + 320, this.camX + sp.offset));
         const flank = (i % 3 - 1) * 18;
-        this.enemies.push(new DB.Enemy(sp.type, spawnX, groundY, diffScale, flank));
+        const surfY = DB.Environment.getTerrainY(spawnX);
+        const spawnY = surfY !== null ? surfY : groundY;
+        this.enemies.push(new DB.Enemy(sp.type, spawnX, spawnY, diffScale, flank));
       });
     }
 
@@ -409,12 +431,15 @@
       };
 
       drawTiled(this.assets[lvl.skyKey], 0.08);
-      if (lvl.farKey) drawTiled(this.assets[lvl.farKey], 0.25);
-      drawTiled(this.assets[lvl.midKey], 0.52);
+      DB.Environment.renderSkyLife(ctx, scrollX, this.assets);
+      if (lvl.farKey) drawTiled(this.assets[lvl.farKey], 0.2);
+      drawTiled(this.assets[lvl.midKey], 0.48);
       drawTiled(this.assets[lvl.groundKey], 1.0);
+      DB.Environment.renderTerrainAndWorld(ctx, scrollX, this.assets, !!lvl.hasCustomTerrain);
     }
 
     _drawForegroundParallax(lvl, scrollX) {
+      DB.Environment.renderWindAtmosphere(this.ctx);
       if (!lvl.fgKey) return;
       const img = this.assets[lvl.fgKey];
       if (!img) return;

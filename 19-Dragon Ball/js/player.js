@@ -57,6 +57,7 @@
       this.comboWindow = 0;
       this.attackCooldown = 0;
       this.chargeFullHold = 0;
+      this.landingTimer = 0;
     }
 
     resetForStage(x, groundY) {
@@ -370,14 +371,20 @@
     }
 
     _applyPhysics(dt, bounds) {
+      const prevX = this.x;
+      const prevY = this.y;
       if (!this.grounded) {
         this.vy += 760 * dt;
       }
       this.x += this.vx * dt;
       this.y += this.vy * dt;
 
-      if (this.y >= this.groundY) {
+      if (DB.Environment) {
+        DB.Environment.resolveHorizontal(this, prevX, 9);
+        DB.Environment.resolveVertical(this, prevY, 9, true);
+      } else if (this.y >= this.groundY) {
         if (!this.grounded && this.vy > 140) {
+          this.landingTimer = 0.11;
           DB.Effects.spawnDust(this.x, this.groundY, 0);
         }
         this.y = this.groundY;
@@ -394,8 +401,10 @@
     _getFrameIndex() {
       switch (this.state) {
         case "idle":
+          if (this.landingTimer > 0) return 15;
           return Math.floor(this.animTimer * 5) % 4;
         case "walk": {
+          if (this.landingTimer > 0) return 15;
           const speed = Math.abs(this.vx);
           if (speed >= 108) {
             return 8 + (Math.floor(this.animTimer * 12) % 4);
@@ -407,28 +416,29 @@
           return this.vy < 20 ? 13 : 14;
         case "punch":
           if (this.punchStep === 2) {
-            return this.stateTimer > 0.16 ? 17 : 18;
+            return this.stateTimer > 0.16 ? 18 : 19;
           }
-          return this.stateTimer > 0.12 ? 15 : 16;
+          return this.stateTimer > 0.12 ? 16 : 17;
         case "kick":
-          if (!this.grounded) return 22;
-          if (this.stateTimer > 0.2) return 19;
-          if (this.stateTimer > 0.07) return 20;
-          return 21;
+          if (!this.grounded) return 23;
+          if (this.stateTimer > 0.2) return 20;
+          if (this.stateTimer > 0.07) return 21;
+          return 22;
         case "ki":
-          return this.stateTimer > 0.14 ? 23 : 24;
+          return this.stateTimer > 0.14 ? 24 : 25;
         case "kame_charge":
-          return this.stateTimer > 0.2 ? 25 : 26;
+          return this.stateTimer > 0.2 ? 26 : 27;
         case "kame_fire":
-          return 27;
+          return 28;
         case "charge":
-          return 28 + (Math.floor(this.animTimer * 12) % 2);
+          return 29 + (Math.floor(this.animTimer * 12) % 2);
         case "hit":
-          return this.stateTimer > 0.12 ? 30 : 31;
+          if (!this.grounded) return 32;
+          return this.stateTimer > 0.1 ? 31 : 33;
         case "transform":
-          return this.stateTimer > 0.35 ? 32 : 33;
+          return this.stateTimer > 0.35 ? 34 : 35;
         case "ko":
-          return this.grounded ? 35 : 34;
+          return this.grounded ? 37 : 36;
         default:
           return 0;
       }
