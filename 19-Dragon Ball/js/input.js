@@ -18,6 +18,22 @@
     Escape: "pause",
   };
 
+  const KEY_NAME_MAP = {
+    arrowleft: "left",
+    a: "left",
+    arrowright: "right",
+    d: "right",
+    arrowup: "jump",
+    w: "jump",
+    j: "punch",
+    k: "kick",
+    l: "ki",
+    " ": "kame",
+    shift: "charge",
+    t: "transform",
+    escape: "pause",
+  };
+
   class InputManager {
     constructor() {
       this.down = Object.create(null);
@@ -32,11 +48,17 @@
       window.addEventListener("blur", this._boundBlur);
     }
 
+    _resolveAction(e) {
+      if (e.code && KEY_MAP[e.code]) return KEY_MAP[e.code];
+      if (e.key) return KEY_NAME_MAP[e.key.toLowerCase()];
+      return null;
+    }
+
     _onKeyDown(e) {
       DB.Audio.unlock();
-      const action = KEY_MAP[e.code];
+      const action = this._resolveAction(e);
       if (!action) return;
-      if (e.code === "Space" || e.code.startsWith("Arrow")) {
+      if (e.code === "Space" || e.key === " " || (e.code && e.code.startsWith("Arrow")) || (e.key && e.key.startsWith("Arrow"))) {
         e.preventDefault();
       }
       if (e.repeat) return; // Prevent OS auto-repeat triggering attacks
@@ -47,7 +69,7 @@
     }
 
     _onKeyUp(e) {
-      const action = KEY_MAP[e.code];
+      const action = this._resolveAction(e);
       if (!action) return;
       this.down[action] = false;
     }

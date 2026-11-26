@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>DRAGON BALL: SAIYAN LEGACY</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
   <div id="app">
@@ -39,13 +39,23 @@
                 </div>
                 <div class="bar-val" id="hud-ki-val">40%</div>
               </div>
-              <div class="ssj-prompt hidden" id="hud-ssj-prompt">MAX KI! PRESS [T] FOR SUPER SAIYAN!</div>
+              <div class="bar-wrap ssj-wrap" title="Super Saiyan Meter / Duration">
+                <div class="bar-label" id="hud-ssj-label">SSJ</div>
+                <div class="bar-track">
+                  <div class="bar-fill ssj-fill" id="hud-ssj-fill"></div>
+                </div>
+                <div class="bar-val" id="hud-ssj-val">0%</div>
+              </div>
+              <div class="ssj-prompt hidden" id="hud-ssj-prompt">SSJ READY! PRESS [T] TO TRANSFORM!</div>
             </div>
           </div>
 
           <!-- Center: Stage & Wave Info -->
           <div class="hud-center">
-            <div class="stage-tag" id="hud-stage">STAGE 1</div>
+            <div class="stage-meta-row">
+              <span class="stage-tag" id="hud-stage">STAGE 1</span>
+              <span class="diff-badge medium" id="hud-difficulty">MEDIUM</span>
+            </div>
             <div class="stage-name" id="hud-stage-name">ROCKY WASTELAND</div>
             <div class="enemy-count" id="hud-enemies">FOES: 0</div>
           </div>
@@ -127,7 +137,7 @@
                   <tr><td><kbd>L</kbd></td><td>Ki Blast (12 Ki)</td></tr>
                   <tr><td><kbd>Space</kbd></td><td>Kamehameha Beam (45 Ki)</td></tr>
                   <tr><td><kbd>Shift</kbd></td><td>Charge Ki (Hold)</td></tr>
-                  <tr><td><kbd>T</kbd></td><td>Super Saiyan (at 100% Ki)</td></tr>
+                  <tr><td><kbd>T</kbd></td><td>Super Saiyan (at 100% SSJ Meter)</td></tr>
                   <tr><td><kbd>Esc</kbd></td><td>Pause / Resume</td></tr>
                 </tbody>
               </table>
@@ -135,9 +145,9 @@
             <div class="tips-section">
               <h3>COMBAT TIPS</h3>
               <ul>
-                <li>Chain <strong>Punch &rarr; Punch &rarr; Kick</strong> to build huge combos and launch foes.</li>
-                <li>Collect blue <strong>Ki Orbs</strong> and green <strong>Senzu Orbs</strong> dropped by defeated enemies.</li>
-                <li>Fill Ki to <strong>100%</strong> and press <kbd>T</kbd> (or hold <kbd>Shift</kbd>) to unleash <strong>Super Saiyan</strong>: +45% power, faster movement, and Golden Kamehameha!</li>
+                <li>Chain <strong>Punch &rarr; Punch &rarr; Kick</strong> to build combos and fill your <strong>SSJ Transformation Meter</strong>.</li>
+                <li>Collect blue <strong>Ki Orbs</strong> and green <strong>Senzu Orbs</strong> dropped by defeated enemies and cracked boulders.</li>
+                <li>When the <strong>SSJ</strong> bar reaches <strong>100%</strong>, press <kbd>T</kbd> to transform into <strong>Super Saiyan</strong> for 18 seconds: +45% power, faster movement &amp; combos, and Enhanced Golden Kamehameha!</li>
                 <li>Defeat each stage's Boss to advance through all 4 battlefields.</li>
               </ul>
             </div>
@@ -180,6 +190,41 @@
         </div>
       </div>
 
+      <!-- Difficulty Selection Screen -->
+      <div id="difficulty-screen" class="overlay-screen hidden">
+        <div class="modal-card diff-modal">
+          <h2>SELECT DIFFICULTY</h2>
+          <p class="diff-subtitle">Choose your battle intensity before entering the Rocky Wasteland.</p>
+          <div class="diff-cards" id="diff-cards">
+            <button class="diff-card easy" data-diff="easy" type="button">
+              <div class="diff-card-head">
+                <span class="diff-name">EASY</span>
+                <span class="diff-tag">BEGINNER</span>
+              </div>
+              <p class="diff-desc">Lower enemy health &amp; damage, slower attacks, and boosted Ki recovery.</p>
+            </button>
+            <button class="diff-card medium selected" data-diff="medium" type="button">
+              <div class="diff-card-head">
+                <span class="diff-name">MEDIUM</span>
+                <span class="diff-tag">ARCADE</span>
+              </div>
+              <p class="diff-desc">Balanced enemy strength, standard attack speed, and moderate Ki recovery.</p>
+            </button>
+            <button class="diff-card hard" data-diff="hard" type="button">
+              <div class="diff-card-head">
+                <span class="diff-name">HARD</span>
+                <span class="diff-tag">SAIYAN</span>
+              </div>
+              <p class="diff-desc">Aggressive AI, twin Ki volleys, tougher bosses, heavy damage &amp; slower Ki gain.</p>
+            </button>
+          </div>
+          <div class="diff-actions">
+            <button class="arcade-btn" id="btn-diff-back" type="button">BACK</button>
+            <button class="arcade-btn primary" id="btn-diff-start" type="button">START BATTLE</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Pause Overlay -->
       <div id="pause-screen" class="overlay-screen hidden">
         <div class="modal-card small-modal">
@@ -188,6 +233,7 @@
             <button class="arcade-btn primary" id="btn-resume" type="button">RESUME</button>
             <button class="arcade-btn" id="btn-pause-settings" type="button">SETTINGS</button>
             <button class="arcade-btn" id="btn-restart" type="button">RESTART STAGE</button>
+            <button class="arcade-btn" id="btn-pause-diff" type="button">CHANGE DIFFICULTY</button>
             <button class="arcade-btn danger" id="btn-quit" type="button">MAIN MENU</button>
           </div>
         </div>
@@ -208,6 +254,7 @@
           <div class="summary-stats" id="gameover-stats"></div>
           <div class="stack-buttons">
             <button class="arcade-btn primary" id="btn-retry" type="button">RETRY GAME</button>
+            <button class="arcade-btn" id="btn-go-diff" type="button">CHANGE DIFFICULTY</button>
             <button class="arcade-btn" id="btn-go-menu" type="button">MAIN MENU</button>
           </div>
         </div>
@@ -221,6 +268,7 @@
           <div class="summary-stats" id="victory-stats"></div>
           <div class="stack-buttons">
             <button class="arcade-btn primary" id="btn-play-again" type="button">PLAY AGAIN</button>
+            <button class="arcade-btn" id="btn-vic-diff" type="button">CHANGE DIFFICULTY</button>
             <button class="arcade-btn" id="btn-vic-menu" type="button">MAIN MENU</button>
           </div>
         </div>
@@ -250,15 +298,15 @@
   </div>
 
   <!-- Scripts loaded sequentially for full file:// & http:// compatibility -->
-  <script src="js/audio.js"></script>
-  <script src="js/input.js"></script>
-  <script src="js/effects.js"></script>
-  <script src="js/environment.js"></script>
-  <script src="js/combat.js"></script>
-  <script src="js/player.js"></script>
-  <script src="js/enemy.js"></script>
-  <script src="js/levels.js"></script>
-  <script src="js/game.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/audio.js?v=4"></script>
+  <script src="js/input.js?v=4"></script>
+  <script src="js/effects.js?v=4"></script>
+  <script src="js/environment.js?v=4"></script>
+  <script src="js/combat.js?v=4"></script>
+  <script src="js/player.js?v=4"></script>
+  <script src="js/enemy.js?v=4"></script>
+  <script src="js/levels.js?v=4"></script>
+  <script src="js/game.js?v=4"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

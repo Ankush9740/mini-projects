@@ -210,6 +210,16 @@ html, body {
   background: linear-gradient(to bottom, #fff690 0%, #f8b420 60%, #c06808 100%);
 }
 
+.ssj-fill {
+  background: linear-gradient(to bottom, #d48cff 0%, #8e3cd8 60%, #581e96 100%);
+}
+
+.ssj-fill.ready,
+.ssj-fill.active {
+  background: linear-gradient(to bottom, #fff89c 0%, #ffd028 55%, #d68408 100%);
+  box-shadow: 0 0 6px rgba(255, 212, 64, 0.75);
+}
+
 .bar-val {
   min-width: 44px;
   text-align: right;
@@ -235,11 +245,30 @@ html, body {
 
 .hud-center {
   text-align: center;
-  background: rgba(14, 10, 22, 0.76);
+  background: rgba(14, 10, 22, 0.8);
   border: 2px solid #584880;
   padding: 4px 12px;
   box-shadow: 2px 2px 0 #000;
 }
+
+.stage-meta-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.diff-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border: 1px solid #000;
+  color: #fff;
+}
+
+.diff-badge.easy { background: #268642; border-color: #68e084; }
+.diff-badge.medium { background: #b87410; border-color: #ffd440; }
+.diff-badge.hard { background: #a81c28; border-color: #ff6870; }
 
 .stage-tag {
   font-size: 10px;
@@ -627,6 +656,90 @@ kbd {
   font-size: 12px;
   line-height: 1.65;
   text-align: left;
+}
+
+/* ==================== DIFFICULTY SELECTION ==================== */
+.diff-modal {
+  width: min(94%, 640px);
+  text-align: center;
+}
+
+.diff-subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.diff-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.diff-card {
+  font-family: var(--font-arcade);
+  text-align: left;
+  background: #1a1428;
+  border: 2px solid #4e4074;
+  padding: 10px;
+  color: var(--text-light);
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #000;
+  transition: transform 0.08s ease, border-color 0.1s ease, background 0.1s ease;
+}
+
+.diff-card:hover {
+  background: #241c38;
+  transform: translateY(-2px);
+}
+
+.diff-card.selected {
+  background: #2a2042;
+  box-shadow: 0 0 0 2px #ffd440, 4px 4px 0 #000;
+}
+
+.diff-card.easy.selected { border-color: #64f084; }
+.diff-card.medium.selected { border-color: #ffd440; }
+.diff-card.hard.selected { border-color: #ff5864; }
+
+.diff-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.diff-name {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.diff-card.easy .diff-name { color: #64f084; }
+.diff-card.medium .diff-name { color: #ffd440; }
+.diff-card.hard .diff-name { color: #ff6070; }
+
+.diff-tag {
+  font-size: 9px;
+  padding: 1px 4px;
+  border: 1px solid #685896;
+  color: #d8d0ec;
+}
+
+.diff-desc {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #d8d0ec;
+}
+
+.diff-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+@media (max-width: 720px) {
+  .diff-cards { grid-template-columns: 1fr; }
 }
 
 /* ==================== STAGE BANNER ==================== */

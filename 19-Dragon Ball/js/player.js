@@ -15,6 +15,13 @@
       this.maxKi = 100;
       this.ki = 40;
 
+      // Dedicated Super Saiyan transformation meter & 18s duration timer
+      this.ssjMeter = 0;
+      this.maxSsjMeter = 100;
+      this.ssjDuration = 18.0;
+      this.ssjTimer = 0;
+      this.difficultyMods = { kiGainMult: 1.0, ssjGainMult: 1.0 };
+
       this.isSSJ = false;
       this.alive = true;
       this.grounded = true;
@@ -45,6 +52,8 @@
       this.maxHp = 100;
       this.hp = 100;
       this.ki = 40;
+      this.ssjMeter = 0;
+      this.ssjTimer = 0;
       this.isSSJ = false;
       this.alive = true;
       this.grounded = true;
@@ -76,12 +85,29 @@
       this.ki = Math.min(this.maxKi, Math.max(this.ki, 40));
     }
 
+    setDifficultyMods(diffCfg) {
+      if (!diffCfg) return;
+      this.difficultyMods = {
+        kiGainMult: diffCfg.kiGainMult || 1.0,
+        ssjGainMult: diffCfg.ssjGainMult || 1.0,
+      };
+    }
+
+    gainSsjEnergy(amount) {
+      if (!this.alive || this.isSSJ || amount <= 0) return;
+      this.ssjMeter = Math.min(this.maxSsjMeter, this.ssjMeter + amount * this.difficultyMods.ssjGainMult);
+    }
+
     getMoveSpeed() {
-      return this.isSSJ ? 185 : 145;
+      return this.isSSJ ? 188 : 145;
     }
 
     getDamageMult() {
       return this.isSSJ ? 1.45 : 1.0;
+    }
+
+    getCooldownMult() {
+      return this.isSSJ ? 0.8 : 1.0;
     }
 
     getHurtbox() {
@@ -134,17 +160,21 @@
     }
 
     triggerTransform() {
-      if (this.isSSJ || this.ki < this.maxKi || !this.alive) return false;
+      if (this.isSSJ || this.ssjMeter < this.maxSsjMeter || !this.alive) return false;
       this.state = "transform";
-      this.stateTimer = 0.65;
+      this.stateTimer = 0.7;
       this.vx = 0;
-      this.invulnTimer = 0.9;
+      this.invulnTimer = 1.0;
       this.isSSJ = true;
+      this.ssjMeter = 0;
+      this.ssjTimer = this.ssjDuration;
+      this.ki = Math.min(this.maxKi, this.ki + 35);
       DB.Audio.play("transform");
-      DB.Effects.addFlash("#fff2a0", 0.65);
-      DB.Effects.addShake(6, 0.4);
-      DB.Effects.spawnBurst(this.x, this.y - 22, "#ffd440", 18, 150);
-      DB.Effects.spawnPopup(this.x, this.y - 48, "SUPER SAIYAN!", "#ffe858");
+      DB.Effects.addFlash("#fff2a0", 0.7);
+      DB.Effects.addShake(6.5, 0.45);
+      DB.Effects.spawnBurst(this.x, this.y - 22, "#ffd440", 22, 165);
+      DB.Effects.spawnBurst(this.x, this.y - 12, "#ffffff", 10, 120);
+      DB.Effects.spawnPopup(this.x, this.y - 50, "SUPER SAIYAN!", "#ffe858");
       return true;
     }
 
@@ -161,23 +191,26 @@
         return;
       }
 
-      // Passive Ki regen (Base) vs Ki drain (Super Saiyan)
+      // Temporary Super Saiyan duration countdown + Ki regeneration
       if (this.isSSJ) {
-        this.ki -= 4.2 * dt;
-        if (this.ki <= 0) {
-          this.ki = 0;
+        this.ssjTimer -= dt;
+        this.ki = Math.min(this.maxKi, this.ki + 5.5 * this.difficultyMods.kiGainMult * dt);
+        if (this.ssjTimer <= 0) {
+          this.ssjTimer = 0;
           this.isSSJ = false;
-          DB.Effects.spawnPopup(this.x, this.y - 44, "SSJ ENDED", "#b8b0c8");
+          this.ssjMeter = 0;
+          DB.Effects.spawnBurst(this.x, this.y - 24, "#ffd440", 10, 80);
+          DB.Effects.spawnPopup(this.x, this.y - 46, "BASE FORM", "#b8b0c8");
         }
       } else if (this.state !== "charge") {
-        this.ki = Math.min(this.maxKi, this.ki + 2.5 * dt);
+        this.ki = Math.min(this.maxKi, this.ki + 2.5 * this.difficultyMods.kiGainMult * dt);
       }
 
       const lockedStates = ["punch", "kick", "ki", "kame_charge", "kame_fire", "hit", "transform"];
       const isLocked = lockedStates.includes(this.state);
 
-      // Transform shortcut [T]
-      if (input.justPressed("transform") && !this.isSSJ && this.ki >= this.maxKi && this.state !== "hit") {
+      // Transform shortcut [T] when transformation meter is full
+      if (input.justPressed("transform") && !this.isSSJ && this.ssjMeter >= this.maxSsjMeter && this.state !== "hit") {
         this.triggerTransform();
         this._applyPhysics(dt, bounds);
         return;
@@ -225,7 +258,8 @@
             }
             if (landed) {
               this.hasHitThisSwing = true;
-              this.ki = Math.min(this.maxKi, this.ki + (this.isSSJ ? 3 : 5));
+              this.ki = Math.min(this.maxKi, this.ki + (this.isSSJ ? 3 : 5) * this.difficultyMods.kiGainMult);
+              this.gainSsjEnergy(isFinisher ? 6 : 3.5);
               DB.Audio.play("hit");
             }
           }
@@ -241,9 +275,9 @@
             x: this.x + this.facing * 20,
             y: this.y - 23,
             dir: this.facing,
-            length: 340,
-            height: this.isSSJ ? 28 : 22,
-            damage: Math.round((this.isSSJ ? 22 : 16) * 1),
+            length: this.isSSJ ? 380 : 340,
+            height: this.isSSJ ? 30 : 22,
+            damage: this.isSSJ ? 23 : 16,
             ssj: this.isSSJ,
             life: 0.55,
           });
@@ -266,24 +300,10 @@
       if (input.isDown("charge") && this.grounded && moveDir === 0) {
         this.state = "charge";
         this.vx *= 0.6;
-        if (!this.isSSJ) {
-          this.ki = Math.min(this.maxKi, this.ki + 34 * dt);
-          if (this.ki >= this.maxKi) {
-            this.chargeFullHold += dt;
-            if (this.chargeFullHold >= 0.38) {
-              this.chargeFullHold = 0;
-              this.triggerTransform();
-            }
-          } else {
-            this.chargeFullHold = 0;
-          }
-        } else {
-          this.ki = Math.min(this.maxKi, this.ki + 22 * dt);
-        }
+        this.ki = Math.min(this.maxKi, this.ki + 34 * this.difficultyMods.kiGainMult * dt);
+        this.gainSsjEnergy(3.5 * dt);
         this._applyPhysics(dt, bounds);
         return;
-      } else {
-        this.chargeFullHold = 0;
       }
 
       // Horizontal movement with smooth acceleration
@@ -302,16 +322,22 @@
         DB.Effects.spawnDust(this.x, this.y, this.facing);
       }
 
-      // Attacks
+      // Attacks (Super Saiyan improves combat responsiveness via 0.8x cooldowns!)
+      const cdMult = this.getCooldownMult();
       if (this.attackCooldown <= 0) {
         if (input.justPressed("kame") && this.ki >= 45 && this.grounded) {
           this.ki -= 45;
           this.state = "kame_charge";
-          this.stateTimer = 0.42;
-          this.attackCooldown = 0.55;
+          this.stateTimer = this.isSSJ ? 0.34 : 0.42;
+          this.attackCooldown = 0.55 * cdMult;
           this.vx = 0;
           DB.Audio.play("kame_charge");
-          DB.Effects.spawnPopup(this.x, this.y - 46, "KAMEHAMEHA!", this.isSSJ ? "#ffe858" : "#58e0ff");
+          DB.Effects.spawnPopup(
+            this.x,
+            this.y - 46,
+            this.isSSJ ? "SUPER KAMEHAMEHA!" : "KAMEHAMEHA!",
+            this.isSSJ ? "#ffe858" : "#58e0ff"
+          );
           this._applyPhysics(dt, bounds);
           return;
         }
@@ -319,17 +345,18 @@
           this.ki -= 12;
           this.state = "ki";
           this.stateTimer = 0.22;
-          this.attackCooldown = 0.28;
+          this.attackCooldown = 0.28 * cdMult;
           DB.Audio.play("ki");
           DB.Combat.spawnProjectile({
             owner: "player",
             x: this.x + this.facing * 20,
             y: this.y - 23,
-            vx: this.facing * (this.isSSJ ? 360 : 300),
-            damage: Math.round(22 * this.getDamageMult()),
-            knockback: 110,
+            vx: this.facing * (this.isSSJ ? 375 : 300),
+            damage: Math.round((this.isSSJ ? 33 : 22)),
+            knockback: this.isSSJ ? 140 : 110,
             cell: this.isSSJ ? 1 : 0,
-            radius: 8,
+            radius: this.isSSJ ? 10 : 8,
+            isSuper: this.isSSJ,
           });
           this._applyPhysics(dt, bounds);
           return;
@@ -339,7 +366,7 @@
           this.comboWindow = 0.55;
           this.state = "punch";
           this.stateTimer = this.punchStep === 2 ? 0.26 : 0.19;
-          this.attackCooldown = 0.18;
+          this.attackCooldown = 0.18 * cdMult;
           this.hasHitThisSwing = false;
           if (this.grounded) this.vx = this.facing * 55;
           DB.Audio.play("punch");
@@ -349,7 +376,7 @@
         if (input.justPressed("kick")) {
           this.state = "kick";
           this.stateTimer = 0.27;
-          this.attackCooldown = 0.28;
+          this.attackCooldown = 0.28 * cdMult;
           this.hasHitThisSwing = false;
           if (this.grounded) this.vx = this.facing * 75;
           DB.Audio.play("kick");

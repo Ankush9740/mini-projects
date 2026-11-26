@@ -101,6 +101,7 @@
               const dir = p.vx >= 0 ? 1 : -1;
               e.takeDamage(p.damage, dir * p.knockback, -75, player);
               this.registerPlayerHit();
+              if (player && player.gainSsjEnergy) player.gainSsjEnergy(p.isSuper ? 5 : 3.5);
               DB.Effects.spawnSpark(p.x, p.y, 4, 1.1);
               DB.Effects.spawnBurst(p.x, p.y, p.cell === 1 ? "#ffd440" : "#58d8ff", 6, 85);
               DB.Effects.addShake(2.5, 0.1);
@@ -182,6 +183,7 @@
             if (this.aabb(beamBox, e.getHurtbox())) {
               e.takeDamage(b.damage, b.dir * 165, -90, player);
               this.registerPlayerHit();
+              if (player && player.gainSsjEnergy) player.gainSsjEnergy(3.0);
               DB.Effects.spawnSpark(e.x, e.y - 22, 3, 1.3);
               DB.Effects.addShake(4.5, 0.12);
               DB.Audio.play("hit");

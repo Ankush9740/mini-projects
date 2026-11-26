@@ -25,36 +25,36 @@ OUTLINE = (22, 16, 30, 255)
 PAL_GOKU_BASE = {
     ".": CLEAR,
     "K": OUTLINE,
-    "H": (26, 24, 42, 255),      # Hair mid
-    "h": (60, 62, 98, 255),      # Hair sheen
-    "d": (14, 12, 24, 255),      # Hair deep shadow
-    "S": (244, 188, 138, 255),   # Skin mid
-    "L": (255, 220, 180, 255),   # Skin highlight
-    "s": (194, 130, 88, 255),    # Skin shadow
+    "H": (26, 26, 40, 255),      # Hair dark base
+    "h": (58, 62, 92, 255),      # Hair sheen
+    "d": (14, 14, 24, 255),      # Hair deep shadow
+    "S": (246, 204, 160, 255),   # Warm peach skin (matches ref)
+    "L": (255, 228, 196, 255),   # Skin highlight
+    "s": (206, 148, 104, 255),   # Skin shadow
     "W": (248, 248, 255, 255),   # Eye white
-    "E": (20, 22, 34, 255),      # Eye pupil
-    "O": (238, 98, 20, 255),     # Gi orange mid
-    "G": (255, 152, 52, 255),    # Gi orange highlight
-    "o": (176, 56, 12, 255),     # Gi orange shadow
-    "B": (32, 76, 186, 255),     # Blue cloth mid
-    "C": (68, 126, 236, 255),    # Blue highlight
-    "b": (18, 42, 116, 255),     # Blue shadow
-    "R": (214, 42, 48, 255),     # Red boot trim
-    "Y": (248, 212, 64, 255),    # Gold accent / boot lace
-    "M": (255, 248, 214, 255),   # Energy / motion smear
+    "E": (20, 22, 34, 255),      # Base black pupil
+    "O": (240, 118, 16, 255),    # Iconic Goku orange gi
+    "G": (255, 162, 52, 255),    # Gi highlight
+    "o": (192, 74, 10, 255),     # Gi crease/shadow
+    "B": (24, 112, 200, 255),    # Royal blue undershirt/belt/boots (matches ref)
+    "C": (60, 160, 240, 255),    # Blue highlight
+    "b": (14, 72, 142, 255),     # Blue shadow
+    "R": (224, 40, 40, 255),     # Red boot center stripe (matches ref)
+    "Y": (248, 216, 48, 255),    # Gold boot lace/energy (matches ref)
+    "M": (255, 248, 216, 255),   # Bright white-gold energy
 }
 
 PAL_GOKU_SSJ = {
     **PAL_GOKU_BASE,
-    "H": (246, 208, 42, 255),
-    "h": (255, 248, 160, 255),
-    "d": (194, 132, 16, 255),
-    "E": (36, 216, 200, 255),
-    "S": (252, 202, 150, 255),
-    "L": (255, 232, 196, 255),
-    "O": (248, 122, 28, 255),
-    "G": (255, 186, 80, 255),
-    "B": (46, 98, 216, 255),
+    "H": (248, 208, 28, 255),    # Rich SSJ gold hair (matches main-character.jpg)
+    "h": (255, 244, 112, 255),   # Bright gold highlights
+    "d": (212, 148, 12, 255),    # Warm amber hair shadow
+    "E": (32, 196, 92, 255),     # Iconic emerald-green SSJ eyes (matches ref!)
+    "S": (250, 210, 164, 255),
+    "L": (255, 234, 202, 255),
+    "O": (248, 128, 20, 255),
+    "G": (255, 184, 68, 255),
+    "B": (32, 126, 218, 255),
 }
 
 PAL_SCOUT = {
@@ -316,107 +316,125 @@ def build_sheet(frames, palette, cell_w=64, cell_h=64):
 # 36-37: ko (airborne tumble, ground defeated)
 # ---------------------------------------------------------------------------
 def draw_goku_head(g, cx, cy, ssj=False, mouth="neutral", look_up=0):
-    # Jaw & Neck first
-    rect(g, cx - 2, cy + 4, 4, 3, "s")
-    ellipse(g, cx + 0.5, cy + 1.5, 4.6, 4.4, "S")
-    rect(g, cx, cy + 4, 4, 2, "S")
-    put(g, cx + 4, cy + 4, "s")
-    rect(g, cx - 4, cy + 1, 2, 4, "s")
-    put(g, cx - 4, cy + 1, "S")  # ear
-    put(g, cx + 3, cy + 2, "L")  # cheek highlight
+    # Reference-inspired (main-character.jpg) 16-bit Goku head & iconic hair!
+    # Head / jaw silhouette (~11px wide x 10px tall)
+    ellipse(g, cx, cy + 1, 5.2, 4.8, "S")
+    rect(g, cx - 3, cy + 4, 7, 2, "S")
+    rect(g, cx - 5, cy, 2, 4, "s")        # ear & temple shadow
+    put(g, cx - 4, cy + 1, "S")
+    put(g, cx + 4, cy + 4, "s")           # chin shadow
+    put(g, cx + 3, cy + 2, "L")           # cheek highlight
 
-    # Iconic Dragon Ball Hair (asymmetrical spiky silhouette + sculpted bangs)
     if ssj:
-        ellipse(g, cx - 0.5, cy - 3.5, 5.2, 3.0, "H")
-        tri(g, cx - 6, cy - 1, cx - 14, cy - 10, cx - 2, cy - 5, "H")
-        tri(g, cx - 5, cy - 3, cx - 9, cy - 17, cx, cy - 7, "H")
-        tri(g, cx - 2, cy - 4, cx + 1, cy - 19, cx + 4, cy - 6, "H")
-        tri(g, cx + 2, cy - 4, cx + 10, cy - 14, cx + 6, cy - 3, "H")
-        tri(g, cx + 4, cy - 2, cx + 11, cy - 7, cx + 5, cy, "H")
-        line(g, cx - 8, cy - 15, cx - 3, cy - 6, "h")
-        line(g, cx + 1, cy - 17, cx + 1, cy - 7, "h")
-        line(g, cx + 8, cy - 12, cx + 4, cy - 5, "h")
-        line(g, cx - 12, cy - 9, cx - 5, cy - 3, "d")
+        # Lush flame-like SSJ golden locks matching main-character.jpg!
+        ellipse(g, cx - 1, cy - 5, 6.8, 4.4, "H")
+        tri(g, cx - 7, cy + 1, cx - 12, cy - 5, cx - 3, cy - 5, "H")
+        tri(g, cx - 6, cy - 2, cx - 13, cy - 10, cx - 1, cy - 7, "H")
+        tri(g, cx - 5, cy - 5, cx - 7, cy - 16, cx + 1, cy - 7, "H")
+        tri(g, cx - 2, cy - 5, cx, cy - 17, cx + 4, cy - 7, "H")
+        tri(g, cx + 1, cy - 5, cx + 6, cy - 15, cx + 6, cy - 5, "H")
+        tri(g, cx + 3, cy - 3, cx + 10, cy - 9, cx + 6, cy, "H")
+        line(g, cx - 6, cy - 13, cx - 3, cy - 7, "h")
+        line(g, cx, cy - 15, cx + 1, cy - 7, "h")
+        line(g, cx + 5, cy - 12, cx + 5, cy - 6, "h")
+        line(g, cx - 10, cy - 8, cx - 5, cy - 4, "d")
+        line(g, cx + 7, cy - 7, cx + 5, cy - 2, "d")
+        tri(g, cx - 5, cy - 4, cx - 7, cy + 1, cx - 3, cy - 1, "H")
+        tri(g, cx - 2, cy - 5, cx - 1, cy - 0.5, cx + 1, cy - 3, "H")
+        tri(g, cx + 2, cy - 5, cx + 5, cy + 1, cx + 5, cy - 3, "H")
     else:
-        # Base crown + 5 unmistakable Goku left-sweeping & right-spiking locks
-        ellipse(g, cx - 1, cy - 3.2, 4.8, 2.8, "H")
-        tri(g, cx - 4, cy, cx - 14, cy - 1, cx - 4, cy - 4, "H")       # lower-back spike
-        tri(g, cx - 4, cy - 2, cx - 15, cy - 8, cx - 2, cy - 5, "H")   # mid-back spike
-        tri(g, cx - 4, cy - 4, cx - 9, cy - 14, cx, cy - 6, "H")       # top-left spike
-        tri(g, cx - 1, cy - 4, cx + 2, cy - 15, cx + 4, cy - 5, "H")   # crown spike
-        tri(g, cx + 2, cy - 3, cx + 11, cy - 9, cx + 5, cy - 1, "H")   # front-top spike
-        tri(g, cx + 4, cy - 1, cx + 10, cy - 2, cx + 4, cy + 1, "H")   # front-side spike
-        line(g, cx - 8, cy - 12, cx - 2, cy - 6, "h")
-        line(g, cx + 2, cy - 12, cx + 3, cy - 6, "h")
-        line(g, cx - 12, cy - 7, cx - 5, cy - 3, "d")
+        # Unmistakable Goku lush spiky black hair
+        ellipse(g, cx - 1, cy - 4, 6.4, 4.0, "H")
+        tri(g, cx - 5, cy + 1, cx - 14, cy + 1, cx - 4, cy - 4, "H")
+        tri(g, cx - 5, cy - 1, cx - 15, cy - 6, cx - 2, cy - 6, "H")
+        tri(g, cx - 5, cy - 3, cx - 12, cy - 12, cx, cy - 6, "H")
+        tri(g, cx - 3, cy - 5, cx - 1, cy - 15, cx + 4, cy - 6, "H")
+        tri(g, cx + 1, cy - 4, cx + 9, cy - 11, cx + 6, cy - 2, "H")
+        tri(g, cx + 3, cy - 1, cx + 10, cy - 3, cx + 5, cy + 1, "H")
+        line(g, cx - 9, cy - 9, cx - 3, cy - 5, "h")
+        line(g, cx, cy - 12, cx + 2, cy - 6, "h")
+        line(g, cx + 6, cy - 8, cx + 4, cy - 3, "h")
+        line(g, cx - 12, cy - 5, cx - 6, cy - 2, "d")
+        tri(g, cx - 5, cy - 4, cx - 6, cy + 1, cx - 3, cy - 1, "H")
+        tri(g, cx - 1, cy - 5, cx, cy, cx + 2, cy - 3, "H")
+        tri(g, cx + 3, cy - 4, cx + 5, cy, cx + 5, cy - 2, "H")
 
-    # Natural diagonal forehead bangs (no flat bar!)
-    tri(g, cx + 1, cy - 4, cx + 4.5, cy - 0.5, cx - 0.5, cy - 1.5, "H")
-    tri(g, cx - 2, cy - 4, cx + 0.5, cy - 0.5, cx - 3.5, cy - 0.5, "H")
-
-    # Sharp Anime Eye & Fierce Brow
+    # Sharp 16-bit Anime Eye & Diagonal Brow (mirrors main-character.jpg)
     ey = cy - look_up
     put(g, cx + 1, ey, "W")
     put(g, cx + 2, ey, "W")
     put(g, cx + 3, ey, "E")
-    put(g, cx + 2, ey + 1, "W")
+    put(g, cx + 1, ey + 1, "W")
+    put(g, cx + 2, ey + 1, "E")
     put(g, cx + 3, ey + 1, "E")
-    line(g, cx + 1, ey - 1, cx + 4, ey - 1, "H" if ssj else "K")
+    # Slanted fierce eyebrow
+    put(g, cx, ey - 2, "K")
+    put(g, cx + 1, ey - 1, "K")
+    put(g, cx + 2, ey - 1, "K")
+    put(g, cx + 3, ey - 1, "K")
 
-    # Mouth
+    # Confident smirk / shout mouth
     if mouth == "shout":
         rect(g, cx + 1, cy + 3, 3, 2, "K")
         put(g, cx + 2, cy + 3, "W")
     elif mouth == "grit":
-        line(g, cx + 1, cy + 3, cx + 4, cy + 3, "W")
+        line(g, cx, cy + 3, cx + 4, cy + 3, "W")
     else:
-        line(g, cx + 1, cy + 3, cx + 3, cy + 3, "s")
+        line(g, cx + 1, cy + 3, cx + 4, cy + 3, "K")
 
 
 def draw_goku_torso(g, cx, cy, lean=0, sash_swing=0):
-    # Blue undershirt shoulder & chest base
-    ellipse(g, cx + lean, cy + 2, 5.8, 3.2, "B")
-    # Orange Gi chest with V-neck and shaded folds
-    tri(g, cx - 6 + lean, cy + 1, cx + 6 + lean, cy + 1, cx + 4.5 + lean, cy + 12, "O")
-    tri(g, cx - 6 + lean, cy + 1, cx - 4.5 + lean, cy + 12, cx + 4.5 + lean, cy + 12, "O")
+    # Solid muscular neck connecting head and shoulders seamlessly
+    rect(g, cx - 2 + lean, cy - 2, 5, 4, "s")
+    put(g, cx + lean, cy - 1, "S")
+    # Orange Gi body with prominent shoulders + centered blue V-neck (matches main-character.jpg!)
+    tri(g, cx - 6 + lean, cy + 1, cx + 6 + lean, cy + 1, cx + 5 + lean, cy + 12, "O")
+    tri(g, cx - 6 + lean, cy + 1, cx - 5 + lean, cy + 12, cx + 5 + lean, cy + 12, "O")
+    rect(g, cx - 6 + lean, cy + 1, 13, 3, "O")
     rect(g, cx - 5 + lean, cy + 2, 2, 10, "o")
-    line(g, cx - 2 + lean, cy + 6, cx + 2 + lean, cy + 10, "o")
-    line(g, cx + 2 + lean, cy + 3, cx + 4 + lean, cy + 9, "G")
-    # Blue undershirt V-neck
+    line(g, cx + 3 + lean, cy + 3, cx + 5 + lean, cy + 9, "G")
+    # Blue undershirt V-neck opening
     tri(g, cx - 1 + lean, cy + 1, cx + 4 + lean, cy + 1, cx + 2 + lean, cy + 6, "B")
-    put(g, cx + 1 + lean, cy + 3, "s")
-    put(g, cx + 2 + lean, cy + 3, "S")
-    # White/gold Turtle school chest emblem dot on left pec
-    put(g, cx + 3 + lean, cy + 5, "M")
-    # Obi belt & knotted sash tails
-    rect(g, cx - 5 + lean, cy + 11, 10, 2, "B")
+    put(g, cx + 1 + lean, cy + 2, "C")
+    line(g, cx - 2 + lean, cy + 1, cx + 1 + lean, cy + 7, "o")
+    line(g, cx + 4 + lean, cy + 1, cx + 2 + lean, cy + 7, "o")
+    # Blue Obi Belt + knotted sash tails
+    rect(g, cx - 5 + lean, cy + 11, 11, 2, "B")
     rect(g, cx - 5 + lean, cy + 12, 4, 1, "b")
-    put(g, cx + 2 + lean, cy + 11, "C")
+    rect(g, cx - 1 + lean, cy + 11, 4, 1, "C")
     line(g, cx - 4 + lean, cy + 12, cx - 9 + lean - sash_swing, cy + 18, "B", 2)
     line(g, cx - 3 + lean, cy + 12, cx - 7 + lean - sash_swing, cy + 16, "C", 1)
-    # Gi waist hem
-    rect(g, cx - 5 + lean, cy + 13, 10, 2, "O")
+    # Gi waist skirt flare
+    rect(g, cx - 5 + lean, cy + 13, 11, 2, "O")
     rect(g, cx - 5 + lean, cy + 14, 3, 1, "o")
 
 
-def draw_goku_arm(g, sx, sy, ex, ey, hx, hy, fist_size=2.1):
-    capsule(g, sx, sy, sx + (ex - sx) * 0.32, sy + (ey - sy) * 0.32, 2.4, 2.2, "B", "C", "b")
-    capsule(g, sx + (ex - sx) * 0.28, sy + (ey - sy) * 0.28, ex, ey, 2.2, 2.0, "S", "L", "s")
-    mx = ex + (hx - ex) * 0.55
-    my = ey + (hy - ey) * 0.55
-    capsule(g, ex, ey, mx, my, 2.0, 1.8, "S", "L", "s")
-    capsule(g, mx, my, hx, hy, 1.9, 1.9, "B", "C", "b")
+def draw_goku_arm(g, sx, sy, ex, ey, hx, hy, fist_size=2.3):
+    # Blue undershirt sleeve starting just outside the orange gi shoulder
+    s_start_x = sx + (ex - sx) * 0.14
+    s_start_y = sy + (ey - sy) * 0.14
+    capsule(g, s_start_x, s_start_y, sx + (ex - sx) * 0.45, sy + (ey - sy) * 0.45, 2.6, 2.3, "B", "C", "b")
+    capsule(g, sx + (ex - sx) * 0.38, sy + (ey - sy) * 0.38, ex, ey, 2.3, 2.1, "S", "L", "s")
+    mx = ex + (hx - ex) * 0.52
+    my = ey + (hy - ey) * 0.52
+    capsule(g, ex, ey, mx, my, 2.1, 1.9, "S", "L", "s")
+    capsule(g, mx, my, hx, hy, 2.1, 2.0, "B", "C", "b")
     ellipse(g, hx, hy, fist_size, fist_size, "S")
-    put(g, hx + 0.5, hy - 0.5, "L")
+    put(g, hx + 0.6, hy - 0.6, "L")
+    put(g, hx - 0.5, hy + 0.6, "s")
 
 
 def draw_goku_leg(g, hx, hy, kx, ky, fx, fy):
-    capsule(g, hx, hy, kx, ky, 3.3, 2.8, "O", "G", "o")
-    capsule(g, kx, ky, fx, fy - 4, 2.8, 2.2, "O", "G", "o")
-    capsule(g, fx, fy - 4, fx, fy, 2.4, 2.4, "B", "C", "b")
+    # Baggy orange gi pants with crease fold & iconic blue/yellow/red boots (matches ref!)
+    capsule(g, hx, hy, kx, ky, 3.5, 3.0, "O", "G", "o")
+    capsule(g, kx, ky, fx, fy - 4, 3.0, 2.3, "O", "G", "o")
+    put(g, kx, ky + 1, "o")
+    # Blue boot body
+    capsule(g, fx, fy - 4, fx, fy, 2.5, 2.5, "B", "C", "b")
     rect(g, fx - 2, fy - 1, 6, 3, "B")
-    rect(g, fx - 1, fy - 2, 2, 1, "Y")
-    line(g, fx - 1, fy + 1, fx + 3, fy + 1, "R")
+    # Bright yellow collar stripe across top of boot + vertical red center stripe!
+    line(g, fx - 2, fy - 3, fx + 2, fy - 3, "Y")
+    line(g, fx, fy - 2, fx, fy + 1, "R")
 
 
 def build_goku_frames(ssj=False):

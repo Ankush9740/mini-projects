@@ -134,12 +134,28 @@
   };
 
   class Enemy {
-    constructor(type, x, groundY, diffScale = 1.0, flankOffset = 0) {
+    constructor(type, x, groundY, diffCfg = 1.0, flankOffset = 0) {
       const cfg = ENEMY_CONFIGS[type] || ENEMY_CONFIGS.scout;
       this.type = type;
       this.cfg = cfg;
       this.name = cfg.name;
       this.isBoss = cfg.isBoss;
+
+      // Support either numeric scale (backwards compat) or full Difficulty object
+      const diff =
+        typeof diffCfg === "object" && diffCfg !== null
+          ? diffCfg
+          : {
+              hpMult: diffCfg,
+              bossHpMult: diffCfg,
+              dmgMult: diffCfg > 1 ? 1.2 : 1.0,
+              speedMult: 1.0,
+              windupMult: 1.0,
+              cooldownMult: 1.0,
+              rageThreshold: 0.5,
+              aggroLevel: diffCfg > 1 ? 2 : 1,
+            };
+      this.diff = diff;
 
       this.x = x;
       this.y = groundY;
@@ -148,9 +164,10 @@
       this.vy = 0;
       this.facing = -1;
 
-      this.maxHp = Math.round(cfg.maxHp * diffScale);
+      const hpScale = this.isBoss ? diff.bossHpMult : diff.hpMult;
+      this.maxHp = Math.round(cfg.maxHp * hpScale);
       this.hp = this.maxHp;
-      this.damage = Math.round(cfg.damage * (diffScale > 1 ? 1.2 : 1));
+      this.damage = Math.max(1, Math.round(cfg.damage * diff.dmgMult));
       this.flankOffset = flankOffset;
 
       this.alive = true;
@@ -159,12 +176,13 @@
 
       this.state = "idle"; // idle, move, windup, attack, special, hit, ko
       this.stateTimer = 0;
-      this.attackCooldown = 0.6 + Math.random() * 0.5;
+      this.attackCooldown = (0.55 + Math.random() * 0.45) * diff.cooldownMult;
       this.animTimer = Math.random() * 2;
       this.hitFlash = 0;
       this.hasDealtHit = false;
       this.bossPattern = 0;
       this.koTimer = 0.75;
+      this.evadeCooldown = 0;
     }
 
     getHurtbox() {
@@ -208,8 +226,15 @@
           player._onKillEnemy(this);
         }
       } else if (!this.isBoss || resist > 0.3 || this.state === "idle" || this.state === "move") {
-        // Bosses aren't stun-locked mid-special unless light interrupt
-        if (this.state !== "special") {
+        // Hard AI: aggressive enemies may perform an evasive hop-back counter instead of staying stunned
+        if (this.diff.aggroLevel >= 2 && this.grounded && this.evadeCooldown <= 0 && Math.random() < 0.32) {
+          this.evadeCooldown = 2.4;
+          this.vx = (kbVx >= 0 ? 1 : -1) * 145;
+          this.vy = -175;
+          this.grounded = false;
+          this.attackCooldown = Math.min(this.attackCooldown, 0.35);
+          this.state = "idle";
+        } else if (this.state !== "special") {
           this.state = "hit";
           this.stateTimer = this.isBoss ? 0.14 : 0.24;
         }
@@ -220,6 +245,7 @@
       this.animTimer += dt;
       if (this.hitFlash > 0) this.hitFlash = Math.max(0, this.hitFlash - dt);
       if (this.attackCooldown > 0) this.attackCooldown = Math.max(0, this.attackCooldown - dt);
+      if (this.evadeCooldown > 0) this.evadeCooldown = Math.max(0, this.evadeCooldown - dt);
 
       if (!this.alive) {
         this.koTimer -= dt;
@@ -275,39 +301,54 @@
         return;
       }
 
-      // AI Movement & Target Selection
+      // AI Movement & Target Selection (Difficulty-aware speed, windups, and attack patterns)
       this.facing = dirToPlayer;
-      const rageMult = this.isBoss && this.hp < this.maxHp * 0.5 ? 1.28 : 1.0;
+      const rageMult = this.isBoss && this.hp < this.maxHp * this.diff.rageThreshold ? 1.3 : 1.0;
+      const moveSpeed = this.cfg.speed * this.diff.speedMult * rageMult;
+      const windupDur = this.cfg.windup * this.diff.windupMult;
 
       if (this.cfg.isRanged) {
         const idealDist = 165 + this.flankOffset;
         if (dist < 85) {
           // Back away from Goku
-          this.vx = -dirToPlayer * this.cfg.speed;
+          this.vx = -dirToPlayer * moveSpeed;
           this.state = "move";
         } else if (dist > idealDist + 25) {
-          this.vx = dirToPlayer * this.cfg.speed;
+          this.vx = dirToPlayer * moveSpeed;
           this.state = "move";
         } else {
           this.vx *= 0.7;
           this.state = "idle";
           if (this.attackCooldown <= 0 && player.alive) {
             this.state = "windup";
-            this.stateTimer = this.cfg.windup;
+            this.stateTimer = windupDur;
             this.hasDealtHit = false;
           }
         }
       } else {
         // Melee or Boss AI
         const stopDist = this.cfg.range - 6 + Math.abs(this.flankOffset) * 0.25;
-        if (this.isBoss && dist > 110 && dist < 260 && this.attackCooldown <= 0 && player.alive) {
-          // Boss ranged / dash special trigger!
+        // Hard AI: melee & brute enemies launch mid-range lunge/dash strikes!
+        const hardMidLunge =
+          !this.isBoss &&
+          this.diff.aggroLevel >= 2 &&
+          dist > stopDist + 10 &&
+          dist < 105 &&
+          this.attackCooldown <= 0 &&
+          player.alive;
+
+        if (hardMidLunge) {
+          this.state = "windup";
+          this.stateTimer = windupDur;
+          this.hasDealtHit = false;
+        } else if (this.isBoss && dist > 100 && dist < 280 && this.attackCooldown <= 0 && player.alive) {
+          // Boss ranged / dash special trigger
           this.bossPattern = (this.bossPattern + 1) % 3;
           this.state = "windup";
-          this.stateTimer = this.cfg.windup / rageMult;
+          this.stateTimer = windupDur / rageMult;
           this.hasDealtHit = false;
         } else if (dist > stopDist) {
-          this.vx = dirToPlayer * this.cfg.speed * rageMult;
+          this.vx = dirToPlayer * moveSpeed;
           this.state = "move";
           // Terrain awareness: jump over gaps, obstacles, or up onto Goku's elevated ledge
           if (this.grounded && DB.Environment) {
@@ -325,7 +366,7 @@
           this.state = "idle";
           if (this.attackCooldown <= 0 && player.alive) {
             this.state = "windup";
-            this.stateTimer = this.cfg.windup / rageMult;
+            this.stateTimer = windupDur / rageMult;
             this.hasDealtHit = false;
             if (this.isBoss) this.bossPattern = (this.bossPattern + 1) % 3;
           }
@@ -336,8 +377,8 @@
     }
 
     _executeAttack(player, dir) {
-      const rage = this.isBoss && this.hp < this.maxHp * 0.5;
-      const cdMult = rage ? 0.75 : 1.0;
+      const rage = this.isBoss && this.hp < this.maxHp * this.diff.rageThreshold;
+      const cdMult = (rage ? 0.72 : 1.0) * this.diff.cooldownMult;
       this.facing = dir;
       this.attackCooldown = this.cfg.cooldown * cdMult;
 
@@ -345,16 +386,31 @@
         this.state = "special";
         this.stateTimer = 0.25;
         DB.Audio.play("ki");
+        const boltSpeed = this.diff.aggroLevel >= 2 ? 250 : 210;
         DB.Combat.spawnProjectile({
           owner: "enemy",
           x: this.x + dir * 18,
           y: this.y - 24,
-          vx: dir * 210,
+          vx: dir * boltSpeed,
           damage: this.damage,
           knockback: 90,
           cell: 2,
           radius: 7,
         });
+        // Hard AI: Ki Troopers fire a twin angled spread bolt!
+        if (this.diff.aggroLevel >= 2) {
+          DB.Combat.spawnProjectile({
+            owner: "enemy",
+            x: this.x + dir * 18,
+            y: this.y - 28,
+            vx: dir * (boltSpeed - 25),
+            vy: -32,
+            damage: Math.max(4, Math.round(this.damage * 0.75)),
+            knockback: 75,
+            cell: 2,
+            radius: 6,
+          });
+        }
         return;
       }
 
@@ -364,24 +420,38 @@
         this.stateTimer = 0.34;
         DB.Audio.play("ki");
         const isFinal = this.type === "boss4";
+        const spd = this.diff.aggroLevel >= 2 ? 255 : 210;
         DB.Combat.spawnProjectile({
           owner: "enemy",
           x: this.x + dir * 24,
           y: this.y - 28,
-          vx: dir * (isFinal ? 245 : 210),
+          vx: dir * (isFinal ? spd + 25 : spd),
           damage: this.damage + 4,
           knockback: 140,
           cell: 2,
           radius: isFinal ? 13 : 9,
           isSuper: isFinal,
         });
-        if (rage || this.type === "boss3") {
+        if (rage || this.type === "boss3" || this.diff.aggroLevel >= 2) {
           DB.Combat.spawnProjectile({
             owner: "enemy",
             x: this.x + dir * 24,
             y: this.y - 36,
-            vx: dir * 195,
-            vy: -35,
+            vx: dir * (spd - 15),
+            vy: -36,
+            damage: this.damage,
+            knockback: 100,
+            cell: 2,
+            radius: 7,
+          });
+        }
+        if (this.diff.aggroLevel >= 2 && rage) {
+          DB.Combat.spawnProjectile({
+            owner: "enemy",
+            x: this.x + dir * 24,
+            y: this.y - 20,
+            vx: dir * (spd - 25),
+            vy: 26,
             damage: this.damage,
             knockback: 100,
             cell: 2,
@@ -395,20 +465,20 @@
         // Boss Dash Lunge Strike
         this.state = "attack";
         this.stateTimer = 0.32;
-        this.vx = dir * 240;
+        this.vx = dir * (this.diff.aggroLevel >= 2 ? 275 : 240);
         DB.Audio.play("kick");
         return;
       }
 
-      // Standard Melee Strike (or Gremlin lunge)
+      // Standard Melee Strike (or Gremlin / Hard AI lunge)
       this.state = "attack";
       this.stateTimer = 0.26;
-      if (this.cfg.lunges) {
-        this.vx = dir * 185;
-        this.vy = -90;
+      if (this.cfg.lunges || (this.diff.aggroLevel >= 2 && Math.abs(player.x - this.x) > 48)) {
+        this.vx = dir * (this.diff.aggroLevel >= 2 ? 210 : 185);
+        this.vy = -85;
         this.grounded = false;
       } else {
-        this.vx = dir * 70;
+        this.vx = dir * 75;
       }
       DB.Audio.play("punch");
     }

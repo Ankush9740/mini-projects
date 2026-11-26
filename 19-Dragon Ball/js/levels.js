@@ -1,6 +1,51 @@
 (function (DB) {
   "use strict";
 
+  DB.Difficulties = {
+    easy: {
+      id: "easy",
+      label: "EASY",
+      hpMult: 0.7,
+      bossHpMult: 0.72,
+      dmgMult: 0.65,
+      speedMult: 0.88,
+      windupMult: 1.35,
+      cooldownMult: 1.4,
+      kiGainMult: 1.35,
+      ssjGainMult: 1.25,
+      rageThreshold: 0.35,
+      aggroLevel: 0,
+    },
+    medium: {
+      id: "medium",
+      label: "MEDIUM",
+      hpMult: 1.0,
+      bossHpMult: 1.0,
+      dmgMult: 1.0,
+      speedMult: 1.0,
+      windupMult: 1.0,
+      cooldownMult: 1.0,
+      kiGainMult: 1.0,
+      ssjGainMult: 1.0,
+      rageThreshold: 0.5,
+      aggroLevel: 1,
+    },
+    hard: {
+      id: "hard",
+      label: "HARD",
+      hpMult: 1.45,
+      bossHpMult: 1.65,
+      dmgMult: 1.45,
+      speedMult: 1.18,
+      windupMult: 0.74,
+      cooldownMult: 0.66,
+      kiGainMult: 0.65,
+      ssjGainMult: 0.9,
+      rageThreshold: 0.65,
+      aggroLevel: 2,
+    },
+  };
+
   DB.Levels = [
     {
       id: 1,

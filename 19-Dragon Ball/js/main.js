@@ -8,9 +8,13 @@
       hpVal: document.getElementById("hud-hp-val"),
       kiFill: document.getElementById("hud-ki-fill"),
       kiVal: document.getElementById("hud-ki-val"),
+      ssjLabel: document.getElementById("hud-ssj-label"),
+      ssjFill: document.getElementById("hud-ssj-fill"),
+      ssjVal: document.getElementById("hud-ssj-val"),
       formBadge: document.getElementById("hud-form"),
       ssjPrompt: document.getElementById("hud-ssj-prompt"),
       stageTag: document.getElementById("hud-stage"),
+      diffBadge: document.getElementById("hud-difficulty"),
       stageName: document.getElementById("hud-stage-name"),
       enemiesCount: document.getElementById("hud-enemies"),
       scoreVal: document.getElementById("hud-score"),
@@ -25,6 +29,7 @@
       hudPauseBtn: document.getElementById("hud-pause-btn"),
 
       menuScreen: document.getElementById("menu-screen"),
+      difficultyScreen: document.getElementById("difficulty-screen"),
       howtoScreen: document.getElementById("howto-screen"),
       settingsScreen: document.getElementById("settings-screen"),
       pauseScreen: document.getElementById("pause-screen"),
@@ -53,10 +58,54 @@
 
     DB.Game.init(ui);
 
-    // Main Menu Buttons
+    // Main Menu -> Difficulty Selection Flow
+    const openDifficultyScreen = (returnTo = "menu") => {
+      DB.Game.prevStateBeforeDiff = returnTo;
+      ui.menuScreen.classList.add("hidden");
+      ui.pauseScreen.classList.add("hidden");
+      ui.gameoverScreen.classList.add("hidden");
+      ui.victoryScreen.classList.add("hidden");
+      ui.difficultyScreen.classList.remove("hidden");
+      syncDiffCards();
+    };
+
+    const diffCards = document.querySelectorAll("#diff-cards .diff-card");
+    const syncDiffCards = () => {
+      const cur = DB.Game.settings.difficulty;
+      diffCards.forEach((card) => {
+        card.classList.toggle("selected", card.dataset.diff === cur);
+      });
+    };
+
+    diffCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        DB.Audio.unlock();
+        DB.Audio.play("menu");
+        DB.Game.updateSetting("difficulty", card.dataset.diff);
+        syncDiffCards();
+      });
+    });
+
     document.getElementById("btn-start").addEventListener("click", () => {
       DB.Audio.unlock();
       DB.Audio.play("menu");
+      openDifficultyScreen("menu");
+    });
+
+    document.getElementById("btn-diff-back").addEventListener("click", () => {
+      DB.Audio.play("menu");
+      ui.difficultyScreen.classList.add("hidden");
+      const ret = DB.Game.prevStateBeforeDiff || "menu";
+      if (ret === "paused") ui.pauseScreen.classList.remove("hidden");
+      else if (ret === "gameover") ui.gameoverScreen.classList.remove("hidden");
+      else if (ret === "victory") ui.victoryScreen.classList.remove("hidden");
+      else ui.menuScreen.classList.remove("hidden");
+    });
+
+    document.getElementById("btn-diff-start").addEventListener("click", () => {
+      DB.Audio.unlock();
+      DB.Audio.play("menu");
+      ui.difficultyScreen.classList.add("hidden");
       DB.Game.startNewGame();
     });
 
@@ -131,8 +180,11 @@
 
     ui.setDiff.addEventListener("click", () => {
       DB.Audio.play("menu");
-      const next = DB.Game.settings.difficulty === "normal" ? "hard" : "normal";
+      const order = ["easy", "medium", "hard"];
+      const idx = order.indexOf(DB.Game.settings.difficulty);
+      const next = order[(idx + 1) % order.length];
       DB.Game.updateSetting("difficulty", next);
+      syncDiffCards();
     });
 
     ui.setShake.addEventListener("click", () => {
@@ -153,6 +205,18 @@
     document.getElementById("btn-restart").addEventListener("click", () => {
       DB.Audio.play("menu");
       DB.Game.restartCurrentStage();
+    });
+    document.getElementById("btn-pause-diff").addEventListener("click", () => {
+      DB.Audio.play("menu");
+      openDifficultyScreen("paused");
+    });
+    document.getElementById("btn-go-diff").addEventListener("click", () => {
+      DB.Audio.play("menu");
+      openDifficultyScreen("gameover");
+    });
+    document.getElementById("btn-vic-diff").addEventListener("click", () => {
+      DB.Audio.play("menu");
+      openDifficultyScreen("victory");
     });
     document.getElementById("btn-quit").addEventListener("click", () => {
       DB.Audio.play("menu");

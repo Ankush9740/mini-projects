@@ -74,7 +74,7 @@
         sfx: true,
         bgm: true,
         volume: 0.75,
-        difficulty: "normal", // normal | hard
+        difficulty: "medium", // easy | medium | hard
         shake: true,
         touch: "auto", // auto | on | off
       };
@@ -101,17 +101,23 @@
         const comboBonus = Math.min(200, DB.Combat.comboCount * 15);
         const pts = enemy.cfg.score + comboBonus;
         this.addScore(pts);
+        const ssjGain = enemy.isBoss ? 40 : enemy.type === "brute" ? 28 : 18;
+        this.player.gainSsjEnergy(ssjGain);
         DB.Effects.spawnPopup(enemy.x, enemy.y - 54, `+${pts}`, "#64f084");
       };
 
       this.lastTime = performance.now();
       const loop = (now) => {
+        requestAnimationFrame(loop);
         const dt = Math.min(0.05, Math.max(0.001, (now - this.lastTime) / 1000));
         this.lastTime = now;
-        this.update(dt);
-        this.render();
+        try {
+          this.update(dt);
+          this.render();
+        } catch (err) {
+          console.error("Game loop error:", err);
+        }
         DB.Input.endFrame();
-        requestAnimationFrame(loop);
       };
       requestAnimationFrame(loop);
     }
@@ -142,6 +148,12 @@
         if (typeof data.highScore === "number") this.highScore = data.highScore;
         if (data.settings) {
           Object.assign(this.settings, data.settings);
+          if (this.settings.difficulty === "normal") {
+            this.settings.difficulty = "medium";
+          }
+          if (!DB.Difficulties[this.settings.difficulty]) {
+            this.settings.difficulty = "medium";
+          }
         }
       } catch (_) {}
     }
@@ -163,6 +175,9 @@
       DB.Audio.setBgmEnabled(this.settings.bgm);
       DB.Audio.setVolume(this.settings.volume);
       DB.Effects.shakeEnabled = this.settings.shake;
+      if (this.player && DB.Difficulties) {
+        this.player.setDifficultyMods(DB.Difficulties[this.settings.difficulty] || DB.Difficulties.medium);
+      }
     }
 
     updateSetting(key, val) {
@@ -189,6 +204,7 @@
       this.stageIndex = 0;
       DB.Combat.reset();
       DB.Effects.reset();
+      this.player.setDifficultyMods(DB.Difficulties[this.settings.difficulty] || DB.Difficulties.medium);
       this.player.resetForGame(90, DB.Levels[0].groundY);
       this._startStage(0);
     }
@@ -198,6 +214,7 @@
       if (this.settings.bgm) DB.Audio.startBgm();
       DB.Combat.reset();
       DB.Effects.reset();
+      this.player.setDifficultyMods(DB.Difficulties[this.settings.difficulty] || DB.Difficulties.medium);
       this.player.resetForGame(90, DB.Levels[this.stageIndex].groundY);
       this._startStage(this.stageIndex);
     }
@@ -231,18 +248,26 @@
       }
       this.player.resetForStage(90, lvl.groundY);
 
+      if (typeof document !== "undefined" && document.activeElement && document.activeElement.blur) {
+        document.activeElement.blur();
+      }
+
       this.state = "stage_intro";
-      this.stateTimer = 1.65;
+      this.stateTimer = 1.25;
       this.syncUI();
     }
 
     togglePause() {
-      if (this.state === "playing") {
+      if (this.state === "playing" || this.state === "stage_intro") {
+        this.prevPlayingState = this.state;
         this.state = "paused";
         DB.Audio.play("menu");
         this.syncUI();
       } else if (this.state === "paused") {
-        this.state = "playing";
+        this.state = this.prevPlayingState === "stage_intro" && this.stateTimer > 0 ? "stage_intro" : "playing";
+        if (typeof document !== "undefined" && document.activeElement && document.activeElement.blur) {
+          document.activeElement.blur();
+        }
         DB.Audio.play("menu");
         this.syncUI();
       }
@@ -261,7 +286,7 @@
     update(dt) {
       // Pause toggle via Esc
       if (DB.Input.justPressed("pause")) {
-        if (this.state === "playing" || this.state === "paused") {
+        if (this.state === "playing" || this.state === "stage_intro" || this.state === "paused") {
           this.togglePause();
         }
       }
@@ -285,7 +310,7 @@
           this.state = "playing";
           this.syncUI();
         }
-        return;
+        // Allow immediate Goku movement & exploration while the Stage Banner fades!
       }
 
       if (this.state === "stage_clear") {
@@ -306,6 +331,9 @@
 
       // Active gameplay update
       this.elapsedTime += dt;
+      if (this.waveActive && !this.player.isSSJ) {
+        this.player.gainSsjEnergy(1.5 * dt);
+      }
 
       // Wave trigger check
       if (!this.waveActive && this.waveIndex < lvl.waves.length) {
@@ -399,7 +427,7 @@
     _spawnWave(wave, groundY) {
       this.waveActive = true;
       this.waveLockRight = wave.lockRight;
-      const diffScale = this.settings.difficulty === "hard" ? 1.32 : 1.0;
+      const diffCfg = DB.Difficulties[this.settings.difficulty] || DB.Difficulties.medium;
 
       if (wave.isBossWave) {
         DB.Audio.play("boss_warn");
@@ -408,10 +436,10 @@
 
       wave.spawns.forEach((sp, i) => {
         const spawnX = Math.min(wave.lockRight - 28, Math.max(this.camX + 320, this.camX + sp.offset));
-        const flank = (i % 3 - 1) * 18;
+        const flank = diffCfg.aggroLevel >= 2 ? (i % 2 === 0 ? -36 : 36) : (i % 3 - 1) * 18;
         const surfY = DB.Environment.getTerrainY(spawnX);
         const spawnY = surfY !== null ? surfY : groundY;
-        this.enemies.push(new DB.Enemy(sp.type, spawnX, spawnY, diffScale, flank));
+        this.enemies.push(new DB.Enemy(sp.type, spawnX, spawnY, diffCfg, flank));
       });
     }
 
@@ -542,13 +570,35 @@
       u.kiFill.classList.toggle("ssj", this.player.isSSJ);
       u.kiVal.textContent = `${kiPct}%`;
 
+      if (u.ssjLabel && u.ssjFill && u.ssjVal) {
+        if (this.player.isSSJ) {
+          const durPct = Math.max(0, Math.min(100, (this.player.ssjTimer / this.player.ssjDuration) * 100));
+          u.ssjLabel.textContent = "TIME";
+          u.ssjFill.style.width = `${durPct}%`;
+          u.ssjFill.classList.remove("ready");
+          u.ssjFill.classList.add("active");
+          u.ssjVal.textContent = `${this.player.ssjTimer.toFixed(1)}s`;
+        } else {
+          const ssjPct = Math.max(0, Math.min(100, Math.round((this.player.ssjMeter / this.player.maxSsjMeter) * 100)));
+          u.ssjLabel.textContent = "SSJ";
+          u.ssjFill.style.width = `${ssjPct}%`;
+          u.ssjFill.classList.toggle("ready", ssjPct >= 100);
+          u.ssjFill.classList.remove("active");
+          u.ssjVal.textContent = `${ssjPct}%`;
+        }
+      }
+
       u.formBadge.textContent = this.player.isSSJ ? "SUPER SAIYAN" : "BASE";
       u.formBadge.classList.toggle("ssj", this.player.isSSJ);
-      u.ssjPrompt.classList.toggle("hidden", this.player.isSSJ || kiPct < 100);
+      u.ssjPrompt.classList.toggle("hidden", this.player.isSSJ || this.player.ssjMeter < this.player.maxSsjMeter);
       this._drawPortrait(this.player.isSSJ);
 
       const lvl = DB.Levels[this.stageIndex];
       u.stageTag.textContent = `STAGE ${lvl.id} / ${DB.Levels.length}`;
+      if (u.diffBadge) {
+        u.diffBadge.textContent = this.settings.difficulty.toUpperCase();
+        u.diffBadge.className = `diff-badge ${this.settings.difficulty}`;
+      }
       u.stageName.textContent = lvl.name;
       u.enemiesCount.textContent = `FOES: ${this._getRemainingEnemiesCount()}`;
 
@@ -583,6 +633,9 @@
 
       const inGameplay = ["stage_intro", "playing", "paused", "stage_clear"].includes(this.state);
       u.hud.classList.toggle("hidden", !inGameplay);
+      if (u.difficultyScreen && inGameplay) {
+        u.difficultyScreen.classList.add("hidden");
+      }
 
       u.menuScreen.classList.toggle("hidden", this.state !== "menu");
       u.pauseScreen.classList.toggle("hidden", this.state !== "paused");
@@ -612,6 +665,7 @@
         const secs = Math.floor(this.elapsedTime % 60);
         const timeStr = `${mins}:${String(secs).padStart(2, "0")}`;
         const html = [
+          `<div>DIFFICULTY: <strong>${this.settings.difficulty.toUpperCase()}</strong></div>`,
           `<div>STAGE REACHED: <strong>${this.stageIndex + 1} / ${DB.Levels.length}</strong></div>`,
           `<div>FINAL SCORE: <strong>${this.score}</strong></div>`,
           `<div>HIGH SCORE: <strong>${this.highScore}</strong></div>`,
