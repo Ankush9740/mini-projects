@@ -5,7 +5,8 @@
     scout: {
       name: "Frieza Scout",
       spriteKey: "enemyScout",
-      cellSize: 48,
+      cellSize: 64,
+      bodySize: 48,
       maxHp: 45,
       speed: 78,
       damage: 9,
@@ -20,7 +21,8 @@
     gremlin: {
       name: "Bio-Fighter",
       spriteKey: "enemyGremlin",
-      cellSize: 48,
+      cellSize: 64,
+      bodySize: 48,
       maxHp: 34,
       speed: 112,
       damage: 8,
@@ -36,7 +38,8 @@
     blaster: {
       name: "Ki Trooper",
       spriteKey: "enemyBlaster",
-      cellSize: 48,
+      cellSize: 64,
+      bodySize: 48,
       maxHp: 42,
       speed: 68,
       damage: 11,
@@ -52,6 +55,7 @@
       name: "Armored Brute",
       spriteKey: "enemyBrute",
       cellSize: 64,
+      bodySize: 64,
       maxHp: 110,
       speed: 52,
       damage: 16,
@@ -67,6 +71,7 @@
       name: "SAIYAN VANGUARD",
       spriteKey: "boss1",
       cellSize: 64,
+      bodySize: 64,
       maxHp: 240,
       speed: 88,
       damage: 14,
@@ -82,6 +87,7 @@
       name: "BERSERKER TITAN",
       spriteKey: "boss2",
       cellSize: 64,
+      bodySize: 64,
       maxHp: 330,
       speed: 78,
       damage: 18,
@@ -97,6 +103,7 @@
       name: "CRIMSON COMMANDER",
       spriteKey: "boss3",
       cellSize: 64,
+      bodySize: 64,
       maxHp: 420,
       speed: 98,
       damage: 18,
@@ -112,6 +119,7 @@
       name: "EMPEROR FROST",
       spriteKey: "boss4",
       cellSize: 64,
+      bodySize: 64,
       maxHp: 560,
       speed: 105,
       damage: 20,
@@ -160,8 +168,8 @@
     }
 
     getHurtbox() {
-      const w = this.cfg.cellSize === 64 ? 30 : 22;
-      const h = this.cfg.cellSize === 64 ? 48 : 36;
+      const w = this.cfg.bodySize === 64 ? 30 : 22;
+      const h = this.cfg.bodySize === 64 ? 48 : 36;
       return { x: this.x - w / 2, y: this.y - h, w, h };
     }
 
@@ -176,7 +184,7 @@
         this.grounded = false;
       }
 
-      DB.Effects.spawnPopup(this.x, this.y - (this.cfg.cellSize === 64 ? 54 : 42), `${Math.round(amount)}`, "#fff480");
+      DB.Effects.spawnPopup(this.x, this.y - (this.cfg.bodySize === 64 ? 54 : 42), `${Math.round(amount)}`, "#fff480");
 
       if (this.hp <= 0) {
         this.alive = false;
@@ -413,22 +421,21 @@
     }
 
     _getFrameIndex() {
-      const hasSpecial = this.cfg.cellSize === 64;
       switch (this.state) {
         case "idle":
           return Math.floor(this.animTimer * 4) % 2;
         case "move":
-          return 2 + (Math.floor(this.animTimer * 8) % 2);
+          return 2 + (Math.floor(this.animTimer * 9) % 4);
         case "windup":
-          return 4;
+          return 6;
         case "attack":
-          return 5;
+          return 7;
         case "special":
-          return hasSpecial ? 6 : 5;
+          return 8;
         case "hit":
-          return hasSpecial ? 7 : 6;
+          return 9;
         case "ko":
-          return hasSpecial ? 8 : 7;
+          return this.grounded ? 11 : 10;
         default:
           return 0;
       }
@@ -444,8 +451,8 @@
 
       ctx.save();
       // Shadow
-      ctx.fillStyle = "rgba(0,0,0,0.35)";
-      const sw = sz === 64 ? 30 : 20;
+      ctx.fillStyle = "rgba(0,0,0,0.36)";
+      const sw = this.cfg.bodySize === 64 ? 30 : 22;
       ctx.fillRect(sx - sw / 2, this.groundY - 2, sw, 4);
 
       // Boss Rage aura at <50% HP
@@ -462,7 +469,7 @@
       ctx.translate(sx, sy);
       ctx.scale(this.facing, 1);
 
-      const drawOffsetY = sz === 64 ? -58 : -44;
+      const drawOffsetY = -56;
       ctx.drawImage(sheet, frame * sz, 0, sz, sz, -sz / 2, drawOffsetY, sz, sz);
 
       // Crisp white hit-flash indicator
@@ -478,7 +485,7 @@
       if (this.alive && !this.isBoss && this.hp < this.maxHp) {
         const bw = 24;
         const bx = sx - bw / 2;
-        const by = sy - (sz === 64 ? 54 : 42);
+        const by = sy - (this.cfg.bodySize === 64 ? 54 : 42);
         ctx.fillStyle = "#181020";
         ctx.fillRect(bx - 1, by - 1, bw + 2, 4);
         ctx.fillStyle = "#e83848";

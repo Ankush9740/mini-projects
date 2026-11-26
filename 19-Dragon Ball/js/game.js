@@ -18,8 +18,10 @@
     boss4: "assets/sprites/boss_4.png",
     effects: "assets/effects/effects.png",
     stage1Sky: "assets/backgrounds/stage1_sky.png",
+    stage1Far: "assets/backgrounds/stage1_far.png",
     stage1Mid: "assets/backgrounds/stage1_mid.png",
     stage1Ground: "assets/backgrounds/stage1_ground.png",
+    stage1Fg: "assets/backgrounds/stage1_fg.png",
     stage2Sky: "assets/backgrounds/stage2_sky.png",
     stage2Mid: "assets/backgrounds/stage2_mid.png",
     stage2Ground: "assets/backgrounds/stage2_ground.png",
@@ -406,9 +408,24 @@
         }
       };
 
-      drawTiled(this.assets[lvl.skyKey], 0.15);
-      drawTiled(this.assets[lvl.midKey], 0.45);
+      drawTiled(this.assets[lvl.skyKey], 0.08);
+      if (lvl.farKey) drawTiled(this.assets[lvl.farKey], 0.25);
+      drawTiled(this.assets[lvl.midKey], 0.52);
       drawTiled(this.assets[lvl.groundKey], 1.0);
+    }
+
+    _drawForegroundParallax(lvl, scrollX) {
+      if (!lvl.fgKey) return;
+      const img = this.assets[lvl.fgKey];
+      if (!img) return;
+      const ctx = this.ctx;
+      const w = img.width;
+      const offset = Math.floor(scrollX * 1.18) % w;
+      const x1 = -offset;
+      ctx.drawImage(img, x1, 0);
+      if (x1 + w < VIEW_W) {
+        ctx.drawImage(img, x1 + w, 0);
+      }
     }
 
     render() {
@@ -419,6 +436,7 @@
       if (this.state === "menu") {
         // Animated Menu Background + Goku Preview
         this._drawParallax(DB.Levels[0], this.menuScroll);
+        this._drawForegroundParallax(DB.Levels[0], this.menuScroll);
         this._renderMenuGokuPreview();
         return;
       }
@@ -431,14 +449,14 @@
 
       this._drawParallax(lvl, this.camX);
 
-      // Draw pickups, particles, fighters, projectiles/beams
-      // Sort enemies so bosses/back characters don't hide Goku weirdly
+      // Draw fighters, projectiles/beams, effects, and foreground depth layer
       for (const e of this.enemies) {
         e.render(ctx, this.camX, this.assets);
       }
       this.player.render(ctx, this.camX, this.assets);
       DB.Combat.render(ctx, this.camX, this.assets);
       DB.Effects.render(ctx, this.camX, this.assets);
+      this._drawForegroundParallax(lvl, this.camX);
 
       ctx.restore();
       DB.Effects.renderFlash(ctx, VIEW_W, VIEW_H);
@@ -452,14 +470,14 @@
       pctx.clearRect(0, 0, 96, 96);
 
       const t = performance.now() / 1000;
-      const frame = Math.floor(t * 4.5) % 3;
+      const frame = Math.floor(t * 5) % 4;
       if (this.assets.effects) {
         pctx.save();
         pctx.globalAlpha = 0.45 + Math.sin(t * 6) * 0.15;
-        pctx.drawImage(this.assets.effects, 5 * 32, 0, 32, 32, 8, 8, 80, 84);
+        pctx.drawImage(this.assets.effects, 5 * 32, 0, 32, 32, 8, 10, 80, 84);
         pctx.restore();
       }
-      pctx.drawImage(sheet, frame * 48, 0, 48, 48, 0, 4, 96, 96);
+      pctx.drawImage(sheet, frame * 64, 0, 64, 64, 0, 2, 96, 96);
     }
 
     _drawPortrait(ssj) {
@@ -470,8 +488,8 @@
       const pctx = this.portraitCtx;
       pctx.imageSmoothingEnabled = false;
       pctx.clearRect(0, 0, 32, 32);
-      // Crop Goku's head & upper torso from frame 0
-      pctx.drawImage(sheet, 10, 2, 26, 26, 0, 0, 32, 32);
+      // Crop Goku's sculpted head & upper shoulders from frame 0 (64x64 cell)
+      pctx.drawImage(sheet, 15, 5, 30, 30, 0, 0, 32, 32);
     }
 
     _getRemainingEnemiesCount() {

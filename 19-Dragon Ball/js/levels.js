@@ -9,8 +9,10 @@
       width: 2100,
       groundY: 232,
       skyKey: "stage1Sky",
+      farKey: "stage1Far",
       midKey: "stage1Mid",
       groundKey: "stage1Ground",
+      fgKey: "stage1Fg",
       waves: [
         {
           triggerX: 160,

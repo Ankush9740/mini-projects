@@ -85,17 +85,18 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(14, 10, 22, 0.78);
-  border: 2px solid #e89828;
+  background: rgba(14, 10, 24, 0.84);
+  border: 2px solid #f0a428;
   padding: 5px 8px;
-  box-shadow: 2px 2px 0 #000;
+  box-shadow: inset 0 0 0 1px #442c10, 2px 2px 0 #000;
 }
 
 .portrait-box {
   width: 36px;
   height: 36px;
   border: 2px solid #ffd440;
-  background: #241c38;
+  background: linear-gradient(180deg, #2a2244 0%, #161024 100%);
+  box-shadow: inset 0 0 0 1px #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,29 +113,30 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  min-width: 168px;
+  min-width: 170px;
 }
 
 .player-name-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
 }
 
 .fighter-name {
-  color: #fff;
+  color: #fff8e8;
   text-shadow: 1px 1px 0 #000;
 }
 
 .form-badge {
-  font-size: 10px;
+  font-size: 9px;
   padding: 1px 5px;
-  background: #2e3a68;
-  border: 1px solid #6888d8;
-  color: #e8f0ff;
+  background: #22305c;
+  border: 1px solid #6890e8;
+  color: #e8f2ff;
+  box-shadow: 1px 1px 0 #000;
 }
 
 .form-badge.ssj {
@@ -164,12 +166,25 @@ html, body {
 }
 
 .bar-track {
+  position: relative;
   flex: 1;
   height: 10px;
-  background: #1a1626;
+  background: #141020;
   border: 1px solid #000;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
   overflow: hidden;
+}
+
+.bar-track::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0 18px,
+    rgba(0, 0, 0, 0.28) 18px 20px
+  );
+  pointer-events: none;
 }
 
 .bar-fill {
@@ -179,27 +194,27 @@ html, body {
 }
 
 .hp-fill {
-  background: linear-gradient(to bottom, #64f084 0%, #34b852 60%, #248a3a 100%);
+  background: linear-gradient(to bottom, #78f894 0%, #38c058 55%, #228438 100%);
 }
 
 .hp-fill.low {
-  background: linear-gradient(to bottom, #ff7070 0%, #dc2828 60%, #961414 100%);
+  background: linear-gradient(to bottom, #ff7878 0%, #dc2828 55%, #901212 100%);
 }
 
 .ki-fill {
-  background: linear-gradient(to bottom, #78e8ff 0%, #2498e8 65%, #1660b0 100%);
+  background: linear-gradient(to bottom, #84ecff 0%, #2498e8 60%, #165ca8 100%);
 }
 
 .ki-fill.full,
 .ki-fill.ssj {
-  background: linear-gradient(to bottom, #fff488 0%, #f8b420 65%, #c87008 100%);
+  background: linear-gradient(to bottom, #fff690 0%, #f8b420 60%, #c06808 100%);
 }
 
 .bar-val {
   min-width: 44px;
   text-align: right;
   font-size: 10px;
-  color: #eae4f4;
+  color: #f0eaf8;
   text-shadow: 1px 1px 0 #000;
 }
 

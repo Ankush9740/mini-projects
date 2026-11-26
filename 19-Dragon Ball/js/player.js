@@ -384,32 +384,41 @@
     _getFrameIndex() {
       switch (this.state) {
         case "idle":
-          return Math.floor(this.animTimer * 5) % 3;
-        case "walk":
-          return 3 + (Math.floor(this.animTimer * 10) % 4);
+          return Math.floor(this.animTimer * 5) % 4;
+        case "walk": {
+          const speed = Math.abs(this.vx);
+          if (speed >= 108) {
+            return 8 + (Math.floor(this.animTimer * 12) % 4);
+          }
+          return 4 + (Math.floor(this.animTimer * 9) % 4);
+        }
         case "jump":
-          return this.vy < 0 ? 7 : 8;
+          if (this.vy < -180) return 12;
+          return this.vy < 20 ? 13 : 14;
         case "punch":
-          if (this.punchStep === 2) return 11;
-          return this.stateTimer > 0.13 ? 9 : 10;
+          if (this.punchStep === 2) {
+            return this.stateTimer > 0.16 ? 17 : 18;
+          }
+          return this.stateTimer > 0.12 ? 15 : 16;
         case "kick":
-          if (this.stateTimer > 0.2) return 12;
-          if (this.stateTimer > 0.07) return 13;
-          return 14;
+          if (!this.grounded) return 22;
+          if (this.stateTimer > 0.2) return 19;
+          if (this.stateTimer > 0.07) return 20;
+          return 21;
         case "ki":
-          return this.stateTimer > 0.14 ? 15 : 16;
+          return this.stateTimer > 0.14 ? 23 : 24;
         case "kame_charge":
-          return this.stateTimer > 0.2 ? 17 : 18;
+          return this.stateTimer > 0.2 ? 25 : 26;
         case "kame_fire":
-          return 19;
+          return 27;
         case "charge":
-          return 20 + (Math.floor(this.animTimer * 12) % 2);
+          return 28 + (Math.floor(this.animTimer * 12) % 2);
         case "hit":
-          return 22;
+          return this.stateTimer > 0.12 ? 30 : 31;
         case "transform":
-          return this.stateTimer > 0.35 ? 23 : 24;
+          return this.stateTimer > 0.35 ? 32 : 33;
         case "ko":
-          return 25;
+          return this.grounded ? 35 : 34;
         default:
           return 0;
       }
@@ -430,9 +439,10 @@
       const sx = Math.round(this.x - camX);
       const sy = Math.round(this.y);
 
-      // Ground shadow
-      ctx.fillStyle = "rgba(0, 0, 0, 0.35)";
-      const shadowW = this.grounded ? 22 : 14;
+      // Ground shadow (scales softly with height)
+      const heightAbove = Math.max(0, this.groundY - this.y);
+      const shadowW = Math.max(10, Math.round(24 - heightAbove * 0.14));
+      ctx.fillStyle = "rgba(0, 0, 0, 0.36)";
       ctx.fillRect(sx - shadowW / 2, this.groundY - 2, shadowW, 4);
 
       // Aura behind Goku during Charge, SSJ, or Transform
@@ -443,16 +453,16 @@
       const frame = this._getFrameIndex();
       ctx.translate(sx, sy);
       ctx.scale(this.facing, 1);
-      ctx.drawImage(sheet, frame * 48, 0, 48, 48, -24, -44, 48, 48);
+      ctx.drawImage(sheet, frame * 64, 0, 64, 64, -32, -56, 64, 64);
 
       // Kamehameha charging energy ball at Goku's cupped hands
       if (this.state === "kame_charge") {
         const chargePct = 1 - Math.max(0, this.stateTimer / 0.42);
-        const r = Math.round(4 + chargePct * 9);
+        const r = Math.round(4 + chargePct * 10);
         ctx.fillStyle = this.isSSJ ? "#ffd440" : "#58e0ff";
-        ctx.fillRect(-14 - r / 2, -16 - r / 2, r, r);
+        ctx.fillRect(-15 - r / 2, -16 - r / 2, r, r);
         ctx.fillStyle = "#ffffff";
-        ctx.fillRect(-14 - r / 4, -16 - r / 4, Math.max(2, r / 2), Math.max(2, r / 2));
+        ctx.fillRect(-15 - r / 4, -16 - r / 4, Math.max(2, r / 2), Math.max(2, r / 2));
       }
 
       ctx.restore();
