@@ -32,6 +32,7 @@
       this.hasHitThisSwing = false;
       this.chargeFullHold = 0;
       this.kameFired = false;
+      this.landingTimer = 0;
     }
 
     resetForGame(x, groundY) {
@@ -152,6 +153,7 @@
       if (this.hitFlash > 0) this.hitFlash = Math.max(0, this.hitFlash - dt);
       if (this.attackCooldown > 0) this.attackCooldown = Math.max(0, this.attackCooldown - dt);
       if (this.comboWindow > 0) this.comboWindow = Math.max(0, this.comboWindow - dt);
+      if (this.landingTimer > 0) this.landingTimer = Math.max(0, this.landingTimer - dt);
 
       if (!this.alive) {
         this._applyPhysics(dt, bounds);
@@ -191,13 +193,13 @@
             (this.state === "kick" && this.stateTimer < 0.19);
           if (hitActive) {
             const box = this.getMeleeHitbox();
+            const isFinisher = this.state === "kick" || this.punchStep === 2;
+            const baseDmg = this.state === "kick" ? 20 : this.punchStep === 2 ? 18 : 12;
+            const dmg = Math.round(baseDmg * this.getDamageMult());
             let landed = false;
             for (const e of enemies) {
               if (!e.alive) continue;
               if (DB.Combat.aabb(box, e.getHurtbox())) {
-                const isFinisher = this.state === "kick" || this.punchStep === 2;
-                const baseDmg = this.state === "kick" ? 20 : this.punchStep === 2 ? 18 : 12;
-                const dmg = Math.round(baseDmg * this.getDamageMult());
                 const kbX = this.facing * (isFinisher ? 175 : 85);
                 const kbY = isFinisher ? -120 : -35;
                 e.takeDamage(dmg, kbX, kbY, this);
@@ -208,9 +210,17 @@
                   isFinisher ? 4 : 3,
                   isFinisher ? 1.2 : 0.9
                 );
-                if (isFinisher) DB.Effects.addShake(3.0, 0.1);
+                if (isFinisher) {
+                  DB.Effects.addShake(3.0, 0.1);
+                  if (this.grounded) {
+                    DB.Effects.spawnBurst(this.x + this.facing * 18, this.y - 2, "#c87842", 4, 65);
+                  }
+                }
                 landed = true;
               }
+            }
+            if (DB.Environment && DB.Environment.hitObstaclesInBox(box, dmg, this.facing)) {
+              landed = true;
             }
             if (landed) {
               this.hasHitThisSwing = true;

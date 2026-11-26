@@ -138,13 +138,25 @@
           continue;
         }
         orb.bob += dt * 5;
-        orb.vy += 420 * dt;
-        orb.x += orb.vx * dt;
-        orb.y += orb.vy * dt;
-        if (orb.y >= groundY - 8) {
-          orb.y = groundY - 8;
-          orb.vy = 0;
-          orb.vx *= 0.8;
+        if (!orb.anchored) {
+          orb.vy += 420 * dt;
+          orb.x += orb.vx * dt;
+          orb.y += orb.vy * dt;
+          let surfY = groundY;
+          if (DB.Environment) {
+            const ty = DB.Environment.getTerrainY(orb.x);
+            surfY = ty !== null ? ty : groundY;
+            for (const p of DB.Environment.platforms) {
+              if (orb.x >= p.x && orb.x <= p.x + p.w && orb.y - 6 <= p.y && p.y < surfY) {
+                surfY = p.y;
+              }
+            }
+          }
+          if (orb.y >= surfY - 8) {
+            orb.y = surfY - 8;
+            orb.vy = 0;
+            orb.vx *= 0.8;
+          }
         }
       }
     }

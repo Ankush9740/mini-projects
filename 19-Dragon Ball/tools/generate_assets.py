@@ -1,7 +1,7 @@
 """
-Generate authentic 16-bit SNES/GBA-quality pixel-art spritesheets,
-multi-layer parallax Rocky Wasteland & stage backgrounds, effects,
-and retro WAV audio files for DRAGON BALL: SAIYAN LEGACY.
+Generate refined 16-bit SNES/GBA-quality pixel-art spritesheets for Goku,
+enemies, bosses, multi-layer Rocky Wasteland backgrounds, and living-world
+props/obstacles for DRAGON BALL: SAIYAN LEGACY.
 """
 import os
 import math
@@ -17,61 +17,61 @@ for sub in ["sprites", "backgrounds", "effects", "audio"]:
     os.makedirs(os.path.join(ASSETS, sub), exist_ok=True)
 
 CLEAR = (0, 0, 0, 0)
-OUTLINE = (22, 16, 30, 255)  # Deep indigo-charcoal 16-bit ink outline
+OUTLINE = (22, 16, 30, 255)
 
 # ---------------------------------------------------------------------------
-# 16-BIT SHADED PALETTES (Highlights, Midtones, Deep Shadows)
+# 16-BIT PALETTES
 # ---------------------------------------------------------------------------
 PAL_GOKU_BASE = {
     ".": CLEAR,
     "K": OUTLINE,
-    "H": (26, 24, 42, 255),      # Hair base
-    "h": (56, 58, 92, 255),      # Hair sheen
+    "H": (26, 24, 42, 255),      # Hair mid
+    "h": (60, 62, 98, 255),      # Hair sheen
     "d": (14, 12, 24, 255),      # Hair deep shadow
-    "S": (244, 188, 140, 255),   # Skin mid
-    "L": (255, 218, 178, 255),   # Skin highlight
-    "s": (196, 134, 92, 255),    # Skin shadow
+    "S": (244, 188, 138, 255),   # Skin mid
+    "L": (255, 220, 180, 255),   # Skin highlight
+    "s": (194, 130, 88, 255),    # Skin shadow
     "W": (248, 248, 255, 255),   # Eye white
     "E": (20, 22, 34, 255),      # Eye pupil
-    "O": (236, 98, 20, 255),     # Gi orange mid
-    "G": (255, 148, 48, 255),    # Gi orange highlight
+    "O": (238, 98, 20, 255),     # Gi orange mid
+    "G": (255, 152, 52, 255),    # Gi orange highlight
     "o": (176, 56, 12, 255),     # Gi orange shadow
-    "B": (34, 78, 188, 255),     # Blue cloth mid
-    "C": (64, 122, 232, 255),    # Blue cloth highlight
-    "b": (18, 44, 120, 255),     # Blue cloth shadow
-    "R": (212, 42, 48, 255),     # Boot red trim
-    "Y": (248, 212, 64, 255),    # Gold accent / energy
-    "M": (255, 248, 210, 255),   # Motion smear / bright white-gold
+    "B": (32, 76, 186, 255),     # Blue cloth mid
+    "C": (68, 126, 236, 255),    # Blue highlight
+    "b": (18, 42, 116, 255),     # Blue shadow
+    "R": (214, 42, 48, 255),     # Red boot trim
+    "Y": (248, 212, 64, 255),    # Gold accent / boot lace
+    "M": (255, 248, 214, 255),   # Energy / motion smear
 }
 
 PAL_GOKU_SSJ = {
     **PAL_GOKU_BASE,
-    "H": (246, 206, 40, 255),    # Golden hair mid
-    "h": (255, 248, 156, 255),   # Bright gold sheen
-    "d": (196, 134, 16, 255),    # Gold shadow
-    "E": (36, 214, 198, 255),    # Teal SSJ eyes
-    "S": (252, 202, 152, 255),   # Golden-lit skin
+    "H": (246, 208, 42, 255),
+    "h": (255, 248, 160, 255),
+    "d": (194, 132, 16, 255),
+    "E": (36, 216, 200, 255),
+    "S": (252, 202, 150, 255),
     "L": (255, 232, 196, 255),
-    "O": (248, 122, 28, 255),    # Brighter SSJ gi
-    "G": (255, 184, 78, 255),
-    "B": (46, 96, 216, 255),
+    "O": (248, 122, 28, 255),
+    "G": (255, 186, 80, 255),
+    "B": (46, 98, 216, 255),
 }
 
 PAL_SCOUT = {
     ".": CLEAR,
     "K": OUTLINE,
-    "W": (232, 234, 246, 255),   # Armor white mid
-    "L": (252, 252, 255, 255),   # Armor highlight
-    "w": (162, 168, 194, 255),   # Armor shadow
-    "P": (108, 54, 152, 255),    # Purple undersuit mid
-    "p": (66, 30, 98, 255),      # Purple shadow
-    "V": (146, 86, 192, 255),    # Purple highlight
-    "S": (142, 186, 224, 255),   # Alien blue skin
-    "s": (94, 134, 174, 255),
-    "T": (182, 218, 246, 255),   # Skin highlight
-    "G": (82, 240, 114, 255),    # Green scouter
+    "W": (232, 234, 246, 255),
+    "L": (252, 252, 255, 255),
+    "w": (160, 166, 194, 255),
+    "P": (108, 54, 152, 255),
+    "p": (64, 28, 96, 255),
+    "V": (148, 88, 196, 255),
+    "S": (140, 186, 224, 255),
+    "s": (92, 132, 174, 255),
+    "T": (184, 220, 248, 255),
+    "G": (82, 242, 116, 255),
     "g": (36, 154, 68, 255),
-    "R": (224, 58, 66, 255),     # Accent
+    "R": (224, 58, 66, 255),
     "E": (248, 248, 255, 255),
     "Y": (236, 188, 60, 255),
 }
@@ -79,53 +79,52 @@ PAL_SCOUT = {
 PAL_GREMLIN = {
     ".": CLEAR,
     "K": OUTLINE,
-    "G": (88, 178, 64, 255),     # Green body mid
-    "L": (146, 226, 92, 255),    # Green highlight
-    "g": (48, 116, 38, 255),     # Green shadow
-    "B": (142, 100, 62, 255),    # Cranium armor mid
-    "b": (94, 62, 36, 255),      # Cranium shadow
-    "T": (186, 140, 92, 255),    # Cranium highlight
-    "R": (236, 48, 52, 255),     # Fierce red eyes
-    "W": (246, 242, 220, 255),   # Claws & fangs
-    "w": (188, 182, 156, 255),
+    "G": (88, 180, 64, 255),
+    "L": (148, 228, 94, 255),
+    "g": (46, 114, 36, 255),
+    "B": (144, 102, 62, 255),
+    "b": (92, 60, 34, 255),
+    "T": (188, 142, 92, 255),
+    "R": (238, 48, 52, 255),
+    "W": (246, 242, 220, 255),
 }
 
 PAL_BLASTER = {
     ".": CLEAR,
     "K": OUTLINE,
-    "A": (54, 62, 96, 255),      # Slate armor mid
-    "L": (88, 98, 142, 255),     # Slate highlight
-    "a": (30, 34, 58, 255),      # Slate shadow
-    "C": (196, 56, 148, 255),    # Magenta trim/cannon
-    "c": (124, 28, 92, 255),
-    "M": (242, 114, 198, 255),   # Magenta highlight
-    "S": (196, 158, 220, 255),   # Violet skin
+    "A": (54, 62, 96, 255),
+    "L": (90, 100, 146, 255),
+    "a": (30, 34, 58, 255),
+    "C": (196, 56, 148, 255),
+    "c": (122, 28, 90, 255),
+    "M": (244, 116, 200, 255),
+    "S": (196, 158, 220, 255),
     "s": (140, 102, 166, 255),
-    "R": (255, 76, 84, 255),     # Visor glow
-    "Y": (255, 216, 76, 255),    # Energy tip
+    "R": (255, 76, 84, 255),
+    "Y": (255, 218, 78, 255),
 }
 
 PAL_BRUTE = {
     ".": CLEAR,
     "K": OUTLINE,
-    "S": (224, 162, 116, 255),   # Tan muscle mid
-    "L": (248, 196, 152, 255),   # Muscle highlight
-    "s": (164, 106, 72, 255),    # Muscle shadow
-    "A": (42, 46, 70, 255),      # Dark armor
+    "S": (224, 162, 116, 255),
+    "L": (248, 198, 154, 255),
+    "s": (162, 104, 70, 255),
+    "A": (42, 46, 70, 255),
     "a": (24, 26, 42, 255),
-    "Y": (236, 184, 42, 255),    # Gold plates
-    "G": (255, 224, 96, 255),    # Gold highlight
-    "y": (162, 116, 20, 255),    # Gold shadow
+    "Y": (236, 184, 42, 255),
+    "G": (255, 224, 96, 255),
+    "y": (162, 116, 20, 255),
     "W": (244, 244, 248, 255),
-    "R": (228, 48, 52, 255),     # Red scouter
+    "R": (228, 48, 52, 255),
     "H": (28, 24, 34, 255),
 }
 
-PAL_BOSS1 = {  # Saiyan Vanguard (Raditz-inspired)
+PAL_BOSS1 = {
     ".": CLEAR,
     "K": OUTLINE,
     "H": (24, 22, 38, 255),
-    "h": (62, 60, 98, 255),
+    "h": (64, 62, 100, 255),
     "d": (14, 12, 22, 255),
     "S": (236, 178, 134, 255),
     "L": (252, 212, 172, 255),
@@ -133,13 +132,13 @@ PAL_BOSS1 = {  # Saiyan Vanguard (Raditz-inspired)
     "A": (40, 38, 58, 255),
     "a": (22, 20, 34, 255),
     "Y": (214, 164, 64, 255),
-    "G": (246, 204, 104, 255),
+    "G": (248, 206, 106, 255),
     "y": (144, 104, 34, 255),
     "R": (216, 46, 62, 255),
     "W": (248, 248, 255, 255),
 }
 
-PAL_BOSS2 = {  # Berserker Titan
+PAL_BOSS2 = {
     ".": CLEAR,
     "K": OUTLINE,
     "S": (182, 112, 82, 255),
@@ -155,7 +154,7 @@ PAL_BOSS2 = {  # Berserker Titan
     "W": (248, 248, 255, 255),
 }
 
-PAL_BOSS3 = {  # Crimson Commander
+PAL_BOSS3 = {
     ".": CLEAR,
     "K": OUTLINE,
     "S": (162, 70, 168, 255),
@@ -172,7 +171,7 @@ PAL_BOSS3 = {  # Crimson Commander
     "B": (64, 216, 240, 255),
 }
 
-PAL_BOSS4 = {  # Emperor Frost
+PAL_BOSS4 = {
     ".": CLEAR,
     "K": OUTLINE,
     "W": (240, 242, 252, 255),
@@ -186,7 +185,7 @@ PAL_BOSS4 = {  # Emperor Frost
 
 
 # ---------------------------------------------------------------------------
-# Organic Pixel-Art Drawing Primitives
+# PIXEL ART DRAWING PRIMITIVES
 # ---------------------------------------------------------------------------
 def new_frame(w=64, h=64):
     return [[None for _ in range(w)] for _ in range(h)]
@@ -197,14 +196,6 @@ def put(grid, x, y, ch):
     xi, yi = int(round(x)), int(round(y))
     if 0 <= xi < w and 0 <= yi < h and ch is not None:
         grid[yi][xi] = ch
-
-
-def get(grid, x, y):
-    h, w = len(grid), len(grid[0])
-    xi, yi = int(round(x)), int(round(y))
-    if 0 <= xi < w and 0 <= yi < h:
-        return grid[yi][xi]
-    return None
 
 
 def rect(grid, x, y, w, h, ch):
@@ -222,7 +213,6 @@ def ellipse(grid, cx, cy, rx, ry, ch):
 
 
 def capsule(grid, x0, y0, x1, y1, r0, r1, ch, hi=None, sh=None):
-    """Draw a tapered organic limb/muscle segment with directional cel-shading."""
     steps = max(int(math.hypot(x1 - x0, y1 - y0) * 2), 1)
     for i in range(steps + 1):
         t = i / steps
@@ -311,74 +301,66 @@ def build_sheet(frames, palette, cell_w=64, cell_h=64):
 
 
 # ---------------------------------------------------------------------------
-# GOKU SPRITESHEET (64x64 cells, 34 frames, ground at y=58)
+# REFINED GOKU SPRITESHEET (64x64, 38 frames, feet at y=58)
 #  0- 3: idle (4)
 #  4- 7: walk (4)
 #  8-11: run  (4)
-# 12-14: jump (takeoff, rise, fall)
-# 15-18: punch (windup, straight, cross windup, uppercut)
-# 19-22: kick (chamber, extend, follow, air kick)
-# 23-24: ki_blast (gather, fire)
-# 25-27: kamehameha (cup1, cup2, fire)
-# 28-29: charge (2)
-# 30-31: hit (stagger, recover)
-# 32-33: transform (crouch, roar) -> wait let's also add KO!
-# 34-35: ko (airborne, ground)
-# Total: 36 frames
+# 12-15: jump (takeoff, rise, fall, land)
+# 16-19: punch (windup, straight, cross windup, uppercut)
+# 20-23: kick (chamber, extend, recover, air kick)
+# 24-25: ki_blast (gather, fire)
+# 26-28: kamehameha (cup1, cup2, fire)
+# 29-30: charge (2)
+# 31-33: hit & knockback (hit stagger, airborne knockback, recover)
+# 34-35: transform (crouch, burst roar)
+# 36-37: ko (airborne tumble, ground defeated)
 # ---------------------------------------------------------------------------
 def draw_goku_head(g, cx, cy, ssj=False, mouth="neutral", look_up=0):
-    # Hair spikes (sculpted multi-tiered Dragon Ball silhouette)
-    if ssj:
-        ellipse(g, cx - 1, cy - 3, 5.5, 3.5, "H")
-        tri(g, cx - 7, cy - 1, cx - 14, cy - 11, cx - 2, cy - 6, "H")
-        tri(g, cx - 6, cy - 3, cx - 8, cy - 17, cx, cy - 7, "H")
-        tri(g, cx - 2, cy - 5, cx + 1, cy - 19, cx + 4, cy - 7, "H")
-        tri(g, cx + 1, cy - 4, cx + 9, cy - 15, cx + 6, cy - 4, "H")
-        tri(g, cx + 4, cy - 2, cx + 11, cy - 8, cx + 5, cy, "H")
-        # Gold shading & highlights
-        line(g, cx - 7, cy - 14, cx - 3, cy - 7, "h")
-        line(g, cx + 1, cy - 17, cx + 1, cy - 8, "h")
-        line(g, cx + 7, cy - 13, cx + 4, cy - 6, "h")
-        line(g, cx - 12, cy - 9, cx - 6, cy - 4, "d")
-    else:
-        ellipse(g, cx - 1, cy - 3, 5, 3.5, "H")
-        tri(g, cx - 5, cy - 1, cx - 13, cy - 3, cx - 4, cy - 5, "H")
-        tri(g, cx - 5, cy - 3, cx - 12, cy - 10, cx - 2, cy - 6, "H")
-        tri(g, cx - 4, cy - 5, cx - 6, cy - 15, cx + 1, cy - 7, "H")
-        tri(g, cx - 1, cy - 5, cx + 3, cy - 15, cx + 4, cy - 6, "H")
-        tri(g, cx + 2, cy - 4, cx + 10, cy - 10, cx + 6, cy - 2, "H")
-        tri(g, cx + 4, cy - 2, cx + 10, cy - 2, cx + 5, cy + 1, "H")
-        # Hair highlights & inner depth
-        line(g, cx - 5, cy - 12, cx - 2, cy - 7, "h")
-        line(g, cx + 2, cy - 12, cx + 3, cy - 7, "h")
-        line(g, cx - 10, cy - 8, cx - 5, cy - 4, "d")
-
-    # Sculpted Jaw & Face (angled slightly right)
-    ellipse(g, cx + 0.5, cy + 1, 4.8, 4.8, "S")
-    rect(g, cx - 1, cy + 4, 5, 2, "S")
-    put(g, cx + 4, cy + 4, "s")  # chin contour
-    # Cheek & neck shadow
+    # Jaw & Neck first
+    rect(g, cx - 2, cy + 4, 4, 3, "s")
+    ellipse(g, cx + 0.5, cy + 1.5, 4.6, 4.4, "S")
+    rect(g, cx, cy + 4, 4, 2, "S")
+    put(g, cx + 4, cy + 4, "s")
     rect(g, cx - 4, cy + 1, 2, 4, "s")
-    put(g, cx - 3, cy + 5, "s")
-    # Highlight on cheek/nose bridge
-    put(g, cx + 3, cy + 1, "L")
-    put(g, cx + 2, cy - 1, "L")
-    # Ear detail
-    rect(g, cx - 4, cy, 2, 3, "s")
-    put(g, cx - 4, cy + 1, "S")
+    put(g, cx - 4, cy + 1, "S")  # ear
+    put(g, cx + 3, cy + 2, "L")  # cheek highlight
 
-    # Forehead bangs (sit snugly over brow)
-    tri(g, cx + 1, cy - 4, cx + 5, cy, cx - 1, cy - 1, "H")
-    tri(g, cx - 2, cy - 4, cx + 1, cy, cx - 4, cy, "H")
-    rect(g, cx - 4, cy - 3, 9, 2, "H")
+    # Iconic Dragon Ball Hair (asymmetrical spiky silhouette + sculpted bangs)
+    if ssj:
+        ellipse(g, cx - 0.5, cy - 3.5, 5.2, 3.0, "H")
+        tri(g, cx - 6, cy - 1, cx - 14, cy - 10, cx - 2, cy - 5, "H")
+        tri(g, cx - 5, cy - 3, cx - 9, cy - 17, cx, cy - 7, "H")
+        tri(g, cx - 2, cy - 4, cx + 1, cy - 19, cx + 4, cy - 6, "H")
+        tri(g, cx + 2, cy - 4, cx + 10, cy - 14, cx + 6, cy - 3, "H")
+        tri(g, cx + 4, cy - 2, cx + 11, cy - 7, cx + 5, cy, "H")
+        line(g, cx - 8, cy - 15, cx - 3, cy - 6, "h")
+        line(g, cx + 1, cy - 17, cx + 1, cy - 7, "h")
+        line(g, cx + 8, cy - 12, cx + 4, cy - 5, "h")
+        line(g, cx - 12, cy - 9, cx - 5, cy - 3, "d")
+    else:
+        # Base crown + 5 unmistakable Goku left-sweeping & right-spiking locks
+        ellipse(g, cx - 1, cy - 3.2, 4.8, 2.8, "H")
+        tri(g, cx - 4, cy, cx - 14, cy - 1, cx - 4, cy - 4, "H")       # lower-back spike
+        tri(g, cx - 4, cy - 2, cx - 15, cy - 8, cx - 2, cy - 5, "H")   # mid-back spike
+        tri(g, cx - 4, cy - 4, cx - 9, cy - 14, cx, cy - 6, "H")       # top-left spike
+        tri(g, cx - 1, cy - 4, cx + 2, cy - 15, cx + 4, cy - 5, "H")   # crown spike
+        tri(g, cx + 2, cy - 3, cx + 11, cy - 9, cx + 5, cy - 1, "H")   # front-top spike
+        tri(g, cx + 4, cy - 1, cx + 10, cy - 2, cx + 4, cy + 1, "H")   # front-side spike
+        line(g, cx - 8, cy - 12, cx - 2, cy - 6, "h")
+        line(g, cx + 2, cy - 12, cx + 3, cy - 6, "h")
+        line(g, cx - 12, cy - 7, cx - 5, cy - 3, "d")
 
-    # Expressive Eye & Fierce Brow
+    # Natural diagonal forehead bangs (no flat bar!)
+    tri(g, cx + 1, cy - 4, cx + 4.5, cy - 0.5, cx - 0.5, cy - 1.5, "H")
+    tri(g, cx - 2, cy - 4, cx + 0.5, cy - 0.5, cx - 3.5, cy - 0.5, "H")
+
+    # Sharp Anime Eye & Fierce Brow
     ey = cy - look_up
     put(g, cx + 1, ey, "W")
     put(g, cx + 2, ey, "W")
     put(g, cx + 3, ey, "E")
-    put(g, cx + 3, ey + 1, "E")
     put(g, cx + 2, ey + 1, "W")
+    put(g, cx + 3, ey + 1, "E")
     line(g, cx + 1, ey - 1, cx + 4, ey - 1, "H" if ssj else "K")
 
     # Mouth
@@ -392,397 +374,380 @@ def draw_goku_head(g, cx, cy, ssj=False, mouth="neutral", look_up=0):
 
 
 def draw_goku_torso(g, cx, cy, lean=0, sash_swing=0):
-    # Muscular neck
-    rect(g, cx - 2 + lean, cy - 3, 4, 4, "s")
-    put(g, cx + lean, cy - 2, "S")
-    # Blue undershirt & collar
-    ellipse(g, cx + lean, cy + 2, 5.5, 3, "B")
-    # Broad Gi Chest with folds & highlights
-    tri(g, cx - 6 + lean, cy + 1, cx + 6 + lean, cy + 1, cx + 4 + lean, cy + 11, "O")
-    tri(g, cx - 6 + lean, cy + 1, cx - 4 + lean, cy + 11, cx + 4 + lean, cy + 11, "O")
-    # Left-side gi shading & fold lines
-    rect(g, cx - 5 + lean, cy + 2, 2, 9, "o")
-    line(g, cx - 2 + lean, cy + 5, cx + 2 + lean, cy + 9, "o")
-    line(g, cx + 2 + lean, cy + 3, cx + 4 + lean, cy + 8, "G")
-    # V-neck showing blue undershirt + pec shadow
+    # Blue undershirt shoulder & chest base
+    ellipse(g, cx + lean, cy + 2, 5.8, 3.2, "B")
+    # Orange Gi chest with V-neck and shaded folds
+    tri(g, cx - 6 + lean, cy + 1, cx + 6 + lean, cy + 1, cx + 4.5 + lean, cy + 12, "O")
+    tri(g, cx - 6 + lean, cy + 1, cx - 4.5 + lean, cy + 12, cx + 4.5 + lean, cy + 12, "O")
+    rect(g, cx - 5 + lean, cy + 2, 2, 10, "o")
+    line(g, cx - 2 + lean, cy + 6, cx + 2 + lean, cy + 10, "o")
+    line(g, cx + 2 + lean, cy + 3, cx + 4 + lean, cy + 9, "G")
+    # Blue undershirt V-neck
     tri(g, cx - 1 + lean, cy + 1, cx + 4 + lean, cy + 1, cx + 2 + lean, cy + 6, "B")
     put(g, cx + 1 + lean, cy + 3, "s")
     put(g, cx + 2 + lean, cy + 3, "S")
-    # Gi waist skirt flare
-    rect(g, cx - 5 + lean, cy + 11, 10, 3, "O")
-    rect(g, cx - 5 + lean, cy + 12, 3, 2, "o")
-    # Blue Obi Sash + dynamic trailing tails
-    rect(g, cx - 5 + lean, cy + 10, 10, 2, "B")
-    rect(g, cx - 5 + lean, cy + 11, 4, 1, "b")
-    put(g, cx + 1 + lean, cy + 10, "C")
-    line(g, cx - 4 + lean, cy + 11, cx - 8 + lean - sash_swing, cy + 16, "B", 2)
-    line(g, cx - 3 + lean, cy + 11, cx - 6 + lean - sash_swing, cy + 15, "C", 1)
+    # White/gold Turtle school chest emblem dot on left pec
+    put(g, cx + 3 + lean, cy + 5, "M")
+    # Obi belt & knotted sash tails
+    rect(g, cx - 5 + lean, cy + 11, 10, 2, "B")
+    rect(g, cx - 5 + lean, cy + 12, 4, 1, "b")
+    put(g, cx + 2 + lean, cy + 11, "C")
+    line(g, cx - 4 + lean, cy + 12, cx - 9 + lean - sash_swing, cy + 18, "B", 2)
+    line(g, cx - 3 + lean, cy + 12, cx - 7 + lean - sash_swing, cy + 16, "C", 1)
+    # Gi waist hem
+    rect(g, cx - 5 + lean, cy + 13, 10, 2, "O")
+    rect(g, cx - 5 + lean, cy + 14, 3, 1, "o")
 
 
 def draw_goku_arm(g, sx, sy, ex, ey, hx, hy, fist_size=2.1):
-    # Gi shoulder sleeve cap
-    capsule(g, sx, sy, sx + (ex - sx) * 0.35, sy + (ey - sy) * 0.35, 2.4, 2.2, "B", "C", "b")
-    # Muscular bicep + forearm
-    capsule(g, sx + (ex - sx) * 0.3, sy + (ey - sy) * 0.3, ex, ey, 2.2, 2.0, "S", "L", "s")
+    capsule(g, sx, sy, sx + (ex - sx) * 0.32, sy + (ey - sy) * 0.32, 2.4, 2.2, "B", "C", "b")
+    capsule(g, sx + (ex - sx) * 0.28, sy + (ey - sy) * 0.28, ex, ey, 2.2, 2.0, "S", "L", "s")
     mx = ex + (hx - ex) * 0.55
     my = ey + (hy - ey) * 0.55
     capsule(g, ex, ey, mx, my, 2.0, 1.8, "S", "L", "s")
-    # Blue wristband
     capsule(g, mx, my, hx, hy, 1.9, 1.9, "B", "C", "b")
-    # Fist
     ellipse(g, hx, hy, fist_size, fist_size, "S")
     put(g, hx + 0.5, hy - 0.5, "L")
 
 
-def draw_goku_leg(g, hx, hy, kx, ky, fx, fy, face=1):
-    # Baggy martial arts Gi pants (thigh + shin)
-    capsule(g, hx, hy, kx, ky, 3.2, 2.8, "O", "G", "o")
-    capsule(g, kx, ky, fx, fy - 3, 2.8, 2.2, "O", "G", "o")
-    # Blue shin-boot with red stripe & yellow laces
-    capsule(g, fx, fy - 3, fx, fy, 2.4, 2.4, "B", "C", "b")
-    rect(g, fx - 2, fy - 1, 5 + (1 if face > 0 else 0), 3, "B")
+def draw_goku_leg(g, hx, hy, kx, ky, fx, fy):
+    capsule(g, hx, hy, kx, ky, 3.3, 2.8, "O", "G", "o")
+    capsule(g, kx, ky, fx, fy - 4, 2.8, 2.2, "O", "G", "o")
+    capsule(g, fx, fy - 4, fx, fy, 2.4, 2.4, "B", "C", "b")
+    rect(g, fx - 2, fy - 1, 6, 3, "B")
     rect(g, fx - 1, fy - 2, 2, 1, "Y")
-    line(g, fx - 1, fy, fx + 2, fy, "R")
+    line(g, fx - 1, fy + 1, fx + 3, fy + 1, "R")
 
 
 def build_goku_frames(ssj=False):
     frames = []
 
-    # 0-3: Idle (4 frames breathing + slight guard bounce)
-    for i, (dy, gx) in enumerate([(0, 0), (1, 0), (1, 1), (0, 0)]):
+    # 0-3: Idle (4 frames smooth breathing & guard sway)
+    for dy, gx, sw in [(0, 0, 0), (1, 0, 1), (1, 1, 1), (0, 0, 0)]:
         g = new_frame()
-        draw_goku_leg(g, 26, 42, 24, 49, 23, 56)
-        draw_goku_leg(g, 33, 42, 36, 49, 36, 56)
-        draw_goku_torso(g, 29, 29 + dy)
-        draw_goku_arm(g, 25, 32 + dy, 23, 36 + dy, 29, 36 + dy)  # back guard fist
-        draw_goku_arm(g, 34, 32 + dy, 37, 36 + dy, 41 + gx, 33 + dy)  # lead guard fist
-        draw_goku_head(g, 30, 22 + dy, ssj=ssj)
+        draw_goku_leg(g, 26, 43, 24, 50, 23, 57)
+        draw_goku_leg(g, 33, 43, 36, 50, 37, 57)
+        draw_goku_torso(g, 29, 28 + dy, sash_swing=sw)
+        draw_goku_arm(g, 25, 31 + dy, 23, 36 + dy, 29, 36 + dy)
+        draw_goku_arm(g, 34, 31 + dy, 37, 36 + dy, 41 + gx, 33 + dy)
+        draw_goku_head(g, 30, 20 + dy, ssj=ssj)
         frames.append(g)
 
-    # 4-7: Walk (4 frames rhythmic martial-arts stride)
+    # 4-7: Walk (4 frames)
     walk_poses = [
-        (-1, 25, 49, 22, 56, 35, 48, 38, 56, 22, 36, 39, 34),
-        (0, 28, 49, 29, 56, 33, 45, 34, 52, 27, 37, 34, 35),
-        (-1, 34, 48, 37, 56, 26, 49, 23, 56, 36, 36, 24, 36),
-        (0, 32, 46, 31, 53, 28, 49, 29, 56, 33, 37, 27, 36),
+        (-1, 25, 50, 22, 57, 35, 49, 39, 57, 22, 36, 39, 34),
+        (0, 28, 50, 29, 57, 33, 46, 34, 53, 27, 37, 35, 35),
+        (-1, 34, 49, 38, 57, 26, 50, 23, 57, 36, 36, 24, 36),
+        (0, 32, 47, 31, 54, 28, 50, 29, 57, 33, 37, 27, 36),
     ]
     for dy, klx, kly, flx, fly, krx, kry, frx, fry, a1x, a1y, a2x, a2y in walk_poses:
         g = new_frame()
-        draw_goku_leg(g, 28, 42 + dy, klx, kly, flx, fly)
-        draw_goku_leg(g, 33, 42 + dy, krx, kry, frx, fry)
-        draw_goku_torso(g, 30, 29 + dy, lean=1, sash_swing=2)
-        draw_goku_arm(g, 26, 32 + dy, 24, 36 + dy, a1x, a1y)
-        draw_goku_arm(g, 35, 32 + dy, 36, 36 + dy, a2x, a2y)
-        draw_goku_head(g, 32, 22 + dy, ssj=ssj)
+        draw_goku_leg(g, 28, 43 + dy, klx, kly, flx, fly)
+        draw_goku_leg(g, 33, 43 + dy, krx, kry, frx, fry)
+        draw_goku_torso(g, 30, 28 + dy, lean=1, sash_swing=2)
+        draw_goku_arm(g, 26, 31 + dy, 24, 36 + dy, a1x, a1y)
+        draw_goku_arm(g, 35, 31 + dy, 36, 36 + dy, a2x, a2y)
+        draw_goku_head(g, 32, 20 + dy, ssj=ssj)
         frames.append(g)
 
     # 8-11: Run (4 frames dynamic low-leaning Dragon Ball dash)
     run_poses = [
-        (-1, 23, 49, 17, 56, 38, 47, 44, 54, 18, 35, 42, 34),
-        (1, 28, 48, 26, 56, 35, 44, 32, 51, 22, 37, 38, 36),
-        (-1, 37, 47, 43, 55, 24, 49, 18, 56, 40, 35, 20, 36),
-        (1, 34, 45, 31, 52, 29, 48, 27, 56, 35, 37, 24, 36),
+        (-1, 23, 50, 17, 57, 38, 48, 44, 55, 18, 35, 42, 34),
+        (1, 28, 49, 26, 57, 35, 45, 32, 52, 22, 37, 38, 36),
+        (-1, 37, 48, 43, 56, 24, 50, 18, 57, 40, 35, 20, 36),
+        (1, 34, 46, 31, 53, 29, 49, 27, 57, 35, 37, 24, 36),
     ]
     for dy, klx, kly, flx, fly, krx, kry, frx, fry, a1x, a1y, a2x, a2y in run_poses:
         g = new_frame()
-        draw_goku_leg(g, 28, 42 + dy, klx, kly, flx, fly)
-        draw_goku_leg(g, 32, 42 + dy, krx, kry, frx, fry)
-        draw_goku_torso(g, 30, 30 + dy, lean=3, sash_swing=5)
-        draw_goku_arm(g, 27, 33 + dy, 23, 36 + dy, a1x, a1y)
-        draw_goku_arm(g, 36, 33 + dy, 39, 35 + dy, a2x, a2y)
-        draw_goku_head(g, 35, 23 + dy, ssj=ssj, mouth="grit")
+        draw_goku_leg(g, 28, 43 + dy, klx, kly, flx, fly)
+        draw_goku_leg(g, 32, 43 + dy, krx, kry, frx, fry)
+        draw_goku_torso(g, 30, 29 + dy, lean=3, sash_swing=5)
+        draw_goku_arm(g, 27, 32 + dy, 23, 36 + dy, a1x, a1y)
+        draw_goku_arm(g, 36, 32 + dy, 39, 35 + dy, a2x, a2y)
+        draw_goku_head(g, 35, 21 + dy, ssj=ssj, mouth="grit")
         frames.append(g)
 
-    # 12-14: Jump (takeoff crouch, rising knee-tuck, falling spread)
+    # 12-15: Jump (takeoff, rise, fall, landing squash)
     # 12: takeoff
     g = new_frame()
-    draw_goku_leg(g, 26, 43, 22, 50, 24, 56)
-    draw_goku_leg(g, 33, 43, 37, 49, 36, 56)
-    draw_goku_torso(g, 29, 31, lean=2)
-    draw_goku_arm(g, 25, 34, 21, 38, 19, 39)
-    draw_goku_arm(g, 34, 34, 38, 37, 41, 35)
-    draw_goku_head(g, 32, 24, ssj=ssj)
+    draw_goku_leg(g, 26, 44, 22, 51, 24, 57)
+    draw_goku_leg(g, 33, 44, 37, 50, 36, 57)
+    draw_goku_torso(g, 29, 30, lean=2)
+    draw_goku_arm(g, 25, 33, 21, 38, 19, 39)
+    draw_goku_arm(g, 34, 33, 38, 37, 41, 35)
+    draw_goku_head(g, 32, 22, ssj=ssj)
     frames.append(g)
-    # 13: rising
+    # 13: rise
     g = new_frame()
-    draw_goku_leg(g, 27, 40, 24, 48, 22, 54)
-    draw_goku_leg(g, 33, 39, 39, 41, 37, 48)
-    draw_goku_torso(g, 29, 27, lean=1, sash_swing=3)
-    draw_goku_arm(g, 25, 30, 20, 28, 18, 24)
-    draw_goku_arm(g, 34, 30, 39, 28, 42, 25)
-    draw_goku_head(g, 31, 20, ssj=ssj, look_up=1)
+    draw_goku_leg(g, 27, 41, 24, 49, 22, 55)
+    draw_goku_leg(g, 33, 40, 39, 42, 37, 49)
+    draw_goku_torso(g, 29, 26, lean=1, sash_swing=3)
+    draw_goku_arm(g, 25, 29, 20, 27, 18, 23)
+    draw_goku_arm(g, 34, 29, 39, 27, 42, 24)
+    draw_goku_head(g, 31, 18, ssj=ssj, look_up=1)
     frames.append(g)
-    # 14: falling
+    # 14: fall
     g = new_frame()
-    draw_goku_leg(g, 27, 40, 23, 47, 20, 54)
-    draw_goku_leg(g, 33, 40, 37, 47, 40, 53)
-    draw_goku_torso(g, 29, 28, lean=0, sash_swing=2)
-    draw_goku_arm(g, 25, 31, 19, 27, 17, 23)
-    draw_goku_arm(g, 34, 31, 40, 27, 43, 24)
-    draw_goku_head(g, 30, 21, ssj=ssj)
+    draw_goku_leg(g, 27, 41, 23, 48, 20, 55)
+    draw_goku_leg(g, 33, 41, 37, 48, 40, 54)
+    draw_goku_torso(g, 29, 27, lean=0, sash_swing=2)
+    draw_goku_arm(g, 25, 30, 19, 26, 17, 22)
+    draw_goku_arm(g, 34, 30, 40, 26, 43, 23)
+    draw_goku_head(g, 30, 19, ssj=ssj)
     frames.append(g)
-
-    # 15-18: Punch Combo (windup, snappy straight, cross windup, rising uppercut)
-    # 15: windup
+    # 15: land squash
     g = new_frame()
-    draw_goku_leg(g, 26, 42, 23, 49, 22, 56)
-    draw_goku_leg(g, 33, 42, 36, 49, 37, 56)
-    draw_goku_torso(g, 28, 29, lean=-1)
-    draw_goku_arm(g, 33, 32, 38, 35, 42, 34)
-    draw_goku_arm(g, 24, 32, 20, 35, 18, 33)
-    draw_goku_head(g, 29, 22, ssj=ssj)
-    frames.append(g)
-    # 16: straight punch extend + pixel speed lines
-    g = new_frame()
-    draw_goku_leg(g, 26, 42, 22, 49, 19, 56)
-    draw_goku_leg(g, 34, 42, 39, 48, 42, 56)
-    draw_goku_torso(g, 31, 30, lean=3, sash_swing=4)
-    draw_goku_arm(g, 27, 33, 22, 36, 19, 35)
-    draw_goku_arm(g, 36, 32, 45, 32, 54, 31, fist_size=2.6)
-    line(g, 44, 29, 50, 29, "M")
-    line(g, 43, 34, 51, 34, "Y")
-    draw_goku_head(g, 34, 23, ssj=ssj, mouth="shout")
-    frames.append(g)
-    # 17: cross windup
-    g = new_frame()
-    draw_goku_leg(g, 26, 42, 24, 49, 23, 56)
-    draw_goku_leg(g, 34, 42, 38, 49, 39, 56)
-    draw_goku_torso(g, 30, 30, lean=1)
-    draw_goku_arm(g, 26, 33, 24, 39, 21, 41)
-    draw_goku_arm(g, 35, 33, 40, 35, 44, 33)
-    draw_goku_head(g, 32, 23, ssj=ssj, mouth="grit")
-    frames.append(g)
-    # 18: rising uppercut finisher
-    g = new_frame()
-    draw_goku_leg(g, 27, 42, 23, 49, 20, 56)
-    draw_goku_leg(g, 34, 41, 38, 48, 40, 56)
-    draw_goku_torso(g, 31, 28, lean=2, sash_swing=4)
-    draw_goku_arm(g, 26, 31, 22, 36, 20, 37)
-    draw_goku_arm(g, 35, 30, 42, 25, 49, 17, fist_size=2.6)
-    line(g, 46, 24, 51, 18, "M")
-    draw_goku_head(g, 33, 21, ssj=ssj, mouth="shout", look_up=1)
+    draw_goku_leg(g, 25, 45, 20, 51, 21, 57)
+    draw_goku_leg(g, 34, 45, 39, 51, 39, 57)
+    draw_goku_torso(g, 29, 32, lean=2, sash_swing=1)
+    draw_goku_arm(g, 24, 35, 19, 39, 17, 42)
+    draw_goku_arm(g, 34, 35, 40, 39, 42, 42)
+    draw_goku_head(g, 31, 24, ssj=ssj, mouth="grit")
     frames.append(g)
 
-    # 19-22: Kick (chamber, full roundhouse extension, recover, air kick)
-    # 19: chamber
+    # 16-19: Punch Combo (windup, straight, cross windup, rising uppercut)
     g = new_frame()
-    draw_goku_leg(g, 26, 42, 24, 49, 23, 56)
-    draw_goku_leg(g, 32, 41, 38, 37, 36, 44)
-    draw_goku_torso(g, 28, 29, lean=-1)
-    draw_goku_arm(g, 24, 32, 20, 30, 22, 26)
-    draw_goku_arm(g, 33, 32, 37, 31, 39, 28)
-    draw_goku_head(g, 28, 22, ssj=ssj)
+    draw_goku_leg(g, 26, 43, 23, 50, 22, 57)
+    draw_goku_leg(g, 33, 43, 36, 50, 37, 57)
+    draw_goku_torso(g, 28, 28, lean=-1)
+    draw_goku_arm(g, 33, 31, 38, 35, 42, 34)
+    draw_goku_arm(g, 24, 31, 20, 35, 18, 33)
+    draw_goku_head(g, 29, 20, ssj=ssj)
     frames.append(g)
-    # 20: high roundhouse kick extension
+
     g = new_frame()
-    draw_goku_leg(g, 25, 42, 23, 49, 21, 56)
-    draw_goku_leg(g, 31, 40, 43, 33, 55, 26)
-    line(g, 45, 25, 53, 22, "M")
-    draw_goku_torso(g, 26, 30, lean=-2, sash_swing=4)
-    draw_goku_arm(g, 22, 33, 17, 29, 16, 25)
-    draw_goku_arm(g, 30, 33, 35, 31, 37, 29)
-    draw_goku_head(g, 26, 23, ssj=ssj, mouth="shout")
+    draw_goku_leg(g, 26, 43, 22, 50, 19, 57)
+    draw_goku_leg(g, 34, 43, 39, 49, 42, 57)
+    draw_goku_torso(g, 31, 29, lean=3, sash_swing=4)
+    draw_goku_arm(g, 27, 32, 22, 36, 19, 35)
+    draw_goku_arm(g, 36, 31, 45, 31, 54, 30, fist_size=2.6)
+    line(g, 44, 28, 50, 28, "M")
+    line(g, 43, 33, 51, 33, "Y")
+    draw_goku_head(g, 34, 21, ssj=ssj, mouth="shout")
     frames.append(g)
-    # 21: snap recover
+
     g = new_frame()
-    draw_goku_leg(g, 26, 42, 24, 49, 23, 56)
-    draw_goku_leg(g, 33, 42, 37, 45, 41, 51)
-    draw_goku_torso(g, 28, 29)
-    draw_goku_arm(g, 24, 32, 21, 35, 25, 34)
-    draw_goku_arm(g, 33, 32, 37, 34, 40, 31)
-    draw_goku_head(g, 29, 22, ssj=ssj)
+    draw_goku_leg(g, 26, 43, 24, 50, 23, 57)
+    draw_goku_leg(g, 34, 43, 38, 50, 39, 57)
+    draw_goku_torso(g, 30, 29, lean=1)
+    draw_goku_arm(g, 26, 32, 24, 39, 21, 41)
+    draw_goku_arm(g, 35, 32, 40, 35, 44, 33)
+    draw_goku_head(g, 32, 21, ssj=ssj, mouth="grit")
     frames.append(g)
-    # 22: flying air kick
+
     g = new_frame()
-    draw_goku_leg(g, 25, 40, 21, 44, 17, 48)
-    draw_goku_leg(g, 31, 39, 43, 37, 55, 34)
-    line(g, 44, 32, 54, 30, "M")
-    draw_goku_torso(g, 26, 28, lean=-2, sash_swing=5)
-    draw_goku_arm(g, 22, 31, 16, 28, 15, 24)
-    draw_goku_arm(g, 31, 31, 36, 29, 39, 27)
+    draw_goku_leg(g, 27, 43, 23, 50, 20, 57)
+    draw_goku_leg(g, 34, 42, 38, 49, 40, 57)
+    draw_goku_torso(g, 31, 27, lean=2, sash_swing=4)
+    draw_goku_arm(g, 26, 30, 22, 36, 20, 37)
+    draw_goku_arm(g, 35, 29, 42, 24, 49, 16, fist_size=2.6)
+    line(g, 46, 23, 51, 17, "M")
+    draw_goku_head(g, 33, 19, ssj=ssj, mouth="shout", look_up=1)
+    frames.append(g)
+
+    # 20-23: Kick (chamber, extended roundhouse, recover, flying air kick)
+    g = new_frame()
+    draw_goku_leg(g, 26, 43, 24, 50, 23, 57)
+    draw_goku_leg(g, 32, 42, 38, 38, 36, 45)
+    draw_goku_torso(g, 28, 28, lean=-1)
+    draw_goku_arm(g, 24, 31, 20, 29, 22, 25)
+    draw_goku_arm(g, 33, 31, 37, 30, 39, 27)
+    draw_goku_head(g, 28, 20, ssj=ssj)
+    frames.append(g)
+
+    g = new_frame()
+    draw_goku_leg(g, 25, 43, 23, 50, 21, 57)
+    draw_goku_leg(g, 31, 41, 43, 34, 55, 27)
+    line(g, 45, 26, 53, 23, "M")
+    draw_goku_torso(g, 26, 29, lean=-2, sash_swing=4)
+    draw_goku_arm(g, 22, 32, 17, 28, 16, 24)
+    draw_goku_arm(g, 30, 32, 35, 30, 37, 28)
     draw_goku_head(g, 26, 21, ssj=ssj, mouth="shout")
     frames.append(g)
 
-    # 23-24: Ki Blast (gather palm, fire palm)
+    g = new_frame()
+    draw_goku_leg(g, 26, 43, 24, 50, 23, 57)
+    draw_goku_leg(g, 33, 43, 37, 46, 41, 52)
+    draw_goku_torso(g, 28, 28)
+    draw_goku_arm(g, 24, 31, 21, 35, 25, 34)
+    draw_goku_arm(g, 33, 31, 37, 34, 40, 31)
+    draw_goku_head(g, 29, 20, ssj=ssj)
+    frames.append(g)
+
+    g = new_frame()
+    draw_goku_leg(g, 25, 41, 21, 45, 17, 49)
+    draw_goku_leg(g, 31, 40, 43, 38, 55, 35)
+    line(g, 44, 33, 54, 31, "M")
+    draw_goku_torso(g, 26, 27, lean=-2, sash_swing=5)
+    draw_goku_arm(g, 22, 30, 16, 27, 15, 23)
+    draw_goku_arm(g, 31, 30, 36, 28, 39, 26)
+    draw_goku_head(g, 26, 19, ssj=ssj, mouth="shout")
+    frames.append(g)
+
+    # 24-25: Ki Blast (gather, fire)
     for step, hx in [(0, 41), (1, 51)]:
         g = new_frame()
-        draw_goku_leg(g, 26, 42, 24, 49, 22, 56)
-        draw_goku_leg(g, 33, 42, 37, 49, 39, 56)
-        draw_goku_torso(g, 30, 29, lean=1 + step)
-        draw_goku_arm(g, 26, 32, 22, 36, 20, 35)
-        draw_goku_arm(g, 35, 32, 41, 32, hx, 31)
+        draw_goku_leg(g, 26, 43, 24, 50, 22, 57)
+        draw_goku_leg(g, 33, 43, 37, 50, 39, 57)
+        draw_goku_torso(g, 30, 28, lean=1 + step)
+        draw_goku_arm(g, 26, 31, 22, 36, 20, 35)
+        draw_goku_arm(g, 35, 31, 41, 31, hx, 30)
         if step == 1:
-            ellipse(g, hx + 2, 31, 2.2, 2.2, "Y")
-            put(g, hx + 2, 31, "M")
-        draw_goku_head(g, 32 + step, 22, ssj=ssj, mouth="shout" if step else "grit")
+            ellipse(g, hx + 2, 30, 2.2, 2.2, "Y")
+            put(g, hx + 2, 30, "M")
+        draw_goku_head(g, 32 + step, 20, ssj=ssj, mouth="shout" if step else "grit")
         frames.append(g)
 
-    # 25-27: Kamehameha (cup back 1, cup back 2, double palm blast)
+    # 26-28: Kamehameha (cup1, cup2, fire)
     for step in range(3):
         g = new_frame()
         if step < 2:
-            draw_goku_leg(g, 25, 43, 21, 50, 19, 56)
-            draw_goku_leg(g, 34, 43, 38, 50, 40, 56)
-            draw_goku_torso(g, 29, 31, lean=-1)
-            draw_goku_arm(g, 25, 34, 21, 39, 17, 39 + step)
-            draw_goku_arm(g, 33, 34, 26, 40, 19, 41 + step)
-            draw_goku_head(g, 30, 24, ssj=ssj, mouth="grit")
+            draw_goku_leg(g, 25, 44, 21, 51, 19, 57)
+            draw_goku_leg(g, 34, 44, 38, 51, 40, 57)
+            draw_goku_torso(g, 29, 30, lean=-1)
+            draw_goku_arm(g, 25, 33, 21, 39, 17, 39 + step)
+            draw_goku_arm(g, 33, 33, 26, 40, 19, 41 + step)
+            draw_goku_head(g, 30, 22, ssj=ssj, mouth="grit")
         else:
-            draw_goku_leg(g, 25, 42, 21, 49, 18, 56)
-            draw_goku_leg(g, 35, 42, 41, 48, 44, 56)
-            draw_goku_torso(g, 32, 30, lean=3, sash_swing=5)
-            draw_goku_arm(g, 28, 32, 38, 32, 49, 31)
-            draw_goku_arm(g, 37, 33, 44, 33, 51, 33)
-            draw_goku_head(g, 35, 23, ssj=ssj, mouth="shout")
+            draw_goku_leg(g, 25, 43, 21, 50, 18, 57)
+            draw_goku_leg(g, 35, 43, 41, 49, 44, 57)
+            draw_goku_torso(g, 32, 29, lean=3, sash_swing=5)
+            draw_goku_arm(g, 28, 31, 38, 31, 49, 30)
+            draw_goku_arm(g, 37, 32, 44, 32, 51, 32)
+            draw_goku_head(g, 35, 21, ssj=ssj, mouth="shout")
         frames.append(g)
 
-    # 28-29: Charge Ki (2 frames intense flared stance)
+    # 29-30: Charge Ki (2 frames)
     for dy in (0, 1):
         g = new_frame()
-        draw_goku_leg(g, 25, 43, 21, 50, 19, 56)
-        draw_goku_leg(g, 34, 43, 38, 50, 40, 56)
-        draw_goku_torso(g, 29, 31 + dy, sash_swing=4 + dy)
-        draw_goku_arm(g, 24, 34 + dy, 19, 38 + dy, 17, 42 + dy)
-        draw_goku_arm(g, 34, 34 + dy, 40, 38 + dy, 42, 42 + dy)
-        draw_goku_head(g, 29, 24 + dy, ssj=ssj, mouth="shout")
+        draw_goku_leg(g, 25, 44, 21, 51, 19, 57)
+        draw_goku_leg(g, 34, 44, 38, 51, 40, 57)
+        draw_goku_torso(g, 29, 30 + dy, sash_swing=4 + dy)
+        draw_goku_arm(g, 24, 33 + dy, 19, 38 + dy, 17, 42 + dy)
+        draw_goku_arm(g, 34, 33 + dy, 40, 38 + dy, 42, 42 + dy)
+        draw_goku_head(g, 29, 22 + dy, ssj=ssj, mouth="shout")
         frames.append(g)
 
-    # 30-31: Hit / Damage Recoil (sharp stagger -> recovery)
-    for step, lean in [(0, -4), (1, -2)]:
+    # 31-33: Hit stagger, Airborne knockback, Recovery
+    for lean, airborne in [(-3, False), (-5, True), (-1, False)]:
         g = new_frame()
-        draw_goku_leg(g, 26, 42, 23, 49, 21, 56)
-        draw_goku_leg(g, 33, 42, 37, 49, 39, 55)
-        draw_goku_torso(g, 28 + step, 30, lean=lean, sash_swing=3)
-        draw_goku_arm(g, 23, 32, 17, 29, 14, 24 + step * 3)
-        draw_goku_arm(g, 32, 33, 38, 30, 41, 26 + step * 3)
-        draw_goku_head(g, 26 + step, 23, ssj=ssj, mouth="shout" if step == 0 else "grit")
+        if airborne:
+            draw_goku_leg(g, 26, 41, 21, 45, 16, 48)
+            draw_goku_leg(g, 32, 42, 34, 49, 33, 55)
+            draw_goku_torso(g, 27, 29, lean=lean, sash_swing=4)
+            draw_goku_arm(g, 22, 31, 16, 27, 13, 22)
+            draw_goku_arm(g, 31, 32, 37, 29, 41, 24)
+            draw_goku_head(g, 24, 22, ssj=ssj, mouth="shout")
+        else:
+            draw_goku_leg(g, 26, 43, 23, 50, 21, 57)
+            draw_goku_leg(g, 33, 43, 37, 50, 39, 56)
+            draw_goku_torso(g, 28, 29, lean=lean, sash_swing=2)
+            draw_goku_arm(g, 23, 31, 18, 28, 15, 24)
+            draw_goku_arm(g, 32, 32, 38, 30, 41, 27)
+            draw_goku_head(g, 27, 21, ssj=ssj, mouth="grit")
         frames.append(g)
 
-    # 32-33: Transform (crouch gather, explosive SSJ roar)
+    # 34-35: Transform (crouch, burst roar)
     g = new_frame()
-    draw_goku_leg(g, 25, 43, 21, 50, 19, 56)
-    draw_goku_leg(g, 34, 43, 38, 50, 40, 56)
-    draw_goku_torso(g, 29, 32)
-    draw_goku_arm(g, 25, 35, 22, 40, 25, 43)
-    draw_goku_arm(g, 34, 35, 37, 40, 34, 43)
-    draw_goku_head(g, 29, 25, ssj=ssj, mouth="grit")
+    draw_goku_leg(g, 25, 44, 21, 51, 19, 57)
+    draw_goku_leg(g, 34, 44, 38, 51, 40, 57)
+    draw_goku_torso(g, 29, 31)
+    draw_goku_arm(g, 25, 34, 22, 40, 25, 43)
+    draw_goku_arm(g, 34, 34, 37, 40, 34, 43)
+    draw_goku_head(g, 29, 23, ssj=ssj, mouth="grit")
     frames.append(g)
 
     g = new_frame()
-    draw_goku_leg(g, 25, 43, 21, 50, 19, 56)
-    draw_goku_leg(g, 34, 43, 38, 50, 40, 56)
-    draw_goku_torso(g, 29, 29, sash_swing=6)
-    draw_goku_arm(g, 24, 32, 17, 27, 13, 21)
-    draw_goku_arm(g, 34, 32, 41, 27, 45, 21)
-    draw_goku_head(g, 29, 22, ssj=True, mouth="shout", look_up=1)
+    draw_goku_leg(g, 25, 44, 21, 51, 19, 57)
+    draw_goku_leg(g, 34, 44, 38, 51, 40, 57)
+    draw_goku_torso(g, 29, 28, sash_swing=6)
+    draw_goku_arm(g, 24, 31, 17, 26, 13, 20)
+    draw_goku_arm(g, 34, 31, 41, 26, 45, 20)
+    draw_goku_head(g, 29, 20, ssj=True, mouth="shout", look_up=1)
     frames.append(g)
 
-    # 34-35: KO (airborne tumble, flat defeated)
+    # 36-37: KO (airborne tumble, flat defeated)
     g = new_frame()
-    draw_goku_leg(g, 26, 40, 20, 43, 14, 45)
-    draw_goku_leg(g, 30, 42, 26, 48, 22, 53)
-    draw_goku_torso(g, 31, 32, lean=-4)
-    draw_goku_arm(g, 27, 33, 22, 28, 18, 24)
-    draw_goku_arm(g, 35, 35, 40, 33, 44, 31)
-    draw_goku_head(g, 27, 26, ssj=ssj, mouth="grit")
+    draw_goku_leg(g, 26, 41, 20, 44, 14, 46)
+    draw_goku_leg(g, 30, 43, 26, 49, 22, 54)
+    draw_goku_torso(g, 31, 31, lean=-4)
+    draw_goku_arm(g, 27, 32, 22, 27, 18, 23)
+    draw_goku_arm(g, 35, 34, 40, 32, 44, 30)
+    draw_goku_head(g, 27, 24, ssj=ssj, mouth="grit")
     frames.append(g)
 
     g = new_frame()
-    capsule(g, 11, 52, 24, 52, 3.2, 3.0, "O", "G", "o")
-    rect(g, 10, 49, 5, 6, "B")
-    capsule(g, 25, 51, 38, 51, 4.2, 4.0, "O", "G", "o")
-    rect(g, 25, 47, 3, 8, "B")
-    ellipse(g, 43, 51, 4.5, 4.0, "S")
-    tri(g, 46, 49, 55, 44, 51, 53, "H")
-    tri(g, 44, 47, 52, 42, 49, 49, "H")
+    capsule(g, 11, 53, 24, 53, 3.2, 3.0, "O", "G", "o")
+    rect(g, 10, 50, 5, 6, "B")
+    capsule(g, 25, 52, 38, 52, 4.2, 4.0, "O", "G", "o")
+    rect(g, 25, 48, 3, 8, "B")
+    ellipse(g, 43, 52, 4.5, 4.0, "S")
+    tri(g, 46, 50, 55, 45, 51, 54, "H")
+    tri(g, 44, 48, 52, 43, 49, 50, "H")
     frames.append(g)
 
     return frames
 
 
 # ---------------------------------------------------------------------------
-# DETAILED 16-BIT ENEMIES (64x64 cells, 12 frames each)
-#  0-1: idle (2)
-#  2-5: walk (4)
-#  6:   windup
-#  7:   attack strike
-#  8:   special
-#  9:   hit recoil
-# 10-11: ko (tumble, flat)
+# ENEMY SPRITES (64x64, 12 frames each, distinct Dragon Ball silhouettes!)
 # ---------------------------------------------------------------------------
 def build_scout_frames():
     frames = []
-    # Pose table: (dy, lean, legL, legR, armB, armF, mode)
     poses = [
-        (0, 0, (26, 49, 24, 56), (34, 49, 36, 56), (22, 36, 27, 36), (37, 36, 41, 33), "idle"),
-        (1, 0, (26, 49, 24, 56), (34, 49, 36, 56), (22, 37, 27, 37), (37, 37, 41, 34), "idle"),
-        (-1, 1, (24, 49, 21, 56), (36, 48, 39, 56), (21, 36, 20, 35), (37, 36, 41, 34), "walk"),
-        (0, 1, (28, 49, 29, 56), (34, 45, 34, 52), (24, 37, 27, 37), (35, 36, 37, 35), "walk"),
-        (-1, 1, (35, 48, 38, 56), (25, 49, 22, 56), (26, 36, 36, 36), (35, 37, 24, 36), "walk"),
-        (0, 1, (32, 46, 31, 53), (28, 49, 29, 56), (27, 37, 32, 36), (34, 37, 27, 37), "walk"),
-        (0, -1, (25, 49, 23, 56), (34, 49, 37, 56), (21, 34, 19, 31), (37, 34, 40, 33), "windup"),
-        (0, 3, (24, 49, 20, 56), (37, 48, 42, 56), (22, 36, 19, 35), (41, 32, 53, 31), "attack"),
-        (0, 2, (25, 49, 22, 56), (35, 49, 39, 56), (22, 36, 19, 36), (40, 32, 49, 31), "special"),
-        (0, -3, (25, 49, 22, 56), (35, 49, 38, 55), (19, 30, 16, 25), (37, 30, 41, 26), "hit"),
-        (0, -4, (22, 44, 17, 48), (28, 48, 24, 53), (20, 29, 16, 24), (39, 32, 44, 30), "ko1"),
+        (0, 0, (26, 50, 24, 57), (34, 50, 36, 57), (22, 36, 27, 36), (37, 36, 41, 33), "idle"),
+        (1, 0, (26, 50, 24, 57), (34, 50, 36, 57), (22, 37, 27, 37), (37, 37, 41, 34), "idle"),
+        (-1, 1, (24, 50, 21, 57), (36, 49, 39, 57), (21, 36, 20, 35), (37, 36, 41, 34), "walk"),
+        (0, 1, (28, 50, 29, 57), (34, 46, 34, 53), (24, 37, 27, 37), (35, 36, 37, 35), "walk"),
+        (-1, 1, (35, 49, 38, 57), (25, 50, 22, 57), (26, 36, 36, 36), (35, 37, 24, 36), "walk"),
+        (0, 1, (32, 47, 31, 54), (28, 50, 29, 57), (27, 37, 32, 36), (34, 37, 27, 37), "walk"),
+        (0, -1, (25, 50, 23, 57), (34, 50, 37, 57), (21, 34, 19, 31), (37, 34, 40, 33), "windup"),
+        (0, 3, (24, 50, 20, 57), (37, 49, 42, 57), (22, 36, 19, 35), (41, 32, 53, 31), "attack"),
+        (0, 2, (25, 50, 22, 57), (35, 50, 39, 57), (22, 36, 19, 36), (40, 32, 49, 31), "special"),
+        (0, -3, (25, 50, 22, 57), (35, 50, 38, 56), (19, 30, 16, 25), (37, 30, 41, 26), "hit"),
+        (0, -4, (22, 45, 17, 49), (28, 49, 24, 54), (20, 29, 16, 24), (39, 32, 44, 30), "ko1"),
         (0, 0, None, None, None, None, "ko2"),
     ]
     for dy, lean, legL, legR, armB, armF, mode in poses:
         g = new_frame()
         if mode == "ko2":
-            capsule(g, 12, 52, 24, 52, 3.0, 2.6, "P", "V", "p")
-            rect(g, 10, 49, 5, 6, "W")
-            capsule(g, 25, 51, 38, 51, 4.2, 4.0, "W", "L", "w")
-            rect(g, 26, 47, 3, 8, "P")
-            ellipse(g, 43, 51, 4.5, 4.0, "S")
-            rect(g, 43, 48, 3, 2, "G")
+            capsule(g, 12, 53, 24, 53, 3.0, 2.6, "P", "V", "p")
+            rect(g, 10, 50, 5, 6, "W")
+            capsule(g, 25, 52, 38, 52, 4.2, 4.0, "W", "L", "w")
+            rect(g, 26, 48, 3, 8, "P")
+            ellipse(g, 43, 52, 4.5, 4.0, "S")
+            rect(g, 43, 49, 3, 2, "G")
             frames.append(g)
             continue
 
         cx = 30 + lean
-        # Legs (purple undersuit + white armored boots)
         capsule(g, cx - 3, 42 + dy, legL[0], legL[1], 3.0, 2.5, "P", "V", "p")
         capsule(g, legL[0], legL[1], legL[2], legL[3] - 2, 2.5, 2.1, "P", "V", "p")
         rect(g, legL[2] - 2, legL[3] - 2, 6, 4, "W")
-        rect(g, legL[2] - 2, legL[3], 6, 2, "w")
-
         capsule(g, cx + 2, 42 + dy, legR[0], legR[1], 3.0, 2.5, "P", "V", "p")
         capsule(g, legR[0], legR[1], legR[2], legR[3] - 2, 2.5, 2.1, "P", "V", "p")
         rect(g, legR[2] - 2, legR[3] - 2, 6, 4, "W")
-        rect(g, legR[2] - 2, legR[3], 6, 2, "w")
 
-        # Frieza-Force Battle Armor (ribbed chest, curved pauldrons, armored hip tassets)
-        capsule(g, cx, 31 + dy, cx, 40 + dy, 5.5, 4.8, "W", "L", "w")
-        rect(g, cx - 5, 38 + dy, 11, 2, "P")  # waist belt
-        # Hip armor flaps
-        tri(g, cx - 6, 40 + dy, cx - 2, 40 + dy, cx - 5, 45 + dy, "W")
-        tri(g, cx + 2, 40 + dy, cx + 6, 40 + dy, cx + 5, 45 + dy, "W")
-        # Chest ribs & purple sternum
+        # Frieza-force battle armor + sweeping horned shoulder fins
+        capsule(g, cx, 30 + dy, cx, 40 + dy, 5.5, 4.8, "W", "L", "w")
+        rect(g, cx - 5, 38 + dy, 11, 2, "P")
+        tri(g, cx - 7, 40 + dy, cx - 2, 40 + dy, cx - 6, 46 + dy, "W")
+        tri(g, cx + 2, 40 + dy, cx + 7, 40 + dy, cx + 6, 46 + dy, "W")
         rect(g, cx - 2, 31 + dy, 5, 5, "P")
-        line(g, cx - 4, 33 + dy, cx + 4, 33 + dy, "w")
-        # Curved shoulder pauldrons
-        ellipse(g, cx - 6, 30 + dy, 3.5, 2.2, "W")
-        put(g, cx - 6, 29 + dy, "L")
-        ellipse(g, cx + 6, 30 + dy, 3.5, 2.2, "W")
-        put(g, cx + 6, 29 + dy, "L")
+        tri(g, cx - 10, 27 + dy, cx - 4, 29 + dy, cx - 5, 32 + dy, "W")
+        tri(g, cx + 4, 29 + dy, cx + 10, 27 + dy, cx + 5, 32 + dy, "W")
 
-        # Back arm
         capsule(g, cx - 5, 32 + dy, armB[0], armB[1], 2.0, 1.8, "P", "V", "p")
         capsule(g, armB[0], armB[1], armB[2], armB[3], 1.8, 1.8, "S", "T", "s")
-        # Front arm
         capsule(g, cx + 5, 32 + dy, armF[0], armF[1], 2.2, 2.0, "P", "V", "p")
         capsule(g, armF[0], armF[1], armF[2], armF[3], 2.0, 2.0, "S", "T", "s")
         ellipse(g, armF[2], armF[3], 2.2, 2.2, "S")
 
-        # Sculpted Alien Head + Helmet + Glowing Green Scouter
-        hx, hy = cx + 1, 22 + dy
-        ellipse(g, hx, hy + 1, 4.6, 4.8, "S")
-        rect(g, hx - 4, hy + 2, 2, 3, "s")
-        put(g, hx + 3, hy + 2, "T")
-        # Sleek helmet ridge
-        ellipse(g, hx - 1, hy - 3, 4.8, 2.5, "P")
-        line(g, hx - 4, hy - 4, hx + 2, hy - 4, "V")
-        # Scouter earpiece & green lens
+        # Alien head with twin back-swept ear fins & glowing green scouter
+        hx, hy = cx + 1, 21 + dy
+        ellipse(g, hx, hy + 1, 4.5, 4.7, "S")
+        tri(g, hx - 4, hy - 2, hx - 9, hy - 6, hx - 2, hy - 4, "P")
+        ellipse(g, hx - 1, hy - 3, 4.8, 2.4, "P")
         rect(g, hx - 3, hy - 1, 2, 3, "W")
         rect(g, hx, hy - 1, 5, 2, "G")
         put(g, hx + 4, hy - 1, "g")
@@ -793,61 +758,55 @@ def build_scout_frames():
 
 def build_gremlin_frames():
     frames = []
+    # Hunched, low predatory Saibaman silhouette
     poses = [
-        (0, 1, (25, 50, 22, 56), (34, 50, 36, 56), (22, 38, 28, 39), (37, 37, 42, 38), "idle"),
-        (1, 1, (25, 51, 22, 56), (34, 51, 36, 56), (22, 39, 28, 40), (37, 38, 42, 39), "idle"),
-        (-1, 2, (23, 50, 19, 56), (36, 48, 39, 55), (21, 38, 20, 39), (38, 37, 43, 36), "walk"),
-        (-3, 2, (26, 47, 23, 52), (35, 46, 38, 51), (22, 35, 27, 36), (38, 34, 44, 33), "walk"),
-        (-1, 2, (36, 49, 39, 56), (24, 50, 20, 56), (24, 38, 34, 39), (36, 38, 26, 39), "walk"),
-        (0, 2, (31, 48, 30, 54), (27, 50, 27, 56), (24, 38, 30, 38), (36, 37, 41, 38), "walk"),
-        (2, -1, (24, 51, 21, 56), (35, 51, 38, 56), (19, 35, 16, 30), (36, 35, 39, 32), "windup"),
-        (-2, 4, (22, 48, 17, 54), (37, 47, 43, 53), (20, 36, 17, 35), (42, 32, 53, 30), "attack"),
-        (-2, 3, (23, 49, 19, 55), (36, 48, 41, 54), (21, 36, 18, 34), (41, 33, 50, 32), "special"),
-        (0, -3, (24, 50, 21, 56), (35, 50, 38, 55), (18, 32, 15, 27), (38, 32, 42, 28), "hit"),
-        (0, -4, (21, 45, 16, 49), (28, 49, 24, 53), (19, 31, 15, 26), (39, 33, 44, 31), "ko1"),
+        (0, 2, (24, 51, 21, 57), (35, 51, 38, 57), (22, 41, 29, 43), (38, 40, 44, 41), "idle"),
+        (1, 2, (24, 52, 21, 57), (35, 52, 38, 57), (22, 42, 29, 44), (38, 41, 44, 42), "idle"),
+        (-1, 3, (22, 51, 18, 57), (37, 49, 40, 56), (21, 41, 19, 42), (39, 40, 45, 39), "walk"),
+        (-3, 3, (25, 48, 22, 53), (36, 47, 39, 52), (22, 38, 27, 39), (39, 37, 46, 36), "walk"),
+        (-1, 3, (37, 50, 40, 57), (23, 51, 19, 57), (24, 41, 34, 42), (37, 41, 27, 42), "walk"),
+        (0, 3, (31, 49, 30, 55), (27, 51, 27, 57), (24, 41, 30, 41), (37, 40, 43, 41), "walk"),
+        (2, 0, (23, 52, 20, 57), (36, 52, 39, 57), (18, 38, 15, 33), (37, 38, 40, 35), "windup"),
+        (-2, 5, (21, 49, 16, 55), (38, 48, 44, 54), (20, 39, 17, 38), (43, 35, 54, 33), "attack"),
+        (-2, 4, (22, 50, 18, 56), (37, 49, 42, 55), (21, 39, 18, 37), (42, 36, 51, 35), "special"),
+        (0, -2, (23, 51, 20, 57), (36, 51, 39, 56), (18, 35, 15, 30), (38, 35, 42, 31), "hit"),
+        (0, -3, (20, 46, 15, 50), (28, 50, 24, 54), (19, 34, 15, 29), (39, 36, 44, 34), "ko1"),
         (0, 0, None, None, None, None, "ko2"),
     ]
     for dy, lean, legL, legR, armB, armF, mode in poses:
         g = new_frame()
         if mode == "ko2":
-            ellipse(g, 24, 52, 9, 4.5, "G")
-            ellipse(g, 24, 51, 5, 2.5, "L")
-            ellipse(g, 36, 51, 5, 4.5, "B")
+            ellipse(g, 24, 53, 9, 4.5, "G")
+            ellipse(g, 24, 52, 5, 2.5, "L")
+            ellipse(g, 36, 52, 5, 4.5, "B")
             frames.append(g)
             continue
 
-        cx = 29 + lean
-        # Hunched muscular bio-legs with claws
-        capsule(g, cx - 4, 44 + dy, legL[0], legL[1], 3.0, 2.4, "G", "L", "g")
-        capsule(g, legL[0], legL[1], legL[2], legL[3], 2.4, 2.0, "G", "L", "g")
+        cx = 28 + lean
+        capsule(g, cx - 4, 46 + dy, legL[0], legL[1], 3.0, 2.3, "G", "L", "g")
+        capsule(g, legL[0], legL[1], legL[2], legL[3], 2.3, 1.9, "G", "L", "g")
         put(g, legL[2] + 2, legL[3], "W")
-        capsule(g, cx + 3, 44 + dy, legR[0], legR[1], 3.0, 2.4, "G", "L", "g")
-        capsule(g, legR[0], legR[1], legR[2], legR[3], 2.4, 2.0, "G", "L", "g")
+        capsule(g, cx + 3, 46 + dy, legR[0], legR[1], 3.0, 2.3, "G", "L", "g")
+        capsule(g, legR[0], legR[1], legR[2], legR[3], 2.3, 1.9, "G", "L", "g")
         put(g, legR[2] + 3, legR[3], "W")
 
-        # Hunched veined green torso
-        ellipse(g, cx, 37 + dy, 6.5, 7, "G")
-        ellipse(g, cx + 1, 35 + dy, 3.5, 4, "L")
-        rect(g, cx - 5, 39 + dy, 3, 4, "g")
-        # Shoulder ridges
-        ellipse(g, cx - 5, 33 + dy, 2.5, 2.5, "g")
-        ellipse(g, cx + 5, 33 + dy, 2.5, 2.5, "L")
-
-        # Arms + sharp claws
-        capsule(g, cx - 5, 34 + dy, armB[0], armB[1], 2.1, 1.8, "G", "L", "g")
+        # Deeply hunched bio-torso
+        ellipse(g, cx, 40 + dy, 6.8, 6.2, "G")
+        ellipse(g, cx + 1, 38 + dy, 3.6, 3.6, "L")
+        capsule(g, cx - 5, 37 + dy, armB[0], armB[1], 2.1, 1.8, "G", "L", "g")
         capsule(g, armB[0], armB[1], armB[2], armB[3], 1.8, 1.6, "G", "L", "g")
         put(g, armB[2] + 2, armB[3], "W")
-        capsule(g, cx + 5, 34 + dy, armF[0], armF[1], 2.2, 1.9, "G", "L", "g")
+        capsule(g, cx + 5, 37 + dy, armF[0], armF[1], 2.2, 1.9, "G", "L", "g")
         capsule(g, armF[0], armF[1], armF[2], armF[3], 1.9, 1.7, "G", "L", "g")
         line(g, armF[2] + 1, armF[3] - 1, armF[2] + 4, armF[3] - 2, "W")
         line(g, armF[2] + 1, armF[3] + 1, armF[2] + 4, armF[3] + 1, "W")
 
-        # Bulbous Saibaman cranium with brown armor ridges & red eyes
-        hx, hy = cx + 2, 26 + dy
-        ellipse(g, hx, hy + 1, 5.5, 5.0, "G")
-        ellipse(g, hx, hy - 3, 5.2, 3.2, "B")
+        # Forward-thrust bulbous cranium
+        hx, hy = cx + 4, 30 + dy
+        ellipse(g, hx, hy + 1, 5.8, 5.0, "G")
+        ellipse(g, hx, hy - 3, 5.4, 3.4, "B")
         line(g, hx - 3, hy - 4, hx + 3, hy - 4, "T")
-        line(g, hx, hy - 5, hx, hy - 1, "b")  # cranium seam
+        line(g, hx, hy - 5, hx, hy - 1, "b")
         put(g, hx + 2, hy, "R")
         put(g, hx + 4, hy, "R")
         line(g, hx + 1, hy + 3, hx + 5, hy + 3, "W")
@@ -858,30 +817,29 @@ def build_gremlin_frames():
 def build_blaster_frames():
     frames = []
     poses = [
-        (0, 0, (26, 49, 24, 56), (34, 49, 36, 56), (22, 36, 26, 36), (37, 36, 42, 34), "idle"),
-        (1, 0, (26, 49, 24, 56), (34, 49, 36, 56), (22, 37, 26, 37), (37, 37, 42, 35), "idle"),
-        (-1, 1, (24, 49, 21, 56), (36, 48, 39, 56), (21, 36, 20, 35), (37, 35, 42, 34), "walk"),
-        (0, 1, (28, 49, 29, 56), (34, 45, 34, 52), (24, 37, 27, 37), (36, 36, 40, 35), "walk"),
-        (-1, 1, (35, 48, 38, 56), (25, 49, 22, 56), (26, 36, 34, 36), (36, 36, 41, 35), "walk"),
-        (0, 1, (32, 46, 31, 53), (28, 49, 29, 56), (26, 37, 30, 36), (36, 36, 41, 35), "walk"),
-        (0, -1, (25, 49, 23, 56), (34, 49, 37, 56), (21, 35, 19, 34), (37, 34, 43, 33), "windup"),
-        (0, 1, (24, 49, 21, 56), (35, 49, 38, 56), (22, 36, 20, 35), (41, 33, 49, 32), "attack"),
-        (0, 1, (24, 49, 21, 56), (35, 49, 38, 56), (22, 36, 20, 35), (41, 33, 49, 32), "special"),
-        (0, -3, (25, 49, 22, 56), (35, 49, 38, 55), (19, 30, 16, 26), (37, 30, 41, 27), "hit"),
-        (0, -4, (22, 44, 17, 48), (28, 48, 24, 53), (20, 29, 16, 24), (39, 32, 44, 30), "ko1"),
+        (0, 0, (26, 50, 24, 57), (34, 50, 36, 57), (22, 36, 26, 36), (37, 36, 42, 34), "idle"),
+        (1, 0, (26, 50, 24, 57), (34, 50, 36, 57), (22, 37, 26, 37), (37, 37, 42, 35), "idle"),
+        (-1, 1, (24, 50, 21, 57), (36, 49, 39, 57), (21, 36, 20, 35), (37, 35, 42, 34), "walk"),
+        (0, 1, (28, 50, 29, 57), (34, 46, 34, 53), (24, 37, 27, 37), (36, 36, 40, 35), "walk"),
+        (-1, 1, (35, 49, 38, 57), (25, 50, 22, 57), (26, 36, 34, 36), (36, 36, 41, 35), "walk"),
+        (0, 1, (32, 47, 31, 54), (28, 50, 29, 57), (26, 37, 30, 36), (36, 36, 41, 35), "walk"),
+        (0, -1, (25, 50, 23, 57), (34, 50, 37, 57), (21, 35, 19, 34), (37, 34, 43, 33), "windup"),
+        (0, 1, (24, 50, 21, 57), (35, 50, 38, 57), (22, 36, 20, 35), (41, 33, 50, 32), "attack"),
+        (0, 1, (24, 50, 21, 57), (35, 50, 38, 57), (22, 36, 20, 35), (41, 33, 50, 32), "special"),
+        (0, -3, (25, 50, 22, 57), (35, 50, 38, 56), (19, 30, 16, 26), (37, 30, 41, 27), "hit"),
+        (0, -4, (22, 45, 17, 49), (28, 49, 24, 54), (20, 29, 16, 24), (39, 32, 44, 30), "ko1"),
         (0, 0, None, None, None, None, "ko2"),
     ]
     for dy, lean, legL, legR, armB, armF, mode in poses:
         g = new_frame()
         if mode == "ko2":
-            capsule(g, 12, 52, 24, 52, 3.0, 2.6, "A", "L", "a")
-            capsule(g, 25, 51, 38, 51, 4.2, 4.0, "C", "M", "c")
-            ellipse(g, 43, 51, 4.5, 4.0, "S")
+            capsule(g, 12, 53, 24, 53, 3.0, 2.6, "A", "L", "a")
+            capsule(g, 25, 52, 38, 52, 4.2, 4.0, "C", "M", "c")
+            ellipse(g, 43, 52, 4.5, 4.0, "S")
             frames.append(g)
             continue
 
         cx = 30 + lean
-        # Legs
         capsule(g, cx - 3, 42 + dy, legL[0], legL[1], 3.0, 2.5, "A", "L", "a")
         capsule(g, legL[0], legL[1], legL[2], legL[3], 2.5, 2.2, "A", "L", "a")
         rect(g, legL[2] - 2, legL[3] - 2, 5, 3, "C")
@@ -889,32 +847,26 @@ def build_blaster_frames():
         capsule(g, legR[0], legR[1], legR[2], legR[3], 2.5, 2.2, "A", "L", "a")
         rect(g, legR[2] - 2, legR[3] - 2, 5, 3, "C")
 
-        # Cape / mantle & chest armor
-        tri(g, cx - 5, 30 + dy, cx - 10, 44 + dy, cx - 2, 42 + dy, "c")
-        capsule(g, cx, 31 + dy, cx, 40 + dy, 5.5, 4.8, "A", "L", "a")
-        rect(g, cx - 4, 32 + dy, 8, 5, "C")
-        line(g, cx - 4, 32 + dy, cx + 3, 32 + dy, "M")
+        # Flowing sniper cape + dark armor + Ki cannon
+        tri(g, cx - 5, 29 + dy, cx - 12, 46 + dy, cx - 2, 43 + dy, "c")
+        capsule(g, cx, 30 + dy, cx, 40 + dy, 5.5, 4.8, "A", "L", "a")
+        rect(g, cx - 4, 31 + dy, 8, 5, "C")
         rect(g, cx - 5, 38 + dy, 10, 2, "Y")
-        ellipse(g, cx - 5, 30 + dy, 3, 2, "A")
-        ellipse(g, cx + 5, 30 + dy, 3, 2, "A")
-
-        # Back arm & Forearm Ki Cannon
         capsule(g, cx - 5, 32 + dy, armB[0], armB[1], 2.0, 1.8, "A", "L", "a")
         capsule(g, armB[0], armB[1], armB[2], armB[3], 1.8, 1.8, "S", None, "s")
         capsule(g, cx + 5, 32 + dy, armF[0], armF[1], 2.2, 2.2, "C", "M", "c")
-        capsule(g, armF[0], armF[1], armF[2], armF[3], 2.6, 2.4, "C", "M", "c")
+        capsule(g, armF[0], armF[1], armF[2], armF[3], 2.8, 2.5, "C", "M", "c")
         if mode == "windup":
             ellipse(g, armF[2] + 2, armF[3], 2.5, 2.5, "Y")
         elif mode in ("attack", "special"):
-            ellipse(g, armF[2] + 2, armF[3], 3.0, 3.0, "R")
+            ellipse(g, armF[2] + 2, armF[3], 3.2, 3.2, "R")
             put(g, armF[2] + 2, armF[3], "Y")
 
-        # Angular Helmet & Glowing Visor
-        hx, hy = cx + 1, 22 + dy
+        hx, hy = cx + 1, 21 + dy
         ellipse(g, hx, hy + 1, 4.5, 4.6, "S")
-        tri(g, hx - 5, hy - 2, hx - 2, hy - 7, hx + 4, hy - 3, "A")
+        tri(g, hx - 6, hy - 2, hx - 9, hy - 9, hx + 4, hy - 3, "A")
         rect(g, hx - 4, hy - 4, 9, 3, "A")
-        line(g, hx - 3, hy - 5, hx + 3, hy - 5, "L")
+        line(g, hx - 6, hy - 7, hx + 3, hy - 4, "L")
         rect(g, hx, hy - 1, 5, 2, "R")
         put(g, hx + 2, hy - 1, "Y")
         frames.append(g)
@@ -930,7 +882,6 @@ def build_heavy_or_boss(kind):
         "boss4": PAL_BOSS4,
     }[kind]
     frames = []
-    # 12 frames matching standard enemy animation table
     poses = [
         (0, 0, (25, 48, 22, 57), (36, 48, 38, 57), (20, 34, 24, 36), (40, 34, 44, 32), "idle"),
         (1, 0, (25, 48, 22, 57), (36, 48, 38, 57), (20, 35, 24, 37), (40, 35, 44, 33), "idle"),
@@ -949,13 +900,13 @@ def build_heavy_or_boss(kind):
         g = new_frame()
         if mode == "ko2":
             if kind == "boss4":
-                capsule(g, 11, 52, 24, 52, 3.2, 2.8, "W", "L", "w")
-                capsule(g, 25, 51, 39, 51, 4.5, 4.2, "P", "C", "p")
-                ellipse(g, 45, 51, 5, 4.2, "W")
+                capsule(g, 11, 53, 24, 53, 3.2, 2.8, "W", "L", "w")
+                capsule(g, 25, 52, 39, 52, 4.5, 4.2, "P", "C", "p")
+                ellipse(g, 45, 52, 5, 4.2, "W")
             else:
-                capsule(g, 10, 52, 24, 52, 3.8, 3.2, "A", None, "a")
-                capsule(g, 25, 51, 41, 51, 5.2, 4.8, "Y" if "Y" in pal else "W", None, "y" if "y" in pal else "w")
-                ellipse(g, 47, 51, 5, 4.5, "S" if "S" in pal else "W")
+                capsule(g, 10, 53, 24, 53, 3.8, 3.2, "A", None, "a")
+                capsule(g, 25, 52, 41, 52, 5.2, 4.8, "Y" if "Y" in pal else "W", None, "y" if "y" in pal else "w")
+                ellipse(g, 47, 52, 5, 4.5, "S" if "S" in pal else "W")
             frames.append(g)
             continue
 
@@ -965,7 +916,6 @@ def build_heavy_or_boss(kind):
         leg_sh = "w" if kind == "boss4" else "a"
         boot_c = "w" if kind == "boss4" else ("Y" if kind in ("brute", "boss2") else "W")
 
-        # Muscular Legs
         capsule(g, cx - 4, 40 + dy, legL[0], legL[1], 3.6, 3.0, leg_c, leg_hi, leg_sh)
         capsule(g, legL[0], legL[1], legL[2], legL[3] - 2, 3.0, 2.5, leg_c, leg_hi, leg_sh)
         rect(g, legL[2] - 3, legL[3] - 3, 7, 4, boot_c)
@@ -973,12 +923,10 @@ def build_heavy_or_boss(kind):
         capsule(g, legR[0], legR[1], legR[2], legR[3] - 2, 3.0, 2.5, leg_c, leg_hi, leg_sh)
         rect(g, legR[2] - 3, legR[3] - 3, 7, 4, boot_c)
 
-        # Tail (Boss 4 Frost or Boss 1 Saiyan waist-wrapped tail)
         if kind == "boss4":
             capsule(g, cx - 5, 38 + dy, cx - 15, 33 + dy, 2.2, 1.8, "W", "L", "w")
             capsule(g, cx - 15, 33 + dy, cx - 19, 40 + dy, 1.8, 1.3, "W", None, "w")
 
-        # Torso
         if kind == "boss4":
             capsule(g, cx, 26 + dy, cx, 38 + dy, 6.2, 5.0, "W", "L", "w")
             ellipse(g, cx + 1, 30 + dy, 3.5, 3.0, "P")
@@ -992,15 +940,12 @@ def build_heavy_or_boss(kind):
             plate_sh = "y" if "y" in pal else "w"
             capsule(g, cx, 27 + dy, cx, 39 + dy, 7.5, 6.0, armor_c, None, armor_sh)
             capsule(g, cx, 28 + dy, cx, 36 + dy, 6.2, 5.2, plate_c, plate_hi, plate_sh)
-            # Winged Saiyan shoulder pauldrons
-            tri(g, cx - 12, 25 + dy, cx - 4, 24 + dy, cx - 5, 30 + dy, plate_c)
-            tri(g, cx + 4, 24 + dy, cx + 12, 25 + dy, cx + 5, 30 + dy, plate_c)
-            line(g, cx - 11, 25 + dy, cx - 5, 25 + dy, plate_hi)
-            line(g, cx + 5, 25 + dy, cx + 11, 25 + dy, plate_hi)
-            # Waist belt / Saiyan tail wrap
+            tri(g, cx - 13, 24 + dy, cx - 4, 24 + dy, cx - 5, 30 + dy, plate_c)
+            tri(g, cx + 4, 24 + dy, cx + 13, 24 + dy, cx + 5, 30 + dy, plate_c)
+            line(g, cx - 12, 24 + dy, cx - 5, 24 + dy, plate_hi)
+            line(g, cx + 5, 24 + dy, cx + 12, 24 + dy, plate_hi)
             rect(g, cx - 7, 37 + dy, 14, 3, "R" if kind == "boss1" else plate_sh)
 
-        # Arms
         arm_c = "W" if kind == "boss4" else "S"
         arm_hi = "L"
         arm_sh = "w" if kind == "boss4" else "s"
@@ -1011,7 +956,6 @@ def build_heavy_or_boss(kind):
         fist_c = "P" if kind == "boss4" else ("R" if mode == "special" else arm_c)
         ellipse(g, armF[2], armF[3], 2.8, 2.8, fist_c)
 
-        # Head & Character-specific silhouette
         hx, hy = cx + 1, 18 + dy
         skin_c = "W" if kind == "boss4" else "S"
         ellipse(g, hx, hy + 1, 5.2, 5.2, skin_c)
@@ -1019,12 +963,11 @@ def build_heavy_or_boss(kind):
             rect(g, hx - 4, hy + 2, 2, 3, "s")
             put(g, hx + 3, hy + 1, "L")
         if kind == "boss1":
-            # Wild long Raditz-style spiky Saiyan mane
-            tri(g, hx - 4, hy - 2, hx - 16, hy + 10, hx - 4, hy + 14, "H")
-            tri(g, hx - 5, hy - 3, hx - 14, hy + 2, hx - 3, hy + 6, "H")
-            tri(g, hx - 4, hy - 4, hx - 12, hy - 11, hx, hy - 5, "H")
+            tri(g, hx - 4, hy - 2, hx - 17, hy + 11, hx - 4, hy + 15, "H")
+            tri(g, hx - 5, hy - 3, hx - 15, hy + 2, hx - 3, hy + 7, "H")
+            tri(g, hx - 4, hy - 4, hx - 12, hy - 12, hx, hy - 5, "H")
             tri(g, hx + 1, hy - 4, hx + 8, hy - 11, hx + 5, hy - 2, "H")
-            line(g, hx - 11, hy + 4, hx - 6, hy + 8, "h")
+            line(g, hx - 12, hy + 4, hx - 6, hy + 9, "h")
             rect(g, hx, hy - 1, 5, 2, "R")
         elif kind == "boss2":
             tri(g, hx - 2, hy - 4, hx + 2, hy - 12, hx + 5, hy - 3, "H")
@@ -1094,8 +1037,119 @@ def build_effects_sheet():
 
 
 # ---------------------------------------------------------------------------
-# 16-BIT PIXEL-ART PARALLAX BACKGROUNDS (Bayer-dithered skies, organic rock
-# mesas, multi-layer depth, rich terrain details)
+# WORLD PROPS & LIVING-ENVIRONMENT SPRITESHEET (assets/effects/world_props.png)
+# Structured 64x64 cells (8 cells -> 512x64):
+#  0: Large Pixel Cloud (for dynamic sky drift)
+#  1: Small Pixel Cloud
+#  2: Birds Frame 0 (wings up) & Frame 1 (wings down) stacked inside 64x64
+#  3: Twisted Desert Tree (canopy + trunk, drawn separately or swayed)
+#  4: Solid Boulder Obstacle (unbreakable cover rock)
+#  5: Destructible Cracked Boulder (intact vs cracked halves? Let's make 5=intact, 6=cracked!)
+#  6: Destructible Cracked Boulder (damaged state with deep glowing cracks)
+#  7: Fallen Ancient Log / Ruined Stone Pillar Obstacle
+# ---------------------------------------------------------------------------
+def build_world_props():
+    cell = 64
+    sheet = Image.new("RGBA", (cell * 8, cell), CLEAR)
+
+    # 0: Large Sculpted Cloud
+    im = Image.new("RGBA", (cell, cell), CLEAR)
+    d = ImageDraw.Draw(im)
+    blobs = [(32, 34, 22, 9), (16, 37, 13, 6), (48, 38, 14, 6), (25, 28, 13, 8), (39, 30, 11, 7)]
+    for cx, cy, rx, ry in blobs:
+        d.ellipse([cx - rx, cy - ry + 2, cx + rx, cy + ry + 2], fill=(182, 136, 134, 235))
+    for cx, cy, rx, ry in blobs:
+        d.ellipse([cx - rx, cy - ry, cx + rx, cy + ry], fill=(244, 216, 192, 245))
+    for cx, cy, rx, ry in blobs:
+        d.ellipse([cx - rx * 0.8, cy - ry * 0.7 - 1, cx + rx * 0.8, cy + ry * 0.5 - 1], fill=(255, 248, 234, 255))
+    sheet.paste(im, (0, 0))
+
+    # 1: Small Sculpted Cloud
+    im = Image.new("RGBA", (cell, cell), CLEAR)
+    d = ImageDraw.Draw(im)
+    blobs = [(32, 34, 15, 6), (21, 36, 9, 4), (42, 36, 10, 4), (30, 30, 9, 5)]
+    for cx, cy, rx, ry in blobs:
+        d.ellipse([cx - rx, cy - ry + 2, cx + rx, cy + ry + 2], fill=(182, 136, 134, 215))
+    for cx, cy, rx, ry in blobs:
+        d.ellipse([cx - rx, cy - ry, cx + rx, cy + ry], fill=(244, 216, 192, 230))
+    for cx, cy, rx, ry in blobs:
+        d.ellipse([cx - rx * 0.75, cy - ry * 0.65 - 1, cx + rx * 0.75, cy + ry * 0.45 - 1], fill=(255, 248, 234, 245))
+    sheet.paste(im, (cell * 1, 0))
+
+    # 2: Animated Bird Frames (top half y=0..32 wings up, bottom half y=32..64 wings down)
+    im = Image.new("RGBA", (cell, cell), CLEAR)
+    d = ImageDraw.Draw(im)
+    # Frame 0 (wings up) at (32, 16)
+    d.line([(24, 12), (28, 10), (32, 16), (36, 10), (40, 12)], fill=(48, 34, 46, 255), width=2)
+    d.point((32, 17), fill=(92, 62, 68, 255))
+    # Frame 1 (wings down) at (32, 48)
+    d.line([(24, 50), (28, 48), (32, 46), (36, 48), (40, 50)], fill=(48, 34, 46, 255), width=2)
+    d.point((32, 45), fill=(92, 62, 68, 255))
+    sheet.paste(im, (cell * 2, 0))
+
+    # 3: Twisted Desert Tree (top=canopy y=6..36, trunk y=32..62)
+    im = Image.new("RGBA", (cell, cell), CLEAR)
+    d = ImageDraw.Draw(im)
+    # Gnarled trunk
+    d.polygon([(27, 62), (29, 34), (35, 34), (38, 62)], fill=(104, 62, 38, 255))
+    d.polygon([(29, 34), (32, 34), (33, 62), (27, 62)], fill=(138, 86, 52, 255))
+    d.line([(31, 36), (22, 28)], fill=(104, 62, 38, 255), width=3)
+    d.line([(33, 36), (43, 29)], fill=(104, 62, 38, 255), width=3)
+    # Layered olive-green desert foliage clusters
+    for cx, cy, rx, ry, col in [
+        (32, 22, 18, 10, (54, 96, 44, 255)),
+        (20, 25, 11, 7, (54, 96, 44, 255)),
+        (44, 25, 11, 7, (54, 96, 44, 255)),
+        (32, 19, 15, 8, (86, 138, 58, 255)),
+        (21, 22, 9, 5, (86, 138, 58, 255)),
+        (43, 23, 8, 5, (86, 138, 58, 255)),
+        (30, 15, 10, 5, (124, 178, 78, 255)),
+    ]:
+        d.ellipse([cx - rx, cy - ry, cx + rx, cy + ry], fill=col)
+    sheet.paste(im, (cell * 3, 0))
+
+    # 4: Solid Large Boulder Obstacle (44x34 grounded at y=62)
+    im = Image.new("RGBA", (cell, cell), CLEAR)
+    d = ImageDraw.Draw(im)
+    poly = [(10, 62), (12, 42), (20, 30), (35, 28), (48, 36), (54, 62)]
+    d.polygon(poly, fill=(122, 66, 40, 255), outline=OUTLINE)
+    d.polygon([(12, 42), (20, 30), (35, 28), (32, 62), (10, 62)], fill=(166, 94, 54, 255))
+    d.polygon([(20, 30), (35, 28), (38, 36), (17, 39)], fill=(214, 134, 78, 255))
+    d.line([(20, 30), (35, 28)], fill=(242, 176, 110, 255), width=2)
+    d.line([(30, 38), (36, 49), (33, 59)], fill=OUTLINE, width=1)
+    sheet.paste(im, (cell * 4, 0))
+
+    # 5 & 6: Destructible Cracked Boulder (5=intact, 6=heavy cracks)
+    for idx, damaged in [(5, False), (6, True)]:
+        im = Image.new("RGBA", (cell, cell), CLEAR)
+        d = ImageDraw.Draw(im)
+        poly = [(14, 62), (16, 40), (24, 28), (40, 29), (49, 43), (50, 62)]
+        d.polygon(poly, fill=(144, 82, 52, 255), outline=OUTLINE)
+        d.polygon([(16, 40), (24, 28), (36, 30), (32, 62), (14, 62)], fill=(192, 118, 72, 255))
+        d.line([(24, 28), (39, 29)], fill=(246, 188, 120, 255), width=2)
+        # Cracks
+        crack_col = (255, 212, 92, 255) if damaged else (52, 28, 22, 255)
+        d.line([(28, 31), (32, 42), (26, 52), (31, 60)], fill=OUTLINE, width=2 if damaged else 1)
+        d.line([(32, 42), (42, 45), (46, 52)], fill=crack_col, width=1)
+        if damaged:
+            d.line([(21, 41), (29, 44), (24, 54)], fill=crack_col, width=1)
+        sheet.paste(im, (cell * idx, 0))
+
+    # 7: Fallen Ancient Desert Tree Trunk / Broken Ruin Obstacle
+    im = Image.new("RGBA", (cell, cell), CLEAR)
+    d = ImageDraw.Draw(im)
+    d.polygon([(6, 62), (8, 44), (52, 42), (58, 52), (56, 62)], fill=(94, 56, 36, 255), outline=OUTLINE)
+    d.polygon([(8, 44), (52, 42), (50, 50), (8, 52)], fill=(138, 86, 52, 255))
+    d.line([(12, 47), (46, 46)], fill=(172, 114, 72, 255), width=1)
+    d.ellipse([50, 43, 58, 60], fill=(178, 128, 84, 255), outline=OUTLINE)
+    sheet.paste(im, (cell * 7, 0))
+
+    return sheet
+
+
+# ---------------------------------------------------------------------------
+# REDESIGNED ROCKY WASTELAND BACKGROUNDS (No flat blocks, organic irregular
+# Dragon Ball canyon spires, arches, mountain silhouettes & dithered sky)
 # ---------------------------------------------------------------------------
 BAYER4 = [
     [0, 8, 2, 10],
@@ -1106,14 +1160,10 @@ BAYER4 = [
 
 
 def draw_dithered_sky(img, stops):
-    """stops: list of (y, (r,g,b)) sorted ascending by y."""
     W, H = img.size
     px = img.load()
     for y in range(H):
-        # Find enclosing stops
-        c0 = stops[0][1]
-        c1 = stops[-1][1]
-        t = 0.0
+        c0, c1, t = stops[0][1], stops[-1][1], 0.0
         for i in range(len(stops) - 1):
             y0, col0 = stops[i]
             y1, col1 = stops[i + 1]
@@ -1128,211 +1178,151 @@ def draw_dithered_sky(img, stops):
             px[x, y] = (col[0], col[1], col[2], 255)
 
 
-def draw_pixel_cloud(d, cx, cy, scale, top_col, mid_col, sh_col):
-    # Puffy organic 16-bit cumulus cloud built from overlapping ellipses
-    blobs = [
-        (0, 0, 22, 8),
-        (-18, 3, 14, 6),
-        (18, 4, 15, 6),
-        (-7, -5, 13, 7),
-        (8, -4, 11, 6),
-    ]
-    for ox, oy, rx, ry in blobs:
-        rx, ry = rx * scale, ry * scale
-        ox, oy = ox * scale, oy * scale
-        d.ellipse([cx + ox - rx, cy + oy - ry + 2, cx + ox + rx, cy + oy + ry + 2], fill=sh_col)
-    for ox, oy, rx, ry in blobs:
-        rx, ry = rx * scale, ry * scale
-        ox, oy = ox * scale, oy * scale
-        d.ellipse([cx + ox - rx, cy + oy - ry, cx + ox + rx, cy + oy + ry], fill=mid_col)
-    for ox, oy, rx, ry in blobs:
-        rx, ry = rx * scale * 0.8, ry * scale * 0.65
-        ox, oy = ox * scale, oy * scale - 2 * scale
-        d.ellipse([cx + ox - rx, cy + oy - ry, cx + ox + rx, cy + oy + ry], fill=top_col)
-
-
-def draw_eroded_mesa(img, cx, base_y, width, height, pal, seed):
-    """Draw an organic, stratified Dragon Ball canyon mesa/spire (no flat boxes!)."""
-    rng = random.Random(seed)
+def draw_organic_spire(img, cx, base_y, base_w, height, pal, seed):
+    """Draw an irregular, tapered craggy rock spire/butte (not a rectangle!)."""
     px = img.load()
     W, H = img.size
     lit, mid, sh, dark, rim = pal
-
-    # Build irregular left & right cliff edge profiles from top to bottom
     top_y = base_y - height
-    half_top = width * 0.34
-    half_bot = width * 0.54
-    for y in range(max(0, top_y), min(H, base_y)):
-        prog = (y - top_y) / max(1, height)
-        # Step ledges & organic jaggedness
-        step = math.sin(prog * 14 + seed) * 3.5 + math.sin(prog * 31) * 1.5
-        half_w = half_top + (half_bot - half_top) * (prog ** 0.85) + step
-        lx = int(cx - half_w + rng.randint(-1, 1))
-        rx = int(cx + half_w + rng.randint(-1, 1))
 
-        # Horizontal sedimentary rock strata banding (organic ledges, no brick hatching)
-        strata = ((y + seed * 3) // 11) % 3
-        is_ledge = ((y + seed * 3) % 11) == 0
+    for y in range(max(0, top_y), min(H, base_y)):
+        p = (y - top_y) / max(1, height)
+        # Tapered irregular spire/butte profile with natural ledges
+        if p < 0.08:
+            half_w = base_w * (0.14 + p * 2.2)
+        else:
+            wobble = math.sin(p * 11 + seed) * 4.5 + math.cos(p * 23 + seed * 2) * 2.2
+            half_w = base_w * (0.28 + 0.34 * (p ** 0.75)) + wobble
+        tilt = math.sin(seed) * (1 - p) * 6
+        lx = int(cx + tilt - half_w)
+        rx = int(cx + tilt + half_w)
+
+        strata = ((y + seed * 5) // 13)
+        is_ledge = ((y + seed * 5) % 13) == 0
         for x in range(lx, rx + 1):
-            wx = x % W  # wrap horizontally for seamless tiling!
+            wx = x % W
             rel = (x - lx) / max(1, (rx - lx))
             if y - top_y <= 3:
                 col = rim
-            elif is_ledge and rel < 0.78:
-                col = lit if rel < 0.35 else sh
-            elif rel < 0.14 or (rel < 0.24 and strata == 0):
+            elif is_ledge and rel < 0.74:
+                col = lit if rel < 0.36 else sh
+            elif rel < 0.16 or (rel < 0.28 and strata % 2 == 0):
                 col = lit
-            elif rel > 0.72:
-                col = dark if rel > 0.88 else sh
+            elif rel > 0.70:
+                col = dark if rel > 0.86 else sh
             else:
                 col = mid
-            # Broken irregular vertical erosion fissures
-            crack_seed = ((x * 7 + seed * 13) ^ (y // 11)) & 31
-            if crack_seed == 0 and prog > 0.14 and rel > 0.18 and rel < 0.85:
+            # Organic broken fissures
+            hsh = ((x * 11 + seed * 17) ^ (y // 9)) & 31
+            if hsh == 0 and 0.14 < p < 0.9 and 0.18 < rel < 0.82:
                 col = dark
             px[wx, y] = col
 
 
 def make_stage1_rocky_wasteland():
     W, H = 960, 270
-    rng = random.Random(101)
+    rng = random.Random(2026)
 
-    # 1. SKY LAYER (Bayer-dithered sunset + glowing sun + sculpted cumulus clouds)
+    # 1. SKY LAYER (Pure atmospheric Bayer-dithered sunset + glowing sun; clouds animated in JS!)
     sky = Image.new("RGBA", (W, H), CLEAR)
     draw_dithered_sky(sky, [
-        (0, (54, 92, 166)),
-        (52, (94, 134, 196)),
-        (104, (162, 162, 186)),
-        (152, (224, 162, 118)),
-        (206, (242, 178, 92)),
-        (270, (216, 132, 68)),
+        (0, (48, 86, 162)),
+        (48, (88, 128, 194)),
+        (98, (156, 158, 184)),
+        (146, (222, 158, 114)),
+        (198, (242, 178, 92)),
+        (270, (214, 130, 68)),
     ])
     sd = ImageDraw.Draw(sky)
-    # Sun halo + core
-    sd.ellipse([712, 32, 774, 94], fill=(252, 206, 120, 140))
-    sd.ellipse([722, 42, 764, 84], fill=(255, 232, 148, 255))
-    sd.ellipse([728, 48, 756, 76], fill=(255, 248, 204, 255))
-    # Sculpted pixel clouds
-    for cx, cy, sc in [(110, 52, 1.1), (310, 78, 0.85), (520, 46, 1.25), (840, 70, 0.95)]:
-        draw_pixel_cloud(sd, cx, cy, sc, (255, 246, 230, 255), (242, 214, 192, 255), (186, 142, 138, 255))
+    sd.ellipse([708, 30, 778, 100], fill=(252, 206, 120, 120))
+    sd.ellipse([720, 42, 766, 88], fill=(255, 232, 152, 255))
+    sd.ellipse([728, 50, 758, 80], fill=(255, 248, 208, 255))
 
-    # 2. FAR HORIZON LAYER (Atmospheric distant flat-top plateaus & misty haze)
+    # 2. FAR LAYER: Detailed jagged distant mountain range + atmospheric valley haze
     far = Image.new("RGBA", (W, H), CLEAR)
     fd = ImageDraw.Draw(far)
-    far_poly = [(0, 224)]
-    x = 0
-    heights = [148, 132, 132, 162, 152, 122, 122, 158, 170, 138, 138, 165]
-    for i, hx in enumerate(range(0, W + 80, 80)):
-        y = heights[i % len(heights)]
-        far_poly.append((hx, y))
-    far_poly.append((W, 224))
-    fd.polygon(far_poly, fill=(146, 86, 68, 255))
-    # Subtle lit top rim on far plateaus
-    for i in range(1, len(far_poly) - 2):
-        x0, y0 = far_poly[i]
-        x1, y1 = far_poly[i + 1]
-        if abs(y1 - y0) <= 6:
-            fd.line([(x0, y0), (x1, y1)], fill=(184, 114, 84, 255), width=2)
-    # Atmospheric dust band
-    fd.rectangle([0, 194, W, 225], fill=(176, 108, 76, 120))
+    # Back silhouette range
+    pts1 = [(0, 226)]
+    for x in range(0, W + 20, 20):
+        idx = (x % W) // 20
+        y = 136 + int(math.sin(idx * 0.45) * 26 + math.cos(idx * 1.15) * 14 + math.sin(idx * 2.3) * 7)
+        pts1.append((x, y))
+    pts1.append((W, 226))
+    fd.polygon(pts1, fill=(138, 84, 74, 255))
+    # Sunlit ridge highlight on left-facing mountain slopes
+    for i in range(1, len(pts1) - 2):
+        x0, y0 = pts1[i]
+        x1, y1 = pts1[i + 1]
+        if y1 < y0:
+            fd.line([(x0, y0), (x1, y1)], fill=(178, 112, 88, 255), width=2)
 
-    # 3. MIDGROUND LAYER (Iconic Dragon Ball sculpted mesas, rock arch, spires)
+    # Secondary closer ridge for layered mountain depth
+    pts2 = [(0, 228)]
+    for x in range(0, W + 16, 16):
+        idx = (x % W) // 16
+        y = 166 + int(math.sin(idx * 0.52 + 1.2) * 16 + math.cos(idx * 1.4) * 9)
+        pts2.append((x, y))
+    pts2.append((W, 228))
+    fd.polygon(pts2, fill=(122, 68, 56, 255))
+    fd.rectangle([0, 198, W, 228], fill=(184, 118, 84, 90))
+
+    # 3. MIDGROUND LAYER: Eroded Dragon Ball rock spires, natural rock arch, craggy foothills
     mid = Image.new("RGBA", (W, H), CLEAR)
-    mesa_pal = (
-        (214, 128, 74, 255),   # lit
-        (172, 92, 52, 255),    # mid
-        (132, 66, 38, 255),    # shadow
-        (94, 44, 28, 255),     # deep crack/shadow
-        (238, 158, 96, 255),   # top rim
+    spire_pal = (
+        (214, 128, 74, 255),
+        (170, 90, 50, 255),
+        (130, 64, 38, 255),
+        (90, 42, 26, 255),
+        (240, 162, 100, 255),
     )
-    mesas = [
-        (80, 218, 92, 118, 11),
-        (230, 218, 64, 84, 22),
-        (390, 218, 116, 134, 33),
-        (560, 218, 74, 96, 44),
-        (730, 218, 108, 128, 55),
-        (890, 218, 68, 78, 66),
+    spires = [
+        (72, 222, 74, 116, 3),
+        (210, 222, 52, 86, 17),
+        (365, 222, 92, 134, 29),
+        (540, 222, 62, 94, 41),
+        (715, 222, 86, 128, 53),
+        (875, 222, 58, 82, 67),
     ]
-    for cx, by, mw, mh, seed in mesas:
-        draw_eroded_mesa(mid, cx, by, mw, mh, mesa_pal, seed)
+    for cx, by, bw, bh, seed in spires:
+        draw_organic_spire(mid, cx, by, bw, bh, spire_pal, seed)
 
-    # Natural sandstone arch near x=560..640
+    # Natural weathered sandstone arch at x=575..665
     md = ImageDraw.Draw(mid)
-    md.arc([585, 146, 665, 232], 180, 360, fill=(172, 92, 52, 255), width=14)
-    md.arc([585, 146, 665, 232], 195, 345, fill=(214, 128, 74, 255), width=4)
+    md.arc([582, 152, 668, 232], 182, 358, fill=(166, 88, 50, 255), width=13)
+    md.arc([582, 152, 668, 232], 195, 340, fill=(214, 128, 74, 255), width=4)
 
-    # Continuous rocky foothills at base of mesas (wrapped seamlessly)
-    hill_pts = [(0, 226)]
-    for hx in range(0, W + 24, 24):
-        idx = (hx % W) // 24
-        hy = 192 + int(math.sin(idx * 0.7) * 9 + math.cos(idx * 1.5) * 6)
+    # Craggy continuous canyon foothills
+    hill_pts = [(0, 230)]
+    for hx in range(0, W + 20, 20):
+        idx = (hx % W) // 20
+        hy = 194 + int(math.sin(idx * 0.65) * 10 + math.cos(idx * 1.35) * 6)
         hill_pts.append((hx, hy))
-    hill_pts.append((W, 226))
-    md.polygon(hill_pts, fill=(138, 72, 42, 255))
+    hill_pts.append((W, 230))
+    md.polygon(hill_pts, fill=(136, 70, 40, 255))
     for i in range(1, len(hill_pts) - 2):
         md.line([hill_pts[i], hill_pts[i + 1]], fill=(182, 102, 58, 255), width=2)
 
-    # 4. FOREGROUND GROUND & TERRAIN DETAILS (y=204..270)
+    # 4. BASE BACKDROP GROUND (y=210..270 — dynamic terrain segments render cleanly over this!)
     gnd = Image.new("RGBA", (W, H), CLEAR)
     gd = ImageDraw.Draw(gnd)
-    # Stratified canyon ground layers
-    gd.rectangle([0, 212, W, 216], fill=(242, 182, 108, 255))  # bright sunlit ridge
-    gd.rectangle([0, 216, W, 225], fill=(214, 138, 70, 255))   # upper dirt
-    gd.rectangle([0, 225, W, 240], fill=(182, 104, 48, 255))   # mid earth
-    gd.rectangle([0, 240, W, 270], fill=(142, 76, 36, 255))    # deep foreground soil
+    gd.rectangle([0, 212, W, 270], fill=(104, 52, 28, 255))
+    gd.rectangle([0, 212, W, 222], fill=(148, 82, 42, 255))
+    for x in range(0, W, 32):
+        gd.line([(x + 4, 224), (x + 16, 236)], fill=(78, 38, 20, 255), width=1)
+        gd.ellipse([x + 12, 240 + (x % 17), x + 16, 243 + (x % 17)], fill=(78, 38, 20, 255))
 
-    # Dithered transition bands & organic soil texture
-    gpx = gnd.load()
-    for y in range(222, 244):
-        for x in range(W):
-            if y < 226 and (x + y * 3) % 4 == 0:
-                gpx[x, y] = (182, 104, 48, 255)
-            elif y >= 238 and (x * 2 + y) % 4 == 0:
-                gpx[x, y] = (142, 76, 36, 255)
-
-    # Organic canyon floor cracks, pebbles, boulders, and desert scrub
-    for bx in range(12, W, 46):
-        # Cracked stone slab
-        sx = bx + rng.randint(-6, 8)
-        sy = 224 + rng.randint(0, 18)
-        gd.line([(sx, sy), (sx + 10, sy + 4), (sx + 18, sy + 2)], fill=(112, 56, 26, 255), width=1)
-        gd.line([(sx + 10, sy + 4), (sx + 13, sy + 11)], fill=(112, 56, 26, 255), width=1)
-        # Pebble clusters
-        for _ in range(3):
-            pxx = (bx + rng.randint(0, 38)) % W
-            pyy = rng.randint(218, 262)
-            pr = rng.randint(2, 4)
-            gd.ellipse([pxx, pyy, pxx + pr + 1, pyy + pr], fill=(118, 62, 30, 255))
-            gd.point((pxx + 1, pyy), fill=(224, 152, 86, 255))
-
-    # Detailed boulders & dry desert scrub tufts along the upper ledge (y=200..215)
-    for rx in [34, 148, 265, 378, 504, 612, 742, 858]:
-        rw = rng.randint(14, 24)
-        rh = rng.randint(9, 15)
-        ry = 214 - rh
-        gd.polygon([(rx, 214), (rx + 3, ry + 2), (rx + rw * 0.55, ry), (rx + rw, 214)], fill=(148, 82, 44, 255))
-        gd.polygon([(rx + 3, ry + 2), (rx + rw * 0.55, ry), (rx + rw * 0.45, 214), (rx, 214)], fill=(196, 118, 66, 255))
-        gd.line([(rx + 3, ry + 2), (rx + rw * 0.55, ry)], fill=(238, 168, 98, 255), width=1)
-
-    for gx in [88, 210, 330, 445, 558, 688, 810, 922]:
-        # Dry scrub grass tuft
-        for ang in (-4, -1, 2, 5):
-            gd.line([(gx, 213), (gx + ang, 205 + abs(ang) // 2)], fill=(156, 146, 68, 255), width=1)
-            gd.point((gx + ang, 205 + abs(ang) // 2), fill=(208, 194, 96, 255))
-
-    # 5. FOREGROUND SILHOUETTE LAYER (Parallax 1.18x along very bottom edge y=254..270)
+    # 5. FOREGROUND SILHOUETTE LAYER (1.18x parallax)
     fg = Image.new("RGBA", (W, H), CLEAR)
     fgd = ImageDraw.Draw(fg)
-    for fx in [60, 290, 520, 770]:
-        fgd.polygon([(fx, 270), (fx + 10, 256), (fx + 26, 254), (fx + 38, 270)], fill=(72, 36, 20, 255))
-        fgd.line([(fx + 10, 256), (fx + 26, 254)], fill=(116, 62, 32, 255), width=1)
+    for fx in [65, 310, 545, 800]:
+        fgd.polygon([(fx, 270), (fx + 10, 257), (fx + 26, 255), (fx + 38, 270)], fill=(66, 32, 18, 255))
+        fgd.line([(fx + 10, 257), (fx + 26, 255)], fill=(108, 56, 30, 255), width=1)
 
     return sky, far, mid, gnd, fg
 
 
 def make_other_stage_backgrounds(stage_id):
     W, H = 960, 270
-    rng = random.Random(100 + stage_id * 77)
     sky = Image.new("RGBA", (W, H), CLEAR)
     mid = Image.new("RGBA", (W, H), CLEAR)
     gnd = Image.new("RGBA", (W, H), CLEAR)
@@ -1347,8 +1337,6 @@ def make_other_stage_backgrounds(stage_id):
         gd.rectangle([0, 212, W, 216], fill=(104, 176, 98, 255))
         gd.rectangle([0, 216, W, 224], fill=(72, 136, 78, 255))
         gd.rectangle([0, 224, W, 270], fill=(82, 88, 102, 255))
-        for x in range(0, W, 32):
-            gd.rectangle([x + 2, 228, x + 26, 238], fill=(104, 110, 126, 255))
     elif stage_id == 3:
         draw_dithered_sky(sky, [(0, (42, 152, 146)), (90, (82, 198, 168)), (180, (132, 224, 178)), (270, (160, 236, 194))])
         sd.ellipse([640, 32, 678, 70], fill=(255, 248, 168, 255))
@@ -1377,33 +1365,8 @@ def make_other_stage_backgrounds(stage_id):
     return sky, mid, gnd
 
 
-def write_wav(filename, samples, sr=22050):
-    path = os.path.join(ASSETS, "audio", filename)
-    with wave.open(path, "w") as wf:
-        wf.setnchannels(1)
-        wf.setsampwidth(2)
-        wf.setframerate(sr)
-        buf = bytearray()
-        for s in samples:
-            val = max(-32767, min(32767, int(s * 32767)))
-            buf.extend(struct.pack("<h", val))
-        wf.writeframes(bytes(buf))
-
-
-def gen_sfx():
-    sr = 22050
-    rng = random.Random(42)
-    specs = [
-        ("punch.wav", 0.11, lambda t: (math.sin(2 * math.pi * max(40, 220 - 1400 * t) * t) * 0.55 + (rng.random() * 2 - 1) * 0.45) * max(0, 1 - t / 0.11) ** 1.5 * 0.6),
-        ("kick.wav", 0.15, lambda t: ((1 if math.sin(2 * math.pi * 300 * math.exp(-t * 14) * t) > 0 else -1) * 0.4 + (rng.random() * 2 - 1) * 0.5) * max(0, 1 - t / 0.15) ** 1.4 * 0.65),
-        ("hit.wav", 0.12, lambda t: ((rng.random() * 2 - 1) * 0.6 + math.sin(2 * math.pi * 120 * t) * 0.4) * max(0, 1 - t / 0.12) ** 1.8 * 0.65),
-    ]
-    for name, dur, fn in specs:
-        write_wav(name, [fn(i / sr) for i in range(int(sr * dur))], sr)
-
-
 def main():
-    print("Generating detailed 64x64 Goku spritesheets...")
+    print("Generating refined 64x64 Goku spritesheets (38 frames)...")
     build_sheet(build_goku_frames(ssj=False), PAL_GOKU_BASE, 64, 64).save(
         os.path.join(ASSETS, "sprites", "goku_base.png")
     )
@@ -1411,7 +1374,7 @@ def main():
         os.path.join(ASSETS, "sprites", "goku_ssj.png")
     )
 
-    print("Generating detailed 64x64 enemy & boss spritesheets...")
+    print("Generating refined enemy & boss spritesheets...")
     build_sheet(build_scout_frames(), PAL_SCOUT, 64, 64).save(
         os.path.join(ASSETS, "sprites", "enemy_scout.png")
     )
@@ -1430,10 +1393,11 @@ def main():
     ]:
         build_heavy_or_boss(kind).save(os.path.join(ASSETS, "sprites", fname))
 
-    print("Generating effects spritesheet...")
+    print("Generating effects & world props sheets...")
     build_effects_sheet().save(os.path.join(ASSETS, "effects", "effects.png"))
+    build_world_props().save(os.path.join(ASSETS, "effects", "world_props.png"))
 
-    print("Generating multi-layer Rocky Wasteland & stage backgrounds...")
+    print("Generating Rocky Wasteland & stage backgrounds...")
     sky, far, mid, gnd, fg = make_stage1_rocky_wasteland()
     sky.save(os.path.join(ASSETS, "backgrounds", "stage1_sky.png"))
     far.save(os.path.join(ASSETS, "backgrounds", "stage1_far.png"))
@@ -1447,7 +1411,7 @@ def main():
         m.save(os.path.join(ASSETS, "backgrounds", f"stage{st}_mid.png"))
         g.save(os.path.join(ASSETS, "backgrounds", f"stage{st}_ground.png"))
 
-    print("Visual assets upgraded!")
+    print("All assets generated successfully!")
 
 
 if __name__ == "__main__":
