@@ -1,78 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Gargantua Observatory – Beyond the Event Horizon</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  color-scheme: dark;
-  --void:#000;
-  --ember:#ffb15e;
-  --plasma:#ff6a1f;
-  --ash:#c9c2b8;
-  --dim:#7d776f;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
-}
-*,*::before,*::after{box-sizing:inherit}
-html,body{height:100%;margin:0;background:var(--void);color:var(--ash);font-family:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-#bh{position:fixed;inset:0;width:100%;height:100%;display:block;
-  background:radial-gradient(circle at 50% 46%,#000 0 9%,#ff8a2f 11%,#5a1a05 22%,#000 48%)}
-.vignette{position:fixed;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at 50% 45%,transparent 45%,rgba(0,0,0,.75) 100%)}
-header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(20px,4vw,56px);z-index:2}
-.brand{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.05rem;letter-spacing:.02em;color:#fff}
-nav{display:flex;gap:clamp(16px,3vw,36px);font-size:.92rem}
-nav a{color:var(--ash);text-decoration:none;transition:color .2s}
-nav a:hover,nav a:focus-visible{color:var(--ember)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--ember);outline-offset:4px;border-radius:4px}
-main{position:fixed;left:0;right:0;bottom:env(safe-area-inset-bottom,0px);z-index:2;text-align:center;padding:0 20px clamp(28px,6vh,64px)}
-h1{margin:0 auto;max-width:15ch;font-family:Fraunces,Georgia,serif;font-weight:300;font-size:clamp(2.3rem,6.2vw,5.4rem);line-height:1.02;letter-spacing:-.025em;color:#fff;
-  text-shadow:0 0 40px rgba(0,0,0,.9);animation:rise 1.8s cubic-bezier(.2,.7,.1,1) .3s both}
-p.lede{margin:18px auto 0;max-width:46ch;font-size:clamp(.95rem,1.4vw,1.1rem);line-height:1.55;color:var(--ash);text-shadow:0 0 20px #000;animation:rise 1.8s cubic-bezier(.2,.7,.1,1) .55s both}
-.cta{margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:rise 1.8s cubic-bezier(.2,.7,.1,1) .8s both}
-.btn{font:500 .95rem "Instrument Sans",system-ui,sans-serif;padding:13px 26px;border-radius:999px;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s}
-.btn.primary{background:var(--ember);color:#1a0b00;border:0;box-shadow:0 0 0 0 rgba(255,138,47,.5)}
-.btn.primary:hover{transform:translateY(-2px);box-shadow:0 0 36px 4px rgba(255,138,47,.45)}
-.btn.ghost{color:#fff;border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.35);backdrop-filter:blur(6px)}
-.btn.ghost:hover{border-color:var(--ember);color:var(--ember)}
-.hint{position:fixed;top:50%;left:clamp(20px,4vw,56px);z-index:2;font-size:.8rem;color:var(--dim);writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg);animation:fade 3s ease 2s both}
-@keyframes rise{from{opacity:0;transform:translateY(28px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-@media (max-width:640px){nav a:nth-child(n+3){display:none}.hint{display:none}}
-@media (prefers-reduced-motion:reduce){h1,p.lede,.cta,.hint{animation:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gargantua Observatory – Beyond the Event Horizon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=Instrument+Sans:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --void: #000;
+      --ember: #ffb15e;
+      --plasma: #ff6a1f;
+      --ash: #c9c2b8;
+      --dim: #7d776f;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      background: var(--void);
+      color: var(--ash);
+      font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      overflow: hidden
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    #bh {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: radial-gradient(circle at 50% 46%, #000 0 9%, #ff8a2f 11%, #5a1a05 22%, #000 48%)
+    }
+
+    .vignette {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 50% 45%, transparent 45%, rgba(0, 0, 0, .75) 100%)
+    }
+
+    header {
+      position: fixed;
+      top: env(safe-area-inset-top, 0px);
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px clamp(20px, 4vw, 56px);
+      z-index: 2
+    }
+
+    .brand {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: .02em;
+      color: #fff
+    }
+
+    nav {
+      display: flex;
+      gap: clamp(16px, 3vw, 36px);
+      font-size: .92rem
+    }
+
+    nav a {
+      color: var(--ash);
+      text-decoration: none;
+      transition: color .2s
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--ember)
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--ember);
+      outline-offset: 4px;
+      border-radius: 4px
+    }
+
+    main {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: env(safe-area-inset-bottom, 0px);
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px clamp(28px, 6vh, 64px)
+    }
+
+    h1 {
+      margin: 0 auto;
+      max-width: 15ch;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(2.3rem, 6.2vw, 5.4rem);
+      line-height: 1.02;
+      letter-spacing: -.025em;
+      color: #fff;
+      text-shadow: 0 0 40px rgba(0, 0, 0, .9);
+      animation: rise 1.8s cubic-bezier(.2, .7, .1, 1) .3s both
+    }
+
+    p.lede {
+      margin: 18px auto 0;
+      max-width: 46ch;
+      font-size: clamp(.95rem, 1.4vw, 1.1rem);
+      line-height: 1.55;
+      color: var(--ash);
+      text-shadow: 0 0 20px #000;
+      animation: rise 1.8s cubic-bezier(.2, .7, .1, 1) .55s both
+    }
+
+    .cta {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: rise 1.8s cubic-bezier(.2, .7, .1, 1) .8s both
+    }
+
+    .btn {
+      font: 500 .95rem "Instrument Sans", system-ui, sans-serif;
+      padding: 13px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .2s, background .2s, box-shadow .2s
+    }
+
+    .btn.primary {
+      background: var(--ember);
+      color: #1a0b00;
+      border: 0;
+      box-shadow: 0 0 0 0 rgba(255, 138, 47, .5)
+    }
+
+    .btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 36px 4px rgba(255, 138, 47, .45)
+    }
+
+    .btn.ghost {
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, .28);
+      background: rgba(0, 0, 0, .35);
+      backdrop-filter: blur(6px)
+    }
+
+    .btn.ghost:hover {
+      border-color: var(--ember);
+      color: var(--ember)
+    }
+
+    .hint {
+      position: fixed;
+      top: 50%;
+      left: clamp(20px, 4vw, 56px);
+      z-index: 2;
+      font-size: .8rem;
+      color: var(--dim);
+      writing-mode: vertical-rl;
+      transform: translateY(-50%) rotate(180deg);
+      animation: fade 3s ease 2s both
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+        filter: blur(8px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+        filter: none
+      }
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @media (max-width:640px) {
+      nav a:nth-child(n+3) {
+        display: none
+      }
+
+      .hint {
+        display: none
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      h1,
+      p.lede,
+      .cta,
+      .hint {
+        animation: none
+      }
+    }
+  </style>
 </head>
+
 <body>
-<canvas id="bh" aria-label="Animated black hole with a glowing accretion disk bending starlight" role="img"></canvas>
-<div class="vignette"></div>
-<header>
-  <div class="brand">Gargantua Observatory</div>
-  <nav><a href="#physics">Physics</a><a href="#gallery">Gallery</a><a href="#missions">Missions</a><a href="#visit">Visit</a></nav>
-</header>
-<div class="hint">Move your pointer to orbit the camera</div>
-<main>
-  <h1>Where light itself cannot leave</h1>
-  <p class="lede">Watch a rotating black hole bend starlight around its shadow and drag a disk of plasma into a ring of fire.</p>
-  <div class="cta">
-    <a class="btn primary" href="#physics">Explore the horizon</a>
-    <a class="btn ghost" href="#missions">See the missions</a>
-  </div>
-</main>
+  <canvas id="bh" aria-label="Animated black hole with a glowing accretion disk bending starlight" role="img"></canvas>
+  <div class="vignette"></div>
+  <header>
+    <div class="brand">Gargantua Observatory</div>
+    <nav><a href="#physics">Physics</a><a href="#gallery">Gallery</a><a href="#missions">Missions</a><a
+        href="#visit">Visit</a></nav>
+  </header>
+  <div class="hint">Move your pointer to orbit the camera</div>
+  <main>
+    <h1>Where light itself cannot leave</h1>
+    <p class="lede">Watch a rotating black hole bend starlight around its shadow and drag a disk of plasma into a ring
+      of fire.</p>
+    <div class="cta">
+      <a class="btn primary" href="#physics">Explore the horizon</a>
+      <a class="btn ghost" href="#missions">See the missions</a>
+    </div>
+  </main>
 
-<script>
-(function(){
-  var canvas=document.getElementById('bh');
-  var gl=canvas.getContext('webgl',{antialias:false,alpha:false});
-  if(!gl)return; // CSS gradient fallback stays visible
+  <script>
+    (function () {
+      var canvas = document.getElementById('bh');
+      var gl = canvas.getContext('webgl', { antialias: false, alpha: false });
+      if (!gl) return; // CSS gradient fallback stays visible
 
-  var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-  var fs=`
+      var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+      var fs = `
 precision highp float;
 uniform vec2 R; uniform float T; uniform vec2 M;
 
@@ -137,45 +326,46 @@ void main(){
   col=pow(col,vec3(.9));
   gl_FragColor=vec4(col,1.);
 }`;
-  function sh(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
-  var prog=gl.createProgram();
-  gl.attachShader(prog,sh(gl.VERTEX_SHADER,vs));
-  gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,fs));
-  gl.linkProgram(prog);
-  if(!gl.getProgramParameter(prog,gl.LINK_STATUS))return;
-  gl.useProgram(prog);
-  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-  var loc=gl.getAttribLocation(prog,'p');
-  gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  var uR=gl.getUniformLocation(prog,'R'),uT=gl.getUniformLocation(prog,'T'),uM=gl.getUniformLocation(prog,'M');
+      function sh(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+      var prog = gl.createProgram();
+      gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+      gl.useProgram(prog);
+      var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      var loc = gl.getAttribLocation(prog, 'p');
+      gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      var uR = gl.getUniformLocation(prog, 'R'), uT = gl.getUniformLocation(prog, 'T'), uM = gl.getUniformLocation(prog, 'M');
 
-  var scale=Math.min(window.devicePixelRatio||1,1.25);
-  function resize(){
-    canvas.width=Math.floor(innerWidth*scale);
-    canvas.height=Math.floor(innerHeight*scale);
-    gl.viewport(0,0,canvas.width,canvas.height);
-  }
-  addEventListener('resize',resize);resize();
+      var scale = Math.min(window.devicePixelRatio || 1, 1.25);
+      function resize() {
+        canvas.width = Math.floor(innerWidth * scale);
+        canvas.height = Math.floor(innerHeight * scale);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      addEventListener('resize', resize); resize();
 
-  var tx=0,ty=0,mx=0,my=0;
-  function aim(x,y){tx=(x/innerWidth)*2-1;ty=-((y/innerHeight)*2-1);}
-  addEventListener('pointermove',function(e){aim(e.clientX,e.clientY);});
-  addEventListener('touchmove',function(e){var t=e.touches[0];if(t)aim(t.clientX,t.clientY);},{passive:true});
+      var tx = 0, ty = 0, mx = 0, my = 0;
+      function aim(x, y) { tx = (x / innerWidth) * 2 - 1; ty = -((y / innerHeight) * 2 - 1); }
+      addEventListener('pointermove', function (e) { aim(e.clientX, e.clientY); });
+      addEventListener('touchmove', function (e) { var t = e.touches[0]; if (t) aim(t.clientX, t.clientY); }, { passive: true });
 
-  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var start=performance.now();
-  function frame(now){
-    mx+=(tx-mx)*.04;my+=(ty-my)*.04;
-    var t=reduce?4:(now-start)/1000;
-    gl.uniform2f(uR,canvas.width,canvas.height);
-    gl.uniform1f(uT,t);
-    gl.uniform2f(uM,mx,my);
-    gl.drawArrays(gl.TRIANGLES,0,3);
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-})();
-</script>
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var start = performance.now();
+      function frame(now) {
+        mx += (tx - mx) * .04; my += (ty - my) * .04;
+        var t = reduce ? 4 : (now - start) / 1000;
+        gl.uniform2f(uR, canvas.width, canvas.height);
+        gl.uniform1f(uT, t);
+        gl.uniform2f(uM, mx, my);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
+  </script>
 </body>
+
 </html>
